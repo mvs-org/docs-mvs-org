@@ -98,7 +98,7 @@ hexo.extend.helper.register('url_for_lang', function(path) {
 });
 
 hexo.extend.helper.register('raw_link', function(path) {
-  return 'https://github.com/mvs-org/mvs-docs/edit/master/source/' + path;
+  return 'https://github.com/mvs-org/docs-mvs-org/edit/master/source/' + path;
 });
 
 hexo.extend.helper.register('page_anchor', function(str) {
