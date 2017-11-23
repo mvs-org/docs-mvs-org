@@ -1,0 +1,67 @@
+docs:
+  getting_started:
+    overview: index.html
+    mainnet_info : mainnet-info.html
+    windows_setup: setup-windows.html
+    macosx_setup: setup-macosx.html
+    linux_setup: setup-linux.html
+    config_file: config-file.html
+    command_line: command-line.html
+  features:
+    issue_token: features-issue-token.html
+    transfer_token: features-transfer-token.html
+    onchain_deposit: features-onchain-deposit.html
+  advanced_usage:
+    introduction: introduction.html
+    windows_build: build-windows.html
+    macos_build: build-macosx.html
+    linux_build: build-linux.html
+    options: options.html
+    testnet: testnet.html
+    commands_reference: commands-reference.html
+    private_chain: private-chain.html
+  platform_deployment:
+    deploy_wallet: deploy-wallet-for-exchange-platform.html
+
+
+api:
+  introduction:
+    introduction: index.html
+  blocks:
+    blocks: blocks.html
+  account:
+    account: account.html
+  address:
+    address: address.html
+  sendetp:
+    sendetp: sendetp.html
+  transaction:
+    transaction: transaction.html
+  balance:
+    balance: balance.html
+  asset:
+    asset: asset.html
+  identity:
+    identity: identity.html
+
+developers:
+  overview:
+    introduction: index.html
+  digital_asset:
+    introduction: da-index.html
+    da_issue_token: da-issue-token.html
+    da_onchain_deposit: da-onchain-deposit.html
+  digital_identity:
+    introduction: di-index.html
+  base_layer:
+    account_model: account-model.html
+    consensus_and_mining: consensus-and-mining.html
+    database: database.html
+    httpserver: httpserver.html
+    p2p_network: p2p-network.html
+    utxo_and_script: utxo-and-script.html
+
+whitepaper:
+    whitepaper:
+      metaverse: index.html
+      digital_identity: digital-identity.html

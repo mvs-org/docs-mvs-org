@@ -1,0 +1,76 @@
+menu:
+  docs: Docs
+  api: API
+  search: Search
+  whitepaper: Whitepaper
+  developers : Developers
+  releases: Releases
+
+index:
+  get_started: Get started
+
+page:
+  contents: Contents
+  back_to_top: Back to Top
+  improve: Improve this doc
+  prev: Prev
+  next: Next
+  last_updated: "Last updated: %s"
+
+sidebar:
+  docs:
+    getting_started: Get Started
+    overview: Quick start
+    mainnet_info: Mainnet information
+    windows_setup: Windows setup
+    macosx_setup: Macosx setup
+    linux_setup: Linux setup
+    config_file: Config file
+    command_line: Command line
+    features: Features
+    issue_token: Issue token
+    transfer_token: Transfer token
+    onchain_deposit: Onchain deposit
+    advanced_usage: Full node wallet
+    introduction: Introduction
+    windows_build: Build on windows
+    macos_build: Build on macosx
+    linux_build: Build on linux
+    options: Options
+    testnet: Testnet
+    commands_reference: Commands reference
+    private_chain: Private chain
+    platform_deployment: Platform deployment
+    deploy_wallet: Deploy wallet on server
+    fronzen_etp_outputs: Identifying Fronzen ETP
+
+  api:
+    introduction: Introduction
+    sendetp: Sending ETP
+    blocks: Blocks
+    account: Account
+    address: Address
+    transaction: Transaction
+    balance: Balance
+    asset: Asset
+    identity: Identity
+
+  developers:
+    overview: Overview
+    introduction: Introduction
+    digital_asset: Digital asset
+    da_issue_token: Issue token
+    da_onchain_deposit: Onchain deposit
+    digital_identity: Digital identity
+    base_layer: Base layer
+    account_model: Account model
+    consensus_and_mining: Consensus and mining
+    database: Database
+    httpserver: HttpServer
+    p2p_network: P2P network
+    utxo_and_script: UTXO and script
+
+  whitepaper:
+    whitepaper: Whitepaper
+    metaverse: Metaverse Whitepaper
+    digital_identity: Digital Identity Whitepaper

@@ -1,0 +1,37 @@
+title: Metaverse Docs
+subtitle: "The New Reality"
+description: "Metaverse Documentations"
+author: MVS Core Developers
+language: en
+timezone: UTC
+
+url: https://docs.mvs.org
+root: /
+permalink: news/:year/:month/:day/:title/
+archive_dir: news
+code_dir: downloads/code
+new_post_name: :year-:month-:day-:title.md # File name of new posts
+post_asset_folder: true
+per_page: 0
+
+theme: navy
+deploy:
+  type: git
+  repo: https://github.com/codrush/hexolike-html.git
+
+highlight:
+  enable: true
+  line_number: false
+
+disqus_shortname: docs-mvs-org
+google_analytics: UA-99097230-2
+fb_admins: 100006665201854
+algolia:
+  en:
+    api_key: c3d5d4c995b5e0c2ffb5623900279a66
+    index_name: hexo
+  zh-cn:
+    api_key: cdea7d4e47d84f6145b77e7f68689f35
+    index_name: hexo_zh-cn
+twitter: mvs_org
+github: mvs-org/metaverse
