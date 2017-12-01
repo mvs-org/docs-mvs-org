@@ -1,5 +1,6 @@
 docs: /docs/
-api: /api/
+jsonrpc: /jsonrpc/
+jsonrpc2: /jsonrpc2/
 whitepaper: /whitepaper/
 developers: /developers/
 releases: /news/

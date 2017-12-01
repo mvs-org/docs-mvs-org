@@ -44,7 +44,7 @@ sidebar:
     deploy_wallet: 服务端部署钱包
     fronzen_etp_outputs: 识别冻结的ETP
 
-  api:
+  jsonrpc:
     introduction: 介绍
     sendetp: 发送ETP
     blocks: 区块
@@ -54,6 +54,9 @@ sidebar:
     balance: 余额
     asset: 资产
     identity: 身份
+
+  jsonrpc2:
+    introduction: 介绍
 
   developers:
     overview: 概览
