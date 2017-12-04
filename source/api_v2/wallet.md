@@ -10,7 +10,7 @@ comments: false
 
 * ### `shutdown`
     stop mvsd.
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `ADMINNAME` admin name.
     2. `ADMINAUTH` admin password/authorization.
     ```js
@@ -19,10 +19,10 @@ comments: false
         "ADMINAUTH"
     ]
      ```
-    ##### Returns
+    * Returns
     `String` - mvs server stoped.
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"stopall","params":["administrator", "administrator"],"id":22}'
@@ -51,7 +51,7 @@ comments: false
 
 * ### `startmining`
     start solo mining.
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     ```js
@@ -60,10 +60,10 @@ comments: false
         "ACCOUNTAUTH"
     ]
      ```
-    ##### Returns
+    * Returns
     `String` - 
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"start","params":["test", "123456"],"id":20}'
@@ -80,7 +80,7 @@ comments: false
 
 * ### `stopmining`
     stop solo mining.
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     ```js
@@ -89,10 +89,10 @@ comments: false
         "ACCOUNTAUTH"
     ]
      ```
-    ##### Returns
+    * Returns
     `String` - 
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"stop","params":["test", "123456"],"id":21}'
@@ -109,10 +109,10 @@ comments: false
 
 * ### `getwork`
     getwork to get mining info
-    ##### Returns
+    * Returns
     `Object` - 
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"getwork","params":[],"id":18}'
@@ -141,7 +141,7 @@ comments: false
 
 * ### `setminingaccount`
     setmining account when pool mining.
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `PAYMENT_ADDRESS` the payment address of this account.
@@ -152,10 +152,10 @@ comments: false
         "PAYMENT_ADDRESS"
     ]
      ```
-    ##### Returns
+    * Returns
     `String` - 
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"setminingaccount","params":["test", "123456", "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"],"id":19}'
@@ -172,7 +172,7 @@ comments: false
 
 * ### `submitwork`
     submitwork to submit mining result.
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `NOUNCE` nounce.
     2. `HEADERHASH` header hash.
     3. `MIXHASH` mix hash.
@@ -183,10 +183,10 @@ comments: false
         "MIXHASH"
     ]
      ```
-    ##### Returns
+    * Returns
     `Boolean` - return submit success or not
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"submitwork","params":["510e97b19fd66cc1", "3581eb99481009c9e42bb667a64658c37422b01c6282b0cbdcdfc821f84b4edb", "84466639954022912678747341235003283994844539402926174863653111473524386000443"],"id":23}'
@@ -203,10 +203,10 @@ comments: false
 
 * ### `getmemorypool`
     Returns all transactions in memory pool.
-    ##### Returns
+    * Returns
     `Array` - list of transactions
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"getmemorypool","params":[],"id":28}'

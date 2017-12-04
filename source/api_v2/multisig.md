@@ -10,9 +10,9 @@ comments: false
 
 * ### `createmultisigtx`
     createmultisigtx
-    ##### Parameters (optional)
+    * Parameters (optional)
     1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `FROMADDRESS` Send from this address
@@ -27,10 +27,10 @@ comments: false
         "AMOUNT"
     ]
      ```
-    ##### Returns
+    * Returns
     `Object` - 
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"createmultisigtx","params":["test", "123456", "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2", "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV", "100000000000"],"id":45}'
@@ -48,7 +48,7 @@ comments: false
     ***
 * ### `deletemultisig`
     deletemultisig
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `ADDRESS` The multisig script corresponding address.
@@ -59,10 +59,10 @@ comments: false
         "ADDRESS"
     ]
      ```
-    ##### Returns
+    * Returns
     `Object` - 
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"deletemultisig","params":["test", "123456", "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"],"id":46}'
@@ -80,13 +80,13 @@ comments: false
     ***
 * ### `getnewmultisig`
     getnewmultisig
-    ##### Parameters (optional)
+    * Parameters (optional)
     1. `-d` or `[--description]` multisig record description.
     2. `-k` or `[--publickey]` cosigner public key used for multisig
     3. `-m` or `[--signaturenum]` Account multisig signature number.
     4. `-n` or `[--publickeynum]` Account multisig public key number.
     5. `-s` or `[--selfpublickey]` the public key belongs to this account.
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     ```js
@@ -95,10 +95,10 @@ comments: false
         "ACCOUNTAUTH"
     ]
      ```
-    ##### Returns
+    * Returns
     `Object` - 
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"getnewmultisig","params":["test", "123456"],"id":47}'
@@ -116,7 +116,7 @@ comments: false
     ***
 * ### `listmultisig`
     listmultisig
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     ```js
@@ -125,10 +125,10 @@ comments: false
         "ACCOUNTAUTH"
     ]
      ```
-    ##### Returns
+    * Returns
     `Object` - 
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"listmultisig","params":["test", "123456"],"id":48}'
@@ -145,9 +145,9 @@ comments: false
     ***
 * ### `signmultisigtx`
     signmultisigtx
-    ##### Parameters (optional)
+    * Parameters (optional)
     1. `-b` or `[--broadcast]` Broadcast the tx if it is fullly signed.
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `TRANSACTION` The input Base16 transaction to sign.
@@ -158,10 +158,10 @@ comments: false
         "TRANSACTION"
     ]
      ```
-    ##### Returns
+    * Returns
     `Object` - 
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"signmultisigtx","params":["test", "123456", "TRANSACTION"],"id":49}'

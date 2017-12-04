@@ -1,7 +1,7 @@
 menu:
   docs: Docs
-  jsonrpc: JSON-RPC
-  jsonrpc2: JSON-RPC 2.0
+  api: API
+  api_v2: API v2
   search: Search
   whitepaper: Whitepaper
   developers : Developers
@@ -45,7 +45,7 @@ sidebar:
     deploy_wallet: Deploy wallet on server
     fronzen_etp_outputs: Identifying Fronzen ETP
 
-  jsonrpc:
+  api:
     introduction: Introduction
     sendetp: Sending ETP
     blocks: Blocks
@@ -54,10 +54,18 @@ sidebar:
     transaction: Transaction
     balance: Balance
     asset: Asset
-    identity: Identity
 
-  jsonrpc2:
+  api_v2:
     introduction: Introduction
+    wallet:  Wallet
+    rawtx:  Wallet
+    multisig: Multi-signature
+    etp:  ETP
+    block: Block
+    account: Account
+    transaction: Transaction
+    asset: Asset
+    identity: Identity
 
   developers:
     overview: Overview

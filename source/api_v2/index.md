@@ -1,12 +1,12 @@
 title: API v2 Usage
 comments: false
 ---
-This documentation provides more detailed information about the API.v2(JSON-RPC 2.0) list and will be particularly helpful for people who want to build BaaS(Blockchain As A Service) appliacations. If you are interested in more basic usage of Metaverse, please refer to the [docs](../docs) instead.
+This documentation provides more detailed information about the **API.v2(JSON-RPC 2.0)** list and will be particularly helpful for people who want to build BaaS(Blockchain As A Service) appliacations. If you are interested in more basic usage of Metaverse, please refer to the [docs](../docs) instead.
 
 Please note that this documentation is only valid for MVS FULL noDE.
 
-## API Usage
-** API.v2 supported at v0.7.3 **
+## API v2 Usage
+** API v2 supported at v0.7.3 **
 
 ### API v2 Call list
 fetch - get one record, no authorization.

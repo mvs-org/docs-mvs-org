@@ -1,6 +1,6 @@
 docs: /docs/
-jsonrpc: /jsonrpc/
-jsonrpc2: /jsonrpc2/
+api: /api/
+api_v2: /api_v2/
 whitepaper: /whitepaper/
 developers: /developers/
 releases: /news/

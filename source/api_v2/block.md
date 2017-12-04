@@ -10,10 +10,10 @@ comments: false
 
 * ### `getbestblockhash`
     get best blockhash
-    ##### Returns
+    * Returns
     `String` - best block hash
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"getbestblockhash","params":[],"id":25}'
@@ -28,10 +28,10 @@ comments: false
     ***
 * ### `getbestblockheader`
     get best blockheader
-    ##### Returns
+    * Returns
     `Object` - best block header
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"getbestblockheader","params":[],"id":26}'
@@ -57,7 +57,7 @@ comments: false
     ***
 * ### `getblock`
     Get sepcified block header from wallet.
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `HASH` block hash.
     2. `JSON` use json format or not, default is false
     ```js
@@ -66,10 +66,10 @@ comments: false
         "JSON"
     ]
      ```
-    ##### Returns
+    * Returns
     `Object` - block detail
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"getblock","params":["2e308fbcd08623f67c2057c19b53e82512388c354729eef86aba923dc9d162e6", "--json", "true"],"id":27}'

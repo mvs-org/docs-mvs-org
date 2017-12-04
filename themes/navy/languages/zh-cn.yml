@@ -1,6 +1,7 @@
 menu:
   docs: 文档
   api: API
+  api_v2: API v2
   whitepaper: 白皮书
   developers: 开发者
   releases: 钱包发布
@@ -44,7 +45,7 @@ sidebar:
     deploy_wallet: 服务端部署钱包
     fronzen_etp_outputs: 识别冻结的ETP
 
-  jsonrpc:
+  api:
     introduction: 介绍
     sendetp: 发送ETP
     blocks: 区块
@@ -53,10 +54,18 @@ sidebar:
     transaction: 交易
     balance: 余额
     asset: 资产
-    identity: 身份
 
-  jsonrpc2:
+  api_v2:
     introduction: 介绍
+    wallet:  钱包
+    rawtx:  离线交易
+    multisig: 多重签名
+    etp:  ETP
+    block: 区块
+    account: 账户
+    transaction: 交易
+    asset: 资产
+    identity: 身份
 
   developers:
     overview: 概览

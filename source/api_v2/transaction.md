@@ -10,17 +10,17 @@ comments: false
 
 * ### `gettx`
     gettransaction
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `HASH` The Base16 transaction hash of the transaction to get. If not specified the transaction hash is read from STDIN.
     ```js
     params:[
         "HASH"
     ]
      ```
-    ##### Returns
+    * Returns
     `Object` - get the transaction
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"gettransaction","params":["7cd20505a86400120c82be4f56d3c07a81007d51976dfc5e952296fce95afbad"],"id":31}'
@@ -73,13 +73,13 @@ comments: false
 
 * ### `listtxs`
     List transactions details of this account.
-    ##### Parameters (optional)
+    * Parameters (optional)
     1. `-a` or `[--address]` Address.
     2. `-e` or `[--height]` Get tx according height. eg: -e start-height:end-height will return tx between [start-height, end-height)
     3. `-i` or `[--index]` Page index.
     4. `-l` or `[--limit]` Transaction count per page.
     5. `-s` or `[--symbol]` Asset symbol.
-    ##### Parameters (positional)
+    * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     ```js
@@ -88,10 +88,10 @@ comments: false
         "ACCOUNTAUTH"
     ]
      ```
-    ##### Returns
+    * Returns
     `Object` - return transactions
 
-    ##### Example
+    * Example
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"listtxs","params":["test", "123456"],"id":32}'

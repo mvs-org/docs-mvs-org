@@ -24,7 +24,7 @@ docs:
     deploy_wallet: deploy-wallet-for-exchange-platform.html
 
 
-jsonrpc:
+api:
   introduction:
     introduction: index.html
   blocks:
@@ -41,12 +41,30 @@ jsonrpc:
     balance: balance.html
   asset:
     asset: asset.html
+
+api_v2:
+  introduction:
+    introduction: index.html
+  block:
+    block: block.html
+  account:
+    account: account.html
+  wallet:
+    wallet: wallet.html
+  etp:
+    etp: etp.html
+  transaction:
+    transaction: transaction.html
+  asset:
+    asset: asset.html
+  multisig:
+    multisig : multisig.html
+  rawtx:
+    rawtx: rawtx.html
   identity:
     identity: identity.html
 
-jsonrpc2:
-  introduction:
-    introduction: index.html
+
 
 developers:
   overview:
