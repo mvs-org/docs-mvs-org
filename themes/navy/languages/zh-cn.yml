@@ -57,7 +57,7 @@ sidebar:
 
   api_v2:
     introduction: 介绍
-    wallet:  钱包
+    blockchain:  区块链操作
     rawtx:  离线交易
     multisig: 多重签名
     etp:  ETP

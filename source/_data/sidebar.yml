@@ -49,8 +49,8 @@ api_v2:
     block: block.html
   account:
     account: account.html
-  wallet:
-    wallet: wallet.html
+  blockchain:
+    blockchain: blockchain.html
   etp:
     etp: etp.html
   transaction:
