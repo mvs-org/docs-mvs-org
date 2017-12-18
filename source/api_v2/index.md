@@ -6,51 +6,42 @@ This documentation provides more detailed information about the **API.v2(JSON-RP
 Please note that this documentation is only valid for MVS FULL noDE.
 
 ## API v2 Usage
-** API v2 supported at v0.7.3 **
+** API v2 will be supported in v0.7.3 **
 
-### API v2 Call list
-fetch - get one record, no authorization.
-get - get summary record.
-list - list record details.
-sign - 
-remove - 
-create
-deposit
+### API v2 Call list (Draft)
 
-offline - run mvs-cli, then response by mvs-cli directly.
+Command - JSON-RPC Method
+Module - belongs to function
+Admin Option - whether provides administrator authorization, defaluts to false. (name: administrator)(password: mvsgo).
+Account Auth - account name, password required. 
+Version - release in version.
 
-getnew - get new instance from wallet.
-create - identify by users.
-
-Any modification - v0.7.3
-
-
-|  Command | Module | Offline | Auth | Version | 
+|  Command | Module | Admin Option| Account Auth | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [getnewaccount](account.html#getnewaccount)| account | yes | no  | 0.7.3 |
-| [getnewaddress](account.html#getnewaddress)| account | yes | yes | 0.7.3 |
-| [listaddresses](account.html#listaddresses)| account | yes | yes | 0.7.3 |
-| [validateaddress](account.html#validateaddress)| account | yes | no | 0.7.3 |
-| [importaccount](account.html#importaccount)| account | yes | no  | 0.7.3 |
-| [importkeyfile](account.html#importkeyfile)| account | yes | no  | 0.7.3 |
-| [dumpkeyfile](account.html#dumpkeyfile)| account | yes | yes | 0.7.3 |
-| [changepasswd](account.html#changepasswd)| account | yes | yes | 0.7.3 |
-| [removeaccount](account.html#deleteaccount)| account | yes | yes | 0.7.3 |
-| [getaccount](account.html#getaccount)| account | yes | yes | 0.7.3 |
-| [shutdown](wallet.html#stopall)| wallet | no | yes | 0.7.3 |
-| [getinfo](wallet.html#getmininginfo)| wallet | no | no | 0.7.3 |
-| [getpeerinfo](wallet.html#getpeerinfo)| wallet | no | no | 0.7.3 |
-| [getmininginfo](wallet.html#getmininginfo)| wallet | no | no | 0.7.3 |
-| [startmining](wallet.html#start)| wallet | no | yes | 0.7.3 |
-| [stopmining](wallet.html#stop)| wallet | no | yes | 0.7.3 |
-| [getwork](wallet.html#getwork)| wallet | no | yes | 0.7.3 |
-| [addnode](wallet.html#addnode)| wallet | no | yes | 0.7.3 |
-| [setminingaccount](wallet.html#setminingaccount)| wallet | no | yes | 0.7.3 |
-| [submitwork](wallet.html#submitwork)| wallet | no | yes | 0.7.3 |
-| [getmemorypool](wallet.html#getmemorypool)| wallet | no | no | 0.7.3 |
-| [getbestblockhash](block.html#getbestblockhash)| block | no | no | 0.7.3 |
-| [getbestblockheader](block.html#getbestblockheader)| block | no | no | 0.7.3 |
-| [getblock](block.html#getblock)| block | no | no | 0.7.3 |
+| [getnewaccount](account.html#getnewaccount)|  account | no | no  | 0.7.3 |
+| [getnewaddress](account.html#getnewaddress)|  account | no | yes | 0.7.3 |
+| [listaddresses](account.html#listaddresses)|  account | no | yes | 0.7.3 |
+| [validateaddress](account.html#validateaddress)|  account | no | no | 0.7.3 |
+| [importaccount](account.html#importaccount)|  account | no | no  | 0.7.3 |
+| [importkeyfile](account.html#importkeyfile)|  account | no | no  | 0.7.3 |
+| [dumpkeyfile](account.html#dumpkeyfile)|  account | no | yes | 0.7.3 |
+| [changepasswd](account.html#changepasswd)|  account | no | yes | 0.7.3 |
+| [deleteaccount](account.html#deleteaccount)|  account | no | yes | 0.7.3 |
+| [getaccount](account.html#getaccount)|  account | no | yes | 0.7.3 |
+| [shutdown](wallet.html#stopall)| wallet | yes | yes | 0.7.3 |
+| [getinfo](wallet.html#getmininginfo)| wallet | yes | no | 0.7.3 |
+| [getpeerinfo](wallet.html#getpeerinfo)| wallet | yes | no | 0.7.3 |
+| [getmininginfo](wallet.html#getmininginfo)| wallet | yes | no | 0.7.3 |
+| [startmining](wallet.html#start)| wallet | yes | yes | 0.7.3 |
+| [stopmining](wallet.html#stop)| wallet | yes | yes | 0.7.3 |
+| [getwork](wallet.html#getwork)| wallet | yes | yes | 0.7.3 |
+| [addnode](wallet.html#addnode)| wallet | yes | yes | 0.7.3 |
+| [setminingaccount](wallet.html#setminingaccount)| wallet | yes | yes | 0.7.3 |
+| [submitwork](wallet.html#submitwork)| wallet | yes | yes | 0.7.3 |
+| [getmemorypool](wallet.html#getmemorypool)| wallet | yes | no | 0.7.3 |
+| [getbestblockhash](block.html#getbestblockhash)| block | yes | no | 0.7.3 |
+| [getbestblockheader](block.html#getbestblockheader)| block | yes | no | 0.7.3 |
+| [getblock](block.html#getblock)| block | yes | no | 0.7.3 |
 | [getbalance](etp.html#getbalance)| etp | no | yes | 0.7.3 |
 | [listbalances](etp.html#listbalances)| etp | no | yes | 0.7.3 |
 | [deposit](etp.html#deposit)| etp | no | yes | 0.7.3 |
@@ -59,9 +50,8 @@ Any modification - v0.7.3
 | [sendmore](etp.html#sendmore)| etp | no | yes | 0.7.3 |
 | [gettx](transaction.html#gettx)| transaction | no | yes | 0.7.3 |
 | [listtxs](transaction.html#listtxs)| transaction | no | yes | 0.7.3 |
-| [fetch-history](transaction.html#fetch-history)| transaction | no | yes | 0.7.3 |
-| [createasset](asset.html#createasset)| asset | yes | yes | 0.7.3 |
-| [deletelocalasset](asset.html#deletelocalasset)| asset | yes | yes | 0.7.3 |
+| [createasset](asset.html#createasset)| asset | yes | no  | 0.7.3 |
+| [deletelocalasset](asset.html#deletelocalasset)| asset | no  | yes | 0.7.3 |
 | [getaccountasset](asset.html#getaccountasset)| asset | no | yes | 0.7.3 |
 | [getaddressasset](asset.html#getaddressasset)| asset | no | yes | 0.7.3 |
 | [getnetasset](asset.html#getnetasset)| asset | no | yes | 0.7.3 |
@@ -70,16 +60,16 @@ Any modification - v0.7.3
 | [listassets](asset.html#listassets)| asset | no | yes | 0.7.3 |
 | [sendasset](asset.html#sendasset)| asset | no | yes | 0.7.3 |
 | [sendassetfrom](asset.html#sendassetfrom)| asset | no | yes | 0.7.3 |
-| [createmultisigtx](multisig.html#createmultisigtx)| multisig | yes | yes | 0.7.3 |
-| [getaddresspublickey](multisig.html#getpublickey)| multisig | yes | yes | 0.7.3 |
+| [createmultisigtx](multisig.html#createmultisigtx)| multisig | no  | yes | 0.7.3 |
+| [getaddresspublickey](multisig.html#getpublickey)| multisig | no  | yes | 0.7.3 |
 | [deletemultisig](multisig.html#deletemultisig)| multisig | no | yes | 0.7.3 |
 | [getnewmultisig](multisig.html#getnewmultisig)| multisig | no | yes | 0.7.3 |
 | [listmultisig](multisig.html#listmultisig)| multisig | no | yes | 0.7.3 |
 | [signmultisigtx](multisig.html#signmultisigtx)| multisig | no | yes | 0.7.3 |
-| [createrawtx](rawtx.html#createrawtx)| rawtx | yes | no | 0.7.3 |
-| [signrawtx](rawtx.html#signrawtx)| rawtx | yes | no | 0.7.3 |
+| [createrawtx](rawtx.html#createrawtx)| rawtx | no | no | 0.7.3 |
+| [signrawtx](rawtx.html#signrawtx)| rawtx | no | no | 0.7.3 |
 | [decoderawtx](rawtx.html#decoderawtx)| rawtx | no | yes | 0.7.3 |
-| [sendrawtx](rawtx.html#sendrawtx)| rawtx | yes | no | 0.7.3 |
+| [sendrawtx](rawtx.html#sendrawtx)| rawtx | no  | no | 0.7.3 |
 
 
 ### Compatibility odder than v0.7.3
@@ -90,7 +80,7 @@ Any modification - v0.7.3
 | Commands | => | New Name | response modification |
 | ------- |  ------------ |------------ | ------------ | 
 | [changepasswd](#changepasswd)| => |  ○  | yes 
-| [deleteaccount](#deleteaccount)| => | removeaccount | yes 
+| [deleteaccount](#deleteaccount)| => | ○| yes 
 | [importaccount](#importaccount)| => | ○ | yes 
 | [deposit](#deposit)| => | ○ | yes 
 | [exportaccountasfile](#exportaccountasfile)| => | dumpkeyfile | yes 

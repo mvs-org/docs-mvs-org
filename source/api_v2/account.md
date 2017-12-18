@@ -298,7 +298,7 @@ comments: false
     ```
 ***
 
-* ### `removeaccount`
+* ### `deleteaccount`
     deleteaccount
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
