@@ -17,6 +17,8 @@
         <li class="intro-cmd-item">mvs-cli getnewaddress &lt;account&gt; &lt;passwd&gt;</li>
         <li class="intro-cmd-item">mvs-cli send &lt;account&gt; &lt;passwd&gt; &lt;receiver_address&gt; &lt;ETP_bits&gt;</li>
         <li class="intro-cmd-item">mvs-cli gettransaction &lt;tx_id&gt;</li>
+        <li class="intro-cmd-item">mvs-cli issue &lt;account&gt; &lt;passwd&gt; &lt;token_symbol&gt;</li>
+        <li class="intro-cmd-item">mvs-cli listassets</li>
       </ul>
       <div id="intro-get-started-wrap">
         <a href="docs/" id="intro-get-started-link">{{ __('index.get_started') }}</a>

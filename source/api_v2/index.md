@@ -10,11 +10,16 @@ Please note that this documentation is only valid for MVS FULL noDE.
 
 ### API v2 Call list (Draft)
 
-Command - JSON-RPC Method
-Module - belongs to function
-Admin Option - whether provides administrator authorization, defaluts to false. (name: administrator)(password: mvsgo).
-Account Auth - account name, password required. 
-Version - release in version.
+* Command : JSON-RPC Method
+* Module : belongs to function
+* Admin Option : whether provides administrator authorization, defaluts to no. (name: administrator)(password: mvsgo).
+```bash
+# mvs.conf
+[server]
+administrator_required = 1
+```
+* Account Auth : account name, password required. 
+* Version : release in version.
 
 |  Command | Module | Admin Option| Account Auth | Version | 
 |  ------- | -------| --------| --------------| -------| 
@@ -50,7 +55,7 @@ Version - release in version.
 | [sendmore](etp.html#sendmore)| etp | no | yes | 0.7.3 |
 | [gettx](transaction.html#gettx)| transaction | no | yes | 0.7.3 |
 | [listtxs](transaction.html#listtxs)| transaction | no | yes | 0.7.3 |
-| [createasset](asset.html#createasset)| asset | yes | no  | 0.7.3 |
+| [createasset](asset.html#createasset)| asset | no  | no  | 0.7.3 |
 | [deletelocalasset](asset.html#deletelocalasset)| asset | no  | yes | 0.7.3 |
 | [getaccountasset](asset.html#getaccountasset)| asset | no | yes | 0.7.3 |
 | [getaddressasset](asset.html#getaddressasset)| asset | no | yes | 0.7.3 |
@@ -61,7 +66,7 @@ Version - release in version.
 | [sendasset](asset.html#sendasset)| asset | no | yes | 0.7.3 |
 | [sendassetfrom](asset.html#sendassetfrom)| asset | no | yes | 0.7.3 |
 | [createmultisigtx](multisig.html#createmultisigtx)| multisig | no  | yes | 0.7.3 |
-| [getaddresspublickey](multisig.html#getpublickey)| multisig | no  | yes | 0.7.3 |
+| [getpublickey](multisig.html#getpublickey)| multisig | no  | yes | 0.7.3 |
 | [deletemultisig](multisig.html#deletemultisig)| multisig | no | yes | 0.7.3 |
 | [getnewmultisig](multisig.html#getnewmultisig)| multisig | no | yes | 0.7.3 |
 | [listmultisig](multisig.html#listmultisig)| multisig | no | yes | 0.7.3 |
@@ -114,7 +119,7 @@ Version - release in version.
 | [xfetchbalance](#xfetchbalance)| => | × | yes 
 | [xfetchutxo](#xfetchutxo)| => | × | yes 
 | [createasset](#createasset)| => | ○ | yes 
-| [deleteunissuedasset](#deleteunissuedasset)| => | deletelocalasset | yes 
+| [deleteasset](#deleteasset)| => | deletelocalasset | yes 
 | [getaccountasset](#getaccountasset)| => | ○ | yes 
 | [getaddressasset](#getaddressasset)| => | ○ | yes 
 | [getasset](#getasset)| => | × | yes 
