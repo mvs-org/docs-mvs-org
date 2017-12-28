@@ -56,7 +56,18 @@ sidebar:
     asset: Asset
 
   api_v2:
+    xxx1: ==>
+    xxx2: ==>
+    xxx3: ==>
+    xxx4: ==>
+    xxx5: ==>
+    xxx6: ==>
+    xxx7: ==>
+    xxx8: ==>
+    xxx9: ==>
+    xxx10: ==>
     introduction: Introduction
+    websocket: Websocket
     blockchain:  Blockchain
     rawtx:  RawTx
     multisig: Multi-signature

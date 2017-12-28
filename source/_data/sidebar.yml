@@ -43,25 +43,26 @@ api:
     asset: asset.html
 
 api_v2:
-  introduction:
+  xxx1:
     introduction: index.html
-  block:
+    websocket: websocket.html
+  xxx2:
     block: block.html
-  account:
+  xxx3:
     account: account.html
-  blockchain:
+  xxx4:
     blockchain: blockchain.html
-  etp:
+  xxx5:
     etp: etp.html
-  transaction:
+  xxx6:
     transaction: transaction.html
-  asset:
+  xxx7:
     asset: asset.html
-  multisig:
+  xxx8:
     multisig : multisig.html
-  rawtx:
+  xxx9:
     rawtx: rawtx.html
-  identity:
+  xxx10:
     identity: identity.html
 
 
