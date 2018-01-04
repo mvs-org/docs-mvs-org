@@ -11,41 +11,145 @@ comments: false
 * ### `shutdown`
     stop mvsd.
     * Parameters (positional)
-    1. `ADMINNAME` admin name.
-    2. `ADMINAUTH` admin password/authorization.
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
     ```js
     params:[
-        "ADMINNAME", 
-        "ADMINAUTH"
+        "ACCOUNTNAME", 
+        "ACCOUNTAUTH"
     ]
      ```
     * Returns
-    `String` - mvs server stoped.
+    `String` - sending SIGTERM to mvsd.
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"stopall","params":["administrator", "administrator"],"id":22}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"shutdown",
+    "params":["test", "123456"],"id":22}'
 
     // Response
     {
         "jsonrpc": "2.0", 
         "id": 22, 
-        "result": "mvs server stoped."
+        "result": "sending SIGTERM to mvsd."
     }
     ```
 
 ***
 
 * ### `getinfo`
+    getinfo
+    * Returns
+    `Object` -
+    `database-version` - database version 
+    `difficulty` - difficulty
+    `hash-rate` - hash rate
+    `height` - block height
+    `is-mining` - is mining flag
+    `network-assets-count` - network assets count
+    `peers` - number of peers
+    `protocol-version` - protocol version
+    `testnet` - testnet flag
+    `wallet-account-count` - wallet account count 
+    `wallet-version` - wallet version
+
+    * Example
+    ```js
+    // Request
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"getinfo",
+        "params":[]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "database-version" : "0.6.2",
+            "difficulty" : "2109083",
+            "hash-rate" : 0,
+            "height" : 105506,
+            "is-mining" : false,
+            "network-assets-count" : 9,
+            "peers" : 2,
+            "protocol-version" : 70012,
+            "testnet" : true,
+            "wallet-account-count" : 2,
+            "wallet-version" : "0.7.2"
+        }
+    }
+    ```
 
 ***
 
 * ### `getpeerinfo`
+    getpeerinfo
+    * Returns
+    `Object` -
+    `peers` - peers info
+    * Example
+    ```js
+    // Request
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"getpeerinfo",
+        "params":[]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "peers" : 
+            [
+                "118.178.16.25:15251",
+                "104.131.154.21:15251"
+            ]
+        }
+    }
+    ```
 
 ***
 
 * ### `getmininginfo`
+    getmininginfo
+    * Returns
+    `Object` -
+    `mining-info` - mining info
+    * Example
+    ```js
+    // Request
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"getmininginfo",
+        "params":[]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "mining-info" : 
+            {
+                "difficulty" : "2233275",
+                "height" : "108374",
+                "is-mining" : false,
+                "rate" : "0"
+            }
+        }
+    }
+    ```
 
 ***
 
@@ -61,12 +165,13 @@ comments: false
     ]
      ```
     * Returns
-    `String` - 
+    `String` - solo mining started at ...
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"start","params":["test", "123456"],"id":20}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"start",
+    "params":["test", "123456"],"id":20}'
 
     // Response
     {
@@ -95,7 +200,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"stop","params":["test", "123456"],"id":21}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"stop",
+    "params":["test", "123456"],"id":21}'
 
     // Response
     {
@@ -109,13 +215,23 @@ comments: false
 
 * ### `getwork`
     getwork to get mining info
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Mining Account name.
+    2. `ACCOUNTAUTH` Mining Account password/authorization.
+    ```js
+    params:[
+        "ACCOUNTNAME", 
+        "ACCOUNTAUTH"
+    ]
+     ```
     * Returns
-    `Object` - 
+    `Array` -
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"getwork","params":[],"id":18}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getwork",
+    "params":["test", "123456"],"id":18}'
 
     // Response
     {
@@ -153,18 +269,19 @@ comments: false
     ]
      ```
     * Returns
-    `String` - 
+    `String` - Address [...] setted. 
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"setminingaccount","params":["test", "123456", "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"],"id":19}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"setminingaccount",
+    "params":["test", "123456", "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"],"id":19}'
 
     // Response
     {
         "jsonrpc": "2.0", 
         "id": 19, 
-        "result": "setting address [MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2] successfully."
+        "result": "Address [tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y] setted."
     }
     ```
 
@@ -189,7 +306,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"submitwork","params":["510e97b19fd66cc1", "3581eb99481009c9e42bb667a64658c37422b01c6282b0cbdcdfc821f84b4edb", "84466639954022912678747341235003283994844539402926174863653111473524386000443"],"id":23}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"submitwork",
+    "params":["510e97b19fd66cc1", "3581eb99481009c9e42bb667a64658c37422b01c6282b0cbdcdfc821f84b4edb", "84466639954022912678747341235003283994844539402926174863653111473524386000443"],"id":23}'
 
     // Response
     {

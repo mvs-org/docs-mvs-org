@@ -18,6 +18,7 @@ Refers to [How to configure Port](../docs/config-file.html).
 Build Json, then HTTP POST to URL:
 ```json
 {                                                                        
+ "id":number,                                                         
  "method":"xxx",                                                         
  "params":[                                                              
      "param1",  //command arguments from help

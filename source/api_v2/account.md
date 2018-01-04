@@ -29,7 +29,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"getnewaccount","params":["-l", "en", "test", "123456"],"id":7}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getnewaccount",
+    "params":["test", "123456", {"language": "en"}],"id":7}'
 
     // Response
     {
@@ -63,7 +64,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"getnewaddress","params":["-n", "2", "test", "123456"],"id":8}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getnewaddress",
+    "params":["test", "123456", {"number": 2}],"id":8}'
 
     // Response
     {
@@ -95,7 +97,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"listaddresses","params":["test", "123456"],"id":11}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"listaddresses",
+    "params":["test", "123456"],"id":11}'
 
     // Response
     {
@@ -112,29 +115,36 @@ comments: false
 * ### `validateaddress`
     validate address
     * Parameters (positional)
-    1. `ACCOUNTNAME` Account name.
-    2. `ACCOUNTAUTH` Account password/authorization.
-    3. `ADDRESS` address
+    1. `ADDRESS` address
     ```js
     params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH", 
         "ADDRESS"
     ]
      ```
     * Returns
-    `Boolean` - the address is valid or not
+    `Object` -
+    1. `address-type` - address type
+    2. `is-valid` - the address is valid or not
+    3. `message` - message like "valid address"
+    4. `test-net` - if the address is in test-net
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"validateaddress","params":["test", "123456", "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"],"id":16}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"validateaddress",
+    "params":["MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"],"id":16}'
 
     // Response
     {
         "jsonrpc": "2.0", 
         "id": 16, 
-        "result": "valid address MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"
+        "result":
+        {
+            "address-type" : "p2kh(test-net)",
+            "is-valid" : true,
+            "message" : "valid address ",
+            "test-net" : true
+        }
     }
     ```
 ***
@@ -163,7 +173,9 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"importaccount","params":["-i", "3", "-l", "en", "-n", "test", "-p", "123456", "--WORD", "mother ride despair impose degree truck pet scrub mind art brain galaxy sadness cover crater waste arrest invest hip crush loan brisk pave cheap"],"id":9}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"importaccount",
+    "params":["mother ride despair impose degree truck pet scrub mind art brain galaxy sadness cover crater waste arrest invest hip crush loan brisk pave cheap",
+    {"accoutname":"test","password":"123456","hd_index":3,"language":"en"}],"id":9}'
 
     // Response
     {
@@ -185,14 +197,12 @@ comments: false
 ***
 
 * ### `importkeyfile`
-    importaccountfromfile
+    import account from file
     * Parameters (positional)
     1. `FILE` account info file
-    2. `PASSWORD` password used to dencrypt account info file
     ```js
     params:[
-        "FILE", 
-        "PASSWORD"
+        "FILE"
     ]
      ```
     * Returns
@@ -204,7 +214,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"importaccountfromfile","params":["~/.metaverse/test", "123456"],"id":10}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"importkeyfile",
+    "params":["~/.metaverse/mvs-test.keystore"],"id":10}'
 
     // Response
     {
@@ -221,12 +232,12 @@ comments: false
 ***
 
 * ### `dumpkeyfile`
-    export account as file
+    export account as file, file name is `mvs-$accountname.keystore`.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `LASTWORD` The last word of your master private-key phrase.
-    4. `DESTINATION` account info storage file path
+    4. `DESTINATION` account info storage file directory, **optional, default to ~/.metaverse/mvs-htmls/keys/**
     ```js
     params:[
         "ACCOUNTNAME", 
@@ -241,13 +252,14 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"exportaccountasfile","params":["test", "123456", "word", "~/.metaverse/"],"id":4}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"dumpkeyfile",
+    "params":["test", "123456", "lastword", "~/.metaverse/"],"id":4}'
 
     // Response
     {
         "jsonrpc": "2.0", 
         "id": 4, 
-        "result": "success"
+        "result": "~/.metaverse/mvs-test.keystore"
     }
     ```
 
@@ -255,45 +267,37 @@ comments: false
 
 * ### `changepasswd`
     changepasswd
+    * Parameters (optional)
+    1. `-p` or `[--password]` New password/authorization.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
-    3. `NEWPASSWD` New password/authorization.
     ```js
     params:[
         "ACCOUNTNAME", 
-        "ACCOUNTAUTH", 
-        "NEWPASSWD"
+        "ACCOUNTAUTH" 
     ]
      ```
     * Returns
-    `Object` - sucess or not
+    `Object` -
+    1. `name` - account name
+    2. `status` - operation status
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"changepasswd","params":["test", "123456"],"id":1}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"changepasswd",
+    "params":["test", "123456", {"password": "test123456"}],"id":1}'
 
     // Response
     {
         "jsonrpc": "2.0", 
         "id": 1, 
-        "error": {
-            "message": "the option 'NEWPASSWD' is required but missing", 
-            "code": 1021
+        "result":
+        {
+            "name": "test",
+            "status": "password changed"
         }
-    }
-    ```
-    * Example
-    ```js
-    // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"changepasswd","params":["test", "123456", "--password", "test123456"],"id":1}'
-
-    // Response
-    {
-        "jsonrpc": "2.0", 
-        "id": 1, 
-        "result": true
     }
     ```
 ***
@@ -312,18 +316,25 @@ comments: false
     ]
      ```
     * Returns
-    `String` - 
+    `Object` -
+    1. `name` - account name
+    2. `status` - operation status
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"deleteaccount","params":["test", "123456", "word"],"id":2}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"deleteaccount",
+    "params":["test", "123456", "lastword"],"id":2}'
 
     // Response
     {
         "jsonrpc": "2.0", 
         "id": 2, 
-        "result": "delete successfully!"
+        "result":
+        {
+            "name": "test",
+            "status": "removed successfully"
+        }
     }
     ```
 ***
@@ -351,7 +362,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"getaccount","params":["test", "123456", "word"],"id":5}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getaccount",
+    "params":["test", "123456", "lastword"],"id":5}'
 
     // Response
     {

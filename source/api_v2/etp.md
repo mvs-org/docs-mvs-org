@@ -30,7 +30,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"getbalance","params":["test", "123456"],"id":6}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getbalance",
+    "params":["test", "123456"],"id":6}'
 
     // Response
     {
@@ -72,7 +73,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"listbalances","params":["test", "123456"],"id":12}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"listbalances",
+    "params":["test", "123456"],"id":12}'
 
     // Response
     {
@@ -124,7 +126,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"deposit","params":["test", "123456", "100000000000"],"id":3}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"deposit",
+    "params":["test", "123456", "100000000000"],"id":3}'
 
     // Response
     {
@@ -197,7 +200,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"send","params":["test", "123456", "MCH7xHbfVD8viUcZ3xgDdSJANhS7DQDJAi", "100000000000"],"id":13}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"send",
+    "params":["test", "123456", "MCH7xHbfVD8viUcZ3xgDdSJANhS7DQDJAi", "100000000000"],"id":13}'
 
     // Response
     {
@@ -270,7 +274,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"sendfrom","params":["test", "123456", "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV", "MCH7xHbfVD8viUcZ3xgDdSJANhS7DQDJAi", "100000000000"],"id":14}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"sendfrom",
+    "params":["test", "123456", "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV", "MCH7xHbfVD8viUcZ3xgDdSJANhS7DQDJAi", "100000000000"],"id":14}'
 
     // Response
     {
@@ -338,7 +343,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"sendmore","params":["test", "123456", "-r", "MDqwRYEBqQXVxDQnUGpXJoTsH2RuxmXrrs:100000000000", "-r", "MShZjQLzrYCtwTvNfjgcL2fWGH4GKVZXGT:100000000000"],"id":15}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"sendmore",
+    "params":["test", "123456", {"receivers": "MDqwRYEBqQXVxDQnUGpXJoTsH2RuxmXrrs:100000000000", "receivers": "MShZjQLzrYCtwTvNfjgcL2fWGH4GKVZXGT:100000000000"}],"id":15}'
 
     // Response
     {

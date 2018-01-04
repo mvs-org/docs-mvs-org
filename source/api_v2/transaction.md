@@ -9,7 +9,9 @@ comments: false
 ***
 
 * ### `gettx`
-    gettransaction
+    get transaction
+    * Parameters (optional)
+    1. `json`    use json format or not, default is true, that is '--json=true'
     * Parameters (positional)
     1. `HASH` The Base16 transaction hash of the transaction to get. If not specified the transaction hash is read from STDIN.
     ```js
@@ -23,7 +25,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"gettransaction","params":["7cd20505a86400120c82be4f56d3c07a81007d51976dfc5e952296fce95afbad"],"id":31}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"gettransaction",
+    "params":["7cd20505a86400120c82be4f56d3c07a81007d51976dfc5e952296fce95afbad"],"id":31}'
 
     // Response
     {
@@ -94,7 +97,8 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"listtxs","params":["test", "123456"],"id":32}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"listtxs",
+    "params":["test", "123456"],"id":32}'
 
     // Response
     {
@@ -178,11 +182,5 @@ comments: false
         }
     }
     ```
-
-***
-
-* ### `fetch-history`
-
-
 ***
 

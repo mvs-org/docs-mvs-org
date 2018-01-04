@@ -8,33 +8,17 @@ comments: false
 ## API Methods 
 ***
 
-* ### `getbestblockhash`
-    get best blockhash
-    * Returns
-    `String` - best block hash
-
-    * Example
-    ```js
-    // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"getbestblockhash","params":[],"id":25}'
-
-    // Response
-    {
-        "jsonrpc": "2.0", 
-        "id": 25, 
-        "result": "633b3268ede12736e81d151cc344bff8d26b7ade4d80a69db27c6c581a8e1d01"
-    }
-    ```
-    ***
-* ### `getbestblockheader`
+* ### `getblockheader`
     get best blockheader
+    alias as **fetch-header/getbestblockhash/getbestblockheader**
     * Returns
     `Object` - best block header
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"getbestblockheader","params":[],"id":26}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getblockheader",
+    "params":[],"id":26}'
 
     // Response
     {
@@ -57,22 +41,27 @@ comments: false
     ***
 * ### `getblock`
     Get sepcified block header from wallet.
+    * Parameters (optional)
+    1. `json`    use json format or not, default is true, that is '--json=true'
+    2. `tx_json` use json format or not for txs, default is true, that is '--tx_json=true'
     * Parameters (positional)
-    1. `HASH` block hash.
-    2. `JSON` use json format or not, default is false
+    1. `HASH`    block hash.
     ```js
     params:[
-        "HASH", 
-        "JSON"
+        "HASH"
     ]
      ```
     * Returns
-    `Object` - block detail
+    `Object` -
+    1. `header` - block header
+    2. `txs` - transactions
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"getblock","params":["2e308fbcd08623f67c2057c19b53e82512388c354729eef86aba923dc9d162e6", "--json", "true"],"id":27}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getblock",
+        "params":["2e308fbcd08623f67c2057c19b53e82512388c354729eef86aba923dc9d162e6",
+        {"json": true}],"id":27}'
 
     // Response
     {
