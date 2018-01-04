@@ -60,22 +60,22 @@ $ ./mvs-cli help $command
 | [deleteaccount](account.html#deleteaccount)    |  × | × | yes | 0.7.3 |
 | [getaccount](account.html#getaccount)          |  × | × | yes | 0.7.3 |
 
-#### Wallet
+#### Blockchain
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [shutdown](wallet.html#stopall)           | × | yes | × | 0.7.3 |
-| [getinfo](wallet.html#getmininginfo)      | × | yes | × | 0.7.3 |
-| [getheight](wallet.html#getheight)      | × | yes | × | 0.7.3 |
-| [getpeerinfo](wallet.html#getpeerinfo)    | × | yes | × | 0.7.3 |
-| [addnode](wallet.html#addnode)            | × | yes | × | 0.7.3 |
-| [getmemorypool](wallet.html#getmemorypool)| × | yes | × | 0.7.3 |
-| [setminingaccount](wallet.html#setminingaccount)| yes | ×  | yes | 0.7.3 |
-| [getmininginfo](wallet.html#getmininginfo)| yes | yes | × | 0.7.3 |
-| [startmining](wallet.html#start)          | yes | ×  | yes | 0.7.3 |
-| [stopmining](wallet.html#stop)            | yes | ×  | yes | 0.7.3 |
-| [getwork](wallet.html#getwork)            | yes | ×  | yes | 0.7.3 |
-| [submitwork](wallet.html#submitwork)      | yes | ×  | yes | 0.7.3 |
+| [shutdown](blockchain.html#shutdown)          | × | yes | × | 0.7.3 |
+| [getinfo](blockchain.html#getinfo)            | × | yes | × | 0.7.3 |
+| [getheight](blockchain.html#getheight)        | × | yes | × | 0.7.3 |
+| [getpeerinfo](blockchain.html#getpeerinfo)    | × | yes | × | 0.7.3 |
+| [getmininginfo](blockchain.html#getmininginfo)| yes | yes | × | 0.7.3 |
+| [startmining](blockchain.html#startmining)    | yes | ×  | yes | 0.7.3 |
+| [stopmining](blockchain.html#stopmining)      | yes | ×  | yes | 0.7.3 |
+| [getwork](blockchain.html#getwork)            | yes | ×  | yes | 0.7.3 |
+| [addnode](blockchain.html#addnode)            | × | yes | × | 0.7.3 |
+| [setminingaccount](blockchain.html#setminingaccount)| yes | ×  | yes | 0.7.3 |
+| [submitwork](blockchain.html#submitwork)      | yes | ×  | yes | 0.7.3 |
+| [getmemorypool](blockchain.html#getmemorypool)| × | yes | × | 0.7.3 |
 
 #### Block
 

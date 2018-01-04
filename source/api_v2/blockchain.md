@@ -87,6 +87,29 @@ comments: false
 
 ***
 
+* ### `getheight`
+    Get last height. Alias as `fetch-height`.
+    * Returns
+    `Number` - the latest block height
+    * Example
+    ```js
+    // Request
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"getheight",
+        "params":[]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" : 105506
+    }
+    ```
+***
+
 * ### `getpeerinfo`
     getpeerinfo
     * Returns
@@ -252,6 +275,7 @@ comments: false
 ***
 
 * ### `addnode`
+    _The command is in develeping, replace it with original command._
 
 ***
 
