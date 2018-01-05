@@ -22,7 +22,7 @@ unzip mvs-linux-x86_64-v0.7.1.zip
 ./mvsd -d
 
 # Get helps from mvsd
-./mvsd help
+./mvsd --help
 
 # Get helps from mvs-cli
 ./mvs-cli help

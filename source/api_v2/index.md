@@ -83,7 +83,6 @@ $ ./mvs-cli help $command
 |  ------- | -------| --------| --------------| -------| 
 | [getblock](block.html#getblock)                    | × | yes | × | 0.7.3 |
 | [getblockheader](block.html#getblockheader)        | × | yes | × | 0.7.3 |
-| [getbestblockhash](block.html#getbestblockhash)    | × | yes | × | 0.7.3 |
 
 #### ETP
 
