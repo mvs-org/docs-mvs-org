@@ -2,12 +2,14 @@ title: Installation for linux
 comments: false
 ---
 
-Take version v0.7.1 as an example.
+Please download the wallet installation package from Metaverse’s official website https://mvs.org. The wallet is now support Linux 64bit system.
+
+Take version v0.7.3 as an example.
 
 ## Download and unzip
 ```bash
-wget http://newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.7.1.zip
-unzip mvs-linux-x86_64-v0.7.1.zip
+wget http://sfo.newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.7.3.zip
+unzip mvs-linux-x86_64-v0.7.3.zip
 ```
 
 ## Install
@@ -30,4 +32,7 @@ unzip mvs-linux-x86_64-v0.7.1.zip
 
 ## Get started
 1. Run mvs-cli in terminal.
+    More mvs-cli usage information please see [mvs-cli usage](command-line.html#mvs-cli-usage)
 2. Access wallet on browser.
+    Default URL is `127.0.0.1:8820` (specified by `mongoose_listen` vaule in `mvs.conf`)
+    More configuration information please see [Config file](config-file.html)
