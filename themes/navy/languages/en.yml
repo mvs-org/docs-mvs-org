@@ -1,7 +1,7 @@
 menu:
   docs: Docs
-  api: API
   api_v2: API v2
+  baas: BaaS
   search: Search
   whitepaper: Whitepaper
   developers : Developers
@@ -44,6 +44,10 @@ sidebar:
     platform_deployment: Platform deployment
     deploy_wallet: Deploy wallet on server
     fronzen_etp_outputs: Identifying Fronzen ETP
+
+  baas:
+    introduction: Introduction
+    sdk: SDKs
 
   api:
     introduction: Introduction

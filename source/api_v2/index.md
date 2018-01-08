@@ -4,9 +4,10 @@ comments: false
 This documentation provides more detailed information about the **API.v2(JSON-RPC 2.0)** list and will be particularly helpful for people who want to build BaaS(Blockchain As A Service) appliacations. If you are interested in more basic usage of Metaverse, please refer to the [docs](../docs) instead.
 
 Please note that this documentation is only valid for MVS FULL NODE.
+Compatiblity for API v1, please refers to [API v1](/api).
 
 ## API v2 Usage
-** API v2 will be supported in v0.7.3 **
+** API v2 is supported in [v0.7.3](/news) **
 
 |   API      |  Default Port | URI | Default URL |
 | ------------------ | ------------ | ------------- |
@@ -152,3 +153,4 @@ administrator_required = 1
 
 ### mvs-cli
 mvs-cli uses `/rpc/v2` to call mvsd after v0.7.3.
+

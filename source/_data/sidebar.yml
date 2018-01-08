@@ -23,6 +23,11 @@ docs:
   platform_deployment:
     deploy_wallet: deploy-wallet-for-exchange-platform.html
 
+baas:
+  introduction:
+    introduction: index.html
+  sdk:
+    sdk: sdk.html
 
 api:
   introduction:
