@@ -18,10 +18,10 @@ docs:
     linux_build: build-linux.html
     options: options.html
     testnet: testnet.html
-    commands_reference: commands-reference.html
     private_chain: private-chain.html
   platform_deployment:
     deploy_wallet: deploy-wallet-for-exchange-platform.html
+    fronzen_etp: recognize-fronzen-ETP-transaction-outputs.html
 
 baas:
   introduction:

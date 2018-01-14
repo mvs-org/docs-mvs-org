@@ -2,10 +2,12 @@ title: Deploy Metaverse Wallet For Platforms
 comments: false
 ---
 ## Frequently-Used Documents
-* [API-Call-List](/api)
+* [API-Call-List](/api_v2)
+* [Command-line](/docs/command-line.html)
+* [Build Wallet](https://github.com/mvs-org/metaverse)
 
 ## Standard Procedure
-1. Deploy a Metaverse node on a Linux server. Download [Metaverse Wallet Download]([https://mvs.org/#download)
+1. Deploy a Metaverse node on a Linux server. Download [Metaverse wallet binary](https://mvs.org/#download)
 2. Do the following steps using mvs-cli commands
 ```
 a. Create a account in wallet
@@ -35,12 +37,12 @@ mvsd is the core wallet program which provide Remote Procedure Call (RPC), port 
 
 1. Every MVS node optionally provides an API to retrieve blockchain data from the nodes. This facilitates the development of blockchain applications. The interfaces are provided through (JSON-RPC)[http://www.jsonrpc.org/specification].
 
-*To start a node which provides RPC service, you can run the following commands*
+*To start a node which provides JSON-RPC service, you can run the following commands*
 ```
 ./mvsd 
 ```
 **Just like what bitcoind does.**
-see RPC CALL LIST details: <https://github.com/mvs-org/metaverse/wiki/Metaverse-API-Call-List>
+Run as testnet `./mvsd -t`.
 
 2. It is a wallet controlled through the command line. You can manage your assets using commands. The basic functions include: creating an account, creating addresses and transferring assets. 
 
@@ -58,7 +60,7 @@ The exchange must have an online wallet to manage the deposit addresses of the u
 
 *Note: Exchanges do not have to create a account for every user. An online wallet usually keeps all deposit addresses of a account. A cold wallet (offline wallet) is another storage option which provides better security.*
 
-How to create an new account：<https://github.com/mvs-org/metaverse/wiki/Metaverse-API-Call-List#-account>
+Refers to [API_v2 Account](/api_v2/account.html) to get usage of getnewaccount.
 
 ### >>> Generating Deposit Addresses
 
@@ -75,7 +77,7 @@ To generate MVS addresses in batch, you can use the command:
 ```
 ./mvs-cli getnewaddress accountname accountpassword -n 1000
 ```
-see <https://github.com/mvs-org/metaverse/wiki/Metaverse-API-Call-List#-address>
+Refers to [API_v2 Account](/api_v2/account.html) to get usage of getnewaddress.
 
 Those addresses will be shown as json format reponse. The exchange needs to import these addresses into the database of the exchange, and distribute them to the users.
 
@@ -88,14 +90,18 @@ Regarding user deposit, the exchange need to be informed about the following:
 
 * A transaction recorded in Metaverse blockchain cannot be tampered with, which mean a confirmation represents a deposit success. we recommand the confirmation number over 30.
 
-* There is no notification when the amount of asset in an address changes. The metaverse wallet DOES have an interface(listtxs) to query all transactions for an address. See details <https://github.com/mvs-org/metaverse/wiki/Metaverse-API-Call-List#-transaction>.
+* There is no notification when the amount of asset in an address changes. The metaverse wallet DOES have an interface(listtxs) to query all transactions for an address. [See details](/api_v2/transaction.html) .
 
 * Metaverse shares addresses for between ETP and other assets. More assets issued by users (such as stock or token) can be stored. The exchange should determine the type of assets when user deposit. Neither regard other assets as ETP shares or other assets nor confuse the withdrawal. The asset type need to be determined specifically.
-
 
 * mvsd is a full node, which needs to stay online to synchronize blocks. You can view the block synchronization status through the show state in the mvs-cli or RPC-CALL, where the left side is the local block height, while the right side is the node block height.
 
 * In the exchange, the transfer between users should not be recorded through the blockchain. In general, it modifies the user's balance in the database directly. Only deposits and withdrawals should be recorded on the blockchain.
+
+* Provides the block scan programs on github:
+<https://github.com/mvs-org/mvsd-mysql-sync>
+<https://github.com/mvs-org/mvsd-mongodb-sync>
+Recommands hardware requirements: CPU 2 Cores/RAM 4GB/OS Linux/Over 50 GB disk space available.
 
 ''Regarding the 3rd point mentioned above:''
 
@@ -104,6 +110,6 @@ Regarding user deposit, the exchange need to be informed about the following:
 
 ## <font size=5 color=red>CAUTION PLEASE</font>
 1. Metaverse wallet can combine small etp automatically, no need to group small changes manually.
-2. When sending assets , if use command 'send', my changes will go back to a random address belongs to this account. **So we strongly recommand exchange platform to use 'sendfrom'/'sendmore'.**
+2. When sending assets , if use command 'send', my changes will return back to a random address belongs to this account. **So we strongly recommand exchange platform to use 'sendfrom'/'sendmore' with a specified mychange address.**
 3. [Recognize Fronzen ETP Transaction Outputs](recognize-fronzen-ETP-transaction-outputs.html)
 

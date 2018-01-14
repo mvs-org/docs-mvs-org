@@ -28,10 +28,10 @@ Please make sure that you only accept P2PKH transaction outputs if you expect a 
 A improved version of Metaverse Wallet already released on mvs.org, and improved source code was commited on github(#178).
 Added new filed 'locked_height_range' in JSON response for commands:
 ```bash
-gettransaction
-fetch-tx
+gettx
 listtxs
 getblock
+fetch-tx
 ```
 If the value of locked_height_range is non-zero, it means the ETP output is fronzen.
 

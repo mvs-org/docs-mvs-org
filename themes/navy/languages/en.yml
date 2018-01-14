@@ -43,7 +43,7 @@ sidebar:
     private_chain: Private chain
     platform_deployment: Platform deployment
     deploy_wallet: Deploy wallet on server
-    fronzen_etp_outputs: Identifying Fronzen ETP
+    fronzen_etp: Identify Fronzen ETP
 
   baas:
     introduction: Introduction
