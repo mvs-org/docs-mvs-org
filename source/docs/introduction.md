@@ -62,5 +62,6 @@ The firewall port needs to be opened if external programs are allowed to access 
 | ------------------ | ------------ | ------------- |
 | JSON-RPC via HTTPS | ×    | ×    |
 | JSON-RPC via HTTP  | 8820 | 8820 |
+| Websocket Notification  | 8821 | 8821 |
 | P2P via TCP        | 5251 | 15251|
 

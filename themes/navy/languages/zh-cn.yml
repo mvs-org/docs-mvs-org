@@ -43,7 +43,7 @@ sidebar:
     private_chain: 搭建私有链
     platform_deployment: 平台部署
     deploy_wallet: 服务端部署钱包
-    fronzen_etp_outputs: 识别冻结的ETP
+    fronzen_etp: 识别冻结的ETP
 
   api:
     introduction: 介绍
