@@ -110,6 +110,11 @@ RPC CALL LIST详细信息请查看: <http://docs.mvs.org/zh-cn/api_v2/index.html
 
 * 对交易所来说，用户之间的资产转移不应该通过区块链来记录。通常，它直接在数据库中修改用户的余额。只有充值和取款应记录在区块链上。
 
+* 在github上提供了扫块程序:
+<https://github.com/mvs-org/mvsd-mysql-sync>
+<https://github.com/mvs-org/mvsd-mongodb-sync>
+推荐的硬件设置: CPU 2 Cores/RAM 4GB/OS Linux/超过50 GB磁盘可用空间。
+
 
 ''关于上述第三点''
 
@@ -117,7 +122,7 @@ RPC CALL LIST详细信息请查看: <http://docs.mvs.org/zh-cn/api_v2/index.html
 
 
 ## <font color=red>*警告*</font>
-1. Metaverse钱包可以自动结余少量的ETP，不需要手动对余额进行分组。
+1. Metaverse钱包可以自动归整小额ETP，不需要手动对余额进行归整, 例如使用sendmore命令。
 2. 发送资产时，如果使用**“send”**命令，我的余额将会返还至帐户的随机地址。 **所以我们强烈建议交易所使用“sendfrom”/“sendmore”在发送ETP时手动指定找零地址。**
 3. [识别冻结的ETP交易输出](/zh-cn/docs/recognize-fronzen-ETP-transaction-outputs.html)
 
