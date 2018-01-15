@@ -1,109 +1,123 @@
-title: Deploy Metaverse Wallet For Exchange Platforms
+title: 交易所平台部署Metaverse钱包指南
 comments: false
 ---
-## Frequently-Used Documents
-* [API-Call-List](/api)
 
-## Standard Procedure
-1. Deploy a Metaverse node on a Linux server. Download [Metaverse Wallet Download]([https://mvs.org/#download)
-2. Do the following steps using mvs-cli commands
+## 经常使用的文档
+* [API-Call-List](/zh-cn/api_v2/index.html)
+* [Command-line](/zh-cn/docs/command-line.html)
+* [Build Wallet](/zh-cn/docs/build-linux.html)
+
+## 标准程序
+1. 在Linux服务器上部署Metaverse节点。下载 [Metaverse钱包](https://mvs.org/#download)
+2. 使用mvs-cli命令执行以下步骤
 ```
-a. Create a account in wallet
-b. Generate addresses in batch
+a. 创建钱包帐户
+b. 批量生成地址
 ```
-3. Import Metaverse ETP addresses to the database
+3.  将Metaverse ETP地址导入数据库
 ```
-a. Import Metaverse ETP addresses into the database of the exchange
-b. Assign the addresses to the users when the users deposit
+a. 将Metaverse ETP地址导入到交易所数据库
+b. 用户存款时将地址分配给用户
 ```
-4. Develop programs to fulfil the following functions:
+4. 开发程序来完成以下功能：:
 ```
-a. Monitor new blocks through the API of the wallet (getblock method)
-b. User imformation based depositing
-c. Save the trading records related to the exchange
+a. 通过钱包API监视新的区块（getblock方法）
+b. 基于用户信息的存款
+c. 保存与交易所有关的交易记录
 ```
-*Other standard operations to connect to the website of the exchange*
+*链接到交易所网站的其他标准操作*
 
-## A Brief Introduction of Metaverse(MVS) wallet
+## Metaverse（MVS）钱包简介
 
-MVS wallet consist of 'mvsd' and 'mvs-cli';
+MVS钱包分为 `mvsd` 和 `mvs-cli`;
 
-mvs-cli is a command-line client (wallet) for developers. Developers have two ways to interact with it:
-Using the CLI (command-line interface) commands. For example, you can create an account, generate addresses, etc. 
+mvs-cli 是供开发者使用的命令行客户端（钱包）。
 
-mvsd is the core wallet program which provide Remote Procedure Call (RPC), port defaluts to 8820. For example, you can transfer to the designated address, acquire the block information of the designated height, acquire the information of the designated trade, etc. 
+mvsd 是核心钱包程序，可远程过程调用（RPC），端口默认为8820。
 
-1. Every MVS node optionally provides an API to retrieve blockchain data from the nodes. This facilitates the development of blockchain applications. The interfaces are provided through (JSON-RPC)[http://www.jsonrpc.org/specification].
+开发者有两种方式与钱包交互：
 
-*To start a node which provides RPC service, you can run the following commands*
+1. 使用CLI（命令行界面）命令。例如，您可以创建一个帐户，生成地址等。
+2. 使用curl 发送 JSON-RPC 调用。例如，可将资产转移到指定的地址，获取指定块高的信息，获取指定交易的信息等。
+
+每个MVS节点都可以选择提供一个API来检索区块链数据。这有助于区块链应用程序的开发。这些接口是通过 JSON-RPC (<http://www.jsonrpc.org/specification>) 提供的.
+
+*若要启动提供RPC服务的节点，可以运行以下命令*
 ```
 ./mvsd 
 ```
-**Just like what bitcoind does.**
-see RPC CALL LIST details: <https://github.com/mvs-org/metaverse/wiki/Metaverse-API-Call-List>
+**类似于比特币节点**
+RPC CALL LIST详细信息请查看: <http://docs.mvs.org/zh-cn/api_v2/index.html>
 
-2. It is a wallet controlled through the command line. You can manage your assets using commands. The basic functions include: creating an account, creating addresses and transferring assets. 
+这是一个由命令行控制的钱包。您可以使用命令来管理资产。其基本功能包括：创建账户，创建地址和转移资产。 
 
-show all commands mvsd supported.
+显示 mvs-cli 支持的所有命令。
 ```
 ./mvs-cli help
 ```
+显示 mvs-cli 某个命令的帮助。
+```
+./mvs-cli help $command (替换$command为具体命令名称)
+```
 
-### >>> Creating a account
+### >>> 创建帐户
 
-An account is used to store the account information for users. 
-It is the most important proof that the users hold. Users no need to keep the wallet files and the wallet passwords secure, **but have to backup mnemonics, once it is lost or forgotten, all your assets can't be found back, including the ETP. Please store mnemonics of the master private key in a safe place, such as copying to paper or storing them into an encrypted flash disk.**
+帐户用于存储用户的帐户信息，这是表明用户持有资产最重要的证据。用户无需确保钱包文件和钱包密码的安全，**但必须备份助记词，一旦丢失或遗忘助记词，所有的资产都无法找回，包括ETP。请将主私钥的助记词存储在安全的地方，如抄写在纸上或存储到加密的U盘中**
 
-The exchange must have an online wallet to manage the deposit addresses of the users. 
+交易所必须有一个在线钱包来管理用户的存款地址。 
 
-*Note: Exchanges do not have to create a account for every user. An online wallet usually keeps all deposit addresses of a account. A cold wallet (offline wallet) is another storage option which provides better security.*
+*注意：交易所不必为每个用户创建一个帐户。在线钱包通常保存一个账户的所有存款地址。也可选择冷钱包（离线钱包）来储存地址，这样更安全。*
 
-How to create an new account：<https://github.com/mvs-org/metaverse/wiki/Metaverse-API-Call-List#-account>
+创建新账户使用方法请参阅：<http://docs.mvs.org/zh-cn/api_v2/account.html#getnewaccount>
 
-### >>> Generating Deposit Addresses
+### >>> 生成存款地址
 
-A wallet can store multiple addresses. The exchange needs to generate a deposit address for each user. 
+钱包可以存储多个地址。交易所需要为每个用户生成一个存款地址。
 
-There are basically two methods to generate a deposit address: 
+基本有以下两种方法来生成存款地址：
 
-1. When the user deposit (ETP) for the first time, the program can dynamically generate ETP addresses. The advantage is that there is no need to generate addresses at fixed time intervals, while the disadvantage is that the exchange needs to pay extra effort to develop this function.
-2. The exchange creates a batch of ETP addresses in advance. When the user charges ETP at the first time, the exchange platform assigns a ETP address to this user. The advantage is quick connections and no further development, while the disadvantage is the need to generate ETP addresses manually. 
+1. 当用户第一次存入（ETP）时，程序可以动态生成ETP地址。其优点是不需要以固定的时间间隔产生地址，而缺点是需要额外开发这个功能。
+2. 交易所可以提前创建一批ETP地址。当用户首次被收取ETP费用时，交易所平台为该用户分配一个ETP地址。其优点是连接速度快，不需要进一步开发，缺点是需要手动生成ETP地址。
 
-We suggest exchanges to adopt the 2nd method which ensures fast connections to the exchanges. 
+我们建议交易所采用第二种方法，以确保交易与交易所的快速连接。
 
-To generate MVS addresses in batch, you can use the command:  
+要批量生成MVS地址，可以使用以下命令：
 ```
 ./mvs-cli getnewaddress accountname accountpassword -n 1000
 ```
-see <https://github.com/mvs-org/metaverse/wiki/Metaverse-API-Call-List#-address>
+参看 <http://docs.mvs.org/zh-cn/api_v2/account.html#getnewaddress>
 
-Those addresses will be shown as json format reponse. The exchange needs to import these addresses into the database of the exchange, and distribute them to the users.
-
-
-### >>> User deposits and deposit records
-
-Regarding user deposit, the exchange need to be informed about the following:
-
-* Metaverse blockchain has only one main chain without side chains, will not fork, and will not have isolated blocks. you can find blocks information on <https://explorer.mvs.org>.
-
-* A transaction recorded in Metaverse blockchain cannot be tampered with, which mean a confirmation represents a deposit success. we recommand the confirmation number over 30.
-
-* There is no notification when the amount of asset in an address changes. The metaverse wallet DOES have an interface(listtxs) to query all transactions for an address. See details <https://github.com/mvs-org/metaverse/wiki/Metaverse-API-Call-List#-transaction>.
-
-* Metaverse shares addresses for between ETP and other assets. More assets issued by users (such as stock or token) can be stored. The exchange should determine the type of assets when user deposit. Neither regard other assets as ETP shares or other assets nor confuse the withdrawal. The asset type need to be determined specifically.
+这些地址将显示为json响应格式。交易所需要将这些地址导入到其数据库中来分发给用户。
 
 
-* mvsd is a full node, which needs to stay online to synchronize blocks. You can view the block synchronization status through the show state in the mvs-cli or RPC-CALL, where the left side is the local block height, while the right side is the node block height.
-
-* In the exchange, the transfer between users should not be recorded through the blockchain. In general, it modifies the user's balance in the database directly. Only deposits and withdrawals should be recorded on the blockchain.
-
-''Regarding the 3rd point mentioned above:''
-
-''The exchange needs to write code to monitor every transaction in a block and record all the transactions related to the exchanges addresses in the database. If a deposit occur, then the balance of the user should be updated.''
+### >>> 用户存款和存款记录
 
 
-## <font size=5 color=red>CAUTION PLEASE</font>
-1. Metaverse wallet can combine small etp automatically, no need to group small changes manually.
-2. When sending assets , if use command 'send', my changes will go back to a random address belongs to this account. **So we strongly recommand exchange platform to use 'sendfrom'/'sendmore'.**
-3. [Recognize Fronzen ETP Transaction Outputs](recognize-fronzen-ETP-transaction-outputs.html)
+关于用户存款，交易所需要被告知以下内容：
+
+* Metaverse区块链只有一个主链，没有侧链，不会分叉，也不会有孤立的区块。你可以在区块浏览器查询区块信息： <https://explorer.mvs.org>.
+
+* 在Metaverse区块链中记录的交易不能被篡改，这意味着用户确认即代表存款成功。我们建议确认密码超过30位。
+
+
+* 存款地址资产数量变化时不会发出通知。元界钱包有一个接口（listtxs）来查询地址的所有交易。详情请查看 <http://docs.mvs.org/zh-cn/api_v2/transaction.html#listtxs>。
+
+* Metaverse共享ETP和其他资产之间的地址。用户发行的其他资产（例如股票或代币）也可储存在元界上。交易所应确定用户存款时的资产类型。不将其他资产视为ETP股票或其他，也不会混淆存款和取款。资产类型需要具体情况来确定。
+
+
+* Mvsd是全节点，需要在联网状态下才能同步区块。您可以通过mvs-cli或RPC-CALL中的显示状态查看同步状态，其中左侧是本地区块高度，右侧是节点区块高度。
+
+
+* 对交易所来说，用户之间的资产转移不应该通过区块链来记录。通常，它直接在数据库中修改用户的余额。只有存款和取款应记录在区块链上。
+
+
+''关于上述第三点''
+
+''交易所需要编写代码来监视区块中的每笔交易，并在数据库中记录与交换地址相关的所有交易。每发生一笔存款，用户的余额应该被更新。''
+
+
+## <font color=red>*警告*</font>
+1. Metaverse钱包可以自动结余少量的ETP，不需要手动对余额进行分组。
+2. 发送资产时，如果使用**“send”**命令，我的余额将会返还至帐户的随机地址。 **所以我们强烈建议交易所使用“sendfrom”/“sendmore”。**
+3. [识别冻结的ETP交易输出](/zh-cn/docs/recognize-fronzen-ETP-transaction-outputs.html)
 
