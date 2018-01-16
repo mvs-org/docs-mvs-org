@@ -154,7 +154,7 @@ comments: false
     * Parameters (optional)
     1. `-i` or `[--hd_index]` Teh HD index for the account.
     2. `-l` or `[--language]` The language identifier of the dictionary of the mnemonic. Options are 'en', 'es', 'ja', 'zh_Hans', 'zh_Hant' and 'any', defaults to 'any'.
-    3. `-n` or `[--accoutname]` Account name.
+    3. `-n` or `[--accountname]` Account name.
     4. `-p` or `[--password]` Account password.
     * Parameters (positional)
     1. `WORD` The set of words that that make up the mnemonic. If not specified the words are read from STDIN.
@@ -175,7 +175,7 @@ comments: false
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"importaccount",
     "params":["mother ride despair impose degree truck pet scrub mind art brain galaxy sadness cover crater waste arrest invest hip crush loan brisk pave cheap",
-    {"accoutname":"test","password":"123456","hd_index":3,"language":"en"}],"id":9}'
+    {"accountname":"test","password":"123456","hd_index":3,"language":"en"}],"id":9}'
 
     // Response
     {
@@ -189,7 +189,7 @@ comments: false
                 "MS9m8zpVPkDYAXhmeHmhE3TgJugP3zHtAL"
             ], 
             "name": "test", 
-            "hd_index": "3"
+            "hd_index": 3
         }
     }
     ```

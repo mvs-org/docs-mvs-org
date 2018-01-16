@@ -114,7 +114,7 @@ PAYMENT_ADDRESS      Valid payment address. If not specified the address
 ```
 ### importaccount
 ```help
-Usage: mvs-cli importaccount [-h] --accoutname value --password value
+Usage: mvs-cli importaccount [-h] --accountname value --password value
 [--hd_index value] [--language value] WORD
 
 Info: importaccount
@@ -126,7 +126,7 @@ Options (named):
 -l [--language]      The language identifier of the dictionary of the
                      mnemonic. Options are 'en', 'es', 'ja', 'zh_Hans',
                      'zh_Hant' and 'any', defaults to 'any'.
--n [--accoutname]    Account name required.
+-n [--accountname]   Account name required.
 -p [--password]      Account password(authorization) required.
 
 Arguments (positional):
