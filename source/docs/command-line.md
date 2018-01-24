@@ -11,7 +11,7 @@ Info: Runs a full metaverse node in the global peer-to-peer network.
 
 Options (named):
 
--D [--datadir]       Specify database path.
+-D [--datadir]       Specify mvsd workspace path.
 -c [--config]        Specify path to a configuration settings file based
                      on path ~/.metaverse
 -d [--daemon]        Run in daemon mode (unix/apple).

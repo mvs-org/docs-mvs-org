@@ -193,7 +193,7 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"start",
+    curl -X POST --data '{"jsonrpc":"2.0","method":"startmining",
     "params":["test", "123456"],"id":20}'
 
     // Response
@@ -223,7 +223,7 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"stop",
+    curl -X POST --data '{"jsonrpc":"2.0","method":"stopmining",
     "params":["test", "123456"],"id":21}'
 
     // Response
