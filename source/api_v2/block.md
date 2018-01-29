@@ -11,6 +11,9 @@ comments: false
 * ### `getblockheader`
     get best blockheader
     alias as **fetch-header/getbestblockhash/getbestblockheader**
+    * Parameters (optional)
+    1.  `-s [--hash]`          The Base16 block hash.
+    2.  `-t [--height]`        The block height.
     * Returns
     `Object` - best block header
 
@@ -45,10 +48,10 @@ comments: false
     1. `json`    use json format or not, default is true, that is '--json=true'
     2. `tx_json` use json format or not for txs, default is true, that is '--tx_json=true'
     * Parameters (positional)
-    1. `HASH`    block hash.
+    1. `HASH_OR_HEIGH`    block hash or block height.
     ```js
     params:[
-        "HASH"
+        "HASH_OR_HEIGH"
     ]
      ```
     * Returns
