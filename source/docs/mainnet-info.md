@@ -20,8 +20,10 @@ comments: false
 | Actual Block Time | 33  |seconds|
 | Go-live Time | Feb.11.2017 | - |
 
-## Realtime query for ETP Circulation API
-Query API: https://explorer.mvs.org/api/circulation
+## Realtime query  API
+ETP Circulation : https://explorer.mvs.org/api/circulation
+ETP deposit rewards sum:  https://explorer.mvs.org/api/rewards
+ETP deposit principal sum: https://explorer.mvs.org/api/depositsum
 
 ## Metaverse Full Size Logo
 Download the full-sized metaverse icon:

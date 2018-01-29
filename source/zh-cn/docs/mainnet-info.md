@@ -20,8 +20,10 @@ comments: false
 | 实际平均出块时间| 33  |秒|
 | 主网上线时间  | 2017.2.11 | - |
 
-## 实时流通量API
+## 实时API
 当前流通量查询API: https://explorer.mvs.org/api/circulation
+当前存款奖励总量:  https://explorer.mvs.org/api/rewards
+当前存款本金总量: https://explorer.mvs.org/api/depositsum
 
 
 ## 元界全尺寸高清logo下载
