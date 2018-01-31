@@ -1,9 +1,9 @@
-title: Recognize Fronzen ETP Transaction Outputs
+title: Recognize Frozen ETP Transaction Outputs
 comments: false
 ---
 Because of [onchain-deposit](/docs/features-onchain-deposit.html), users can send FRONZEN ETP to any address. So the exchange platforms and wallet serivie prividers have to recognize this type of transaction outputs.  
 
-## How to recognize fronzen ETP transaction outputs?
+## How to recognize frozen ETP transaction outputs?
 A regular P2PKH (Pay to public key hash) output script looks like this:
 ```
 dup hash160 [ 376485d30ed4e7d051f215f5eeeff4732b1075c6 ] equalverify checksig
