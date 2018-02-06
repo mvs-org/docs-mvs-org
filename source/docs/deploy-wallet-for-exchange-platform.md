@@ -92,7 +92,7 @@ Regarding user deposit, the exchange need to be informed about the following:
 
 * There is no notification when the amount of asset in an address changes. The metaverse wallet DOES have an interface(listtxs) to query all transactions for an address. [See details](/api_v2/transaction.html) .
 
-* Metaverse shares addresses for between ETP and other assets. More assets issued by users (such as stock or token) can be stored. The exchange should determine the type of assets when user deposit. Neither regard other assets as ETP shares or other assets nor confuse the withdrawal. The asset type need to be determined specifically.
+* Metaverse shares addresses for between ETP and other assets. More assets issued by users (such as stock or token) can be stored. The exchange should determine the type of assets when user deposit. Neither regard other assets as ETP shares or other assets nor confuse the withdrawal. The asset type need to be determined specifically. [See details about assets operations](assets-operations.html)
 
 * mvsd is a full node, which needs to stay online to synchronize blocks. You can view the block synchronization status through the show state in the mvs-cli or RPC-CALL, where the left side is the local block height, while the right side is the node block height.
 

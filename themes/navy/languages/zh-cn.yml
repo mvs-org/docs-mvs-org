@@ -44,6 +44,7 @@ sidebar:
     platform_deployment: 平台部署
     deploy_wallet: 服务端部署钱包
     fronzen_etp: 识别冻结的ETP
+    asset_operation: 资产相关操作
 
   api:
     introduction: 介绍

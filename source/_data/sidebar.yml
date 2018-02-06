@@ -22,6 +22,7 @@ docs:
   platform_deployment:
     deploy_wallet: deploy-wallet-for-exchange-platform.html
     fronzen_etp: recognize-fronzen-ETP-transaction-outputs.html
+    asset_operation: assets-operations.html
 
 baas:
   introduction:

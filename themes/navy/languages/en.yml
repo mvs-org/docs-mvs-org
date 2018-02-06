@@ -44,6 +44,7 @@ sidebar:
     platform_deployment: Platform deployment
     deploy_wallet: Deploy wallet on server
     fronzen_etp: Identify Fronzen ETP
+    asset_operation: Assets Operations
 
   baas:
     introduction: Introduction
