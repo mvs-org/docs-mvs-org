@@ -260,15 +260,11 @@ comments: false
     {
         "jsonrpc": "2.0", 
         "id": 18, 
-        "result": {
-            "jsonrpc": "1.0", 
-            "id": "1", 
-            "result": [
-                "0x3581eb99481009c9e42bb667a64658c37422b01c6282b0cbdcdfc821f84b4edb", 
-                "0xcdf42a47e552f9b4eb01d44a7b6a2b057fbfa1070f3148fd8e7f937a417ffdc1", 
-                "0x00000000000c53b59ac4c124c18bb4cf4b25a146809abce70efd33c1607921dc"
-            ]
-        }
+        "result": [
+            "0x3581eb99481009c9e42bb667a64658c37422b01c6282b0cbdcdfc821f84b4edb",
+            "0xcdf42a47e552f9b4eb01d44a7b6a2b057fbfa1070f3148fd8e7f937a417ffdc1",
+            "0x00000000000c53b59ac4c124c18bb4cf4b25a146809abce70efd33c1607921dc"
+        ]
     }
     ```
 
