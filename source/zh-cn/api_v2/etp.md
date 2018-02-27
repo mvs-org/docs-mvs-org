@@ -342,9 +342,19 @@ comments: false
 
     * Example
     ```js
+    //example of sending to only one receiver.
+    curl -X POST --data '{"jsonrpc":"2.0","method":"sendmore",
+    "params":["test", "123456", {
+    "receivers": "MDqwRYEBqQXVxDQnUGpXJoTsH2RuxmXrrs:100000000000",
+    "mychange": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"}],"id":15}'
+
+    //example of sending to multiple receivers.
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"sendmore",
-    "params":["test", "123456", {"receivers": "MDqwRYEBqQXVxDQnUGpXJoTsH2RuxmXrrs:100000000000", "receivers": "MShZjQLzrYCtwTvNfjgcL2fWGH4GKVZXGT:100000000000"}],"id":15}'
+    "params":["test", "123456", {"receivers": [
+        "MDqwRYEBqQXVxDQnUGpXJoTsH2RuxmXrrs:100000000000",
+        "MShZjQLzrYCtwTvNfjgcL2fWGH4GKVZXGT:100000000000"
+    ], "mychange": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"}],"id":15}'
 
     // Response
     {
