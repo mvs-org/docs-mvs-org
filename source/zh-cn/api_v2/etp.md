@@ -5,7 +5,7 @@ comments: false
 ## Description
 ***
 
-## API Methods 
+## API Methods
 ***
 
 * ### `getbalance`
@@ -15,7 +15,7 @@ comments: false
     2. `ACCOUNTAUTH` Account password/authorization.
     ```js
     params:[
-        "ACCOUNTNAME", 
+        "ACCOUNTNAME",
         "ACCOUNTAUTH"
     ]
      ```
@@ -30,19 +30,27 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"getbalance",
-    "params":["test", "123456"],"id":6}'
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"getbalance",
+        "params":[
+            "test1",
+            "passwd1"
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
 
     // Response
     {
-        "jsonrpc": "2.0", 
-        "id": 6, 
-        "result": {
-            "total-received": "5000000600000000", 
-            "total-available": "5000000300000000", 
-            "total-confirmed": "600000000", 
-            "total-frozen": "300000000", 
-            "total-unspent": "5000000600000000"
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "total-available" : 2000606696,
+            "total-confirmed" : 2000606696,
+            "total-frozen" : 0,
+            "total-received" : 49291956690,
+            "total-unspent" : 2000606696
         }
     }
     ```
@@ -58,7 +66,7 @@ comments: false
     2. `ACCOUNTAUTH` Account password/authorization.
     ```js
     params:[
-        "ACCOUNTNAME", 
+        "ACCOUNTNAME",
         "ACCOUNTAUTH"
     ]
      ```
@@ -73,31 +81,48 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"listbalances",
-    "params":["test", "123456"],"id":12}'
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"listbalances",
+        "params":[
+            "test1",
+            "passwd1"
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
 
     // Response
     {
-        "jsonrpc": "2.0", 
-        "id": 12, 
-        "result": [
-            {
-                "unspent": "5000000600000000", 
-                "received": "5000000600000000", 
-                "confirmed": "5000000600000000", 
-                "frozen": "300000000", 
-                "available": "5000000300000000", 
-                "address": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"
-            }, 
-            {
-                "unspent": "0", 
-                "received": "0", 
-                "confirmed": "0", 
-                "frozen": "0", 
-                "available": "0", 
-                "address": "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"
-            }
-        ]
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "balances" :
+            [
+                {
+                    "balance" :
+                    {
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "available" : 100646696,
+                        "confirmed" : 100646696,
+                        "frozen" : 0,
+                        "received" : 47391996691,
+                        "unspent" : 100646696
+                    }
+                },
+                {
+                    "balance" :
+                    {
+                        "address" : "tKc8dxEEj9cWr4Ys2oUbgQxGtRgUEg9e5q",
+                        "available" : 1899960000,
+                        "confirmed" : 1899960000,
+                        "frozen" : 0,
+                        "received" : 1899960000,
+                        "unspent" : 1899960000
+                    }
+                }
+            ]
+        }
     }
     ```
 
@@ -115,8 +140,8 @@ comments: false
     3. `AMOUNT` How many you will deposit.
     ```js
     params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH", 
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
         "AMOUNT"
     ]
      ```
@@ -126,49 +151,70 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"deposit",
-    "params":["test", "123456", "100000000000"],"id":3}'
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"deposit",
+        "params":[
+            "test11",
+            "passwd1",
+            10000,
+            {
+                "address": "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                "deposit": 7
+            }
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
 
     // Response
     {
-        "jsonrpc": "2.0", 
-        "id": 3, 
-        "result": {
-            "transaction": {
-                "inputs": [
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "transaction" :
+            {
+                "hash" : "256d6699d7c5dcc4be0bc34c3cc9b4d9fb7c8c63f57d98ec46449adc0a336f09",
+                "inputs" :
+                [
                     {
-                        "previous_output": {
-                            "index": "1", 
-                            "hash": "95766456282830e9d527dae3875546b6602f3d6b394fd375c0c611e3a4323512"
-                        }, 
-                        "script": "[ 3045022100abc4ba4cd5cdf7aeff93b94e1f5810186a2ca4652cad1466b1069c97702b3ac80220395e12d2d1f29decef0c386531dfc391544c2ae7883c90ed3029c66d386895c501 ] [ 02733174564d4f6e721081f2caedb97612140c59de8ee2be43257924438b09d80b ]", 
-                        "sequence": "4294967295", 
-                        "address": "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "previous_output" :
+                        {
+                            "hash" : "8e2dc008d39e1fd7ccea9c19fd2f72cc5d2c2d5d667de4cb86b5b86b7410848c",
+                            "index" : 0
+                        },
+                        "script" : "[ 304402205eb1bb5ad9056c06db024bff142edca874dbaa6bcc88b74f22c290e078cf23b702200cf9201bca3c6055653a10e10bbe4d5c27b68f258e30a1d87591ceabcb86aa4401 ] [ 03b122b19d00981a2181ebabe58f1aae7d9ee245bf87a551e56ca5aea7f9b0ddfd ] [ 14 ]",
+                        "sequence" : 4294967295
                     }
-                ], 
-                "lock_time": "0", 
-                "version": "2", 
-                "hash": "02cc2fb73a35c5b1b1d15d76e34a674d39702973d2d0d94aa28c7aea8b45b0f3", 
-                "outputs": [
+                ],
+                "lock_time" : "0",
+                "outputs" :
+                [
                     {
-                        "index": "0", 
-                        "script": "[ 7062 ] numequalverify dup hash160 [ 2759a0422370c52ac7bc57f6b3a082877bf40400 ] equalverify checksig", 
-                        "attachment": {
-                            "type": "etp"
-                        }, 
-                        "value": "100000000000", 
-                        "address": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"
-                    }, 
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 0,
+                        "locked_height_range" : 10,
+                        "script" : "[ 0a ] numequalverify dup hash160 [ c9e5a7523f9f51858ad923995de69be769a2ed7d ] equalverify checksig",
+                        "value" : 10000
+                    },
                     {
-                        "index": "1", 
-                        "script": "dup hash160 [ 4aa9e07c613f9dde2aae258d5ff3bd7bbbf98348 ] equalverify checksig", 
-                        "attachment": {
-                            "type": "etp"
-                        }, 
-                        "value": "4999800299950000", 
-                        "address": "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 1,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ c9e5a7523f9f51858ad923995de69be769a2ed7d ] equalverify checksig",
+                        "value" : 99980000
                     }
-                ]
+                ],
+                "version" : "2"
             }
         }
     }
@@ -188,9 +234,9 @@ comments: false
     4. `AMOUNT` How many you will spend
     ```js
     params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH", 
-        "TOADDRESS", 
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
+        "TOADDRESS",
         "AMOUNT"
     ]
      ```
@@ -200,48 +246,68 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"send",
-    "params":["test", "123456", "MCH7xHbfVD8viUcZ3xgDdSJANhS7DQDJAi", "100000000000"],"id":13}'
+    curl -X POST --data '{
+        "id":125,
+        "jsonrpc":"2.0",
+        "method":"send",
+        "params":[
+            "test1",
+            "passwd1",
+            "tTmxWoQ3PohHaPdndAGD89o9AhLcJ7L9TJ",
+            "10000"
+        ]
+    }' 127.0.0.1:8820/rpc/v2
 
     // Response
     {
-        "jsonrpc": "2.0", 
-        "id": 13, 
-        "result": {
-            "inputs": [
-                {
-                    "previous_output": {
-                        "index": "2", 
-                        "hash": "ccaa270fbcc55583cfcb911a35a4a4aa92f68c311ecdd62790c63f2c8119c4eb"
-                    }, 
-                    "script": "[ 3045022100c490ca97e4100a956c70da14b3a3d882a54fa7b3b103c55871ec7c71fbeb1f4702201c2ab0e68ff4cd7175145cb5fca3941179dfa1f53a99e9c4b8c32af55f55d64101 ] [ 0240bc01ddeed51ee13363348b1f992a0e34c9657a1bae91ee4927fb319bdbe8b8 ]", 
-                    "sequence": "4294967295", 
-                    "address": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"
-                }
-            ], 
-            "lock_time": "0", 
-            "version": "2", 
-            "hash": "ef0f1ba4e7e10f084aa4287d952699e832b77c4c87abbea3e1ba088604c4f745", 
-            "outputs": [
-                {
-                    "index": "0", 
-                    "script": "dup hash160 [ 3007c09fdedeebcd243e23ff59ede328c2da5c9f ] equalverify checksig", 
-                    "attachment": {
-                        "type": "etp"
-                    }, 
-                    "value": "100000000000", 
-                    "address": "MCH7xHbfVD8viUcZ3xgDdSJANhS7DQDJAi"
-                }, 
-                {
-                    "index": "1", 
-                    "script": "dup hash160 [ 2759a0422370c52ac7bc57f6b3a082877bf40400 ] equalverify checksig", 
-                    "attachment": {
-                        "type": "etp"
-                    }, 
-                    "value": "4999700299970000", 
-                    "address": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"
-                }
-            ]
+        "id" : 125,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "transaction" :
+            {
+                "hash" : "a40ab699fbb769f571c27995208f8a2e1c6e26095e119d6c59dc43dd7cefd3a8",
+                "inputs" :
+                [
+                    {
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "previous_output" :
+                        {
+                            "hash" : "e6a464f8b505c57d67e0079138618241a80fe7f633a83b628f20e197d4fb3183",
+                            "index" : 1
+                        },
+                        "script" : "[ 3045022100fdbd7c785d665516fc7066a845b7fcc9bae2a25545982b414036da148d28dc210220186ebcc78fdab96d579896ef8e990ebc0bae93241b42e6b1226cb4f904778ea401 ] [ 03b122b19d00981a2181ebabe58f1aae7d9ee245bf87a551e56ca5aea7f9b0ddfd ]",
+                        "sequence" : 4294967295
+                    }
+                ],
+                "lock_time" : "0",
+                "outputs" :
+                [
+                    {
+                        "address" : "tTmxWoQ3PohHaPdndAGD89o9AhLcJ7L9TJ",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 0,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ e4b7fb501e2a43b670b3854b042ea24934942b2f ] equalverify checksig",
+                        "value" : 10000
+                    },
+                    {
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 1,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ c9e5a7523f9f51858ad923995de69be769a2ed7d ] equalverify checksig",
+                        "value" : 356695
+                    }
+                ],
+                "version" : "2"
+            }
         }
     }
     ```
@@ -261,10 +327,10 @@ comments: false
     5. `AMOUNT` How many you will spend
     ```js
     params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH", 
-        "FROMADDRESS", 
-        "TOADDRESS", 
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
+        "FROMADDRESS",
+        "TOADDRESS",
         "AMOUNT"
     ]
      ```
@@ -274,48 +340,69 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"sendfrom",
-    "params":["test", "123456", "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV", "MCH7xHbfVD8viUcZ3xgDdSJANhS7DQDJAi", "100000000000"],"id":14}'
+    curl -X POST --data '{
+        "id":125,
+        "jsonrpc":"2.0",
+        "method":"sendfrom",
+        "params":[
+            "test1",
+            "passwd1",
+            "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+            "tTko1LmJMM4Y492xYWiacJ9pokxoG8FFjZ",
+            "10000"
+        ]
+    }' 127.0.0.1:8820/rpc/v2
 
     // Response
     {
-        "jsonrpc": "2.0", 
-        "id": 14, 
-        "result": {
-            "inputs": [
-                {
-                    "previous_output": {
-                        "index": "1", 
-                        "hash": "730bc3cd92eb60168a7b30a29246d61ef7670e559c4f256a485e79286da4bba9"
-                    }, 
-                    "script": "[ 304402205a5b6edde3f00295b0132cca443c68f270205e66be1e4423f6529c1a53de226d022036ba0fe32697813a3e59008611b3a7e21402eaa1674d0a45a3c061c8b4c2f32301 ] [ 0240bc01ddeed51ee13363348b1f992a0e34c9657a1bae91ee4927fb319bdbe8b8 ]", 
-                    "sequence": "4294967295", 
-                    "address": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"
-                }
-            ], 
-            "lock_time": "0", 
-            "version": "2", 
-            "hash": "c0097c2f729e6745e71f02aa534fd8f9c09f528c016fa6cd3e1501d6f70266d0", 
-            "outputs": [
-                {
-                    "index": "0", 
-                    "script": "dup hash160 [ 3007c09fdedeebcd243e23ff59ede328c2da5c9f ] equalverify checksig", 
-                    "attachment": {
-                        "type": "etp"
-                    }, 
-                    "value": "100000000000", 
-                    "address": "MCH7xHbfVD8viUcZ3xgDdSJANhS7DQDJAi"
-                }, 
-                {
-                    "index": "1", 
-                    "script": "dup hash160 [ 2759a0422370c52ac7bc57f6b3a082877bf40400 ] equalverify checksig", 
-                    "attachment": {
-                        "type": "etp"
-                    }, 
-                    "value": "4999500299950000", 
-                    "address": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"
-                }
-            ]
+        "id" : 125,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "transaction" :
+            {
+                "hash" : "e6a464f8b505c57d67e0079138618241a80fe7f633a83b628f20e197d4fb3183",
+                "inputs" :
+                [
+                    {
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "previous_output" :
+                        {
+                            "hash" : "30bff29ce81dac72ca8e91a4e278bcab6a713889f1c6593e37daf21736da4fa8",
+                            "index" : 1
+                        },
+                        "script" : "[ 3045022100999a1b328128732c763e449f4fa167807c8c7b8607504c4f572246fab2debbf902203d76137cc87a9a688b266ec0b05912eabe4f089471ab22dfef0e247633e4d44501 ] [ 03b122b19d00981a2181ebabe58f1aae7d9ee245bf87a551e56ca5aea7f9b0ddfd ]",
+                        "sequence" : 4294967295
+                    }
+                ],
+                "lock_time" : "0",
+                "outputs" :
+                [
+                    {
+                        "address" : "tTko1LmJMM4Y492xYWiacJ9pokxoG8FFjZ",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 0,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ e47fa100e48b4080dbe122ff402d5350cabe06fd ] equalverify checksig",
+                        "value" : 10000
+                    },
+                    {
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 1,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ c9e5a7523f9f51858ad923995de69be769a2ed7d ] equalverify checksig",
+                        "value" : 376695
+                    }
+                ],
+                "version" : "2"
+            }
         }
     }
     ```
@@ -333,7 +420,7 @@ comments: false
     2. `ACCOUNTAUTH` Account password/authorization.
     ```js
     params:[
-        "ACCOUNTNAME", 
+        "ACCOUNTNAME",
         "ACCOUNTAUTH"
     ]
      ```
@@ -341,69 +428,160 @@ comments: false
     `Object` - return the transaction
 
     * Example
+* #### `sendmore to one receiver`
     ```js
     //example of sending to only one receiver.
-    curl -X POST --data '{"jsonrpc":"2.0","method":"sendmore",
-    "params":["test", "123456", {
-    "receivers": "MDqwRYEBqQXVxDQnUGpXJoTsH2RuxmXrrs:100000000000",
-    "mychange": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"}],"id":15}'
-
-    //example of sending to multiple receivers.
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"sendmore",
-    "params":["test", "123456", {"receivers": [
-        "MDqwRYEBqQXVxDQnUGpXJoTsH2RuxmXrrs:100000000000",
-        "MShZjQLzrYCtwTvNfjgcL2fWGH4GKVZXGT:100000000000"
-    ], "mychange": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"}],"id":15}'
+    curl -X POST --data '{
+        "id":125,
+        "jsonrpc":"2.0",
+        "method":"sendmore",
+        "params":[
+            "test1",
+            "passwd1",
+            {
+                "receivers":"tTmxWoQ3PohHaPdndAGD89o9AhLcJ7L9TJ:10000",
+                "mychange": "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y"
+            }
+        ]
+    }' 127.0.0.1:8820/rpc/v2
 
     // Response
     {
-        "jsonrpc": "2.0", 
-        "id": 15, 
-        "result": {
-            "inputs": [
-                {
-                    "previous_output": {
-                        "index": "1", 
-                        "hash": "ef065f9614e6dbc16f19d8237b75db6e8f5d46cd235dc78039b4be02f3fad736"
-                    }, 
-                    "script": "[ 3045022100d4ff3269bf374136054edeab0d75fb49e47ca21a81db231378edc97e50fc679102203f7c33579bdbd0db42c8b11034422d75c98427709b965bd310acd127b34bc83201 ] [ 0240bc01ddeed51ee13363348b1f992a0e34c9657a1bae91ee4927fb319bdbe8b8 ]", 
-                    "sequence": "4294967295", 
-                    "address": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"
-                }
-            ], 
-            "lock_time": "0", 
-            "version": "2", 
-            "hash": "9057283e0996aac98af902fe3139e57435ac3f6bfe9351f226caa01b36007722", 
-            "outputs": [
-                {
-                    "index": "0", 
-                    "script": "dup hash160 [ 4134d099f4b24b31c65ac2ca7ff9d561ecc0f7af ] equalverify checksig", 
-                    "attachment": {
-                        "type": "etp"
-                    }, 
-                    "value": "100000000000", 
-                    "address": "MDqwRYEBqQXVxDQnUGpXJoTsH2RuxmXrrs"
-                }, 
-                {
-                    "index": "1", 
-                    "script": "dup hash160 [ ce3903c855a170afafa524fbe67b32de63aa1ed6 ] equalverify checksig", 
-                    "attachment": {
-                        "type": "etp"
-                    }, 
-                    "value": "100000000000", 
-                    "address": "MShZjQLzrYCtwTvNfjgcL2fWGH4GKVZXGT"
-                }, 
-                {
-                    "index": "2", 
-                    "script": "dup hash160 [ 2759a0422370c52ac7bc57f6b3a082877bf40400 ] equalverify checksig", 
-                    "attachment": {
-                        "type": "etp"
-                    }, 
-                    "value": "4999200299930000", 
-                    "address": "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV"
-                }
-            ]
+        "id" : 125,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "transaction" :
+            {
+                "hash" : "0f37cbe6f0c31548655d7ebda6d576ffd9f3facddfaf4a3be0126ef613f25155",
+                "inputs" :
+                [
+                    {
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "previous_output" :
+                        {
+                            "hash" : "a40ab699fbb769f571c27995208f8a2e1c6e26095e119d6c59dc43dd7cefd3a8",
+                            "index" : 1
+                        },
+                        "script" : "[ 3045022100e234a13e5d8e8b39774f8065c6994c0974b7f619cfaf8b77a7a9493fc8f93b3d022010c7c592ba1d37688b989d8ed1baa0b5a19b7a9ab2f65228ffe5b94b03e7557e01 ] [ 03b122b19d00981a2181ebabe58f1aae7d9ee245bf87a551e56ca5aea7f9b0ddfd ]",
+                        "sequence" : 4294967295
+                    }
+                ],
+                "lock_time" : "0",
+                "outputs" :
+                [
+                    {
+                        "address" : "tTmxWoQ3PohHaPdndAGD89o9AhLcJ7L9TJ",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 0,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ e4b7fb501e2a43b670b3854b042ea24934942b2f ] equalverify checksig",
+                        "value" : 10000
+                    },
+                    {
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 1,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ c9e5a7523f9f51858ad923995de69be769a2ed7d ] equalverify checksig",
+                        "value" : 336695
+                    }
+                ],
+                "version" : "2"
+            }
+        }
+    }
+    ```
+
+* #### `sendmore to multiple receivers`
+    ```js
+    //example of sending to multiple receivers.
+    // Request
+    curl -X POST --data '{
+        "id":125,
+        "jsonrpc":"2.0",
+        "method":"sendmore",
+        "params":[
+            "test1",
+            "passwd1",
+            {
+                "receivers":[
+                    "tTmxWoQ3PohHaPdndAGD89o9AhLcJ7L9TJ:10000",
+                    "tEjJGzM6LB5zsK6aX8urD9RF5pAAJyrodC:10000"
+                ],
+                "mychange": "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y"
+            }
+        ]
+    }' 127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 125,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "transaction" :
+            {
+                "hash" : "8294ae20bbcc00f07ff20d5e2e01653b55592528705b4a40d3f88f856590cf62",
+                "inputs" :
+                [
+                    {
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "previous_output" :
+                        {
+                            "hash" : "0f37cbe6f0c31548655d7ebda6d576ffd9f3facddfaf4a3be0126ef613f25155",
+                            "index" : 1
+                        },
+                        "script" : "[ 304402200a6540d1f9eea2682e326a8da6a733f0d49dda718a126e28edc6e1283a1d172d02207c7b31a8e317756920647b0ab5fc8fe3723ecefd11b70bec533f3a03ee67635801 ] [ 03b122b19d00981a2181ebabe58f1aae7d9ee245bf87a551e56ca5aea7f9b0ddfd ]",
+                        "sequence" : 4294967295
+                    }
+                ],
+                "lock_time" : "0",
+                "outputs" :
+                [
+                    {
+                        "address" : "tTmxWoQ3PohHaPdndAGD89o9AhLcJ7L9TJ",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 0,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ e4b7fb501e2a43b670b3854b042ea24934942b2f ] equalverify checksig",
+                        "value" : 10000
+                    },
+                    {
+                        "address" : "tEjJGzM6LB5zsK6aX8urD9RF5pAAJyrodC",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 1,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ 559d9851e62cfe1c05174958ca493aab96523fae ] equalverify checksig",
+                        "value" : 10000
+                    },
+                    {
+                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 2,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ c9e5a7523f9f51858ad923995de69be769a2ed7d ] equalverify checksig",
+                        "value" : 306695
+                    }
+                ],
+                "version" : "2"
+            }
         }
     }
     ```
