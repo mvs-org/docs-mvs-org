@@ -3,7 +3,7 @@ comments: false
 ---
 
 # 下载钱包客户端
-到官网[https://mvs.org](http://mvs.org)下载macOS钱包客户端，本客户端目前支持macOS Sierra 和 macOS High Sierra系统。
+到官网[https://mvs.org/#download](https://mvs.org/#download)下载macOS钱包客户端，本客户端目前支持macOS Sierra 和 macOS High Sierra系统。
 
 安装包有标准版和数据包版，数据包版为自带数据库的安装版本，可以极大节省第一次的区块同步时间，建议新用户下载安装；由于数据包版可能会覆盖原始数据，建议老用户安装标准版。请根据您的情况选择合适的安装包。
 
