@@ -8,10 +8,17 @@ There are standard and data packet versions of the installation package. The pac
 
 **Take version v0.7.3 as an example.**
 
-## Download and unzip standard versions
+## Download and unzip
+Download standard versions
 ```bash
+# for zip balls
 wget http://sfo.newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.7.3.zip
 unzip mvs-linux-x86_64-v0.7.3.zip
+```
+```bash
+# for tarballs
+wget http://sfo.newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.7.5.tar.gz
+tar -zxf mvs-linux-x86_64-v0.7.5.tar.gz
 ```
 ## Install standard versions
 ```bash
@@ -19,11 +26,12 @@ cd mvs-linux-x86_64-v0.7.3
 ./mvs-install.sh
 ```
 
-## Download data packet
+Download data packet
 ```bash
 wget http://newmetaverse.org/blockdata/metaverse-mainnet-blocks-840000.tar.gz
 tar -zxvf metaverse-mainnet-blocks-840000.tar.gz
 ```
+
 ## Install data packet
 ```bash
 cd metaverse-mainnet-blocks

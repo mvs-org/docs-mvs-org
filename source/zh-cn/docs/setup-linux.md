@@ -11,8 +11,14 @@ comments: false
 
 ## 下载并解压标准版
 ```bash
+# for zip balls
 wget http://sfo.newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.7.3.zip
 unzip mvs-linux-x86_64-v0.7.3.zip
+```
+```bash
+# for tarballs
+wget http://sfo.newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.7.5.tar.gz
+tar -zxf mvs-linux-x86_64-v0.7.5.tar.gz
 ```
 ## 安装标准版
 ```bash
