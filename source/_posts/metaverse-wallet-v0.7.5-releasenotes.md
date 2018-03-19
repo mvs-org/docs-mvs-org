@@ -2,18 +2,20 @@ title: Wallet v0.7.5 Release Notes
 comments: false
 ---
 
-Since Beijing time 3.15 11PM ~ 3.16 4PM, MVS mainnet are under 'future blocktime attack', MVS mainnet got separated.
-Attacker wrote future blocktime into each block, that caused mining difficulty drop down, then he/she control mainnet with selfish-mining.
-So we decide to hard-fork on height 1030000.
+Since Beijing time 3.15 11AM ~ 3.16 8PM, MVS mainnet was under `future blocktime attack`, MVS mainnet got separated.
+Attacker wrote future blocktime into each block, that caused mining difficulty drop down, then he/she controled MVS mainnet through selfish-mining.
+So we decided to hard-fork at height 1030000.
+
+MVS mainnet hard-fork already actived successfully on the safty longest chain.
+explorer.mvs.org, lightwallet works well.
+Please download wallet v0.7.5 to support this hard-fork to defend potential `future blocktime attack`.
 
 ![](/images/metaverse-wallet-v0.7.5-releasenotes-1.png)
 
-Now explorer.mvs.org, lightwallet is work well.
-
-Your wallet may be in 2 cases.
+After upgrade to v0.7.5, your wallet may be in 2 cases.
 ## CASE 1 - current height under 1030000
-start v0.7.5 wallet, then startup, you will see current height.
-Then leave it alone, waiting for a while, see if the height close to explorer.mvs.org
+open v0.7.5 wallet, check current height.
+Then leave it alone, waiting for may 1 hour, see whether wallet height close to the height of <https://explorer.mvs.org>.
 
 ## CASE 2 - current height over 1030000
 That means you may in attacker's chain. need re-sync by below tools.
