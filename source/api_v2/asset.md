@@ -709,3 +709,112 @@ comments: false
     ```
 ***
 
+SuperNova Functions :
+
+* ### `secondaryissue`
+    * Parameters (optional)
+    1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    4. `ADDRESS` target address
+    5. `SYMBOL` asset symbol
+    6. `VOLUME` The asset amount shares
+    ```js
+    params:[
+        "ACCOUNTNAME", 
+        "ACCOUNTAUTH", 
+        "ADDRESS", 
+        "SYMBOL", 
+        "VOLUME"
+    ]
+     ```
+    * Returns
+    `Object` - 
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"jsonrpc":"2.0","method":"secondaryissue",
+    "params":["chenhao06", "chenhao06", "tPZov98rEnfQYWEaLiFiCr8Zqzbjapwty3", "TEST.SECONDARYISSUE", "100"],"id":7}'
+
+    // Response
+	{
+		"transaction" :
+		{
+			"hash" : "c5a9fcbac56a4c495bc208a448501dae70489fac74e743eaf092a18d5878fa68",
+			"inputs" :
+			[
+				{
+					"address" : "tPZov98rEnfQYWEaLiFiCr8Zqzbjapwty3",
+					"previous_output" :
+					{
+						"hash" : "91ac0fbde21a4fc51fae823d8f5ecd85709c7a5919781f6c377008c672f79ae7",
+						"index" : 1
+					},
+					"script" : "[ 30440220424a095e24fe909ff977907f3c013306d590676e8d4d5dade1f4cf7270e8d691022051e69e178322d5462b0720942180bcf010bdc9f0e6967f200f3b436848be99ed01 ] [ 033c78797d7d28c3ab53e4f2094c4479e808737c4e5724a8c6320580304f987c67 ]",
+					"sequence" : 4294967295
+				},
+				{
+					"address" : "tPZov98rEnfQYWEaLiFiCr8Zqzbjapwty3",
+					"previous_output" :
+					{
+						"hash" : "91ac0fbde21a4fc51fae823d8f5ecd85709c7a5919781f6c377008c672f79ae7",
+						"index" : 0
+					},
+					"script" : "[ 3045022100aa1af0f7a1766fb2331a11cddc9ebb68dc807bf58f152ffe415d4b829ca3e93a02201c544b79de37cc02d850865b6ae344a8b6f6ed07d34ee6026669ed8c68ee565001 ] [ 033c78797d7d28c3ab53e4f2094c4479e808737c4e5724a8c6320580304f987c67 ]",
+					"sequence" : 4294967295
+				}
+			],
+			"lock_time" : "0",
+			"outputs" :
+			[
+				{
+					"address" : "tPZov98rEnfQYWEaLiFiCr8Zqzbjapwty3",
+					"attachment" :
+					{
+						"address" : "tPZov98rEnfQYWEaLiFiCr8Zqzbjapwty3",
+						"decimal_number" : 4,
+						"description" : "testnet token",
+						"issuer" : "chenhao06",
+						"quantity" : 100,
+						"secondaryissue_threshold" : 51,
+						"symbol" : "TEST.SENDARYISSUE",
+						"type" : "asset-issue"
+					},
+					"index" : 0,
+					"locked_height_range" : 0,
+					"script" : "dup hash160 [ b68b4f63bc9d98d061ca49bd6c2f47c256466af6 ] equalverify checksig",
+					"value" : 0
+				},
+				{
+					"address" : "tPZov98rEnfQYWEaLiFiCr8Zqzbjapwty3",
+					"attachment" :
+					{
+						"type" : "etp"
+					},
+					"index" : 1,
+					"locked_height_range" : 0,
+					"script" : "dup hash160 [ b68b4f63bc9d98d061ca49bd6c2f47c256466af6 ] equalverify checksig",
+					"value" : 8999990000
+				},
+				{
+					"address" : "tPZov98rEnfQYWEaLiFiCr8Zqzbjapwty3",
+					"attachment" :
+					{
+						"quantity" : 100,
+						"symbol" : "TEST.SENDARYISSUE",
+						"type" : "asset-transfer"
+					},
+					"index" : 2,
+					"locked_height_range" : 0,
+					"script" : "dup hash160 [ b68b4f63bc9d98d061ca49bd6c2f47c256466af6 ] equalverify checksig",
+					"value" : 0
+				}
+			],
+			"version" : "3"
+		}
+	}
+    ```
+***
+

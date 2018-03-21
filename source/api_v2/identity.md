@@ -4,6 +4,9 @@ comments: false
 
 ## Description
 ***
+Digital Identity wil be actvied in superNova.
+This docs only for testnet, to help developers using Digital Identity.
+THIS IS ONLY FOR TESTNET(2018.03~2018.05).
 
 ## API Methods 
 ***
