@@ -310,9 +310,9 @@ comments: false
 * ### `submitwork`
     submitwork to submit mining result.
     * Parameters (positional)
-    1. `NOUNCE` nounce.
-    2. `HEADERHASH` header hash.
-    3. `MIXHASH` mix hash.
+    1. `NOUNCE` nounce. (without leading 0x)
+    2. `HEADERHASH` header hash. (with leading 0x)
+    3. `MIXHASH` mix hash. (with leading 0x)
     ```js
     params:[
         "NOUNCE", 
@@ -327,7 +327,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"submitwork",
-    "params":["510e97b19fd66cc1", "3581eb99481009c9e42bb667a64658c37422b01c6282b0cbdcdfc821f84b4edb", "84466639954022912678747341235003283994844539402926174863653111473524386000443"],"id":23}'
+    "params":["510e97b19fd66cc1", "0x3581eb99481009c9e42bb667a64658c37422b01c6282b0cbdcdfc821f84b4edb", "0x84466639954022912678747341235003283994844539402926174863653111473524386000443"],"id":23}'
 
     // Response
     {
