@@ -45,6 +45,7 @@ sidebar:
     deploy_wallet: Deploy wallet on server
     fronzen_etp: Identify Fronzen ETP
     asset_operation: Assets Operations
+    reset_mvs: Reset MVS
 
   baas:
     introduction: Introduction
@@ -85,6 +86,7 @@ sidebar:
 
   developers:
     overview: Overview
+    utxo_limitation: UTXO limitation
     introduction: Introduction
     digital_asset: Digital asset
     da_issue_token: Issue token

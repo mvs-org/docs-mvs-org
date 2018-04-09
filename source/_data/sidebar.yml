@@ -18,6 +18,7 @@ docs:
     linux_build: build-linux.html
     options: options.html
     testnet: testnet.html
+    reset_mvs: reset-mvs.html
     private_chain: private-chain.html
   platform_deployment:
     deploy_wallet: deploy-wallet-for-exchange-platform.html
@@ -76,6 +77,7 @@ api_v2:
 developers:
   overview:
     introduction: index.html
+    utxo_limitation: utxo-limitation.html
   digital_asset:
     introduction: da-index.html
     da_issue_token: da-issue-token.html

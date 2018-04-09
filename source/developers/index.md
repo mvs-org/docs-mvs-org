@@ -1,34 +1,30 @@
-title: 底层技术概要介绍
-comments: false
+title: Tech-Overview of MVS
 ---
 
-# 实现基础
-元界代码主要基于[libbitcoin](https://github.com/libbitcoin)修改实现。
-我们集成了以下8个模块：
-* [libbitcoin](https://github.com/libbitcoin/libbitcoin)
-* [libbitcoin-explorer](https://github.com/libbitcoin/libbitcoin-explorer)
-* [libbitcoin-database](https://github.com/libbitcoin/libbitcoin-database)
-* [libbitcoin-blockchain](https://github.com/libbitcoin/libbitcoin-blockchain)
-* [libbitcoin-server](https://github.com/libbitcoin/libbitcoin-server)
-* [libbitcoin-network](https://github.com/libbitcoin/libbitcoin-network)
-* [libbitcoin-protocol](https://github.com/libbitcoin/libbitcoin-protocol)
-* [libbitcoin-node](https://github.com/libbitcoin/libbitcoin-node)
-* [libbitcoin-consensus](https://github.com/libbitcoin/libbitcoin-consensus)
+## Summary
+The official implementation of MVS full node is [libbitcoin](https://github.com/libbitcoin) based, it means Metaverse is more close to bitcoin standard.
 
-MVS在开发时，发现libbitcoin并未提供以下2个模块：HTTPServer,Mining。所以：
-MVS集成了Ethererum的挖矿算法： [ETHASH](https://github.com/ethereum/ethash)
-MVS集成了一个轻量级的嵌入式HTTPServer: [mongoose](https://github.com/cesanta/mongoose) 
+However, here are these differences:
 
-元界在开发时的版本与libbitcoin当前版本已经有较大差异，核心开发者也作了大量修改，故以上仅作参考学习。
-元界会在后续版本尽量与libbitcoin主体代码保持一致，元界核心开发组和libbitcoin共同维护。
+1. self-defining UTXO based smart tokens, which means users can issue their own token like what bitcoin does without any programming experience.
+1. self-defining UTXO based digital identity, aim to build a digital credit system through MVS blockchain.
 
-# 元界全节点钱包架构图
-总体架构图
+As for Bitcoin, all UTXO only serves Bitcoin, but it does not restrict that the type of token must be specified. Thus, we extended this model design. We added the attachment field in the output which provides type extensions of MST so that all MST can have the same level of technical features as bitcoin without having to fork bitcoins to create their own tokens.
+
+## UTXO Extensions
+![](/zh-cn/developers/images/ledger-struct.png)
+TO be written... 
+
+## Modifications
+MVS is using [ETHASH](https://github.com/ethereum/ethash) which is actived on Ethererum mainnet for mining. 
+The JSON-RPC Server is based on [mongoose](https://github.com/cesanta/mongoose), which is a lignt embedded HTTP server.
+To be listed... 
+
+## Full Node Architecture
 ![](/zh-cn/developers/images/mvs-architecture.png)
+TO be written... 
 
-库编译依赖关系
+## Compiling dependency
 ![](/zh-cn/developers/images/mvs-libraries.png)
 
-元界区块链账本结构
-![](/zh-cn/developers/images/ledger-struct.png)
-
+We intergrated 9 libbitcoin modules： [libbitcoin](https://github.com/libbitcoin/libbitcoin), [libbitcoin-explorer](https://github.com/libbitcoin/libbitcoin-explorer), [libbitcoin-database](https://github.com/libbitcoin/libbitcoin-database), [libbitcoin-blockchain](https://github.com/libbitcoin/libbitcoin-blockchain), [libbitcoin-server](https://github.com/libbitcoin/libbitcoin-server), [libbitcoin-network](https://github.com/libbitcoin/libbitcoin-network), [libbitcoin-protocol](https://github.com/libbitcoin/libbitcoin-protocol), [libbitcoin-node](https://github.com/libbitcoin/libbitcoin-node), [libbitcoin-consensus](https://github.com/libbitcoin/libbitcoin-consensus), into MVS full node with libbitcoin v2.

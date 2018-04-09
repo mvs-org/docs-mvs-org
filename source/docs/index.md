@@ -1,5 +1,4 @@
 title: Get Started
-comments: false
 ---
 
 # Ease of access
