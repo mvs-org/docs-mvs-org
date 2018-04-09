@@ -4,9 +4,6 @@ comments: false
 
 ## Description
 ***
-Digital Identity wil be actvied in superNova.
-This docs only for testnet, to help developers using Digital Identity.
-THIS IS ONLY FOR TESTNET(2018.03~2018.05).
 
 ## API Methods 
 ***
@@ -626,6 +623,99 @@ THIS IS ONLY FOR TESTNET(2018.03~2018.05).
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ d8c5f7eb3c0a3f83a66b161baf74ffa330e4acac ] equalverify checksig",
                                 "value" : 0
+                        }
+                ],
+                "version" : "2"
+        }
+    }
+    ```
+***
+
+* ### `didmodifyaddress`
+    change did address,and the toaddress will pay the fee,to prove that you own this address to hold the did.
+    * Parameters (optional)
+    1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    3. `FROMADDRESS` From address
+    4. `TOADDRESS` Target address
+    5. `SYMBOL` Did symbol
+
+    ```js
+    params:[
+        "ACCOUNTNAME", 
+        "ACCOUNTAUTH", 
+        "FROMADDRESS", 
+        "TOADDRESS", 
+        "SYMBOL"
+    ]
+     ```
+    * Returns
+    `Object` - 
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"jsonrpc":"2.0","method":"didmodifyaddress",
+    "params":["test", "123456", "testdid", "MKNCEEsdS7tzbGHAT8E6VEpaxTHd5nSuxA", "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP", "guang"],"id":7}'
+
+    // Response
+    {
+        "transaction" :
+        {
+                "hash" : "65b139a3f589a3c6b10845b7660212f44f73db0dc25ed341549bad8908547202",
+                "inputs" :
+                [
+                        {
+                                "address" : "MKNCEEsdS7tzbGHAT8E6VEpaxTHd5nSuxA",
+                                "previous_output" :
+                                {
+                                        "hash" : "4eb928fd66b1f25eb04b16fe4d6ee787b4015dabf41b5891a85609c2ebad60b7",
+                                        "index" : 0
+                                },
+                                "script" : "[ 3045022100c01918d056fbe964bb90a5bfbec4e97052e596928afbb65b9b76ef16c8f3f062022035d43fd2a4d9e4998ba15ce31f026419ed3d20f560fb763ef32fc5dc761ca29101 ] [ 032c3803a8848f74b8ba96713d2222c6b4c43e526968c8461f83eb53bf935702e3 ]",
+                                "sequence" : 4294967295
+                        },
+                        {
+                                "address" : "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP",
+                                "previous_output" :
+                                {
+                                        "hash" : "67d5ec0b346f9cdf2b3ccfb40d9010635d41ac7bfb921c4cee29df71d34cd8aa",
+                                        "index" : 0
+                                },
+                                "script" : "[ 304402207fc66f31f97c2231b4bd05fee0cb0999b97487fb72f55c66533fbee224eeb5a3022056b8c7378543e88013d02c40a184db7d5624287750c0136d21c99421a5bb514801 ] [ 02b1d147fa3fbc815c6b2cdf1461fcede45c5fbf44cf4082d3ffe4faa452d36673 ]",
+                                "sequence" : 4294967295
+                        }
+                ],
+                "lock_time" : "0",
+                "outputs" :
+                [
+                        {
+                                "address" : "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP",
+                                "attachment" :
+                                {
+                                        "address" : "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP",
+                                        "description" : "",
+                                        "issuer" : "yangguanglu",
+                                        "symbol" : "GUANG",
+                                        "type" : "did-transfer"
+                                },
+                                "index" : 0,
+                                "locked_height_range" : 0,
+                                "script" : "dup hash160 [ 58be74eccf7dc9a4edd067d63d75c5bae99c5913 ] equalverify checksig",
+                                "value" : 0
+                        },
+                        {
+                                "address" : "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP",
+                                "attachment" :
+                                {
+                                        "type" : "etp"
+                                },
+                                "index" : 1,
+                                "locked_height_range" : 0,
+                                "script" : "dup hash160 [ 58be74eccf7dc9a4edd067d63d75c5bae99c5913 ] equalverify checksig",
+                                "value" : 299990000
                         }
                 ],
                 "version" : "2"
