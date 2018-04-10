@@ -10,7 +10,7 @@ comments: false
 MVS全节点由两个程序和一个前端资源组成:
 * mvsd : 核心钱包程序，类似比特币中bitcoind的功能;
 * mvs-cli : 命令行交互工具，类似比特币中bitcoin-cli的功能;
-* mvs-htmls: 基于浏览器的前端交互资源，angularjs实现，本资源在对于开发者不是必需的;
+* mvs-htmls: 基于浏览器的前端交互资源，angularjs实现，本资源对于开发者不是必需的;
 
 ## MVS全节点钱包下载地址
 通常在[官网](https://mvs.org#download)能够下载到最新版的MVS全节点客户端;
