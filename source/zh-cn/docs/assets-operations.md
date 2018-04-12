@@ -6,7 +6,7 @@ comments: false
 ## 前提简述
 这里主要介绍资产相关的命令行操作，其它的命令可以参考 [Command-line](/zh-cn/docs/command-line.html)
 
-首先，你要有帐户，可以通过 `"mvs-cli getgetnewaccount 帐户名 密码"` 生成，**生成后切记妥善保存主私钥（mnemonic-key）**。
+首先，你要有帐户，可以通过 `"mvs-cli getnewaccount 帐户名 密码"` 生成，**生成后切记妥善保存主私钥（mnemonic-key）**。
 
 **为了方便，下文中我统一使用帐户名为 `test1`，密码为 `passwd1`，地址为`测试地址`，您在参考时请修改为自己的帐户名和密码，同时注意使用正确的地址。**
 
@@ -15,7 +15,7 @@ comments: false
 所有命令都可以通过 `help` 查询帮助，例如使用 `"mvs-cli help createasset"` 或者 `"mvs-cli createasset -h"` 查询命令 `createasset` 的帮助。
 
 ## 创建资产
-`createasset` --
+`createasset`
 
 ```bash
 Usage:
