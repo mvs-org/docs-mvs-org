@@ -7,7 +7,7 @@ comments: false
 
 This is mainly about the asset - related command line operation, and other commands can be referred to [Command-line](command-line.html).
 
-First, you need an account. You can use `"mvs-cli getgetnewaccount accountname passwd"` to generate a new account. **Please save the main private key (mnemonic-key) safely**。
+First, you need an account. You can use `"mvs-cli getnewaccount accountname password"` to generate a new account. **Please save the main private key (mnemonic-key) safely**。
 
 **For convenience, I'll uniformly use `test1` as account name, `passwd1` as password, and use `testing addresses` in the following examples. When you refer to the following examples, please change to your account name and password, and pay attention to the correct addresses.**
 
