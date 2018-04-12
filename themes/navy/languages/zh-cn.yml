@@ -44,7 +44,7 @@ sidebar:
     platform_deployment: 平台部署
     deploy_wallet: 服务端部署钱包
     fronzen_etp: 识别冻结的ETP
-    asset_operation: 资产相关操作
+    asset_operation: 元界智能资产使用说明
     reset_mvs: 重置钱包
 
   api:
