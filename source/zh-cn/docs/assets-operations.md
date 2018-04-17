@@ -46,7 +46,7 @@ $ mvs-cli createasset --symbol MVS.TST --volume 1000000000000 --description "tes
 **注：小数位数（decimalnumber）的意义很重要，请勿必理解。从开发者角度来看，其作用是去除在交易中使用浮点数，命令中全部使用整数以提高运算效率和精度。从普通用户角度来看，其作用是设定最小交易单位，例如当小数位数为8时，最小单位为`聪`，此时在命令中使用的数值都是以`聪`为单位的。当小数位数为其它值时，情况类似。如果您觉得这样不太符合您的思维方式，您可以使用默认值0即可。**
 
 ## 查询资产
-资产有几种状态：`"unissued"`，`"issued"`，`"unspent"`，分别表示 `”未发布“`，`”已发布“`，`”未花费“`。
+资产有几种状态：`"unissued"`，`"issued"`，`"unspent"`，分别表示 `“未发布”`，`“已发布”`，`“未花费”`。
 
 `getaccountasset`
 根据帐户获取资产，包含未发布资产。返回结果中含有资产的地址信息。
@@ -56,7 +56,7 @@ $ mvs-cli getaccountasset test1 passwd1
 `listassets`
 列出资产
 ```bash
-# 列出所有**已成功发布**的资产
+# 列出所有已成功发布的资产
 $ mvs-cli listassets
 # 列出指定帐户的资产，包含未发布资产。返回结果中不含资产地址信息。
 $ mvs-cli listassets test1 passwd1
@@ -64,9 +64,9 @@ $ mvs-cli listassets test1 passwd1
 `getasset`
 获取**已成功发布**的资产
 ```bash
-# 获取所有资产的资产符号列表
+# 获取所有已成功发布的资产符号列表
 $ mvs-cli getasset
-# 获取指定资产符号的资产
+# 获取已成功发布的指定资产符号的资产
 $ mvs-cli getasset MVS.TST
 ```
 `getaddressasset`
