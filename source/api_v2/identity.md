@@ -7,60 +7,6 @@ comments: false
 
 ## API Methods 
 ***
-
-* ### `createdid`
-    createdid
-    * Parameters (optional)
-    1. `-d` or `[--description]` The did description.
-    2. `-i` or `[--issuer]` The did issuer.defaults to account name.
-    3. `-s` or `[--symbol]` The did symbol/name. Global unique.defaults to account name.
-    * Parameters (positional)
-    1. `ACCOUNTNAME` Account name.
-    2. `ACCOUNTAUTH` Account password/authorization.
-    ```js
-    params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH"
-    ]
-     ```
-    * Returns
-    `Object` - the did just created
-
-    * Example
-    ```js
-    // Request
-    curl -X POST -d '{
-        "id":25,
-        "jsonrpc":"2.0",
-        "method":"createdid",
-        "params":[
-            "test",
-            "123456",
-            {
-                "description": "test did",
-                "issuer": "test",
-                "symbol": "testdid",
-            }
-        ]
-    }' http://127.0.0.1:8820/rpc/v2
-
-    // Response
-    {
-        "id" : 25,
-        "jsonrpc" : "2.0",
-        "result" : 
-        {
-             "did" :
-            {
-                "description" : "test did",
-                "issuer" : "test",
-                "symbol" : "TESTDID"
-            }
-        }
-    }
-    ```
-
-***
 * ### `issuedid`
     issuedid
     * Parameters (optional)
