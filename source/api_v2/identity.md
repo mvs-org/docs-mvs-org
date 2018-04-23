@@ -669,3 +669,52 @@ comments: false
     }
     ```
 ***
+
+
+* ### `listdidaddresses`
+    list history addresses of did.
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    3. `SYMBOL` Did symbol.
+    ```js
+    params:[
+        "ACCOUNTNAME", 
+        "ACCOUNTAUTH",
+        "SYMBOL"
+    ]
+     ```
+    * Returns
+    `Object` - addresses
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"jsonrpc":"2.0","method":"listdidaddresses",
+   " params":["li", "123456", "li"],"id":42}'  http://127.0.0.1/rpc/v2/
+
+    e
+        "jsonrpc": "2.0", 
+        "id": 42, 
+        "result":
+        {
+            "addresses" :
+            [
+                {
+                    "address" : "M9hWFy4KjhVFM29VMp9Eb4w5h2i9HW3vQy",
+                    "status" : "current"
+                },
+                {
+                    "address" : "MLY9QQC7ad9XS2cPjyEL7UJgLcjqrd3sbE",
+                    "status" : "old"
+                },
+                {
+                    "address" : "M81jyVCYVvLHPCgkr2UXRDNwgtxLLM1LC2",
+                    "status" : "old"
+                },
+            ]   
+        }
+    }
+    ```
+***
+
