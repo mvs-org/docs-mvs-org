@@ -51,9 +51,9 @@ $ mvs-cli createasset --symbol MVS.TST --volume 1000000000000 --description "tes
 ```
 **Notice: "-r [--rate]" parameter is newly added (in v0.8.0), used for secondaryissue command**
 
-**Notice: decimal number is very important.**  
-From a developer's point of view, it's function is to remove the floating-point number in the transaction, use integers to improve the efficiency and precision.  
-From an ordinary user's point of view, it's function is to set the minimum trading unit. For example, when the decimal digit is 8, the smallest unit is `satoshi`. At this time, the values used in the command are with the unit of `satoshi`.  
+**Notice: decimal number is very important.**
+From a developer's point of view, it's function is to remove the floating-point number in the transaction, use integers to improve the efficiency and precision.
+From an ordinary user's point of view, it's function is to set the minimum trading unit. For example, when the decimal digit is 8, the smallest unit is `satoshi`. At this time, the values used in the command are with the unit of `satoshi`.
 When decimal digits are other values, the situation is similar. If you don't feel well with this, you can use the default value of 0.
 
 ## List / Get Asset
@@ -165,9 +165,9 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 SYMBOL               Asset symbol.
 ```
-**NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**  
-**NOTICE: if SYMBOL is not specified, then get all assets of this account.**  
-**to each asset, the returned quantity is a summary value on each address.**  
+**NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**
+**NOTICE: if SYMBOL is not specified, then get all assets of this account.**
+**to each asset, the returned quantity is a summary value on each address.**
 **the unissued asset of this account will also be showed.**
 ***
 ### getaddressasset
@@ -186,8 +186,8 @@ Arguments (positional):
 
 ADDRESS              address
 ```
-**NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**  
-**NOTICE: only issued asset has address.**  
+**NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**
+**NOTICE: only issued asset has address.**
 **to each asset, the returned quantity is a summary value on this address.**
 ***
 ### listassets
@@ -205,8 +205,8 @@ Arguments (positional):
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
-**NOTICE: if not specify account, list all issued asset.**  
-**if account specified, list all asset of this account, includes unissued assets,**  
+**NOTICE: if not specify account, list all issued asset.**
+**if account specified, list all asset of this account, includes unissued assets,**
 **and summary quantity on all addresses for each asset.**
 ***
 ### getasset
@@ -242,7 +242,7 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 SYMBOL               issued asset symbol
 ```
-**NOTICE: the asset is issued to a random address of this account.**  
+**NOTICE: the asset is issued to a random address of this account.**
 **every asset can only be issued once, and with symbol not already exists in blockchain.**
 **when issue asset, the corresponding asset cert will be generated.**
 ***
@@ -264,7 +264,7 @@ ACCOUNTAUTH          Account password(authorization) required.
 ADDRESS              target address to issue asset, also pay fees from this address.
 SYMBOL               issued asset symbol
 ```
-**NOTICE: the asset is issued to the specified target address.**  
+**NOTICE: the asset is issued to the specified target address.**
 **when issue asset, the corresponding asset cert will be generated.**
 ***
 ### sendasset
@@ -342,15 +342,13 @@ ACCOUNTAUTH          Account password(authorization) required.
 ### transfercert
 ```
 Usage: mvs-cli transfercert [-h] [--issue] [--fee value] ACCOUNTNAME
-ACCOUNTAUTH FROMADDRESS TOADDRESS SYMBOL
+ACCOUNTAUTH FROMADDRESS TOADDRESS SYMBOL CERTS
 
 Info: transfercert
 
 Options (named):
 
 -h [--help]          Get a description and instructions for this command.
---issue              If specified, then transfer asset cert of ISSUE.
-                     Default is not specified.
 -f [--fee]           Transaction fee. defaults to 10000 ETP bits
 
 Arguments (positional):
@@ -361,8 +359,9 @@ FROMADDRESS          From address, cert and fee come from this address,
                      and mychange to this address too.
 TOADDRESS            Target address
 SYMBOL               asset symbol
+CERTS                asset cert type(s)
 ```
-**NOTICE: use options like '--issue' to specify which cert to transfer**
+**NOTICE: multi cert types in `CERTS` can be separeted by white-space. now only `ISSUE` cert type is supported.**
 ***
 ### burn
 ```
@@ -407,9 +406,9 @@ VOLUME               The vlolume of asset
 
 secondaryissue must satisfy the folllowing conditions
 
-1. consider the transaction fees  
+1. consider the transaction fees
     the fees is paid from mychange parameter if specified, or else from searched addresses.
-2. consider the threshold  
+2. consider the threshold
     the target address must have specified name/symbol asset of quantity value greater than or equal to threshold percentage.
 3. consider the asset cert
     the target address must have ISSUE asset cert of specified name/symbol asset.
@@ -417,9 +416,9 @@ secondaryissue must satisfy the folllowing conditions
 
 ## About asset cert
 
-**it's composed of three parts:**  
-"certs" : kind of asset cert. It may contain many kinds, now only `ISSUE` cert is supported. We may add some other cert kinds later soon.  
-"owner" : asset cert address. Later it may be a DID symbol (not supported at present).  
+**it's composed of three parts:**
+"certs" : kind of asset cert. It may contain many kinds, now only `ISSUE` cert is supported. We may add some other cert kinds later soon.
+"owner" : asset cert address. Later it may be a DID symbol (not supported at present).
 "symbol" : asset symbol/name.
 ```
 $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
@@ -439,11 +438,11 @@ $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
 
 ## About blackhole address
 
-**1111111111111111111114oLvT2** is the blackhole address,  
+**1111111111111111111114oLvT2** is the blackhole address,
 every ETP/asset etc. sent to this address is unspentable forever.
 
-**NOTICE: burn command can burn asset to this blackhole address.**  
-**If you use send/sendfrom/sendasset/sendassetfrom/transfercert etc. commands to send things to this blackhole address,**  
+**NOTICE: burn command can burn asset to this blackhole address.**
+**If you use send/sendfrom/sendasset/sendassetfrom/transfercert etc. commands to send things to this blackhole address,**
 **this things sent to blackhole address cannot be spent and cannot be get back again, just like burn.**
 **So take cake of this blackhole address!!! It begins with many number ones.**
 ***
