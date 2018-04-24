@@ -233,6 +233,7 @@ SYMBOL               issued asset symbol
 **NOTICE: the asset is issued to a random address of this account.**
 **every asset can only be issued once, and with symbol not already exists in blockchain.**
 **when issue asset, the corresponding asset cert will be generated.**
+**if the domain cert does not exist in blockchain, then domain cert will be generated too.**
 ***
 ### 发布资产(指定目标地址)
 ```
@@ -254,6 +255,7 @@ SYMBOL               issued asset symbol
 ```
 **NOTICE: the asset is issued to the specified target address.**
 **when issue asset, the corresponding asset cert will be generated.**
+**if the domain cert does not exist in blockchain, then domain cert will be generated too.**
 ***
 ### 发送资产(未指定源地址)
 ```
@@ -329,7 +331,7 @@ ACCOUNTAUTH          Account password(authorization) required.
 ***
 ### 转移证书
 ```
-Usage: mvs-cli transfercert [-h] [--issue] [--fee value] ACCOUNTNAME
+Usage: mvs-cli transfercert [-h] [--fee value] ACCOUNTNAME
 ACCOUNTAUTH FROMADDRESS TOADDRESS SYMBOL CERTS
 
 Info: transfercert
@@ -337,8 +339,6 @@ Info: transfercert
 Options (named):
 
 -h [--help]          Get a description and instructions for this command.
---issue              If specified, then transfer asset cert of ISSUE.
-                     Default is not specified.
 -f [--fee]           Transaction fee. defaults to 10000 ETP bits
 
 Arguments (positional):
@@ -349,9 +349,9 @@ FROMADDRESS          From address, cert and fee come from this address,
                      and mychange to this address too.
 TOADDRESS            Target address
 SYMBOL               asset symbol
-CERTS                asset cert types
+CERTS                asset cert type(s), "ISSUE" and "DOMAIN" are supported now.
 ```
-**NOTICE: multi cert types in `CERTS` can be separeted by white-space. now only `ISSUE` cert type is supported.**
+**NOTICE: multi cert types can be separeted by white-space.**
 ***
 ### 销毁资产
 ```
@@ -373,7 +373,7 @@ AMOUNT               Asset integer bits. see asset <decimal_number>.
 ***
 ### 资产增发
 ```
-Usage: mvs-cli secondaryissue [-h] [--fee value] [--mychange value]
+Usage: mvs-cli secondaryissue [-h] [--fee value]
 ACCOUNTNAME ACCOUNTAUTH ADDRESS SYMBOL VOLUME
 
 Info: secondaryissue, alias as additionalissue.
@@ -382,7 +382,6 @@ Options (named):
 
 -h [--help]          Get a description and instructions for this command.
 -f [--fee]           The fee of tx. default_value 10000 ETP bits
--m [--mychange]      Mychange to this address
 
 Arguments (positional):
 
@@ -407,21 +406,21 @@ secondaryissue must satisfy the folllowing conditions
 ## 关于资产证书
 
 **it's composed of three parts:**
-"certs" : kind of asset cert. It may contain many kinds, now only `ISSUE` cert is supported. We may add some other cert kinds later soon.
+"certs" : kind of asset cert. It may contain many kinds, now only `ISSUE` and 'DOMAIN' cert are supported. We may add some other cert kinds later soon.
 "owner" : asset cert address. Later it may be a DID symbol (not supported at present).
 "symbol" : asset symbol/name.
 ```
 $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
 {
-	"assetcerts" :
-	[
-		{
-			"address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
-			"certs" : "ISSUE",
-			"owner" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
-			"symbol" : "A1"
-		}
-	]
+    "assetcerts" :
+    [
+        {
+            "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+            "certs" : 1,
+            "owner" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+            "symbol" : "A1"
+        }
+    ]
 }
 ```
 ***
@@ -514,8 +513,8 @@ _use # comment to explain each key-value pair, these lines is not content of jso
 ### 资产证书相关输出
 ```
 {
-    # comma separated asset cert names. certs contain many kinds, now only `ISSUE` cert is provided.
-    "certs" : "ISSUE",
+    # asset cert types. certs may contain many kinds, now only `ISSUE` and 'DOMAIN' cert are provided.
+    "certs" : 1,
 
     # asset cert owner address.
     "owner" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
@@ -640,7 +639,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":
                     "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
                     "attachment" :
                     {
-                        "certs" : "ISSUE",
+                        "certs" : 1,
                         "owner" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
                         "symbol" : "A1",
                         "type" : "asset-cert"
@@ -674,80 +673,80 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"burn", "params":["tes
 
 // Response
 {
-	"id" : 125,
-	"jsonrpc" : "2.0",
-	"result" :
-	{
-		"transaction" :
-		{
-			"hash" : "dc0fdae2da5f309d15bb5cb767cd6f39dbec884e1365161812797370608d157b",
-			"inputs" :
-			[
-				{
-					"address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
-					"previous_output" :
-					{
-						"hash" : "b4977b6b5d0bcb179b92ee32caa04df3e166435b5b4c8864f1112909dc4f2702",
-						"index" : 2
-					},
-					"script" : "[ 3044022035757c89624af45a804a88368ef3c6527204676b939056a60440acaf7dccd8c702200364c0868bb77a00027c3815bfcd18fbb13fbb1f2fea1d569cd3fd0950488b2701 ] [ 02313a40c42045ae920ea91a4da0b59c8b3892291f74a79125c7f4e014992a9eb1 ]",
-					"sequence" : 4294967295
-				},
-				{
-					"address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
-					"previous_output" :
-					{
-						"hash" : "b4977b6b5d0bcb179b92ee32caa04df3e166435b5b4c8864f1112909dc4f2702",
-						"index" : 1
-					},
-					"script" : "[ 3044022030453a9a5d318518f68d5310323ba0f75a27e65d320e1969fc7acde292c2d3a6022039b168d1704e1f07159c5eb1083dc766b5987ac9b9ef5e98e7025614ce4c567801 ] [ 02313a40c42045ae920ea91a4da0b59c8b3892291f74a79125c7f4e014992a9eb1 ]",
-					"sequence" : 4294967295
-				}
-			],
-			"lock_time" : "0",
-			"outputs" :
-			[
-				{
-					"address" : "1111111111111111111114oLvT2",
-					"attachment" :
-					{
-						"quantity" : 100008,
-						"symbol" : "A1",
-						"type" : "asset-transfer"
-					},
-					"index" : 0,
-					"locked_height_range" : 0,
-					"script" : "return",
-					"value" : 0
-				},
-				{
-					"address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
-					"attachment" :
-					{
-						"type" : "etp"
-					},
-					"index" : 1,
-					"locked_height_range" : 0,
-					"script" : "dup hash160 [ 08fe4ef8f6258b0348c9ac3d1e7cba696a959d6c ] equalverify checksig",
-					"value" : 199970000
-				},
-				{
-					"address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
-					"attachment" :
-					{
-						"quantity" : 2699992,
-						"symbol" : "A1",
-						"type" : "asset-transfer"
-					},
-					"index" : 2,
-					"locked_height_range" : 0,
-					"script" : "dup hash160 [ 08fe4ef8f6258b0348c9ac3d1e7cba696a959d6c ] equalverify checksig",
-					"value" : 0
-				}
-			],
-			"version" : "2"
-		}
-	}
+    "id" : 125,
+    "jsonrpc" : "2.0",
+    "result" :
+    {
+        "transaction" :
+        {
+            "hash" : "dc0fdae2da5f309d15bb5cb767cd6f39dbec884e1365161812797370608d157b",
+            "inputs" :
+            [
+                {
+                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+                    "previous_output" :
+                    {
+                        "hash" : "b4977b6b5d0bcb179b92ee32caa04df3e166435b5b4c8864f1112909dc4f2702",
+                        "index" : 2
+                    },
+                    "script" : "[ 3044022035757c89624af45a804a88368ef3c6527204676b939056a60440acaf7dccd8c702200364c0868bb77a00027c3815bfcd18fbb13fbb1f2fea1d569cd3fd0950488b2701 ] [ 02313a40c42045ae920ea91a4da0b59c8b3892291f74a79125c7f4e014992a9eb1 ]",
+                    "sequence" : 4294967295
+                },
+                {
+                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+                    "previous_output" :
+                    {
+                        "hash" : "b4977b6b5d0bcb179b92ee32caa04df3e166435b5b4c8864f1112909dc4f2702",
+                        "index" : 1
+                    },
+                    "script" : "[ 3044022030453a9a5d318518f68d5310323ba0f75a27e65d320e1969fc7acde292c2d3a6022039b168d1704e1f07159c5eb1083dc766b5987ac9b9ef5e98e7025614ce4c567801 ] [ 02313a40c42045ae920ea91a4da0b59c8b3892291f74a79125c7f4e014992a9eb1 ]",
+                    "sequence" : 4294967295
+                }
+            ],
+            "lock_time" : "0",
+            "outputs" :
+            [
+                {
+                    "address" : "1111111111111111111114oLvT2",
+                    "attachment" :
+                    {
+                        "quantity" : 100008,
+                        "symbol" : "A1",
+                        "type" : "asset-transfer"
+                    },
+                    "index" : 0,
+                    "locked_height_range" : 0,
+                    "script" : "return",
+                    "value" : 0
+                },
+                {
+                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+                    "attachment" :
+                    {
+                        "type" : "etp"
+                    },
+                    "index" : 1,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ 08fe4ef8f6258b0348c9ac3d1e7cba696a959d6c ] equalverify checksig",
+                    "value" : 199970000
+                },
+                {
+                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+                    "attachment" :
+                    {
+                        "quantity" : 2699992,
+                        "symbol" : "A1",
+                        "type" : "asset-transfer"
+                    },
+                    "index" : 2,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ 08fe4ef8f6258b0348c9ac3d1e7cba696a959d6c ] equalverify checksig",
+                    "value" : 0
+                }
+            ],
+            "version" : "2"
+        }
+    }
 }
 ```
 ### 4. 增发资产
@@ -822,7 +821,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"secondaryissue", "par
                     "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                     "attachment" :
                     {
-                        "certs" : "ISSUE",
+                        "certs" : 1,
                         "owner" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                         "symbol" : "A1",
                         "type" : "asset-cert"
