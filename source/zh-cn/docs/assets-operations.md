@@ -115,6 +115,16 @@ $ mvs-cli sendassetfrom test1 passwd1 MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ MQTAjXo
 ```
 以上两个命令均可以通过选项 `"--fee 整数值"` 设定发送资产的手续费，默认为10000ETP bits(也即0.0001ETP)。手续费多的话可能矿工们更愿意将此次交易打包进区块中去，交易确认的时间可能会更短一些。一般使用默认值即可。
 
+## 转移证书
+`transfercert`
+该命令所需六个参数依次为：帐户名，密码，发送地址，接收地址，资产符号，证书类型
+```bash
+$ mvs-cli transfercert test1 passwd1 MQcDEEa5j1JuekLTzUpnYMw7zuAtMaNNg5 MQz21CJ2zUqa6typyvH9E6EF4mEqQAZDtB KOK -c DOMAIN ISSUE
+$ mvs-cli transfercert test1 passwd1 MQz21CJ2zUqa6typyvH9E6EF4mEqQAZDtB MQcDEEa5j1JuekLTzUpnYMw7zuAtMaNNg5 KOK ISSUE
+```
+多种证书类型以空格分隔，目前仅仅支持“DOMAIN”和“ISSUE”两种类型的证书。
+
+##
 ## 高级 API 使用说明
 ***
 ### 删除本地未发布资产
@@ -349,9 +359,9 @@ FROMADDRESS          From address, cert and fee come from this address,
                      and mychange to this address too.
 TOADDRESS            Target address
 SYMBOL               asset symbol
-CERTS                asset cert type(s), "ISSUE" and "DOMAIN" are supported now.
+-c [--cert]          asset cert type(s), "ISSUE" and "DOMAIN" are supported now.
 ```
-**NOTICE: multi cert types can be separeted by white-space.**
+**NOTICE: multi cert types should be separeted by white-space.**
 ***
 ### 销毁资产
 ```
@@ -560,7 +570,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"createasset", "params
 ### 2. 发布资产
 ```
 // Request
-curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":["test1", "passwd1", "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S", "A1"]}' 127.0.0.1:8820/rpc/v2
+curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":["test1", "passwd1", "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb", "A1"]}' 127.0.0.1:8820/rpc/v2
 
 // Response
 {
@@ -570,47 +580,37 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":
     {
         "transaction" :
         {
-            "hash" : "0dd5e016f79df514bfd271d14311f1aa1bf2c0d6c20a82978855763fa3fbd9bc",
+            "hash" : "1daabbb942c52b402851988dacaeddbc25aeaf10133b17bd62565e4334825fd8",
             "inputs" :
             [
                 {
-                    "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
+                    "address" : "MMMb1DkhSaSQkL1pvw77SVxuaBFvA8YHHh",
                     "previous_output" :
                     {
-                        "hash" : "edac455275a2ed759bca746a5a9f1d30618a505318448ba82dec7ab51dc72b16",
-                        "index" : 1
+                        "hash" : "071cfd9d7d3c330b6664ef9f3d3ec3151daa057bf02f541a8ebfb0fee574985b",
+                        "index" : 2
                     },
-                    "script" : "[ 3044022100fa705d5811cecbea9832f2fe1afb26ccb8221824da8ae0bb100f4f42305255f3021f708f07e579242c83f2e2669fadfc5142e2e57c687e6ad55b51a6ce7c175f0d01 ] [ 030c948c032467d52b577677ca561f069a7a81f04e1489edce1297088449c1607c ]",
+                    "script" : "[ 3044022019488c8539681c255ae43cce2f0e78370f5eb360c96a78128cb9728326e7b509022026121c23effa382c9c5d282795b28f325b514346b91b9bd8450d3af47bc8e11b01 ] [ 02a63e06ad462669c51787f847412fcb090a05ae55c1a7ef8e488ead6278505fbe ]",
                     "sequence" : 4294967295
                 },
                 {
-                    "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
+                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
                     "previous_output" :
                     {
-                        "hash" : "5cecac163a60ba51ef34728fe775f109027d957f7974be3814aa3b4cef6ecb28",
-                        "index" : 0
+                        "hash" : "e4fe52a630b3b2e24a1642d1c7ae122bc66f9183e80f2a795969ab631b37b0cf",
+                        "index" : 2
                     },
-                    "script" : "[ 304402204c93702ac47b7f78e1befcc4f43575c24a5e993ee8afde95b12b742b3093764f02206cf8967edae406cd93baba60dcdac10e79ad15060028726f79be93ef434365e001 ] [ 030c948c032467d52b577677ca561f069a7a81f04e1489edce1297088449c1607c ]",
+                    "script" : "[ 30450221009bada65271c4c4b25ea827a1bab9e75487a43df38bd21fb5090727fa53bd4af00220094648827bf813c3bc982746fd6ab6dc3d5ef141b43dfdeaaf8e38ddc0ed5b1201 ] [ 0293ac168be30fd2a866d16538daac435c640d8b22b6865188c463415788dac029 ]",
                     "sequence" : 4294967295
                 },
                 {
-                    "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
+                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
                     "previous_output" :
                     {
-                        "hash" : "f4210d04f9423b5fe9b59df187b9489a0cb7c02197d6255746544f7c68b4cbb2",
-                        "index" : 0
+                        "hash" : "01022f2ee29a9829784cac90d75d001f60487e2f83593e8c20023e580dea22ad",
+                        "index" : 2
                     },
-                    "script" : "[ 3045022100b1648c47c5887c4264df5861486d7dc54bc6b07524965ffe945e409e2b0e20140220269d1bc208fb7d29ed2bc38855b232021f3e97059fa5c99ca7d370401989879801 ] [ 030c948c032467d52b577677ca561f069a7a81f04e1489edce1297088449c1607c ]",
-                    "sequence" : 4294967295
-                },
-                {
-                    "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
-                    "previous_output" :
-                    {
-                        "hash" : "0e43b28e788342a806aac17fb0fc02526abfda872d7bce15029d984c15e6057e",
-                        "index" : 0
-                    },
-                    "script" : "[ 30440220475893fe5894bf0e72bd9e171974bf7c15f3555fec81268ebd96b30bb033be84022065f241de64ff54a05a9276b911023e15fc9c3c7ca3db3c7409237e621e455d6901 ] [ 030c948c032467d52b577677ca561f069a7a81f04e1489edce1297088449c1607c ]",
+                    "script" : "[ 30450221009a16bb1538514eee24e8af5afb357aea7f31f551dc74852c42258e88752daaa90220131bf3c5b19df65aa4a4493db530b2bcb5808f395f34fd93a826a0494060fa6d01 ] [ 0293ac168be30fd2a866d16538daac435c640d8b22b6865188c463415788dac029 ]",
                     "sequence" : 4294967295
                 }
             ],
@@ -618,50 +618,64 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":
             "outputs" :
             [
                 {
-                    "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
+                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
                     "attachment" :
                     {
-                        "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
-                        "decimal_number" : 2,
-                        "description" : "test asset",
-                        "issuer" : "test1",
-                        "quantity" : 1000000,
-                        "secondaryissue_threshold" : 30,
-                        "symbol" : "A1",
+                        "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                        "decimal_number" : 8,
+                        "description" : "domain cert test for cert check",
+                        "issuer" : "kesalin",
+                        "quantity" : 66660000000,
+                        "secondaryissue_threshold" : 127,
+                        "symbol" : "ZOK.DOMAIN2",
                         "type" : "asset-issue"
                     },
                     "index" : 0,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 64ec508a7bb6feff0e370c521ab44d8fce3263af ] equalverify checksig",
+                    "script" : "dup hash160 [ 67e4a0b0a462ac4453a85b40931f2a789584a7d2 ] equalverify checksig",
                     "value" : 0
                 },
                 {
-                    "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
+                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
                     "attachment" :
                     {
                         "certs" : 1,
-                        "owner" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
-                        "symbol" : "A1",
+                        "owner" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                        "symbol" : "ZOK.DOMAIN2",
                         "type" : "asset-cert"
                     },
                     "index" : 1,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 64ec508a7bb6feff0e370c521ab44d8fce3263af ] equalverify checksig",
+                    "script" : "dup hash160 [ 67e4a0b0a462ac4453a85b40931f2a789584a7d2 ] equalverify checksig",
                     "value" : 0
                 },
                 {
-                    "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
+                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
                     "attachment" :
                     {
                         "type" : "etp"
                     },
                     "index" : 2,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 64ec508a7bb6feff0e370c521ab44d8fce3263af ] equalverify checksig",
-                    "value" : 100000000
+                    "script" : "dup hash160 [ 67e4a0b0a462ac4453a85b40931f2a789584a7d2 ] equalverify checksig",
+                    "value" : 28099990000
+                },
+                {
+                    "address" : "MMMb1DkhSaSQkL1pvw77SVxuaBFvA8YHHh",
+                    "attachment" :
+                    {
+                        "certs" : 2,
+                        "owner" : "MMMb1DkhSaSQkL1pvw77SVxuaBFvA8YHHh",
+                        "symbol" : "ZOK",
+                        "type" : "asset-cert"
+                    },
+                    "index" : 3,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ 9399210807786feedf1be4e85b7f0beaea607603 ] equalverify checksig",
+                    "value" : 0
                 }
             ],
-            "version" : "2"
+            "version" : "3"
         }
     }
 }
