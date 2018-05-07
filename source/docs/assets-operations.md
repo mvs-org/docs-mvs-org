@@ -30,7 +30,7 @@ Options (named):
 
 -h [--help]          Get a description and instructions for this command.
 -d [--description]   The asset description, defaults to empty string.
--i [--issuer]        The asset issuer, defaults to account name.
+-i [--issuer]        The asset issuer's did.
 -n [--decimalnumber] The asset amount decimal number, defaults to 0.
 -r [--rate]          The rate of secondaryissue. Default to 0, means the
                      asset is not allowed to secondary issue forever;
@@ -88,6 +88,8 @@ Get **issued** assets by address
 $ mvs-cli getaddressasset MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ
 ```
 
+<code>listassets</code>, <code>getasset</code>, <code>getaddressasset</code> and <code>getaccountasset</code> have a `--cert` option to get asset cert.
+
 ## Delete Local Asset(unissued asset)
 `deletelocalasset` --
 Delete local asset which is unissued. **Notice: You can not delete issued asset.**
@@ -130,12 +132,19 @@ Both of the above two commands can use `--fee integer_value` to specify fees. Th
 
 ## transfer cert
 `transfercert`
-It need 6 parameters: account_name, account_passwd, from_address, to_address, asset_symbol, cert_types
+It need 5 parameters: account_name, account_passwd, to_did, asset_symbol, cert_types
 ```bash
-$ mvs-cli transfercert test1 passwd1 MQcDEEa5j1JuekLTzUpnYMw7zuAtMaNNg5 MQz21CJ2zUqa6typyvH9E6EF4mEqQAZDtB KOK -c DOMAIN ISSUE
-$ mvs-cli transfercert test1 passwd1 MQz21CJ2zUqa6typyvH9E6EF4mEqQAZDtB MQcDEEa5j1JuekLTzUpnYMw7zuAtMaNNg5 KOK ISSUE
+$ mvs-cli transfercert test1 passwd1 testdid KOK -c ISSUE
+$ mvs-cli transfercert test1 passwd1 testdid KOK -c DOMAIN ISSUE
 ```
-Multi cert types should be separeted by white-space. Only "ISSUE" and "DOMAIN" are supported now。
+Multi cert types should be separeted by white-space. Only "ISSUE", "DOMAIN" and "NAMING" are supported now。
+
+## issue cert
+`issuecert`
+It need 5 parameters: account_name, account_passwd, to_did, asset_symbol, cert_type
+$ mvs-cli issuecert test1 passwd1 testdid KOK.MUSIC -c NAMING
+```
+Only "NAMING" cert type is supported now。
 
 ## Advanced API usage
 ***
@@ -252,11 +261,12 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 SYMBOL               issued asset symbol
 ```
-**NOTICE: the asset is issued to a random address of this account.**
+**NOTICE: the asset is issued to the address of asset issuer.**
 **every asset can only be issued once, and with symbol not already exists in blockchain.**
-**when issue asset, the corresponding asset cert will be generated.**
-**if the domain cert does not exist in blockchain, then domain cert will be generated too.**
+**when issue asset, the corresponding asset ISSUE cert will be generated.**
+**if the DIMAIN cert does not exist in blockchain, then DIMAIN cert will be generated too.**
 ***
+
 ### issuefrom
 ```
 Usage: mvs-cli issuefrom [-h] [--fee value] ACCOUNTNAME ACCOUNTAUTH ADDRESS SYMBOL
@@ -276,9 +286,10 @@ ADDRESS              target address to issue asset, also pay fees from this addr
 SYMBOL               issued asset symbol
 ```
 **NOTICE: the asset is issued to the specified target address.**
-**when issue asset, the corresponding asset cert will be generated.**
-**if the domain cert does not exist in blockchain, then domain cert will be generated too.**
+**when issue asset, the corresponding asset ISSUE cert will be generated.**
+**if the DIMAIN cert does not exist in blockchain, then DIMAIN cert will be generated too.**
 ***
+
 ### sendasset
 ```
 Usage: mvs-cli sendasset [-h] [--fee value] ACCOUNTNAME ACCOUNTAUTH

@@ -26,7 +26,7 @@ mvs-cli createasset [-h] --symbol value --volume value
 选项:
 -h [--help]          获取帮助。
 -d [--description]   资产描述,默认为空。
--i [--issuer]        资产发布人，默认为用户的帐户名。
+-i [--issuer]        资产发布人的did。
 -n [--decimalnumber] 小数位数，默认为0。
 -r [--rate]          资产增发阈值，默认为0。合法取值范围为 -1 到 100，
                      其中 -1 表示可任意增发，0 表示永不增发，
@@ -53,6 +53,7 @@ $ mvs-cli createasset --symbol MVS.TST --volume 1000000000000 --description "tes
 ```bash
 $ mvs-cli getaccountasset test1 passwd1
 ```
+
 `listassets`
 列出资产
 ```bash
@@ -61,6 +62,7 @@ $ mvs-cli listassets
 # 列出指定帐户的资产，包含未发布资产。返回结果中不含资产地址信息。
 $ mvs-cli listassets test1 passwd1
 ```
+
 `getasset`
 获取**已成功发布**的资产
 ```bash
@@ -69,11 +71,14 @@ $ mvs-cli getasset
 # 获取已成功发布的指定资产符号的资产
 $ mvs-cli getasset MVS.TST
 ```
+
 `getaddressasset`
 根据地址获取**已成功发布**资产
 ```bash
 $ mvs-cli getaddressasset MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ
 ```
+
+<code>listassets</code>, <code>getasset</code>, <code>getaddressasset</code> and <code>getaccountasset</code> 有一个 `--cert` 选项用于获取资产证书。
 
 ## 删除本地资产(未发布的资产)
 `deletelocalasset`
@@ -95,6 +100,7 @@ $ mvs-cli issue test1 passwd1 MVS.TST
 `issuefrom`
 该命令所需四个参数依次为：帐户名，密码，支付地址，资产符号
 ```bash
+
 # 指定支付手续费的地址
 $ mvs-cli issuefrom test1 passwd1 MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ MVS.TST
 ```
@@ -108,6 +114,7 @@ $ mvs-cli issuefrom test1 passwd1 MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ MVS.TST
 ```bash
 $ mvs-cli sendasset test1 passwd1 MQTAjXoteFzzZoWpNEamG88gf5b82z6o9Q MVS.TST 100
 ```
+
 `sendassetfrom`
 该命令所需六个参数依次为：帐户名，密码，发送地址，接收地址，资产符号，发送数量
 ```bash
@@ -117,12 +124,20 @@ $ mvs-cli sendassetfrom test1 passwd1 MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ MQTAjXo
 
 ## 转移证书
 `transfercert`
-该命令所需六个参数依次为：帐户名，密码，发送地址，接收地址，资产符号，证书类型
+该命令所需五个参数依次为：帐户名，密码，接收did，资产符号，证书类型
 ```bash
-$ mvs-cli transfercert test1 passwd1 MQcDEEa5j1JuekLTzUpnYMw7zuAtMaNNg5 MQz21CJ2zUqa6typyvH9E6EF4mEqQAZDtB KOK -c DOMAIN ISSUE
-$ mvs-cli transfercert test1 passwd1 MQz21CJ2zUqa6typyvH9E6EF4mEqQAZDtB MQcDEEa5j1JuekLTzUpnYMw7zuAtMaNNg5 KOK ISSUE
+$ mvs-cli transfercert test1 passwd1 testdid KOK -c ISSUE
+$ mvs-cli transfercert test1 passwd1 testdid KOK -c DOMAIN ISSUE
 ```
-多种证书类型以空格分隔，目前仅仅支持“DOMAIN”和“ISSUE”两种类型的证书。
+多种证书类型以空格分隔，目前仅仅支持“DOMAIN”、“ISSUE”、“NAMING”类型的证书。
+
+## 颁发证书
+`issuecert`
+该命令所需五个参数依次为：帐户名，密码，接收did，资产符号，证书类型
+```bash
+$ mvs-cli issuecert test1 passwd1 testdid KOK.MUSIC -c NAMING
+```
+目前仅仅支持“NAMING”类型的证书。
 
 ##
 ## 高级 API 使用说明
@@ -133,17 +148,18 @@ Usage: mvs-cli deletelocalasset [-h] --symbol value ACCOUNTNAME ACCOUNTAUTH
 
 Info: deletelocalasset
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 -s [--symbol]        The asset symbol/name. Global unique.
 
-Arguments (positional):
+位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
-**NOTICE: local asset is unissued asset. when issued, it can never be deleted any more.**
+**注意：本地资产是指未发布的资产。一旦资产被发布，就不能被删除了。**
+
 ***
 ### 获取指定账户的资产
 ```
@@ -151,22 +167,23 @@ Usage: mvs-cli getaccountasset [-h] ACCOUNTNAME ACCOUNTAUTH [SYMBOL]
 
 Info: getaccountasset
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 --cert               If specified, then only get related asset cert.
                      Default is not specified.
 
-Arguments (positional):
+位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 SYMBOL               Asset symbol.
 ```
-**NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**
-**NOTICE: if SYMBOL is not specified, then get all assets of this account.**
-**to each asset, the returned quantity is a summary value on each address.**
-**the unissued asset of this account will also be showed.**
+**注意： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
+**注意： 如果指定了 SYMBOL 参数，则返回指定 SYMBOL 的资产或证书；否则返回该账户下所有的资产或证书。**
+**输出资产的数量是同一地址下所有资产数量的总和。**
+**本命令不输出未发布的资产。**
+
 ***
 ### 获取指定地址上的资产
 ```
@@ -174,19 +191,20 @@ Usage: mvs-cli getaddressasset [-h] ADDRESS
 
 Info: getaddressasset
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 --cert               If specified, then only get related asset cert.
                      Default is not specified.
 
-Arguments (positional):
+位置参数：
 
 ADDRESS              address
 ```
-**NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**
-**NOTICE: only issued asset has address.**
-**to each asset, the returned quantity is a summary value on this address.**
+**注意： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
+**输出资产的数量是该地址下所有资产数量的总和。**
+**本命令不输出未发布的资产。**
+
 ***
 ### 获取全网资产或指定帐户资产总计
 ```
@@ -194,18 +212,20 @@ Usage: mvs-cli listassets [-h] [ACCOUNTNAME] [ACCOUNTAUTH]
 
 Info: list assets details.
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
-
-Arguments (positional):
+--cert               If specified, then only get related asset cert.
+                     Default is not specified.
+位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
-**NOTICE: if not specify account, list all issued asset.**
-**if account specified, list all asset of this account, includes unissued assets,**
-**and summary quantity on all addresses for each asset.**
+**注意： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
+**注意： 如果没有指定账户，则列出所有全网已发布的资产或证书。否则列出指定账户下的所有资产（包括未发布的本地资产）或证书。**
+**输出资产的数量是所有资产数量的总和。**
+
 ***
 ### 获取全网资产符号或者指定资产发布信息
 ```
@@ -213,15 +233,18 @@ Usage: mvs-cli getasset [-h] [SYMBOL]
 
 Info: Show existed assets details from MVS blockchain.
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
-
-Arguments (positional):
+--cert               If specified, then only get related asset cert.
+                     Default is not specified.
+位置参数：
 
 SYMBOL               Asset symbol. If not specified, will show whole
                      network asset symbols.
 ```
+**注意： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
+
 ***
 ### 发布资产(随机目标地址)
 ```
@@ -229,43 +252,45 @@ Usage: mvs-cli issue [-h] [--fee value] ACCOUNTNAME ACCOUNTAUTH SYMBOL
 
 Info: issue
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 -f [--fee]           The fee of tx. default_value 10 etp
 
-Arguments (positional):
+位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 SYMBOL               issued asset symbol
 ```
-**NOTICE: the asset is issued to a random address of this account.**
+**注意： the asset is issued to the address of asset issuer.**
 **every asset can only be issued once, and with symbol not already exists in blockchain.**
-**when issue asset, the corresponding asset cert will be generated.**
-**if the domain cert does not exist in blockchain, then domain cert will be generated too.**
+**when issue asset, the corresponding asset ISSUE cert will be generated.**
+**if the DIMAIN cert does not exist in blockchain, then DIMAIN cert will be generated too.**
 ***
+
 ### 发布资产(指定目标地址)
 ```
 Usage: mvs-cli issuefrom [-h] [--fee value] ACCOUNTNAME ACCOUNTAUTH ADDRESS SYMBOL
 
 Info: issuefrom
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 -f [--fee]           The fee of tx. default_value 10 etp
 
-Arguments (positional):
+位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ADDRESS              target address to issue asset, also pay fees from this address.
 SYMBOL               issued asset symbol
 ```
-**NOTICE: the asset is issued to the specified target address.**
+**注意： the asset is issued to the specified target address.**
 **when issue asset, the corresponding asset cert will be generated.**
 **if the domain cert does not exist in blockchain, then domain cert will be generated too.**
+
 ***
 ### 发送资产(未指定源地址)
 ```
@@ -274,12 +299,12 @@ ADDRESS SYMBOL AMOUNT
 
 Info: sendasset
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 -f [--fee]           Transaction fee. defaults to 10000 ETP bits
 
-Arguments (positional):
+位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
@@ -287,7 +312,8 @@ ADDRESS              Asset receiver.
 SYMBOL               Asset symbol/name.
 AMOUNT               Asset integer bits. see asset <decimal_number>.
 ```
-**NOTICE: only receiver address needs to be specified.**
+**注意： only receiver address needs to be specified.**
+
 ***
 ### 发送资产(指定源地址)
 ```
@@ -296,12 +322,12 @@ FROMADDRESS TOADDRESS SYMBOL AMOUNT
 
 Info: sendassetfrom
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 -f [--fee]           Transaction fee. defaults to 10000 ETP bits
 
-Arguments (positional):
+位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
@@ -310,7 +336,7 @@ TOADDRESS            Target address
 SYMBOL               Asset symbol
 AMOUNT               Asset integer bits. see asset <decimal_number>.
 ```
-**NOTICE: the transaction fee is paid from FROMADDRESS.**
+**注意： the transaction fee is paid from FROMADDRESS.**
 ***
 ### 查询交易
 ```
@@ -319,7 +345,7 @@ value] [--limit value] [--symbol value] ACCOUNTNAME ACCOUNTAUTH
 
 Info: List transactions details of this account.
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 -a [--address]       Address.
@@ -330,38 +356,61 @@ Options (named):
 -l [--limit]         Transaction count per page.
 -s [--symbol]        Asset symbol.
 
-Arguments (positional):
+位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
-**NOTICE: -a -e -s is very useful to filter the transactions.**
+**注意： -a -e -s is very useful to filter the transactions.**
 ***
+
 ## 新增资产 API (v0.8.0)
+
 ***
-### 转移证书
+### 颁发证书
 ```
-Usage: mvs-cli transfercert [-h] [--fee value] ACCOUNTNAME
-ACCOUNTAUTH FROMADDRESS TOADDRESS SYMBOL CERTS
+Usage: mvs-cli issuecert [-h] [--fee value] ACCOUNTNAME
+ACCOUNTAUTH TODID SYMBOL -c CERT
 
-Info: transfercert
+Info: issuecert
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 -f [--fee]           Transaction fee. defaults to 10000 ETP bits
 
-Arguments (positional):
+位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
-FROMADDRESS          From address, cert and fee come from this address,
-                     and mychange to this address too.
-TOADDRESS            Target address
-SYMBOL               asset symbol
--c [--cert]          asset cert type(s), "ISSUE" and "DOMAIN" are supported now.
+TODID                Target did
+SYMBOL               asset cert symbol
+-c [--cert]          asset cert type, "NAMING" is supported now.
 ```
-**NOTICE: multi cert types should be separeted by white-space.**
+
+***
+### 转移证书
+```
+Usage: mvs-cli transfercert [-h] [--fee value] ACCOUNTNAME
+ACCOUNTAUTH TODID SYMBOL -c CERTS
+
+Info: transfercert
+
+选项参数：
+
+-h [--help]          Get a description and instructions for this command.
+-f [--fee]           Transaction fee. defaults to 10000 ETP bits
+
+位置参数：
+
+ACCOUNTNAME          Account name required.
+ACCOUNTAUTH          Account password(authorization) required.
+TODID                From did
+SYMBOL               asset cert symbol
+-c [--cert]          asset cert type(s), "ISSUE", "DOMAIN" and "NAMING" are supported now.
+```
+**注意： 多个证书类型用空格符分隔。**
+
 ***
 ### 销毁资产
 ```
@@ -369,11 +418,11 @@ Usage: mvs-cli burn [-h] ACCOUNTNAME ACCOUNTAUTH SYMBOL AMOUNT
 
 Info: Burn asset to blackhole address 1111111111111111111114oLvT2.
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 
-Arguments (positional):
+位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
@@ -381,27 +430,28 @@ SYMBOL               The asset will be burned.
 AMOUNT               Asset integer bits. see asset <decimal_number>.
 ```
 ***
+
 ### 资产增发
 ```
 Usage: mvs-cli secondaryissue [-h] [--fee value]
-ACCOUNTNAME ACCOUNTAUTH ADDRESS SYMBOL VOLUME
+ACCOUNTNAME ACCOUNTAUTH TODID SYMBOL VOLUME
 
 Info: secondaryissue, alias as additionalissue.
 
-Options (named):
+选项参数：
 
 -h [--help]          Get a description and instructions for this command.
 -f [--fee]           The fee of tx. default_value 10000 ETP bits
 
-Arguments (positional):
+位置参数：
 
 ACCOUNTNAME          Account name.
 ACCOUNTAUTH          Account password/authorization.
-ADDRESS              target address to check and issue asset
-SYMBOL               issued asset symbol
+TODID                Target did to check and issue asset
+SYMBOL               The symbol of issued asset
 VOLUME               The vlolume of asset
 ```
-**NOTICE: issued asset maybe secondaryissue many times.**
+**注意： issued asset maybe secondaryissue many times.**
 
 secondaryissue must satisfy the folllowing conditions
 
@@ -415,10 +465,17 @@ secondaryissue must satisfy the folllowing conditions
 
 ## 关于资产证书
 
-**it's composed of three parts:**
-"certs" : kind of asset cert. It may contain many kinds, now only `ISSUE` and 'DOMAIN' cert are supported. We may add some other cert kinds later soon.
-"owner" : asset cert address. Later it may be a DID symbol (not supported at present).
-"symbol" : asset symbol/name.
+**证书由四部分构成**
+"symbol" : 证书名字。
+"address"： 证书所在地址
+"owner"：证书拥有者的did
+"certs" : 证书类型，可以是多个证书类型的并集。目前仅支持如下类型：
+> ISSUE：发行证书，十进制值为 1，发布资产时自动获得该资产的发行证书，拥有发行证书才能增发相应的资产
+> DOMAIN：域名证书，十进制值为 2，发布资产时获得，其名字为资产名字（若资产名字中不包含"."）或第一个"."号之前的部分
+> NAMING：冠名权证书，十进制值 4，域名证书的所有者可以通过 <code>issuecert</code> 颁发二级域名的冠名权证书
+
+**注意： 并非所有的资产名字都含有有效的域名。示例：资产名字".MVS.TST"就没有有效域名，因此发行该名字的资产时不会产生域名证书。**
+
 ```
 $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
 {
@@ -427,7 +484,7 @@ $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
         {
             "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
             "certs" : 1,
-            "owner" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+            "owner" : "testdid",
             "symbol" : "A1"
         }
     ]
@@ -440,7 +497,7 @@ $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
 **1111111111111111111114oLvT2** is the blackhole address,
 every ETP/asset etc. sent to this address is unspentable forever.
 
-**NOTICE: burn command can burn asset to this blackhole address.**
+**注意： burn command can burn asset to this blackhole address.**
 **If you use send/sendfrom/sendasset/sendassetfrom/transfercert etc. commands to send things to this blackhole address,**
 **this things sent to blackhole address cannot be spent and cannot be get back again, just like burn.**
 **So take cake of this blackhole address!!! It begins with many number ones.**
@@ -464,7 +521,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
     "is_secondaryissue" : false,
 
     # who is the issuer.
-    "issuer" : "test1",
+    "issuer" : "testdid",
 
     # maximum supply of this asset, with unit of asset bits.
     "maximum_supply" : 1000000,
@@ -492,7 +549,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
     "description" : "test asset",
 
     # who is the issuer.
-    "issuer" : "test1",
+    "issuer" : "testdid",
 
     # asset quantity, with unit of asset bits.
     "quantity" : 1000000,
@@ -507,6 +564,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
     "type" : "asset-issue"
 }
 ```
+
 ### 资产转移相关输出
 ```
 {
@@ -520,14 +578,18 @@ _use # comment to explain each key-value pair, these lines is not content of jso
     "type" : "asset-transfer"
 }
 ```
+
 ### 资产证书相关输出
 ```
 {
     # asset cert types. certs may contain many kinds, now only `ISSUE` and 'DOMAIN' cert are provided.
     "certs" : 1,
 
-    # asset cert owner address.
-    "owner" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
+    # asset cert address.
+    "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
+
+    # asset cert owner did.
+    "owner" : "testdid",
 
     # asset symbol, string length must be <= 64.
     "symbol" : "A1",
@@ -544,7 +606,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
 ### 1. 创建资产
 ```
 // Request
-curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"createasset", "params":["test1", "passwd1", {"description":"test asset","issuer":"test1","decimalnumber":2,"rate":30,"symbol":"A1","volume":1000000}]}' 127.0.0.1:8820/rpc/v2
+curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"createasset", "params":["test1", "passwd1", {"description":"test asset","issuer":"testdid","decimalnumber":2,"rate":30,"symbol":"A1","volume":1000000}]}' 127.0.0.1:8820/rpc/v2
 
 // Response
 {
@@ -558,7 +620,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"createasset", "params
             "decimal_number" : 2,
             "description" : "test asset",
             "is_secondaryissue" : false,
-            "issuer" : "test1",
+            "issuer" : "testdid",
             "maximum_supply" : 1000000,
             "secondaryissue_threshold" : 30,
             "status" : "unissued",
@@ -624,7 +686,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":
                         "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
                         "decimal_number" : 8,
                         "description" : "domain cert test for cert check",
-                        "issuer" : "kesalin",
+                        "issuer" : "testdid",
                         "quantity" : 66660000000,
                         "secondaryissue_threshold" : 127,
                         "symbol" : "ZOK.DOMAIN2",
@@ -766,7 +828,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"burn", "params":["tes
 ### 4. 增发资产
 ```
 // Request
-curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"secondaryissue", "params":["test1", "passwd1", "M8iiHdPdTyPfyQY8464bDso7b421JqdShE", "A1", "2000012"]}' 127.0.0.1:8820/rpc/v2
+curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"secondaryissue", "params":["test1", "passwd1", "testdid", "A1", "2000012"]}' 127.0.0.1:8820/rpc/v2
 
 // Response
 {
@@ -820,7 +882,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"secondaryissue", "par
                         "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                         "decimal_number" : 2,
                         "description" : "test asset",
-                        "issuer" : "test1",
+                        "issuer" : "testdid",
                         "quantity" : 2000012,
                         "secondaryissue_threshold" : 30,
                         "symbol" : "A1",
