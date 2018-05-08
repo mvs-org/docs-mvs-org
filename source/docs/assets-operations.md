@@ -9,7 +9,7 @@ This is mainly about the asset - related command line operation, and other comma
 
 First, you need an account. You can use `"mvs-cli getnewaccount accountname password"` to generate a new account. **Please save the main private key (mnemonic-key) safely**。
 
-**For convenience, I'll uniformly use `test1` as account name, `passwd1` as password, and use `testing addresses` in the following examples. When you refer to the following examples, please change to your account name and password, and pay attention to the correct addresses.**
+**For convenience, I'll uniformly use `test1` as account name, `passwd1` as password, `testdid` as did, and use `testing addresses` in the following examples. When you refer to the following examples, please change to your account name and password, did, and pay attention to the correct addresses.**
 
 With an account, if you want to `issue` or `send` an asset, you have to make sure that there is enough ETP in the account to pay fees. You can use `"mvs-cli getbalance test1 passwd1"` to get the details of total balance of the account. You can also use `"mvs-cli listbalances test1 passwd1"` to check the balance at each address in the account.
 
@@ -107,13 +107,7 @@ It need 3 parameters: account_name, account_passwd, asset_symbol
 ```bash
 $ mvs-cli issue test1 passwd1 MVS.TST
 ```
-`issuefrom` --
-It need 4 parameters: account_name, account_passwd, to_address, asset_symbol
-```bash
-# the fee will pay from to_address
-$ mvs-cli issuefrom test1 passwd1 MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ MVS.TST
-```
-Both of the above two commands can use `--fee integer_value` to specify fees. The default fee of issuing asset is 10 ETP. The more the fee is, the time for confirmation may be more shorter, as the miners are more willing to put your transaction into their blocks. Generally, the default values is suggested.
+<code>issue</code> command can use `--fee integer_value` to specify fees. The default fee of issuing asset is 10 ETP. The more the fee is, the time for confirmation may be more shorter, as the miners are more willing to put your transaction into their blocks. Generally, the default values is suggested.
 
 ## Send Asset
 **Notice: Asset can only be sent after it's inssued**
@@ -168,14 +162,14 @@ ACCOUNTAUTH          Account password(authorization) required.
 ***
 ### getaccountasset
 ```
-Usage: mvs-cli getaccountasset [-h] ACCOUNTNAME ACCOUNTAUTH [SYMBOL]
+Usage: mvs-cli getaccountasset [-h] [--c] ACCOUNTNAME ACCOUNTAUTH [SYMBOL]
 
 Info: getaccountasset
 
 Options (named):
 
 -h [--help]          Get a description and instructions for this command.
---cert               If specified, then only get related asset cert.
+--c [--cert]         If specified, then only get related asset cert.
                      Default is not specified.
 
 Arguments (positional):
@@ -191,14 +185,14 @@ SYMBOL               Asset symbol.
 ***
 ### getaddressasset
 ```
-Usage: mvs-cli getaddressasset [-h] ADDRESS
+Usage: mvs-cli getaddressasset [-h] [--c] ADDRESS
 
 Info: getaddressasset
 
 Options (named):
 
 -h [--help]          Get a description and instructions for this command.
---cert               If specified, then only get related asset cert.
+--c [--cert]         If specified, then only get related asset cert.
                      Default is not specified.
 
 Arguments (positional):
@@ -211,38 +205,45 @@ ADDRESS              address
 ***
 ### listassets
 ```
-Usage: mvs-cli listassets [-h] [ACCOUNTNAME] [ACCOUNTAUTH]
+Usage: mvs-cli listassets [-h] [--c] [ACCOUNTNAME] [ACCOUNTAUTH]
 
 Info: list assets details.
 
 Options (named):
 
 -h [--help]          Get a description and instructions for this command.
+--c [--cert]         If specified, then only get related asset cert.
+                     Default is not specified.
 
 Arguments (positional):
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
+**NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**
 **NOTICE: if not specify account, list all issued asset.**
 **if account specified, list all asset of this account, includes unissued assets,**
 **and summary quantity on all addresses for each asset.**
 ***
 ### getasset
 ```
-Usage: mvs-cli getasset [-h] [SYMBOL]
+Usage: mvs-cli getasset [-h] [--c] [SYMBOL]
 
 Info: Show existed assets details from MVS blockchain.
 
 Options (named):
 
 -h [--help]          Get a description and instructions for this command.
+--c [--cert]         If specified, then only get related asset cert.
+                     Default is not specified.
 
 Arguments (positional):
 
 SYMBOL               Asset symbol. If not specified, will show whole
                      network asset symbols.
 ```
+**NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**
+
 ***
 ### issue
 ```
@@ -263,29 +264,6 @@ SYMBOL               issued asset symbol
 ```
 **NOTICE: the asset is issued to the address of asset issuer.**
 **every asset can only be issued once, and with symbol not already exists in blockchain.**
-**when issue asset, the corresponding asset ISSUE cert will be generated.**
-**if the DIMAIN cert does not exist in blockchain, then DIMAIN cert will be generated too.**
-***
-
-### issuefrom
-```
-Usage: mvs-cli issuefrom [-h] [--fee value] ACCOUNTNAME ACCOUNTAUTH ADDRESS SYMBOL
-
-Info: issuefrom
-
-Options (named):
-
--h [--help]          Get a description and instructions for this command.
--f [--fee]           The fee of tx. default_value 10 etp
-
-Arguments (positional):
-
-ACCOUNTNAME          Account name required.
-ACCOUNTAUTH          Account password(authorization) required.
-ADDRESS              target address to issue asset, also pay fees from this address.
-SYMBOL               issued asset symbol
-```
-**NOTICE: the asset is issued to the specified target address.**
 **when issue asset, the corresponding asset ISSUE cert will be generated.**
 **if the DIMAIN cert does not exist in blockchain, then DIMAIN cert will be generated too.**
 ***
@@ -359,13 +337,37 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
 **NOTICE: -a -e -s is very useful to filter the transactions.**
+
 ***
 ## New APIs (in v0.8.0)
+
+***
+### issuecert
+```
+Usage: mvs-cli issuecert [-h] [--fee value] ACCOUNTNAME
+ACCOUNTAUTH TODID SYMBOL -c CERT
+
+Info: issuecert
+
+Options (named):
+
+-h [--help]          Get a description and instructions for this command.
+-f [--fee]           Transaction fee. defaults to 10000 ETP bits
+
+Arguments (positional)
+
+ACCOUNTNAME          Account name required.
+ACCOUNTAUTH          Account password(authorization) required.
+TODID                Target did
+SYMBOL               asset cert symbol
+-c [--cert]          asset cert type, "NAMING" is supported now.
+```
+
 ***
 ### transfercert
 ```
 Usage: mvs-cli transfercert [-h] [--fee value] ACCOUNTNAME
-ACCOUNTAUTH FROMADDRESS TOADDRESS SYMBOL -c CERTS
+ACCOUNTAUTH TODID SYMBOL -c CERTS
 
 Info: transfercert
 
@@ -378,11 +380,9 @@ Arguments (positional):
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
-FROMADDRESS          From address, cert and fee come from this address,
-                     and mychange to this address too.
-TOADDRESS            Target address
+TODID                Target did
 SYMBOL               asset symbol
--c [--cert]          asset cert type(s), "ISSUE" and "DOMAIN" are supported now.
+-c [--cert]          asset cert type(s), "ISSUE", "DOMAIN" and "NAMING" are supported now.
 ```
 **NOTICE: multi cert types should be separeted by white-space.**
 ***
@@ -407,7 +407,7 @@ AMOUNT               Asset integer bits. see asset <decimal_number>.
 ### secondaryissue
 ```
 Usage: mvs-cli secondaryissue [-h] [--fee value]
-ACCOUNTNAME ACCOUNTAUTH ADDRESS SYMBOL VOLUME
+ACCOUNTNAME ACCOUNTAUTH TODID SYMBOL VOLUME
 
 Info: secondaryissue, alias as additionalissue.
 
@@ -420,7 +420,7 @@ Arguments (positional):
 
 ACCOUNTNAME          Account name.
 ACCOUNTAUTH          Account password/authorization.
-ADDRESS              target address to check and issue asset
+TODID                Target did
 SYMBOL               issued asset symbol
 VOLUME               The vlolume of asset
 ```
@@ -438,10 +438,14 @@ secondaryissue must satisfy the folllowing conditions
 
 ## About asset cert
 
-**it's composed of three parts:**
-"certs" : kind of asset cert. It may contain many kinds, now only `ISSUE` and 'DOMAIN' cert are supported. We may add some other cert kinds later soon.
-"owner" : asset cert address. Later it may be a DID symbol (not supported at present).
+**it's composed of four parts:**
 "symbol" : asset symbol/name.
+"address" : asset cert address.
+"owner" : owner's did.
+"certs" : asset cert type. It may combine many cert types. Follow cert types are supported:
+> ISSUE: cert of issuing asset, value is 1, generated by issuing asset and used in secondaryissue asset.
+> DOMAIN: cert of domain, value is 2, generated by issuing asset, the symbol is same as asset symbol(if it does not contain dot) or the prefix part(that before the first dot) of asset symbol.
+> NAMING: cert of naming right of domain, value is 4. The owner of domain cert can issue this type of cert by <code>issuecert</code> with symbol like "DOMAIN.XYZ"(DOMAIN is the symbol of domain cert).
 ```
 $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
 {
@@ -450,7 +454,7 @@ $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
         {
             "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
             "certs" : 1,
-            "owner" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+            "owner" : "testdid",
             "symbol" : "A1"
         }
     ]
@@ -487,7 +491,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
     "is_secondaryissue" : false,
 
     # who is the issuer.
-    "issuer" : "test1",
+    "issuer" : "testdid",
 
     # maximum supply of this asset, with unit of asset bits.
     "maximum_supply" : 1000000,
@@ -515,7 +519,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
     "description" : "test asset",
 
     # who is the issuer.
-    "issuer" : "test1",
+    "issuer" : "testdid",
 
     # asset quantity, with unit of asset bits.
     "quantity" : 1000000,
@@ -546,11 +550,14 @@ _use # comment to explain each key-value pair, these lines is not content of jso
 ### asset cert attachment
 ```
 {
-    # asset cert types. certs may contain many kinds, now only `ISSUE` and 'DOMAIN' cert are provided.
+    # asset cert types. certs may combine many cert types.
     "certs" : 1,
 
-    # asset cert owner address.
-    "owner" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
+    # asset cert address.
+    "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
+
+    # asset cert owner did.
+    "owner" : "testdid",
 
     # asset symbol, string length must be <= 64.
     "symbol" : "A1",
@@ -567,7 +574,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
 ### 1. create new asset
 ```
 // Request
-curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"createasset", "params":["test1", "passwd1", {"description":"test asset","issuer":"test1","decimalnumber":2,"rate":30,"symbol":"A1","volume":1000000}]}' 127.0.0.1:8820/rpc/v2
+curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"createasset", "params":["test1", "passwd1", {"description":"test asset","issuer":"testdid","decimalnumber":2,"rate":30,"symbol":"A1","volume":1000000}]}' 127.0.0.1:8820/rpc/v2
 
 // Response
 {
@@ -581,7 +588,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"createasset", "params
             "decimal_number" : 2,
             "description" : "test asset",
             "is_secondaryissue" : false,
-            "issuer" : "test1",
+            "issuer" : "testdid",
             "maximum_supply" : 1000000,
             "secondaryissue_threshold" : 30,
             "status" : "unissued",
@@ -593,7 +600,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"createasset", "params
 ### 2. issue asset
 ```
 // Request
-curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":["test1", "passwd1", "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb", "A1"]}' 127.0.0.1:8820/rpc/v2
+curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issue", "params":["test1", "passwd1", "A1"]}' 127.0.0.1:8820/rpc/v2
 
 // Response
 {
@@ -603,37 +610,47 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":
     {
         "transaction" :
         {
-            "hash" : "1daabbb942c52b402851988dacaeddbc25aeaf10133b17bd62565e4334825fd8",
+            "hash" : "ea7194311309261ede097b3f8413feb676c100aa6e87e34875804927c992f250",
             "inputs" :
             [
                 {
-                    "address" : "MMMb1DkhSaSQkL1pvw77SVxuaBFvA8YHHh",
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "previous_output" :
                     {
-                        "hash" : "071cfd9d7d3c330b6664ef9f3d3ec3151daa057bf02f541a8ebfb0fee574985b",
-                        "index" : 2
+                        "hash" : "4a0d0066e6ed8a3865625857793fd279fa09f552cf7674a256603bd5d89f9fa6",
+                        "index" : 0
                     },
-                    "script" : "[ 3044022019488c8539681c255ae43cce2f0e78370f5eb360c96a78128cb9728326e7b509022026121c23effa382c9c5d282795b28f325b514346b91b9bd8450d3af47bc8e11b01 ] [ 02a63e06ad462669c51787f847412fcb090a05ae55c1a7ef8e488ead6278505fbe ]",
+                    "script" : "[ 30440220218973f91fda66322bb04a8ccc62aced6fd0dbe6f0a3daa33e316c0ba35dd24002202d2a5c6c377c445ba1697b41a0f16cde7bad5484574750f89d2fc524a660073601 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
                     "sequence" : 4294967295
                 },
                 {
-                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "previous_output" :
                     {
-                        "hash" : "e4fe52a630b3b2e24a1642d1c7ae122bc66f9183e80f2a795969ab631b37b0cf",
-                        "index" : 2
+                        "hash" : "72ed14a9f63963e73a6fbbf4e3ebf006e7236712aa5bc56f25b3bdd9b49d31c4",
+                        "index" : 0
                     },
-                    "script" : "[ 30450221009bada65271c4c4b25ea827a1bab9e75487a43df38bd21fb5090727fa53bd4af00220094648827bf813c3bc982746fd6ab6dc3d5ef141b43dfdeaaf8e38ddc0ed5b1201 ] [ 0293ac168be30fd2a866d16538daac435c640d8b22b6865188c463415788dac029 ]",
+                    "script" : "[ 3045022100e1b632b84edf93fe6138f667b3909490072d33c67c32bb768fef7bc4768a652d02206b83cb837f36ac16ec66a149286e886f2668437f5e5675ae673c6f252311191601 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
                     "sequence" : 4294967295
                 },
                 {
-                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "previous_output" :
                     {
-                        "hash" : "01022f2ee29a9829784cac90d75d001f60487e2f83593e8c20023e580dea22ad",
-                        "index" : 2
+                        "hash" : "4eb8be3db1c96b1e84bbd4f20806aed92187faee7d08e8f88600367220890900",
+                        "index" : 0
                     },
-                    "script" : "[ 30450221009a16bb1538514eee24e8af5afb357aea7f31f551dc74852c42258e88752daaa90220131bf3c5b19df65aa4a4493db530b2bcb5808f395f34fd93a826a0494060fa6d01 ] [ 0293ac168be30fd2a866d16538daac435c640d8b22b6865188c463415788dac029 ]",
+                    "script" : "[ 304402203dfe359d8d99c182681b816a952dae3b046824462cca35b5ebc9bd1744fe81750220319f02866bfde25be47f7fac1ed6e9b5a7fb86d0cc94c26e5ae96e9dd820bb5f01 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
+                    "sequence" : 4294967295
+                },
+                {
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
+                    "previous_output" :
+                    {
+                        "hash" : "2d3235d7cc6f90bbe4d18ceb4ba21ad703c6010fdc608b51a56f04f910e5100a",
+                        "index" : 0
+                    },
+                    "script" : "[ 304402204d6ecfcd89e11d2365d847ac86eef9e06396fb4318f302d2a28918ab141c72c502206100915397b84dc4825619861e2af0e883185b18d5901dda0afeb1648207d31901 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
                     "sequence" : 4294967295
                 }
             ],
@@ -641,61 +658,63 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":
             "outputs" :
             [
                 {
-                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
                     "attachment" :
                     {
-                        "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
-                        "decimal_number" : 8,
-                        "description" : "domain cert test for cert check",
-                        "issuer" : "kesalin",
-                        "quantity" : 66660000000,
-                        "secondaryissue_threshold" : 127,
-                        "symbol" : "ZOK.DOMAIN2",
+                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                        "decimal_number" : 2,
+                        "description" : "test asset",
+                        "issuer" : "testdid",
+                        "quantity" : 1000000,
+                        "secondaryissue_threshold" : 30,
+                        "symbol" : "A1",
                         "type" : "asset-issue"
                     },
                     "index" : 0,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 67e4a0b0a462ac4453a85b40931f2a789584a7d2 ] equalverify checksig",
+                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
                     "value" : 0
                 },
                 {
-                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
                     "attachment" :
                     {
+                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
                         "certs" : 1,
-                        "owner" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
-                        "symbol" : "ZOK.DOMAIN2",
+                        "owner" : "testdid",
+                        "symbol" : "A1",
                         "type" : "asset-cert"
                     },
                     "index" : 1,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 67e4a0b0a462ac4453a85b40931f2a789584a7d2 ] equalverify checksig",
+                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
                     "value" : 0
                 },
                 {
-                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                    "attachment" :
+                    {
+                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                        "certs" : 2,
+                        "owner" : "testdid",
+                        "symbol" : "A1",
+                        "type" : "asset-cert"
+                    },
+                    "index" : 2,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
+                    "value" : 0
+                },
+                {
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "attachment" :
                     {
                         "type" : "etp"
                     },
-                    "index" : 2,
-                    "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 67e4a0b0a462ac4453a85b40931f2a789584a7d2 ] equalverify checksig",
-                    "value" : 28099990000
-                },
-                {
-                    "address" : "MMMb1DkhSaSQkL1pvw77SVxuaBFvA8YHHh",
-                    "attachment" :
-                    {
-                        "certs" : 2,
-                        "owner" : "MMMb1DkhSaSQkL1pvw77SVxuaBFvA8YHHh",
-                        "symbol" : "ZOK",
-                        "type" : "asset-cert"
-                    },
                     "index" : 3,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 9399210807786feedf1be4e85b7f0beaea607603 ] equalverify checksig",
-                    "value" : 0
+                    "script" : "dup hash160 [ 715d876ae984a3127fe5f9d80f481eb77513f9b6 ] equalverify checksig",
+                    "value" : 200000000
                 }
             ],
             "version" : "3"
@@ -843,7 +862,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"secondaryissue", "par
                         "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                         "decimal_number" : 2,
                         "description" : "test asset",
-                        "issuer" : "test1",
+                        "issuer" : "testdid",
                         "quantity" : 2000012,
                         "secondaryissue_threshold" : 30,
                         "symbol" : "A1",
@@ -859,7 +878,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"secondaryissue", "par
                     "attachment" :
                     {
                         "certs" : "1",
-                        "owner" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+                        "owner" : "testdid",
                         "symbol" : "A1",
                         "type" : "asset-cert"
                     },

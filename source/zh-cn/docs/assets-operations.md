@@ -8,7 +8,7 @@ comments: false
 
 首先，你要有帐户，可以通过 `"mvs-cli getnewaccount 帐户名 密码"` 生成，**生成后切记妥善保存主私钥（mnemonic-key）**。
 
-**为了方便，下文中我统一使用帐户名为 `test1`，密码为 `passwd1`，地址为`测试地址`，您在参考时请修改为自己的帐户名和密码，同时注意使用正确的地址。**
+**为了方便，下文中我统一使用帐户名为 `test1`，密码为 `passwd1`，did为`testdid`，为地址为`测试地址`，您在参考时请修改为自己的帐户名和密码，同时注意使用正确的地址。**
 
 有了帐户，如果要发布或发送资产等，你还得确保该帐号下有 ETP 交手续费。可以通过 `"mvs-cli getbalance test1 passwd1"` 查询帐户总余额详情，也可以通过 `"mvs-cli listbalances test1 passwd1"` 查询帐户里各个地址下的余额。
 
@@ -97,14 +97,8 @@ $ mvs-cli deletelocalasset --symbol MVS.TST2 test1 passwd1
 ```bash
 $ mvs-cli issue test1 passwd1 MVS.TST
 ```
-`issuefrom`
-该命令所需四个参数依次为：帐户名，密码，支付地址，资产符号
-```bash
 
-# 指定支付手续费的地址
-$ mvs-cli issuefrom test1 passwd1 MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ MVS.TST
-```
-以上两个命令均可以通过选项 `"--fee 整数值"` 设定发布资产的手续费，默认为10ETP。手续费多的话可能矿工们更愿意将此次交易打包进区块中去，交易确认的时间可能会更短一些。一般使用默认值即可。
+可以通过选项 `"--fee 整数值"` 设定发布资产的手续费，默认为10ETP。手续费多的话可能矿工们更愿意将此次交易打包进区块中去，交易确认的时间可能会更短一些。一般使用默认值即可。
 
 ## 发送资产
 **注：资产需要发布后才能发送**
@@ -158,19 +152,19 @@ Info: deletelocalasset
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
-**注意：本地资产是指未发布的资产。一旦资产被发布，就不能被删除了。**
+**注：本地资产是指未发布的资产。一旦资产被发布，就不能被删除了。**
 
 ***
 ### 获取指定账户的资产
 ```
-Usage: mvs-cli getaccountasset [-h] ACCOUNTNAME ACCOUNTAUTH [SYMBOL]
+Usage: mvs-cli getaccountasset [-h] [--c] ACCOUNTNAME ACCOUNTAUTH [SYMBOL]
 
 Info: getaccountasset
 
 选项参数：
 
 -h [--help]          Get a description and instructions for this command.
---cert               If specified, then only get related asset cert.
+--c [--cert]         If specified, then only get related asset cert.
                      Default is not specified.
 
 位置参数：
@@ -179,71 +173,71 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 SYMBOL               Asset symbol.
 ```
-**注意： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
-**注意： 如果指定了 SYMBOL 参数，则返回指定 SYMBOL 的资产或证书；否则返回该账户下所有的资产或证书。**
+**注： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
+**注： 如果指定了 SYMBOL 参数，则返回指定 SYMBOL 的资产或证书；否则返回该账户下所有的资产或证书。**
 **输出资产的数量是同一地址下所有资产数量的总和。**
 **本命令不输出未发布的资产。**
 
 ***
 ### 获取指定地址上的资产
 ```
-Usage: mvs-cli getaddressasset [-h] ADDRESS
+Usage: mvs-cli getaddressasset [-h] [--c] ADDRESS
 
 Info: getaddressasset
 
 选项参数：
 
 -h [--help]          Get a description and instructions for this command.
---cert               If specified, then only get related asset cert.
+--c [--cert]         If specified, then only get related asset cert.
                      Default is not specified.
 
 位置参数：
 
 ADDRESS              address
 ```
-**注意： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
+**注： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
 **输出资产的数量是该地址下所有资产数量的总和。**
 **本命令不输出未发布的资产。**
 
 ***
 ### 获取全网资产或指定帐户资产总计
 ```
-Usage: mvs-cli listassets [-h] [ACCOUNTNAME] [ACCOUNTAUTH]
+Usage: mvs-cli listassets [-h] [--c] [ACCOUNTNAME] [ACCOUNTAUTH]
 
 Info: list assets details.
 
 选项参数：
 
 -h [--help]          Get a description and instructions for this command.
---cert               If specified, then only get related asset cert.
+--c [--cert]         If specified, then only get related asset cert.
                      Default is not specified.
 位置参数：
 
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
-**注意： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
-**注意： 如果没有指定账户，则列出所有全网已发布的资产或证书。否则列出指定账户下的所有资产（包括未发布的本地资产）或证书。**
+**注： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
+**注： 如果没有指定账户，则列出所有全网已发布的资产或证书。否则列出指定账户下的所有资产（包括未发布的本地资产）或证书。**
 **输出资产的数量是所有资产数量的总和。**
 
 ***
 ### 获取全网资产符号或者指定资产发布信息
 ```
-Usage: mvs-cli getasset [-h] [SYMBOL]
+Usage: mvs-cli getasset [-h] [--c] [SYMBOL]
 
 Info: Show existed assets details from MVS blockchain.
 
 选项参数：
 
 -h [--help]          Get a description and instructions for this command.
---cert               If specified, then only get related asset cert.
+--c [--cert]         If specified, then only get related asset cert.
                      Default is not specified.
 位置参数：
 
 SYMBOL               Asset symbol. If not specified, will show whole
                      network asset symbols.
 ```
-**注意： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
+**注： --cert 是版本 v0.8.0 中新增的选项，无需参数，指示该命令用于获取证书。**
 
 ***
 ### 发布资产(随机目标地址)
@@ -263,33 +257,10 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 SYMBOL               issued asset symbol
 ```
-**注意： the asset is issued to the address of asset issuer.**
+**注： the asset is issued to the address of asset issuer.**
 **every asset can only be issued once, and with symbol not already exists in blockchain.**
 **when issue asset, the corresponding asset ISSUE cert will be generated.**
 **if the DIMAIN cert does not exist in blockchain, then DIMAIN cert will be generated too.**
-***
-
-### 发布资产(指定目标地址)
-```
-Usage: mvs-cli issuefrom [-h] [--fee value] ACCOUNTNAME ACCOUNTAUTH ADDRESS SYMBOL
-
-Info: issuefrom
-
-选项参数：
-
--h [--help]          Get a description and instructions for this command.
--f [--fee]           The fee of tx. default_value 10 etp
-
-位置参数：
-
-ACCOUNTNAME          Account name required.
-ACCOUNTAUTH          Account password(authorization) required.
-ADDRESS              target address to issue asset, also pay fees from this address.
-SYMBOL               issued asset symbol
-```
-**注意： the asset is issued to the specified target address.**
-**when issue asset, the corresponding asset cert will be generated.**
-**if the domain cert does not exist in blockchain, then domain cert will be generated too.**
 
 ***
 ### 发送资产(未指定源地址)
@@ -312,7 +283,7 @@ ADDRESS              Asset receiver.
 SYMBOL               Asset symbol/name.
 AMOUNT               Asset integer bits. see asset <decimal_number>.
 ```
-**注意： only receiver address needs to be specified.**
+**注： only receiver address needs to be specified.**
 
 ***
 ### 发送资产(指定源地址)
@@ -336,7 +307,7 @@ TOADDRESS            Target address
 SYMBOL               Asset symbol
 AMOUNT               Asset integer bits. see asset <decimal_number>.
 ```
-**注意： the transaction fee is paid from FROMADDRESS.**
+**注： the transaction fee is paid from FROMADDRESS.**
 ***
 ### 查询交易
 ```
@@ -361,7 +332,7 @@ Info: List transactions details of this account.
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
-**注意： -a -e -s is very useful to filter the transactions.**
+**注： -a -e -s is very useful to filter the transactions.**
 ***
 
 ## 新增资产 API (v0.8.0)
@@ -409,7 +380,7 @@ TODID                From did
 SYMBOL               asset cert symbol
 -c [--cert]          asset cert type(s), "ISSUE", "DOMAIN" and "NAMING" are supported now.
 ```
-**注意： 多个证书类型用空格符分隔。**
+**注： 多个证书类型用空格符分隔。**
 
 ***
 ### 销毁资产
@@ -451,7 +422,7 @@ TODID                Target did to check and issue asset
 SYMBOL               The symbol of issued asset
 VOLUME               The vlolume of asset
 ```
-**注意： issued asset maybe secondaryissue many times.**
+**注： issued asset maybe secondaryissue many times.**
 
 secondaryissue must satisfy the folllowing conditions
 
@@ -474,7 +445,7 @@ secondaryissue must satisfy the folllowing conditions
 > DOMAIN：域名证书，十进制值为 2，发布资产时获得，其名字为资产名字（若资产名字中不包含"."）或第一个"."号之前的部分
 > NAMING：冠名权证书，十进制值 4，域名证书的所有者可以通过 <code>issuecert</code> 颁发二级域名的冠名权证书
 
-**注意： 并非所有的资产名字都含有有效的域名。示例：资产名字".MVS.TST"就没有有效域名，因此发行该名字的资产时不会产生域名证书。**
+**注： 并非所有的资产名字都含有有效的域名。示例：资产名字".MVS.TST"就没有有效域名，因此发行该名字的资产时不会产生域名证书。**
 
 ```
 $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
@@ -497,7 +468,7 @@ $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
 **1111111111111111111114oLvT2** is the blackhole address,
 every ETP/asset etc. sent to this address is unspentable forever.
 
-**注意： burn command can burn asset to this blackhole address.**
+**注： burn command can burn asset to this blackhole address.**
 **If you use send/sendfrom/sendasset/sendassetfrom/transfercert etc. commands to send things to this blackhole address,**
 **this things sent to blackhole address cannot be spent and cannot be get back again, just like burn.**
 **So take cake of this blackhole address!!! It begins with many number ones.**
@@ -582,7 +553,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
 ### 资产证书相关输出
 ```
 {
-    # asset cert types. certs may contain many kinds, now only `ISSUE` and 'DOMAIN' cert are provided.
+    # asset cert types. certs may combines many cert types.
     "certs" : 1,
 
     # asset cert address.
@@ -632,7 +603,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"createasset", "params
 ### 2. 发布资产
 ```
 // Request
-curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":["test1", "passwd1", "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb", "A1"]}' 127.0.0.1:8820/rpc/v2
+curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issue", "params":["test1", "passwd1", "A1"]}' 127.0.0.1:8820/rpc/v2
 
 // Response
 {
@@ -642,37 +613,47 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":
     {
         "transaction" :
         {
-            "hash" : "1daabbb942c52b402851988dacaeddbc25aeaf10133b17bd62565e4334825fd8",
+            "hash" : "ea7194311309261ede097b3f8413feb676c100aa6e87e34875804927c992f250",
             "inputs" :
             [
                 {
-                    "address" : "MMMb1DkhSaSQkL1pvw77SVxuaBFvA8YHHh",
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "previous_output" :
                     {
-                        "hash" : "071cfd9d7d3c330b6664ef9f3d3ec3151daa057bf02f541a8ebfb0fee574985b",
-                        "index" : 2
+                        "hash" : "4a0d0066e6ed8a3865625857793fd279fa09f552cf7674a256603bd5d89f9fa6",
+                        "index" : 0
                     },
-                    "script" : "[ 3044022019488c8539681c255ae43cce2f0e78370f5eb360c96a78128cb9728326e7b509022026121c23effa382c9c5d282795b28f325b514346b91b9bd8450d3af47bc8e11b01 ] [ 02a63e06ad462669c51787f847412fcb090a05ae55c1a7ef8e488ead6278505fbe ]",
+                    "script" : "[ 30440220218973f91fda66322bb04a8ccc62aced6fd0dbe6f0a3daa33e316c0ba35dd24002202d2a5c6c377c445ba1697b41a0f16cde7bad5484574750f89d2fc524a660073601 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
                     "sequence" : 4294967295
                 },
                 {
-                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "previous_output" :
                     {
-                        "hash" : "e4fe52a630b3b2e24a1642d1c7ae122bc66f9183e80f2a795969ab631b37b0cf",
-                        "index" : 2
+                        "hash" : "72ed14a9f63963e73a6fbbf4e3ebf006e7236712aa5bc56f25b3bdd9b49d31c4",
+                        "index" : 0
                     },
-                    "script" : "[ 30450221009bada65271c4c4b25ea827a1bab9e75487a43df38bd21fb5090727fa53bd4af00220094648827bf813c3bc982746fd6ab6dc3d5ef141b43dfdeaaf8e38ddc0ed5b1201 ] [ 0293ac168be30fd2a866d16538daac435c640d8b22b6865188c463415788dac029 ]",
+                    "script" : "[ 3045022100e1b632b84edf93fe6138f667b3909490072d33c67c32bb768fef7bc4768a652d02206b83cb837f36ac16ec66a149286e886f2668437f5e5675ae673c6f252311191601 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
                     "sequence" : 4294967295
                 },
                 {
-                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "previous_output" :
                     {
-                        "hash" : "01022f2ee29a9829784cac90d75d001f60487e2f83593e8c20023e580dea22ad",
-                        "index" : 2
+                        "hash" : "4eb8be3db1c96b1e84bbd4f20806aed92187faee7d08e8f88600367220890900",
+                        "index" : 0
                     },
-                    "script" : "[ 30450221009a16bb1538514eee24e8af5afb357aea7f31f551dc74852c42258e88752daaa90220131bf3c5b19df65aa4a4493db530b2bcb5808f395f34fd93a826a0494060fa6d01 ] [ 0293ac168be30fd2a866d16538daac435c640d8b22b6865188c463415788dac029 ]",
+                    "script" : "[ 304402203dfe359d8d99c182681b816a952dae3b046824462cca35b5ebc9bd1744fe81750220319f02866bfde25be47f7fac1ed6e9b5a7fb86d0cc94c26e5ae96e9dd820bb5f01 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
+                    "sequence" : 4294967295
+                },
+                {
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
+                    "previous_output" :
+                    {
+                        "hash" : "2d3235d7cc6f90bbe4d18ceb4ba21ad703c6010fdc608b51a56f04f910e5100a",
+                        "index" : 0
+                    },
+                    "script" : "[ 304402204d6ecfcd89e11d2365d847ac86eef9e06396fb4318f302d2a28918ab141c72c502206100915397b84dc4825619861e2af0e883185b18d5901dda0afeb1648207d31901 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
                     "sequence" : 4294967295
                 }
             ],
@@ -680,61 +661,63 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issuefrom", "params":
             "outputs" :
             [
                 {
-                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
                     "attachment" :
                     {
-                        "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
-                        "decimal_number" : 8,
-                        "description" : "domain cert test for cert check",
+                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                        "decimal_number" : 2,
+                        "description" : "test asset",
                         "issuer" : "testdid",
-                        "quantity" : 66660000000,
-                        "secondaryissue_threshold" : 127,
-                        "symbol" : "ZOK.DOMAIN2",
+                        "quantity" : 1000000,
+                        "secondaryissue_threshold" : 30,
+                        "symbol" : "A1",
                         "type" : "asset-issue"
                     },
                     "index" : 0,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 67e4a0b0a462ac4453a85b40931f2a789584a7d2 ] equalverify checksig",
+                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
                     "value" : 0
                 },
                 {
-                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
                     "attachment" :
                     {
+                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
                         "certs" : 1,
-                        "owner" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
-                        "symbol" : "ZOK.DOMAIN2",
+                        "owner" : "testdid",
+                        "symbol" : "A1",
                         "type" : "asset-cert"
                     },
                     "index" : 1,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 67e4a0b0a462ac4453a85b40931f2a789584a7d2 ] equalverify checksig",
+                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
                     "value" : 0
                 },
                 {
-                    "address" : "MHNViX5nuAdDTCXeE5Nw9h9t7ku1CWC2eb",
+                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                    "attachment" :
+                    {
+                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                        "certs" : 2,
+                        "owner" : "testdid",
+                        "symbol" : "A1",
+                        "type" : "asset-cert"
+                    },
+                    "index" : 2,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
+                    "value" : 0
+                },
+                {
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "attachment" :
                     {
                         "type" : "etp"
                     },
-                    "index" : 2,
-                    "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 67e4a0b0a462ac4453a85b40931f2a789584a7d2 ] equalverify checksig",
-                    "value" : 28099990000
-                },
-                {
-                    "address" : "MMMb1DkhSaSQkL1pvw77SVxuaBFvA8YHHh",
-                    "attachment" :
-                    {
-                        "certs" : 2,
-                        "owner" : "MMMb1DkhSaSQkL1pvw77SVxuaBFvA8YHHh",
-                        "symbol" : "ZOK",
-                        "type" : "asset-cert"
-                    },
                     "index" : 3,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 9399210807786feedf1be4e85b7f0beaea607603 ] equalverify checksig",
-                    "value" : 0
+                    "script" : "dup hash160 [ 715d876ae984a3127fe5f9d80f481eb77513f9b6 ] equalverify checksig",
+                    "value" : 200000000
                 }
             ],
             "version" : "3"
@@ -755,27 +738,47 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"burn", "params":["tes
     {
         "transaction" :
         {
-            "hash" : "dc0fdae2da5f309d15bb5cb767cd6f39dbec884e1365161812797370608d157b",
+            "hash" : "ea7194311309261ede097b3f8413feb676c100aa6e87e34875804927c992f250",
             "inputs" :
             [
                 {
-                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "previous_output" :
                     {
-                        "hash" : "b4977b6b5d0bcb179b92ee32caa04df3e166435b5b4c8864f1112909dc4f2702",
-                        "index" : 2
+                        "hash" : "4a0d0066e6ed8a3865625857793fd279fa09f552cf7674a256603bd5d89f9fa6",
+                        "index" : 0
                     },
-                    "script" : "[ 3044022035757c89624af45a804a88368ef3c6527204676b939056a60440acaf7dccd8c702200364c0868bb77a00027c3815bfcd18fbb13fbb1f2fea1d569cd3fd0950488b2701 ] [ 02313a40c42045ae920ea91a4da0b59c8b3892291f74a79125c7f4e014992a9eb1 ]",
+                    "script" : "[ 30440220218973f91fda66322bb04a8ccc62aced6fd0dbe6f0a3daa33e316c0ba35dd24002202d2a5c6c377c445ba1697b41a0f16cde7bad5484574750f89d2fc524a660073601 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
                     "sequence" : 4294967295
                 },
                 {
-                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "previous_output" :
                     {
-                        "hash" : "b4977b6b5d0bcb179b92ee32caa04df3e166435b5b4c8864f1112909dc4f2702",
-                        "index" : 1
+                        "hash" : "72ed14a9f63963e73a6fbbf4e3ebf006e7236712aa5bc56f25b3bdd9b49d31c4",
+                        "index" : 0
                     },
-                    "script" : "[ 3044022030453a9a5d318518f68d5310323ba0f75a27e65d320e1969fc7acde292c2d3a6022039b168d1704e1f07159c5eb1083dc766b5987ac9b9ef5e98e7025614ce4c567801 ] [ 02313a40c42045ae920ea91a4da0b59c8b3892291f74a79125c7f4e014992a9eb1 ]",
+                    "script" : "[ 3045022100e1b632b84edf93fe6138f667b3909490072d33c67c32bb768fef7bc4768a652d02206b83cb837f36ac16ec66a149286e886f2668437f5e5675ae673c6f252311191601 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
+                    "sequence" : 4294967295
+                },
+                {
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
+                    "previous_output" :
+                    {
+                        "hash" : "4eb8be3db1c96b1e84bbd4f20806aed92187faee7d08e8f88600367220890900",
+                        "index" : 0
+                    },
+                    "script" : "[ 304402203dfe359d8d99c182681b816a952dae3b046824462cca35b5ebc9bd1744fe81750220319f02866bfde25be47f7fac1ed6e9b5a7fb86d0cc94c26e5ae96e9dd820bb5f01 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
+                    "sequence" : 4294967295
+                },
+                {
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
+                    "previous_output" :
+                    {
+                        "hash" : "2d3235d7cc6f90bbe4d18ceb4ba21ad703c6010fdc608b51a56f04f910e5100a",
+                        "index" : 0
+                    },
+                    "script" : "[ 304402204d6ecfcd89e11d2365d847ac86eef9e06396fb4318f302d2a28918ab141c72c502206100915397b84dc4825619861e2af0e883185b18d5901dda0afeb1648207d31901 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
                     "sequence" : 4294967295
                 }
             ],
@@ -783,44 +786,66 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"burn", "params":["tes
             "outputs" :
             [
                 {
-                    "address" : "1111111111111111111114oLvT2",
+                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
                     "attachment" :
                     {
-                        "quantity" : 100008,
-                        "symbol" : "A1",
-                        "type" : "asset-transfer"
+                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                        "decimal_number" : 8,
+                        "description" : "cert test for did check",
+                        "issuer" : "testdid",
+                        "quantity" : 66660000000,
+                        "secondaryissue_threshold" : 127,
+                        "symbol" : "XOK.DID",
+                        "type" : "asset-issue"
                     },
                     "index" : 0,
                     "locked_height_range" : 0,
-                    "script" : "return",
+                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
                     "value" : 0
                 },
                 {
-                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                    "attachment" :
+                    {
+                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                        "certs" : 1,
+                        "owner" : "testdid",
+                        "symbol" : "XOK.DID",
+                        "type" : "asset-cert"
+                    },
+                    "index" : 1,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
+                    "value" : 0
+                },
+                {
+                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                    "attachment" :
+                    {
+                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                        "certs" : 2,
+                        "owner" : "testdid",
+                        "symbol" : "XOK",
+                        "type" : "asset-cert"
+                    },
+                    "index" : 2,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
+                    "value" : 0
+                },
+                {
+                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
                     "attachment" :
                     {
                         "type" : "etp"
                     },
-                    "index" : 1,
+                    "index" : 3,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 08fe4ef8f6258b0348c9ac3d1e7cba696a959d6c ] equalverify checksig",
-                    "value" : 199970000
-                },
-                {
-                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
-                    "attachment" :
-                    {
-                        "quantity" : 2699992,
-                        "symbol" : "A1",
-                        "type" : "asset-transfer"
-                    },
-                    "index" : 2,
-                    "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 08fe4ef8f6258b0348c9ac3d1e7cba696a959d6c ] equalverify checksig",
-                    "value" : 0
+                    "script" : "dup hash160 [ 715d876ae984a3127fe5f9d80f481eb77513f9b6 ] equalverify checksig",
+                    "value" : 200000000
                 }
             ],
-            "version" : "2"
+            "version" : "3"
         }
     }
 }
