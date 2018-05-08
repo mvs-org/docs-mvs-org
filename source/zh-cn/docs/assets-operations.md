@@ -6,9 +6,9 @@ comments: false
 ## 前提简述
 这里主要介绍资产相关的命令行操作，其它的命令可以参考 [Command-line](/zh-cn/docs/command-line.html)
 
-首先，你要有帐户，可以通过 `"mvs-cli getnewaccount 帐户名 密码"` 生成，**生成后切记妥善保存主私钥（mnemonic-key）**。
+首先，你要有帐户和数字身份(did)，可以通过 `"mvs-cli getnewaccount 帐户名 密码"` 和 `"mvs-cli issuedid 帐户名 密码 测试地址 测试did"` 生成，**生成后切记妥善保存主私钥（mnemonic-key）**。
 
-**为了方便，下文中我统一使用帐户名为 `test1`，密码为 `passwd1`，did为`testdid`，为地址为`测试地址`，您在参考时请修改为自己的帐户名和密码，同时注意使用正确的地址。**
+**为了方便，下文中我统一使用帐户名为 `test1`，密码为 `passwd1`，测试did为`testdid`，地址为`测试地址`，您在参考时请修改为自己的帐户名和密码，同时注意使用正确的地址。**
 
 有了帐户，如果要发布或发送资产等，你还得确保该帐号下有 ETP 交手续费。可以通过 `"mvs-cli getbalance test1 passwd1"` 查询帐户总余额详情，也可以通过 `"mvs-cli listbalances test1 passwd1"` 查询帐户里各个地址下的余额。
 
@@ -39,7 +39,7 @@ ACCOUNTNAME          帐户名，必须提供。
 ACCOUNTAUTH          帐户密码，必须提供。
 
 示例：
-$ mvs-cli createasset --symbol MVS.TST --volume 1000000000000 --description "testing asset of MVS" --issuer test1 --decimalnumber 8 --rate 30 test1 passwd1
+$ mvs-cli createasset --symbol MVS.TST --volume 1000000000000 --description "testing asset of MVS" --issuer testdid --decimalnumber 8 --rate 30 test1 passwd1
 ```
 **注："-r [--rate]" 为新增参数(v0.8.0)，用于资产增发验证。**
 
@@ -85,7 +85,7 @@ $ mvs-cli getaddressasset MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ
 删除本地资产，也即还没发布的资产。**注：资产一经发布，则不能删除了。**
 ```bash
 # 临时创建一个本地资产，再将其删除。
-$ mvs-cli createasset --symbol MVS.TST2 --volume 10000 --description "temp testing asset of MVS" --issuer test1 --decimalnumber 0 test1 passwd1
+$ mvs-cli createasset --symbol MVS.TST2 --volume 10000 --description "temp testing asset of MVS" --issuer testdid --decimalnumber 0 test1 passwd1
 $ mvs-cli deletelocalasset --symbol MVS.TST2 test1 passwd1
 ```
 

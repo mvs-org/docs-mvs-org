@@ -7,7 +7,7 @@ comments: false
 
 This is mainly about the asset - related command line operation, and other commands can be referred to [Command-line](command-line.html).
 
-First, you need an account. You can use `"mvs-cli getnewaccount accountname password"` to generate a new account. **Please save the main private key (mnemonic-key) safely**。
+First, you need an account and a did. You can use `"mvs-cli getnewaccount accountname password"` and `"mvs-cli issuedid accountname password address did"` to generate a new account and a new did. **Please save the main private key (mnemonic-key) safely**。
 
 **For convenience, I'll uniformly use `test1` as account name, `passwd1` as password, `testdid` as did, and use `testing addresses` in the following examples. When you refer to the following examples, please change to your account name and password, did, and pay attention to the correct addresses.**
 
@@ -47,7 +47,7 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 
 Example：
-$ mvs-cli createasset --symbol MVS.TST --volume 1000000000000 --description "testing asset of MVS" --issuer test1 --decimalnumber 8 --rate 30 test1 passwd1
+$ mvs-cli createasset --symbol MVS.TST --volume 1000000000000 --description "testing asset of MVS" --issuer testdid --decimalnumber 8 --rate 30 test1 passwd1
 ```
 **Notice: "-r [--rate]" parameter is newly added (in v0.8.0), used for secondaryissue command**
 
@@ -95,7 +95,7 @@ $ mvs-cli getaddressasset MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ
 Delete local asset which is unissued. **Notice: You can not delete issued asset.**
 ```bash
 # create a local asset temporarily, and then delete it
-$ mvs-cli createasset --symbol MVS.TST2 --volume 10000 --description "temp testing asset of MVS" --issuer test1 --decimalnumber 0 test1 passwd1
+$ mvs-cli createasset --symbol MVS.TST2 --volume 10000 --description "temp testing asset of MVS" --issuer testdid --decimalnumber 0 test1 passwd1
 $ mvs-cli deletelocalasset --symbol MVS.TST2 test1 passwd1
 ```
 
