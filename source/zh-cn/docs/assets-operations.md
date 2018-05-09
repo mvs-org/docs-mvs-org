@@ -355,8 +355,8 @@ Info: issuecert
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 TODID                Target did
-SYMBOL               asset cert symbol
--c [--cert]          asset cert type, "NAMING" is supported now.
+SYMBOL               Asset cert symbol
+-c [--cert]          Asset cert type, "NAMING" is supported now.
 ```
 
 ***
@@ -377,8 +377,8 @@ Info: transfercert
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 TODID                From did
-SYMBOL               asset cert symbol
--c [--cert]          asset cert type(s), "ISSUE", "DOMAIN" and "NAMING" are supported now.
+SYMBOL               Asset cert symbol
+-c [--cert]          Asset cert type(s), "ISSUE", "DOMAIN" and "NAMING" are supported now.
 ```
 **注： 多个证书类型用空格符分隔。**
 

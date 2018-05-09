@@ -9,11 +9,11 @@ This is mainly about the asset - related command line operation, and other comma
 
 First, you need an account and a did. You can use `"mvs-cli getnewaccount accountname password"` and `"mvs-cli issuedid accountname password address did"` to generate a new account and a new did. **Please save the main private key (mnemonic-key) safely**。
 
-**For convenience, I'll uniformly use `test1` as account name, `passwd1` as password, `testdid` as did, and use `testing addresses` in the following examples. When you refer to the following examples, please change to your account name and password, did, and pay attention to the correct addresses.**
+**For convenience, I'll uniformly use `test1` as account name, `passwd1` as password, `testdid` as did, and use `testing addresses` in the following examples. When you refer to the following examples, please change to your account name, password and did, and pay attention to the correct addresses.**
 
-With an account, if you want to `issue` or `send` an asset, you have to make sure that there is enough ETP in the account to pay fees. You can use `"mvs-cli getbalance test1 passwd1"` to get the details of total balance of the account. You can also use `"mvs-cli listbalances test1 passwd1"` to check the balance at each address in the account.
+With an account, if you want to `issue` or `send` an asset, you have to make sure that there is enough ETP in the account to pay fees. You can use `"mvs-cli getbalance test1 passwd1"` to get the total balance of the account. You can also use `"mvs-cli listbalances test1 passwd1"` to list the balance of each address in the account.
 
-You can use `help` to get help information of each command. For eaxmple, use `"mvs-cli help createasset"` or `"mvs-cli createasset -h"` to get help information of `createasset` command.
+You can use `help` to get the help information of each command. For eaxmple, use `"mvs-cli help createasset"` or `"mvs-cli createasset -h"` to get the help information of `createasset` command.
 
 ## Create Asset
 `createasset` --
@@ -60,19 +60,21 @@ When decimal digits are other values, the situation is similar. If you don't fee
 There are several states of assets: `"unissued"`，`"issued"`，`"unspent"`.
 
 `getaccountasset` --
-Get asset by account, including unissued asset. The result contains address of the asset.
+Get assets of specified account, including unissued asset. The result contains the address of the asset.
 ```bash
 $ mvs-cli getaccountasset test1 passwd1
 ```
+
 `listassets` --
 List Assets.
 ```bash
 # List all **issued** assets.
 $ mvs-cli listassets
 
-# List assets of specified account, including unissued asset. The result does not contain address of the asset.
+# List assets of specified account, including unissued asset. The result does not contain the address of the asset.
 $ mvs-cli listassets test1 passwd1
 ```
+
 `getasset` --
 Get **issued** assets.
 ```bash
@@ -82,13 +84,14 @@ $ mvs-cli getasset
 # Get asset with specified symbol
 $ mvs-cli getasset MVS.TST
 ```
+
 `getaddressasset` --
-Get **issued** assets by address
+Get **issued** assets of address
 ```bash
 $ mvs-cli getaddressasset MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ
 ```
 
-<code>listassets</code>, <code>getasset</code>, <code>getaddressasset</code> and <code>getaccountasset</code> have a `--cert` option to get asset cert.
+<code>listassets</code>, <code>getasset</code>, <code>getaddressasset</code> and <code>getaccountasset</code> have a `--cert` option to get the asset cert.
 
 ## Delete Local Asset(unissued asset)
 `deletelocalasset` --
@@ -100,10 +103,10 @@ $ mvs-cli deletelocalasset --symbol MVS.TST2 test1 passwd1
 ```
 
 ## Issue Asset
-**Notice: You can not issue the same asset twice, or else an error will report "validate transaction failure"**
+**Notice: You can not issue the same asset more than once, otherwise an error "validate transaction failure" will throw.**
 
 `issue` --
-It need 3 parameters: account_name, account_passwd, asset_symbol
+It needs the following paramenters: account_name, account_passwd, asset_symbol
 ```bash
 $ mvs-cli issue test1 passwd1 MVS.TST
 ```
@@ -117,6 +120,7 @@ It need 5 parameters: account_name, account_passwd, to_address, asset_symbol, se
 ```bash
 $ mvs-cli sendasset test1 passwd1 MQTAjXoteFzzZoWpNEamG88gf5b82z6o9Q MVS.TST 100
 ```
+
 `sendassetfrom` --
 It need 6 parameters: account_name, account_passwd, from_address, to_address, asset_symbol, send_amount
 ```bash
@@ -136,11 +140,14 @@ Multi cert types should be separeted by white-space. Only "ISSUE", "DOMAIN" and 
 ## issue cert
 `issuecert`
 It need 5 parameters: account_name, account_passwd, to_did, asset_symbol, cert_type
+```bash
 $ mvs-cli issuecert test1 passwd1 testdid KOK.MUSIC -c NAMING
 ```
 Only "NAMING" cert type is supported now。
 
+***
 ## Advanced API usage
+
 ***
 ### deletelocalasset
 ```
@@ -159,6 +166,7 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
 **NOTICE: local asset is unissued asset. when issued, it can never be deleted any more.**
+
 ***
 ### getaccountasset
 ```
@@ -182,6 +190,7 @@ SYMBOL               Asset symbol.
 **NOTICE: if SYMBOL is not specified, then get all assets of this account.**
 **to each asset, the returned quantity is a summary value on each address.**
 **the unissued asset of this account will also be showed.**
+
 ***
 ### getaddressasset
 ```
@@ -202,6 +211,7 @@ ADDRESS              address
 **NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**
 **NOTICE: only issued asset has address.**
 **to each asset, the returned quantity is a summary value on this address.**
+
 ***
 ### listassets
 ```
@@ -224,6 +234,7 @@ ACCOUNTAUTH          Account password(authorization) required.
 **NOTICE: if not specify account, list all issued asset.**
 **if account specified, list all asset of this account, includes unissued assets,**
 **and summary quantity on all addresses for each asset.**
+
 ***
 ### getasset
 ```
@@ -266,8 +277,8 @@ SYMBOL               issued asset symbol
 **every asset can only be issued once, and with symbol not already exists in blockchain.**
 **when issue asset, the corresponding asset ISSUE cert will be generated.**
 **if the DIMAIN cert does not exist in blockchain, then DIMAIN cert will be generated too.**
-***
 
+***
 ### sendasset
 ```
 Usage: mvs-cli sendasset [-h] [--fee value] ACCOUNTNAME ACCOUNTAUTH
@@ -289,6 +300,7 @@ SYMBOL               Asset symbol/name.
 AMOUNT               Asset integer bits. see asset <decimal_number>.
 ```
 **NOTICE: only receiver address needs to be specified.**
+
 ***
 ### sendassetfrom
 ```
@@ -312,6 +324,7 @@ SYMBOL               Asset symbol
 AMOUNT               Asset integer bits. see asset <decimal_number>.
 ```
 **NOTICE: the transaction fee is paid from FROMADDRESS.**
+
 ***
 ### listtxs
 ```
@@ -360,7 +373,7 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 TODID                Target did
 SYMBOL               asset cert symbol
--c [--cert]          asset cert type, "NAMING" is supported now.
+-c [--cert]          asset cert type name, "NAMING" is supported now.
 ```
 
 ***
@@ -381,10 +394,11 @@ Arguments (positional):
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 TODID                Target did
-SYMBOL               asset symbol
--c [--cert]          asset cert type(s), "ISSUE", "DOMAIN" and "NAMING" are supported now.
+SYMBOL               Asset cert symbol
+-c [--cert]          Asset cert type name(s), "ISSUE", "DOMAIN" and "NAMING" are supported now.
 ```
-**NOTICE: multi cert types should be separeted by white-space.**
+**NOTICE: multi cert type names should be separeted by white-space.**
+
 ***
 ### burn
 ```
@@ -403,6 +417,7 @@ ACCOUNTAUTH          Account password(authorization) required.
 SYMBOL               The asset will be burned.
 AMOUNT               Asset integer bits. see asset <decimal_number>.
 ```
+
 ***
 ### secondaryissue
 ```
@@ -446,6 +461,7 @@ secondaryissue must satisfy the folllowing conditions
 > ISSUE: cert of issuing asset, value is 1, generated by issuing asset and used in secondaryissue asset.
 > DOMAIN: cert of domain, value is 2, generated by issuing asset, the symbol is same as asset symbol(if it does not contain dot) or the prefix part(that before the first dot) of asset symbol.
 > NAMING: cert of naming right of domain, value is 4. The owner of domain cert can issue this type of cert by <code>issuecert</code> with symbol like "DOMAIN.XYZ"(DOMAIN is the symbol of domain cert).
+
 ```
 $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
 {
@@ -460,8 +476,8 @@ $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
     ]
 }
 ```
-***
 
+***
 ## About blackhole address
 
 **1111111111111111111114oLvT2** is the blackhole address,
@@ -471,8 +487,8 @@ every ETP/asset etc. sent to this address is unspentable forever.
 **If you use send/sendfrom/sendasset/sendassetfrom/transfercert etc. commands to send things to this blackhole address,**
 **this things sent to blackhole address cannot be spent and cannot be get back again, just like burn.**
 **So take cake of this blackhole address!!! It begins with many number ones.**
-***
 
+***
 ## asset attachment/output
 _use # comment to explain each key-value pair, these lines is not content of json object._
 ### issued asset output
@@ -506,6 +522,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
     "symbol" : "A1"
 }
 ```
+
 ### asset detail attachment
 ```
 {
@@ -534,6 +551,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
     "type" : "asset-issue"
 }
 ```
+
 ### asset transfer attachment
 ```
 {
@@ -547,6 +565,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
     "type" : "asset-transfer"
 }
 ```
+
 ### asset cert attachment
 ```
 {
@@ -566,8 +585,8 @@ _use # comment to explain each key-value pair, these lines is not content of jso
     "type" : "asset-cert"
 }
 ```
-***
 
+***
 ## Examples
 
 ***
@@ -597,6 +616,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"createasset", "params
     }
 }
 ```
+
 ### 2. issue asset
 ```
 // Request
@@ -722,6 +742,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issue", "params":["te
     }
 }
 ```
+
 ### 3. burn some asset
 ```
 // Request
@@ -805,6 +826,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"burn", "params":["tes
     }
 }
 ```
+
 ### 4. secondaryissue asset
 ```
 // Request
