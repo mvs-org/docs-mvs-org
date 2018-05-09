@@ -116,13 +116,13 @@ $ mvs-cli issue test1 passwd1 MVS.TST
 **Notice: Asset can only be sent after it's inssued**
 
 `sendasset` --
-It need 5 parameters: account_name, account_passwd, to_address, asset_symbol, send_amount
+It needs the following paramenters: account_name, account_passwd, to_address, asset_symbol, send_amount
 ```bash
 $ mvs-cli sendasset test1 passwd1 MQTAjXoteFzzZoWpNEamG88gf5b82z6o9Q MVS.TST 100
 ```
 
 `sendassetfrom` --
-It need 6 parameters: account_name, account_passwd, from_address, to_address, asset_symbol, send_amount
+It needs the following paramenters: account_name, account_passwd, from_address, to_address, asset_symbol, send_amount
 ```bash
 $ mvs-cli sendassetfrom test1 passwd1 MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ MQTAjXoteFzzZoWpNEamG88gf5b82z6o9Q MVS.TST 900
 ```
@@ -130,7 +130,7 @@ Both of the above two commands can use `--fee integer_value` to specify fees. Th
 
 ## transfer cert
 `transfercert`
-It need 5 parameters: account_name, account_passwd, to_did, asset_symbol, cert_types
+It needs the following paramenters: account_name, account_passwd, to_did, asset_symbol, cert_types
 ```bash
 $ mvs-cli transfercert test1 passwd1 testdid KOK -c ISSUE
 $ mvs-cli transfercert test1 passwd1 testdid KOK -c DOMAIN ISSUE
@@ -139,7 +139,7 @@ Multi cert types should be separeted by white-space. Only "ISSUE", "DOMAIN" and 
 
 ## issue cert
 `issuecert`
-It need 5 parameters: account_name, account_passwd, to_did, asset_symbol, cert_type
+It needs the following paramenters: account_name, account_passwd, to_did, asset_symbol, cert_type
 ```bash
 $ mvs-cli issuecert test1 passwd1 testdid KOK.MUSIC -c NAMING
 ```
@@ -187,7 +187,7 @@ ACCOUNTAUTH          Account password(authorization) required.
 SYMBOL               Asset symbol.
 ```
 **NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**
-**NOTICE: if SYMBOL is not specified, then get all assets of this account.**
+**NOTICE: if SYMBOL is not specified, then get all assets or certs of this account.**
 **to each asset, the returned quantity is a summary value on each address.**
 **the unissued asset of this account will also be showed.**
 
@@ -231,8 +231,8 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
 **NOTICE: --cert is newly added option (in v0.8.0) which does not take any arguments.**
-**NOTICE: if not specify account, list all issued asset.**
-**if account specified, list all asset of this account, includes unissued assets,**
+**NOTICE: if not specify account, list all issued assets or certs.**
+**if account specified, list all assets or certs of this account, includes unissued assets,**
 **and summary quantity on all addresses for each asset.**
 
 ***
