@@ -308,13 +308,15 @@ comments: false
         "jsonrpc":"2.0",
         "method":"didsendmore",
         "params":[
-            "test1",
-            "passwd1",
+            "lxf",
+            "123456",
             {
-                "receivers":"did1:10000",
-                "receivers":"did2:10000",
-                "receivers":"M95tQAUQ61acvpBWzpojseffTViWV5R9E7:10000",
-                "mychange": "did3"
+                "receivers":[
+                        "lxf1:10000",
+                        "lxf2:10000",
+                        "M95tQAUQ61acvpBWzpojseffTViWV5R9E7:10000"
+                ],
+                "mychange": "lxf3"
             }
         ]
     }' 127.0.0.1:8820/rpc/v2
