@@ -753,9 +753,9 @@ comments: false
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
-    4. `TODID` target did
-    5. `SYMBOL` asset symbol
-    6. `VOLUME` The asset amount shares
+    3. `TODID` target did
+    4. `SYMBOL` asset symbol
+    5. `VOLUME` The asset amount shares
     ```js
     params:[
         "ACCOUNTNAME",
@@ -876,9 +876,9 @@ comments: false
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
-    4. `TODID` target did
-    5. `SYMBOL` asset symbol
-    6. `CERT` Asset cert type name. eg. NAMING
+    3. `TODID` target did
+    4. `SYMBOL` asset symbol
+    5. `CERT` Asset cert type name. eg. NAMING
     ```js
     params:[
         "ACCOUNTNAME",
@@ -903,7 +903,8 @@ comments: false
             "123456",
             "testdid02",
             "MVS.NAMINGRIGHT",
-            "NAMING"]
+            "NAMING"
+            ]
     }' http://127.0.0.1:8820/rpc/v2
 
     // Response
@@ -997,9 +998,9 @@ comments: false
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
-    4. `TODID` target did
-    5. `SYMBOL` asset symbol
-    6. `cert` Asset cert type name list
+    3. `TODID` target did
+    4. `SYMBOL` asset symbol
+    5. `cert` Asset cert type name list
     ```js
     params:[
         "ACCOUNTNAME",
@@ -1100,6 +1101,119 @@ comments: false
                         "locked_height_range" : 0,
                         "script" : "dup hash160 [ 7f8c4bf15a7c4183ea69d853626be85e9336e09e ] equalverify checksig",
                         "value" : 299990000
+                    }
+                ],
+                "version" : "2"
+            }
+        }
+    }
+    ```
+
+***
+
+* ### `burn`
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    3. `SYMBOL` Asset symbol
+    4. `AMOUNT` Asset integer bits
+    ```js
+    params:[
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
+        "SYMBOL",
+        "AMOUNT"
+    ]
+     ```
+    * Returns
+    `Object` -
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{
+        "id":7,
+        "jsonrpc":"2.0",
+        "method":"burn",
+        "params":[
+            "test",
+            "123456",
+            "MVS.NAMINGRIGHT",
+            "60000000"
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 7,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "transaction" :
+            {
+                "hash" : "107ab89c649e0489a2a0bebf2927a594d26d024393767eb2103633a6c35ccc42",
+                "inputs" :
+                [
+                    {
+                        "address" : "MLGuT4fp23SjyG2v5TW2PreQZTbXr7dyJe",
+                        "previous_output" :
+                        {
+                            "hash" : "e5c1c9f069bb271298983f13ef9790d3cba2d92422dd3c5d4eff27b592c90e17",
+                            "index" : 0
+                        },
+                        "script" : "[ 304402205722ed333a2f0412baa6a3ddd882afa69247567cd0480287dbd526dfd6b61b5a02201301b6974b1b9e1c95023e1a5a388fac98d277a67167465c90df8c773ea3eb7901 ] [ 02a6c7f2cbb0d0dff030f8082ce0f1b9f89ceb3340294fff2cb0a9ed78567cd37b ]",
+                        "sequence" : 4294967295
+                    },
+                    {
+                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                        "previous_output" :
+                        {
+                            "hash" : "3726bb530ef6388b190c97f4fdb43a9274088928e8b1fabdf9419eb14769de80",
+                            "index" : 0
+                        },
+                        "script" : "[ 304402207a1ed5f4eacbc6b168553ccd4190304397fe77bcdb3d22776f6fbf1442c449530220060c43d04e3a969133dc5ad8ea7efec19f85789da7d03ca7794568057582839301 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                        "sequence" : 4294967295
+                    }
+                ],
+                "lock_time" : "0",
+                "outputs" :
+                [
+                    {
+                        "address" : "1111111111111111111114oLvT2",
+                        "attachment" :
+                        {
+                            "quantity" : 60000000,
+                            "symbol" : "MVS.NAMINGRIGHT",
+                            "type" : "asset-transfer"
+                        },
+                        "index" : 0,
+                        "locked_height_range" : 0,
+                        "script" : "return",
+                        "value" : 0
+                    },
+                    {
+                        "address" : "MLGuT4fp23SjyG2v5TW2PreQZTbXr7dyJe",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 1,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ 87be522ed3375aaf991b71fe72db89006c803e29 ] equalverify checksig",
+                        "value" : 1300000000
+                    },
+                    {
+                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                        "attachment" :
+                        {
+                            "quantity" : 66600000000,
+                            "symbol" : "MVS.NAMINGRIGHT",
+                            "type" : "asset-transfer"
+                        },
+                        "index" : 2,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ 7f8c4bf15a7c4183ea69d853626be85e9336e09e ] equalverify checksig",
+                        "value" : 0
                     }
                 ],
                 "version" : "2"

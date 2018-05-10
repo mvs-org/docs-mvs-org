@@ -753,9 +753,9 @@ comments: false
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
-    4. `TODID` target did
-    5. `SYMBOL` asset symbol
-    6. `VOLUME` The asset amount shares
+    3. `TODID` target did
+    4. `SYMBOL` asset symbol
+    5. `VOLUME` The asset amount shares
     ```js
     params:[
         "ACCOUNTNAME",
@@ -876,9 +876,9 @@ comments: false
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
-    4. `TODID` target did
-    5. `SYMBOL` asset symbol
-    6. `CERT` Asset cert type name. eg. NAMING
+    3. `TODID` target did
+    4. `SYMBOL` asset symbol
+    5. `CERT` Asset cert type name. eg. NAMING
     ```js
     params:[
         "ACCOUNTNAME",
@@ -903,7 +903,8 @@ comments: false
             "123456",
             "testdid02",
             "MVS.NAMINGRIGHT",
-            "NAMING"]
+            "NAMING"
+            ]
     }' http://127.0.0.1:8820/rpc/v2
 
     // Response
@@ -997,9 +998,9 @@ comments: false
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
-    4. `TODID` target did
-    5. `SYMBOL` asset symbol
-    6. `cert` Asset cert type name list
+    3. `TODID` target did
+    4. `SYMBOL` asset symbol
+    5. `cert` Asset cert type name list
     ```js
     params:[
         "ACCOUNTNAME",
@@ -1027,6 +1028,118 @@ comments: false
                 "SYMBOL":"MVS.NAMINGRIGHT",
                 "cert":["ISSUE", "NAMING"]
             }
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 7,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "transaction" :
+            {
+                "hash" : "6339e14720d4b38025bb4c44a367eea547186788a9b09b6af255c59032149481",
+                "inputs" :
+                [
+                    {
+                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                        "previous_output" :
+                        {
+                            "hash" : "2a26cafb20aef05af30c74a5e29da87ec229fceeaedbfaecba3cf8c94bf12388",
+                            "index" : 0
+                        },
+                        "script" : "[ 30440220611aa6418141e2cfb1439e39b98c9a8597d2a37eb38f2a0da24d927aabf3de15022057776cf5e10f71e679301fe38014070a5ae5b66ef08465b8a76a1658eea62ee601 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                        "sequence" : 4294967295
+                    },
+                    {
+                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                        "previous_output" :
+                        {
+                            "hash" : "95ad43927b77d21567114db0511f459a6f2c3195e680df8875f444824942654d",
+                            "index" : 0
+                        },
+                        "script" : "[ 3045022100e255df205a2cefb843dd830308bd7e5a0c3b4598671a0171e1dd05405d9443b702204086ff9b467397ed5fa5b8e400f6b9cb71b1317f00eec193063dc3d012197d8301 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                        "sequence" : 4294967295
+                    },
+                    {
+                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                        "previous_output" :
+                        {
+                            "hash" : "3726bb530ef6388b190c97f4fdb43a9274088928e8b1fabdf9419eb14769de80",
+                            "index" : 1
+                        },
+                        "script" : "[ 3044022022f133daa5c47d723414e9d7b428a7b47525355dbf0d20b90cd2d7a6dd93304a02205fc31bf159567bea4daad0341c43d5e429b57fd5809defb1c793218a787a494c01 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                        "sequence" : 4294967295
+                    }
+                ],
+                "lock_time" : "0",
+                "outputs" :
+                [
+                    {
+                        "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
+                        "attachment" :
+                        {
+                            "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
+                            "certs" : 5,
+                            "owner" : "testdid02",
+                            "symbol" : "MVS.NAMINGRIGHT",
+                            "type" : "asset-cert"
+                        },
+                        "index" : 0,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ dae1cde292d5b762c49ecdb18900e8e115df9695 ] equalverify checksig",
+                        "value" : 0
+                    },
+                    {
+                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                        "attachment" :
+                        {
+                            "type" : "etp"
+                        },
+                        "index" : 1,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ 7f8c4bf15a7c4183ea69d853626be85e9336e09e ] equalverify checksig",
+                        "value" : 299990000
+                    }
+                ],
+                "version" : "2"
+            }
+        }
+    }
+    ```
+
+***
+
+* ### `burn`
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    3. `SYMBOL` Asset symbol
+    4. `AMOUNT` Asset integer bits
+    ```js
+    params:[
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
+        "SYMBOL",
+        "AMOUNT"
+    ]
+     ```
+    * Returns
+    `Object` -
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{
+        "id":7,
+        "jsonrpc":"2.0",
+        "method":"burn",
+        "params":[
+            "test",
+            "123456",
+            "MVS.NAMINGRIGHT",
+            "60000000"
         ]
     }' http://127.0.0.1:8820/rpc/v2
 
@@ -1108,5 +1221,4 @@ comments: false
         }
     }
     ```
-
 ***
