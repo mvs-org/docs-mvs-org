@@ -738,47 +738,27 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"burn", "params":["tes
     {
         "transaction" :
         {
-            "hash" : "ea7194311309261ede097b3f8413feb676c100aa6e87e34875804927c992f250",
+            "hash" : "dc0fdae2da5f309d15bb5cb767cd6f39dbec884e1365161812797370608d157b",
             "inputs" :
             [
                 {
-                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
+                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                     "previous_output" :
                     {
-                        "hash" : "4a0d0066e6ed8a3865625857793fd279fa09f552cf7674a256603bd5d89f9fa6",
-                        "index" : 0
+                        "hash" : "b4977b6b5d0bcb179b92ee32caa04df3e166435b5b4c8864f1112909dc4f2702",
+                        "index" : 2
                     },
-                    "script" : "[ 30440220218973f91fda66322bb04a8ccc62aced6fd0dbe6f0a3daa33e316c0ba35dd24002202d2a5c6c377c445ba1697b41a0f16cde7bad5484574750f89d2fc524a660073601 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
+                    "script" : "[ 3044022035757c89624af45a804a88368ef3c6527204676b939056a60440acaf7dccd8c702200364c0868bb77a00027c3815bfcd18fbb13fbb1f2fea1d569cd3fd0950488b2701 ] [ 02313a40c42045ae920ea91a4da0b59c8b3892291f74a79125c7f4e014992a9eb1 ]",
                     "sequence" : 4294967295
                 },
                 {
-                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
+                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                     "previous_output" :
                     {
-                        "hash" : "72ed14a9f63963e73a6fbbf4e3ebf006e7236712aa5bc56f25b3bdd9b49d31c4",
-                        "index" : 0
+                        "hash" : "b4977b6b5d0bcb179b92ee32caa04df3e166435b5b4c8864f1112909dc4f2702",
+                        "index" : 1
                     },
-                    "script" : "[ 3045022100e1b632b84edf93fe6138f667b3909490072d33c67c32bb768fef7bc4768a652d02206b83cb837f36ac16ec66a149286e886f2668437f5e5675ae673c6f252311191601 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
-                    "sequence" : 4294967295
-                },
-                {
-                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
-                    "previous_output" :
-                    {
-                        "hash" : "4eb8be3db1c96b1e84bbd4f20806aed92187faee7d08e8f88600367220890900",
-                        "index" : 0
-                    },
-                    "script" : "[ 304402203dfe359d8d99c182681b816a952dae3b046824462cca35b5ebc9bd1744fe81750220319f02866bfde25be47f7fac1ed6e9b5a7fb86d0cc94c26e5ae96e9dd820bb5f01 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
-                    "sequence" : 4294967295
-                },
-                {
-                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
-                    "previous_output" :
-                    {
-                        "hash" : "2d3235d7cc6f90bbe4d18ceb4ba21ad703c6010fdc608b51a56f04f910e5100a",
-                        "index" : 0
-                    },
-                    "script" : "[ 304402204d6ecfcd89e11d2365d847ac86eef9e06396fb4318f302d2a28918ab141c72c502206100915397b84dc4825619861e2af0e883185b18d5901dda0afeb1648207d31901 ] [ 03d54a5f927e54692db8189e9d5cc097161ca0797a2c6de02a586bc242245595c6 ]",
+                    "script" : "[ 3044022030453a9a5d318518f68d5310323ba0f75a27e65d320e1969fc7acde292c2d3a6022039b168d1704e1f07159c5eb1083dc766b5987ac9b9ef5e98e7025614ce4c567801 ] [ 02313a40c42045ae920ea91a4da0b59c8b3892291f74a79125c7f4e014992a9eb1 ]",
                     "sequence" : 4294967295
                 }
             ],
@@ -786,66 +766,44 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"burn", "params":["tes
             "outputs" :
             [
                 {
-                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
+                    "address" : "1111111111111111111114oLvT2",
                     "attachment" :
                     {
-                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
-                        "decimal_number" : 8,
-                        "description" : "cert test for did check",
-                        "issuer" : "testdid",
-                        "quantity" : 66660000000,
-                        "secondaryissue_threshold" : 127,
-                        "symbol" : "XOK.DID",
-                        "type" : "asset-issue"
+                        "quantity" : 100008,
+                        "symbol" : "A1",
+                        "type" : "asset-transfer"
                     },
                     "index" : 0,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
+                    "script" : "return",
                     "value" : 0
                 },
                 {
-                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
-                    "attachment" :
-                    {
-                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
-                        "certs" : 1,
-                        "owner" : "testdid",
-                        "symbol" : "XOK.DID",
-                        "type" : "asset-cert"
-                    },
-                    "index" : 1,
-                    "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
-                    "value" : 0
-                },
-                {
-                    "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
-                    "attachment" :
-                    {
-                        "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
-                        "certs" : 2,
-                        "owner" : "testdid",
-                        "symbol" : "XOK",
-                        "type" : "asset-cert"
-                    },
-                    "index" : 2,
-                    "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 3793b996225ea166d25fe2cd684c08f9433e03db ] equalverify checksig",
-                    "value" : 0
-                },
-                {
-                    "address" : "MJEadcaE7LjEJcBSyjLecbst7snx7T94DH",
+                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                     "attachment" :
                     {
                         "type" : "etp"
                     },
-                    "index" : 3,
+                    "index" : 1,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 715d876ae984a3127fe5f9d80f481eb77513f9b6 ] equalverify checksig",
-                    "value" : 200000000
+                    "script" : "dup hash160 [ 08fe4ef8f6258b0348c9ac3d1e7cba696a959d6c ] equalverify checksig",
+                    "value" : 199970000
+                },
+                {
+                    "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
+                    "attachment" :
+                    {
+                        "quantity" : 2699992,
+                        "symbol" : "A1",
+                        "type" : "asset-transfer"
+                    },
+                    "index" : 2,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ 08fe4ef8f6258b0348c9ac3d1e7cba696a959d6c ] equalverify checksig",
+                    "value" : 0
                 }
             ],
-            "version" : "3"
+            "version" : "2"
         }
     }
 }

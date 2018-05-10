@@ -1038,27 +1038,17 @@ comments: false
         {
             "transaction" :
             {
-                "hash" : "6339e14720d4b38025bb4c44a367eea547186788a9b09b6af255c59032149481",
+                "hash" : "107ab89c649e0489a2a0bebf2927a594d26d024393767eb2103633a6c35ccc42",
                 "inputs" :
                 [
                     {
-                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                        "address" : "MLGuT4fp23SjyG2v5TW2PreQZTbXr7dyJe",
                         "previous_output" :
                         {
-                            "hash" : "2a26cafb20aef05af30c74a5e29da87ec229fceeaedbfaecba3cf8c94bf12388",
+                            "hash" : "e5c1c9f069bb271298983f13ef9790d3cba2d92422dd3c5d4eff27b592c90e17",
                             "index" : 0
                         },
-                        "script" : "[ 30440220611aa6418141e2cfb1439e39b98c9a8597d2a37eb38f2a0da24d927aabf3de15022057776cf5e10f71e679301fe38014070a5ae5b66ef08465b8a76a1658eea62ee601 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
-                        "sequence" : 4294967295
-                    },
-                    {
-                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                        "previous_output" :
-                        {
-                            "hash" : "95ad43927b77d21567114db0511f459a6f2c3195e680df8875f444824942654d",
-                            "index" : 0
-                        },
-                        "script" : "[ 3045022100e255df205a2cefb843dd830308bd7e5a0c3b4598671a0171e1dd05405d9443b702204086ff9b467397ed5fa5b8e400f6b9cb71b1317f00eec193063dc3d012197d8301 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                        "script" : "[ 304402205722ed333a2f0412baa6a3ddd882afa69247567cd0480287dbd526dfd6b61b5a02201301b6974b1b9e1c95023e1a5a388fac98d277a67167465c90df8c773ea3eb7901 ] [ 02a6c7f2cbb0d0dff030f8082ce0f1b9f89ceb3340294fff2cb0a9ed78567cd37b ]",
                         "sequence" : 4294967295
                     },
                     {
@@ -1066,9 +1056,9 @@ comments: false
                         "previous_output" :
                         {
                             "hash" : "3726bb530ef6388b190c97f4fdb43a9274088928e8b1fabdf9419eb14769de80",
-                            "index" : 1
+                            "index" : 0
                         },
-                        "script" : "[ 3044022022f133daa5c47d723414e9d7b428a7b47525355dbf0d20b90cd2d7a6dd93304a02205fc31bf159567bea4daad0341c43d5e429b57fd5809defb1c793218a787a494c01 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                        "script" : "[ 304402207a1ed5f4eacbc6b168553ccd4190304397fe77bcdb3d22776f6fbf1442c449530220060c43d04e3a969133dc5ad8ea7efec19f85789da7d03ca7794568057582839301 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
                         "sequence" : 4294967295
                     }
                 ],
@@ -1076,30 +1066,41 @@ comments: false
                 "outputs" :
                 [
                     {
-                        "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
+                        "address" : "1111111111111111111114oLvT2",
                         "attachment" :
                         {
-                            "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
-                            "certs" : 5,
-                            "owner" : "testdid02",
+                            "quantity" : 60000000,
                             "symbol" : "MVS.NAMINGRIGHT",
-                            "type" : "asset-cert"
+                            "type" : "asset-transfer"
                         },
                         "index" : 0,
                         "locked_height_range" : 0,
-                        "script" : "dup hash160 [ dae1cde292d5b762c49ecdb18900e8e115df9695 ] equalverify checksig",
+                        "script" : "return",
                         "value" : 0
                     },
                     {
-                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                        "address" : "MLGuT4fp23SjyG2v5TW2PreQZTbXr7dyJe",
                         "attachment" :
                         {
                             "type" : "etp"
                         },
                         "index" : 1,
                         "locked_height_range" : 0,
+                        "script" : "dup hash160 [ 87be522ed3375aaf991b71fe72db89006c803e29 ] equalverify checksig",
+                        "value" : 1300000000
+                    },
+                    {
+                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                        "attachment" :
+                        {
+                            "quantity" : 66600000000,
+                            "symbol" : "MVS.NAMINGRIGHT",
+                            "type" : "asset-transfer"
+                        },
+                        "index" : 2,
+                        "locked_height_range" : 0,
                         "script" : "dup hash160 [ 7f8c4bf15a7c4183ea69d853626be85e9336e09e ] equalverify checksig",
-                        "value" : 299990000
+                        "value" : 0
                     }
                 ],
                 "version" : "2"
@@ -1107,4 +1108,5 @@ comments: false
         }
     }
     ```
+
 ***
