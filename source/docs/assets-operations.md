@@ -526,6 +526,15 @@ Attenuation model is an advanced lock mechanism. This model will lock some speci
         This custom model has the same effect with the above example.
         It's unlock quantity and time interval is specified by arrays.
     ```
+8. Usage
+	* How to specify attenuation model param?
+		The param is specified in `issue` and `secondaryissue` command, through `-m [--model]` option.
+	* How to know the locked asset quantity?
+		Through `getaccountasset` and `getaddressasset` command, is the value corresponding to key "locked_quantity".
+	* How to know the attenuation model param?
+		Through `gettx` and `lsittxs` comand, is the string corresponding to key "attenuation_model_param".
+	* How is the locked asset be unlocked?
+		The locked asset is unlocked according to the block height. No need to manually unlock them, and it can be spend directly if the locked time interval is passed. And the unlocked quantity is also calulated automatically.
 
 ## About asset cert
 
