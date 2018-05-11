@@ -363,7 +363,7 @@ SYMBOL               Asset cert symbol
 ### 转移证书
 ```
 Usage: mvs-cli transfercert [-h] [--fee value] ACCOUNTNAME
-ACCOUNTAUTH TODID SYMBOL -c CERTS
+ACCOUNTAUTH TODID SYMBOL -c CERT
 
 Info: transfercert
 

@@ -384,7 +384,7 @@ SYMBOL               asset cert symbol
 ### transfercert
 ```
 Usage: mvs-cli transfercert [-h] [--fee value] ACCOUNTNAME
-ACCOUNTAUTH TODID SYMBOL -c CERTS
+ACCOUNTAUTH TODID SYMBOL -c CERT
 
 Info: transfercert
 
