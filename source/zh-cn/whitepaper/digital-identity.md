@@ -1,4 +1,4 @@
-title: 数字身份白皮书
+title: 元界数字身份白皮书(简版)
 comments: false
 ---
 

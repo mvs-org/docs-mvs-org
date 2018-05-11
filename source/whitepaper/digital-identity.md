@@ -1,4 +1,4 @@
-title: Digital Identity
+title: Metaverser Digital Identity (brief)
 comments: false
 ---
 

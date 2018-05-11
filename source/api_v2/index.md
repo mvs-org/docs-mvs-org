@@ -7,7 +7,7 @@ Please note that this documentation is only valid for MVS FULL NODE.
 Compatiblity for API v1, please refers to [API v1](/api).
 
 ## API v2 Usage
-** API v2 is supported in [v0.7.3](/news) **
+** Supported [v0.7.3](/news) and later**
 
 |   API      |  Default Port | URI | Default URL |
 | ------------------ | ------------ | ------------- |
