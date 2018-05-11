@@ -868,6 +868,116 @@ comments: false
         }
     }
     ```
+
+    ```js
+    // Request with attenuation model
+    curl -X POST --data '{
+        "id":7,
+        "jsonrpc":"2.0",
+        "method":"secondaryissue",
+        "params":[
+            "test",
+            "123456",
+            "testdid02",
+            "MVS.TST",
+            "800000",
+            {
+                "model":"TYPE=1;LQ=60002;LP=6002;UN=3"
+            }
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 7,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "id" : 7,
+            "jsonrpc" : "2.0",
+            "result" :
+            {
+                "transaction" :
+                {
+                    "hash" : "a6671a3b74694f2d5da143153697d3d8cfda7f57aaa74fab0c83ef0ada2fc8de",
+                    "inputs" :
+                    [
+                        {
+                            "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                            "previous_output" :
+                            {
+                                "hash" : "ffc81240ba9450536ae536c73371278cdfc6d93525e5cf90f6f70505cd4d3aa4",
+                                "index" : 1
+                            },
+                            "script" : "[ 3045022100c78829ab256e18b1a417bf80b6a7e1ed99f99b572e02b0f42a881de7b2ab2e7c022002ef7aa6c30f26a5096fda3e30ca17ebe57a2e5c1ccf06104c5e2bcde2f6d14901 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                            "sequence" : 4294967295
+                        },
+                        {
+                            "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
+                            "previous_output" :
+                            {
+                                "hash" : "ffc81240ba9450536ae536c73371278cdfc6d93525e5cf90f6f70505cd4d3aa4",
+                                "index" : 2
+                            },
+                            "script" : "[ 3044022063b51643bc0b448c68dc5550215b6879dba865f5427fe2283bfaa831ebe30c0e022063f177655474c98ec7f78c85402c7e1a39540df7f7baa53d6dafe06997201dc701 ] [ 0264f9e773328d677de10b4e4fdd4abd69a9cd08e37dd12cc6762a71917a578662 ]",
+                            "sequence" : 4294967295
+                        }
+                    ],
+                    "lock_time" : "0",
+                    "outputs" :
+                    [
+                        {
+                            "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
+                            "attachment" :
+                            {
+                                "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
+                                "decimal_number" : 8,
+                                "description" : "test asset",
+                                "issuer" : "testdid02",
+                                "quantity" : 800000,
+                                "secondaryissue_threshold" : 127,
+                                "symbol" : "MVS.TST",
+                                "type" : "asset-issue"
+                            },
+                            "attenuation_model_param" : "TYPE=1;LQ=60002;LP=6002;UN=3",
+                            "index" : 0,
+                            "locked_height_range" : 0,
+                            "script" : "[ 504e3d303b4c483d323030303b545950453d313b4c513d36303030323b4c503d363030323b554e3d33 ] [ 0000000000000000000000000000000000000000000000000000000000000000ffffffff ] checkattenuationverify dup hash160 [ dae1cde292d5b762c49ecdb18900e8e115df9695 ] equalverify checksig",
+                            "value" : 0
+                        },
+                        {
+                            "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                            "attachment" :
+                            {
+                                "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                                "certs" : 1,
+                                "owner" : "testdid01",
+                                "symbol" : "MVS.TST",
+                                "type" : "asset-cert"
+                            },
+                            "index" : 1,
+                            "locked_height_range" : 0,
+                            "script" : "dup hash160 [ 7f8c4bf15a7c4183ea69d853626be85e9336e09e ] equalverify checksig",
+                            "value" : 0
+                        },
+                        {
+                            "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
+                            "attachment" :
+                            {
+                                "type" : "etp"
+                            },
+                            "index" : 2,
+                            "locked_height_range" : 0,
+                            "script" : "dup hash160 [ dae1cde292d5b762c49ecdb18900e8e115df9695 ] equalverify checksig",
+                            "value" : 103199980000
+                        }
+                    ],
+                    "version" : "3"
+                }
+            }
+        }
+    ```
+
 ***
 
 * ### `issuecert`
@@ -995,12 +1105,13 @@ comments: false
 * ### `transfercert`
     * Parameters (optional)
     1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
+    2. `-c` or `[--cert]` Asset cert type name(s), "ISSUE", "DOMAIN" and "NAMING" are supported now.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `TODID` target did
     4. `SYMBOL` asset symbol
-    5. `cert` Asset cert type name list
+
     ```js
     params:[
         "ACCOUNTNAME",
@@ -1021,11 +1132,11 @@ comments: false
         "jsonrpc":"2.0",
         "method":"transfercert",
         "params":[
+            "test",
+            "123456",
+            "testdid01",
+            "MVS.NAMINGRIGHT",
             {
-                "ACCOUNTNAME":"test",
-                "ACCOUNTAUTH":"123456",
-                "TODID":"testdid02",
-                "SYMBOL":"MVS.NAMINGRIGHT",
                 "cert":["ISSUE", "NAMING"]
             }
         ]
