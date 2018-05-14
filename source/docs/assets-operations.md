@@ -112,6 +112,12 @@ $ mvs-cli issue test1 passwd1 MVS.TST
 ```
 <code>issue</code> command can use `--fee integer_value` to specify fees. The default fee of issuing asset is 10 ETP. The more the fee is, the time for confirmation may be more shorter, as the miners are more willing to put your transaction into their blocks. Generally, the default values is suggested.
 
+**add in nova (v0.8.0):**
+1. you can use `-m [--model]` option to set attenuation model param
+Ref. to [About attenuation model](#About-attenuation-model) to learn more about attenuation model.
+2. you can use `secondaryissue` command to secondary issue the asset
+Ref. to [secondaryissue](#secondaryissue) to learn more about secondaryissue.
+
 ## Send Asset
 **Notice: Asset can only be sent after it's inssued**
 
@@ -530,9 +536,9 @@ Attenuation model is an advanced lock mechanism. This model will lock some speci
 	* How to specify attenuation model param?
 		The param is specified in `issue` and `secondaryissue` command, through `-m [--model]` option.
 	* How to know the locked asset quantity?
-		Through `getaccountasset` and `getaddressasset` command, is the value corresponding to key "locked_quantity".
+		Through `getaccountasset` and `getaddressasset` command, is the value corresponding to key **"locked_quantity"**.
 	* How to know the attenuation model param?
-		Through `gettx` and `lsittxs` comand, is the string corresponding to key "attenuation_model_param".
+		Through `gettx` and `lsittxs` comand, is the string corresponding to key **"attenuation_model_param"**.
 	* How is the locked asset be unlocked?
 		The locked asset is unlocked according to the block height. No need to manually unlock them, and it can be spend directly if the locked time interval is passed. And the unlocked quantity is also calulated automatically.
 
