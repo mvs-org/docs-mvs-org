@@ -5,7 +5,188 @@ comments: false
 ## Description
 ***
 
-## API Methods 
+## API Methods
+***
+
+* ### `getnewmultisig`
+    getnewmultisig
+    * Parameters (optional)
+    1. `-d` or `[--description]` multisig record description.
+    2. `-k` or `[--publickey]` cosigner public key used for multisig
+    3. `-m` or `[--signaturenum]` Account multisig signature number.
+    4. `-n` or `[--publickeynum]` Account multisig public key number.
+    5. `-s` or `[--selfpublickey]` the public key belongs to this account.
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    ```js
+    params:[
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH"
+    ]
+     ```
+    * Returns
+    `Object` -
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{
+        "id":7,
+        "jsonrpc":"2.0",
+        "method":"getnewmultisig",
+        "params":[
+            "test",
+            "123456",
+            {
+                "publickey": [
+                    "03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02",
+                    "03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e"
+                ],
+                "selfpublickey": "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9",
+                "signaturenum": 2,
+                "publickeynum": 3
+            }
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 7,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "address" : "39hh1NY9xyTKzawD8zFKXgXa7XBwqck6BR",
+            "description" : "",
+            "index" : 1,
+            "m" : 2,
+            "multisig-script" : "2 [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]  [ 03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e ]  [ 03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02 ] 3 checkmultisig",
+            "n" : 3,
+            "public-keys" :
+            [
+                "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9",
+                "03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e",
+                "03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02"
+            ],
+            "self-publickey" : "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9"
+        }
+    }
+    ```
+
+***
+
+* ### `listmultisig`
+    listmultisig
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    ```js
+    params:[
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH"
+    ]
+     ```
+    * Returns
+    `Object` -
+    `multisig` - multiple signature
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{
+        "jsonrpc":"2.0",
+        "method":"listmultisig",
+        "id":48,
+        "params":["test", "123456"]}' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 48,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "multisig" :
+            [
+                {
+                    "address" : "39hh1NY9xyTKzawD8zFKXgXa7XBwqck6BR",
+                    "description" : "",
+                    "index" : 1,
+                    "m" : 2,
+                    "multisig-script" : "2 [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]  [ 03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e ]  [ 03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02 ] 3 checkmultisig",
+                    "n" : 3,
+                    "public-keys" :
+                    [
+                        "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9",
+                        "03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e",
+                        "03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02"
+                    ],
+                    "self-publickey" : "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9"
+                }
+            ]
+        }
+    }
+    ```
+
+***
+
+* ### `deletemultisig`
+    deletemultisig
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    3. `ADDRESS` The multisig script corresponding address.
+    ```js
+    params:[
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
+        "ADDRESS"
+    ]
+     ```
+    * Returns
+    `Object` -
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{
+        "jsonrpc":"2.0",
+        "method":"deletemultisig",
+        "id":46,
+        "params":[
+            "test",
+            "123456",
+            "39hh1NY9xyTKzawD8zFKXgXa7XBwqck6BR"
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 46,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "multisig" :
+            [
+                {
+                    "address" : "39hh1NY9xyTKzawD8zFKXgXa7XBwqck6BR",
+                    "description" : "",
+                    "index" : 1,
+                    "m" : 2,
+                    "multisig-script" : "2 [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]  [ 03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e ]  [ 03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02 ] 3 checkmultisig",
+                    "n" : 3,
+                    "public-keys" :
+                    [
+                        "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9",
+                        "03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e",
+                        "03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02"
+                    ],
+                    "self-publickey" : "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9"
+                }
+            ]
+        }
+    }
+    ```
+
 ***
 
 * ### `createmultisigtx`
@@ -20,206 +201,87 @@ comments: false
     5. `AMOUNT` How many you will spend
     ```js
     params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH", 
-        "FROMADDRESS", 
-        "TOADDRESS", 
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
+        "FROMADDRESS",
+        "TOADDRESS",
         "AMOUNT"
     ]
      ```
     * Returns
-    `Object` - 
-    1. `hex` - The Base16 transaction.
+    `Object` -
+    1. `raw` - The Base16 transaction.
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"createmultisigtx",
-    "params":["test", "123456", "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2", "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV", "100000000000"],"id":45}'
+    curl -X POST --data '{
+        "jsonrpc":"2.0",
+        "method":"createmultisigtx",
+        "id":45,
+        "params":[
+            "test",
+            "123456",
+            "39hh1NY9xyTKzawD8zFKXgXa7XBwqck6BR",
+            "MHaKHUFwAdcszvQarCmn1Rkq2uRoPQjZwm",
+            3344
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
 
     // Response
     {
-        "jsonrpc": "2.0", 
-        "id": 45, 
-        "result":
+        "id" : 45,
+        "jsonrpc" : "2.0",
+        "result" :
         {
-            "hex" : "02000000016164c4ccd70b57a9d7b956d63bf0d0c9bccb72cfaba49891fa9e833adacb65a4010000009300483045022100b78987209417d81ffad5d45719e8a78a5730b6b8e22b98c73b6ca927a001fe6b022004b48edf88370fa001ae9423561762cbdd489b619ab82fcab64852e08358c7b0014c4752210200e5782241ce24af725f2e823dfcc325101cec604e422566ba5ce4ca4bd5bc8c2103046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e52aeffffffff0264000000000000001976a91404a31ae84a152ca773728761b7260726d8aeff8c88ac0100000000000000b83701000000000017a91409594fe3a84e3de95831d2474ca3ca29d2f9053d87010000000000000000000000"
+            "hex" : "02000000016453713104d144387553bcb0fa457f40d2dc5fb916bd9e2256835a4b6de48d4c00000000b500483045022100cbfdda943648344dc03fd92a905072082af93dfd4f166e3d1bb258e3437069790220321ee22c6a2543392909e21cd347d009a6d32173c23700424b45b4592d4075e3014c69522102729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b92103d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e2103f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e0253aeffffffff02100d0000000000001976a9146a20e940e8d7be0a49c598e91fa79c8b36e5353588ac0100000000000000d0fb01000000000017a91457e1a19e5ee4c0065f8fd76b0351fa145e44435a87010000000000000000000000"
         }
     }
     ```
-    ***
-* ### `deletemultisig`
-    deletemultisig
-    * Parameters (positional)
-    1. `ACCOUNTNAME` Account name.
-    2. `ACCOUNTAUTH` Account password/authorization.
-    3. `ADDRESS` The multisig script corresponding address.
-    ```js
-    params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH", 
-        "ADDRESS"
-    ]
-     ```
-    * Returns
-    `Object` - 
 
-    * Example
-    ```js
-    // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"deletemultisig",
-    "params":["test", "123456", "32YSznH7h2iLBr6jCm1fvPk7MSXR93pmZ5"],"id":46}'
+***
 
-    // Response
-    {
-        "jsonrpc": "2.0", 
-        "id": 46, 
-        "result":
-        {
-            "address" : "32YSznH7h2iLBr6jCm1fvPk7MSXR93pmZ5",
-            "description" : "",
-            "index" : "1",
-            "m" : "2",
-            "multisig-script" : "2 [ 0200e5782241ce24af725f2e823dfcc325101cec604e422566ba5ce4ca4bd5bc8c ]  [ 03046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e ] 2 checkmultisig",
-            "n" : "2",
-            "public-keys" : 
-            [
-                "0200e5782241ce24af725f2e823dfcc325101cec604e422566ba5ce4ca4bd5bc8c",
-                "03046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e"
-            ],
-            "self-publickey" : "03046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e"
-        }
-    }
-    ```
-    ***
-* ### `getnewmultisig`
-    getnewmultisig
-    * Parameters (optional)
-    1. `-d` or `[--description]` multisig record description.
-    2. `-k` or `[--publickey]` cosigner public key used for multisig
-    3. `-m` or `[--signaturenum]` Account multisig signature number.
-    4. `-n` or `[--publickeynum]` Account multisig public key number.
-    5. `-s` or `[--selfpublickey]` the public key belongs to this account.
-    * Parameters (positional)
-    1. `ACCOUNTNAME` Account name.
-    2. `ACCOUNTAUTH` Account password/authorization.
-    ```js
-    params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH"
-    ]
-     ```
-    * Returns
-    `Object` - 
-
-    * Example
-    ```js
-    // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"getnewmultisig",
-    "params":["test", "123456", {"publickey": "0200e5782241ce24af725f2e823dfcc325101cec604e422566ba5ce4ca4bd5bc8c", "selfpublickey": "03046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e", "signaturenum": 2, "publickeynum": 2],"id":7}'
-
-    // Response
-    {
-        "jsonrpc": "2.0", 
-        "id": 47, 
-        "result":
-        {
-            "address" : "32YSznH7h2iLBr6jCm1fvPk7MSXR93pmZ5",
-            "description" : "",
-            "index" : "1",
-            "m" : "2",
-            "multisig-script" : "2 [ 0200e5782241ce24af725f2e823dfcc325101cec604e422566ba5ce4ca4bd5bc8c ]  [ 03046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e ] 2 checkmultisig",
-            "n" : "2",
-            "public-keys" : 
-            [
-                "0200e5782241ce24af725f2e823dfcc325101cec604e422566ba5ce4ca4bd5bc8c",
-                "03046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e"
-            ],
-            "self-publickey" : "03046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e"
-        }
-    }
-    ```
-    ***
-* ### `listmultisig`
-    listmultisig
-    * Parameters (positional)
-    1. `ACCOUNTNAME` Account name.
-    2. `ACCOUNTAUTH` Account password/authorization.
-    ```js
-    params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH"
-    ]
-     ```
-    * Returns
-    `Object` - 
-    `multisig` - multiple signature
-
-    * Example
-    ```js
-    // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"listmultisig",
-    "params":["test", "123456"],"id":48}'
-
-    // Response
-    {
-        "jsonrpc": "2.0", 
-        "id": 48, 
-        "result":
-        {
-            "multisig" : 
-            [
-                {
-                    "address" : "32YSznH7h2iLBr6jCm1fvPk7MSXR93pmZ5",
-                    "description" : "",
-                    "index" : "1",
-                    "m" : "2",
-                    "multisig-script" : "2 [ 0200e5782241ce24af725f2e823dfcc325101cec604e422566ba5ce4ca4bd5bc8c ]  [ 03046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e ] 2 checkmultisig",
-                    "n" : "2",
-                    "public-keys" : 
-                    [
-                        "0200e5782241ce24af725f2e823dfcc325101cec604e422566ba5ce4ca4bd5bc8c",
-                        "03046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e"
-                    ],
-                    "self-publickey" : "03046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e"
-                }
-            ]
-        }
-    }
-    ```
-    ***
 * ### `signmultisigtx`
     signmultisigtx
     * Parameters (optional)
-    1. `-b` or `[--broadcast]` Broadcast the tx if it is fullly signed.
+    1. `-b` or `[--broadcast]` Broadcast the tx automatically if it is fullly signed, disabled by default.
+    2. `-s` or `[--selfpublickey]` The private key of this public key will be used to sign.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `TRANSACTION` The input Base16 transaction to sign.
     ```js
     params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH", 
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
         "TRANSACTION"
     ]
      ```
     * Returns
-    `Object` - 
-    1. `hex` - The Base16 transaction.
+    `Object` -
+    1. `raw` - The Base16 transaction.
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"signmultisigtx",
-    "params":["test", "123456",  "02000000016164c4ccd70b57a9d7b956d63bf0d0c9bccb72cfaba49891fa9e833adacb65a4010000009300483045022100b78987209417d81ffad5d45719e8a78a5730b6b8e22b98c73b6ca927a001fe6b022004b48edf88370fa001ae9423561762cbdd489b619ab82fcab64852e08358c7b0014c4752210200e5782241ce24af725f2e823dfcc325101cec604e422566ba5ce4ca4bd5bc8c2103046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e52aeffffffff0264000000000000001976a91404a31ae84a152ca773728761b7260726d8aeff8c88ac0100000000000000b83701000000000017a91409594fe3a84e3de95831d2474ca3ca29d2f9053d87010000000000000000000000"],"id":7}'
+    curl -X POST --data '{
+        "jsonrpc":"2.0",
+        "method": "signmultisigtx",
+        "id":7,
+        "params":[
+            "testam",
+            "testam",
+            "--broadcast",
+            "02000000016453713104d144387553bcb0fa457f40d2dc5fb916bd9e2256835a4b6de48d4c00000000b500483045022100cbfdda943648344dc03fd92a905072082af93dfd4f166e3d1bb258e3437069790220321ee22c6a2543392909e21cd347d009a6d32173c23700424b45b4592d4075e3014c69522102729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b92103d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e2103f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e0253aeffffffff02100d0000000000001976a9146a20e940e8d7be0a49c598e91fa79c8b36e5353588ac0100000000000000d0fb01000000000017a91457e1a19e5ee4c0065f8fd76b0351fa145e44435a87010000000000000000000000"
+        ]}' http://127.0.0.1:8820/rpc/v2
 
     // Response
     {
-        "jsonrpc": "2.0", 
-        "id": 7, 
-        "result":
+        "id" : 7,
+        "jsonrpc" : "2.0",
+        "result" :
         {
-            "hex": "02000000016164c4ccd70b57a9d7b956d63bf0d0c9bccb72cfaba49891fa9e833adacb65a401000000db00473044022042ccd72c3ce0f7bc34d4507964d6442877165e9efd8c45ca1b3f2721331f48f102200e5c1402d2775e87d258aa60feac3d79b2ba377e6665104196ad9ca75dc1c30b01483045022100b78987209417d81ffad5d45719e8a78a5730b6b8e22b98c73b6ca927a001fe6b022004b48edf88370fa001ae9423561762cbdd489b619ab82fcab64852e08358c7b0014c4752210200e5782241ce24af725f2e823dfcc325101cec604e422566ba5ce4ca4bd5bc8c2103046e1c2777cfa064932a2f4c12f8dd307c1702c9cd77d14c48daf134627e355e52aeffffffff0264000000000000001976a91404a31ae84a152ca773728761b7260726d8aeff8c88ac0100000000000000b83701000000000017a91409594fe3a84e3de95831d2474ca3ca29d2f9053d87010000000000000000000000"
+            "hex" : "02000000016453713104d144387553bcb0fa457f40d2dc5fb916bd9e2256835a4b6de48d4c00000000fdfd0000483045022100cbfdda943648344dc03fd92a905072082af93dfd4f166e3d1bb258e3437069790220321ee22c6a2543392909e21cd347d009a6d32173c23700424b45b4592d4075e3014730440220018b6a113d89de18b6c3c7090758cf9e4ca24e7762a2796b872bf6d2d1015b96022046b4518aa9451e617dff9467db7fe0c0d45811d0884faed51e343fec2c4579ff014c69522102729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b92103d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e2103f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e0253aeffffffff02100d0000000000001976a9146a20e940e8d7be0a49c598e91fa79c8b36e5353588ac0100000000000000d0fb01000000000017a91457e1a19e5ee4c0065f8fd76b0351fa145e44435a87010000000000000000000000"
         }
     }
     ```
