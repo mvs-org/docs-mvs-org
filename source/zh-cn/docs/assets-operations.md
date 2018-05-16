@@ -120,7 +120,7 @@ $ mvs-cli sendassetfrom test1 passwd1 MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ MQTAjXo
 `transfercert`
 该命令所需五个参数依次为：帐户名，密码，接收did，资产符号，证书类型
 ```bash
-$ mvs-cli transfercert test1 passwd1 testdid KOK -c ISSUE
+$ mvs-cli transfercert test1 passwd1 testdid KOK ISSUE
 ```
 目前仅仅支持“DOMAIN”、“ISSUE”、“NAMING”类型的证书。
 
@@ -370,7 +370,6 @@ Info: transfercert
 
 -h [--help]          Get a description and instructions for this command.
 -f [--fee]           Transaction fee. defaults to 10000 ETP bits
--c [--cert]          Asset cert type name, "ISSUE", "DOMAIN" and "NAMING" are supported now.
 
 位置参数：
 
@@ -378,6 +377,7 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 TODID                From did
 SYMBOL               Asset cert symbol
+CERT                 Asset cert type name. eg. "ISSUE", "DOMAIN" or "NAMING"
 ```
 
 ***

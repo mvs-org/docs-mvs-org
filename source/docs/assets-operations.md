@@ -138,7 +138,7 @@ Both of the above two commands can use `--fee integer_value` to specify fees. Th
 `transfercert`
 It needs the following paramenters: account_name, account_passwd, to_did, asset_symbol, cert_type_name
 ```bash
-$ mvs-cli transfercert test1 passwd1 testdid KOK -c ISSUE
+$ mvs-cli transfercert test1 passwd1 testdid KOK ISSUE
 ```
 "ISSUE", "DOMAIN" and "NAMING" cert type names are supported now。
 
@@ -397,7 +397,6 @@ Options (named):
 
 -h [--help]          Get a description and instructions for this command.
 -f [--fee]           Transaction fee. defaults to 10000 ETP bits
--c [--cert]          Asset cert type name, "ISSUE", "DOMAIN" and "NAMING" are supported now.
 
 Arguments (positional):
 
@@ -405,6 +404,7 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 TODID                Target did
 SYMBOL               Asset cert symbol
+CERT                 Asset cert type name. eg. "ISSUE", "DOMAIN" or "NAMING"
 ```
 
 ***

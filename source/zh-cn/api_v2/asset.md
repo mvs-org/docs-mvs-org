@@ -1105,12 +1105,12 @@ comments: false
 * ### `transfercert`
     * Parameters (optional)
     1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
-    2. `-c` or `[--cert]` Asset cert type name, "ISSUE", "DOMAIN" and "NAMING" are supported now.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `TODID` target did
     4. `SYMBOL` asset symbol
+    5. `CERT` Asset cert type name. eg. "ISSUE", "DOMAIN" or "NAMING"
 
     ```js
     params:[
@@ -1118,7 +1118,7 @@ comments: false
         "ACCOUNTAUTH",
         "TODID",
         "SYMBOL",
-        "cert"
+        "CERT"
     ]
      ```
     * Returns
@@ -1136,9 +1136,7 @@ comments: false
             "123456",
             "testdid01",
             "MVS.NAMINGRIGHT",
-            {
-                "cert":"ISSUE"
-            }
+            "ISSUE"
         ]
     }' http://127.0.0.1:8820/rpc/v2
 
