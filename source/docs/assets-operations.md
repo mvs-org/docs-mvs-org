@@ -367,7 +367,7 @@ ACCOUNTAUTH          Account password(authorization) required.
 ### issuecert
 ```
 Usage: mvs-cli issuecert [-h] [--fee value] ACCOUNTNAME
-ACCOUNTAUTH TODID SYMBOL -c CERT
+ACCOUNTAUTH TODID SYMBOL CERT
 
 Info: issuecert
 
@@ -381,15 +381,15 @@ Arguments (positional)
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 TODID                Target did
-SYMBOL               asset cert symbol
--c [--cert]          asset cert type name, "NAMING" is supported now.
+SYMBOL               Asset cert symbol
+CERT                 Asset cert type name, "NAMING" is supported now.
 ```
 
 ***
 ### transfercert
 ```
 Usage: mvs-cli transfercert [-h] [--fee value] ACCOUNTNAME
-ACCOUNTAUTH TODID SYMBOL -c CERT
+ACCOUNTAUTH TODID SYMBOL CERT
 
 Info: transfercert
 
