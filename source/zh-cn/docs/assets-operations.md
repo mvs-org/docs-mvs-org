@@ -121,9 +121,8 @@ $ mvs-cli sendassetfrom test1 passwd1 MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ MQTAjXo
 该命令所需五个参数依次为：帐户名，密码，接收did，资产符号，证书类型
 ```bash
 $ mvs-cli transfercert test1 passwd1 testdid KOK -c ISSUE
-$ mvs-cli transfercert test1 passwd1 testdid KOK -c DOMAIN -c ISSUE
 ```
-支持一次转移多种类型的同名证书，目前仅仅支持“DOMAIN”、“ISSUE”、“NAMING”类型的证书。
+目前仅仅支持“DOMAIN”、“ISSUE”、“NAMING”类型的证书。
 
 ## 颁发证书
 `issuecert`
@@ -371,7 +370,7 @@ Info: transfercert
 
 -h [--help]          Get a description and instructions for this command.
 -f [--fee]           Transaction fee. defaults to 10000 ETP bits
--c [--cert]          Asset cert type name(s), "ISSUE", "DOMAIN" and "NAMING" are supported now.
+-c [--cert]          Asset cert type name, "ISSUE", "DOMAIN" and "NAMING" are supported now.
 
 位置参数：
 
@@ -380,7 +379,6 @@ ACCOUNTAUTH          Account password(authorization) required.
 TODID                From did
 SYMBOL               Asset cert symbol
 ```
-**注： 支持一次转移多种类型的同名证书。**
 
 ***
 ### 销毁资产
@@ -510,10 +508,10 @@ Attenuation model is an advanced lock mechanism. This model will lock some speci
 "symbol" : 证书名字。
 "address"： 证书所在地址
 "owner"：证书拥有者的did
-"certs" : 证书类型，可以是多个证书类型的并集。目前仅支持如下类型：
-> ISSUE：发行证书，十进制值为 1，发布资产时自动获得该资产的发行证书，拥有发行证书才能增发相应的资产
-> DOMAIN：域名证书，十进制值为 2，发布资产时获得，其名字为资产名字（若资产名字中不包含"."）或第一个"."号之前的部分
-> NAMING：冠名权证书，十进制值 4，域名证书的所有者可以通过 <code>issuecert</code> 颁发二级域名的冠名权证书
+"cert" : 证书类型。目前仅支持如下类型：
+> ISSUE：发行证书，发布资产时自动获得该资产的发行证书，拥有发行证书才能增发相应的资产
+> DOMAIN：域名证书，发布资产时获得，其名字为资产名字（若资产名字中不包含"."）或第一个"."号之前的部分
+> NAMING：冠名权证书，域名证书的所有者可以通过 <code>issuecert</code> 颁发二级域名的冠名权证书
 
 **注： 并非所有的资产名字都含有有效的域名。示例：资产名字".MVS.TST"就没有有效域名，因此发行该名字的资产时不会产生域名证书。**
 
@@ -524,7 +522,7 @@ $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
     [
         {
             "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
-            "certs" : 1,
+            "cert" : "ISSUE",
             "owner" : "testdid",
             "symbol" : "A1"
         }
@@ -624,7 +622,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
 ```
 {
     # asset cert types. certs may combines many cert types.
-    "certs" : 1,
+    "cert" : "ISSUE",
 
     # asset cert address.
     "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
@@ -753,7 +751,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issue", "params":["te
                     "attachment" :
                     {
                         "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
-                        "certs" : 1,
+                        "cert" : "ISSUE",
                         "owner" : "testdid",
                         "symbol" : "A1",
                         "type" : "asset-cert"
@@ -768,7 +766,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issue", "params":["te
                     "attachment" :
                     {
                         "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
-                        "certs" : 2,
+                        "cert" : "DOMAIN",
                         "owner" : "testdid",
                         "symbol" : "A1",
                         "type" : "asset-cert"
@@ -950,7 +948,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"secondaryissue", "par
                     "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                     "attachment" :
                     {
-                        "certs" : 1,
+                        "cert" : "ISSUE",
                         "owner" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                         "symbol" : "A1",
                         "type" : "asset-cert"

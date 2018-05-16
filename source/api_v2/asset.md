@@ -225,7 +225,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                            "certs" : 1,
+                            "cert" : "ISSUE",
                             "owner" : "testdid01",
                             "symbol" : "MVS.TST",
                             "type" : "asset-cert"
@@ -240,7 +240,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                            "certs" : 2,
+                            "cert" : "DOMAIN",
                             "owner" : "testdid01",
                             "symbol" : "MVS",
                             "type" : "asset-cert"
@@ -350,7 +350,7 @@ comments: false
             [
                 {
                     "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "certs" : 1,
+                    "cert" : "ISSUE",
                     "owner" : "testdid01",
                     "symbol" : "MVS.TST"
                 }
@@ -447,7 +447,7 @@ comments: false
             [
                 {
                     "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "certs" : 2,
+                    "cert" : "DOMAIN",
                     "owner" : "testdid01",
                     "symbol" : "MVS"
                 }
@@ -841,7 +841,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                            "certs" : 1,
+                            "cert" : "ISSUE",
                             "owner" : "testdid01",
                             "symbol" : "MVS.TST",
                             "type" : "asset-cert"
@@ -950,7 +950,7 @@ comments: false
                             "attachment" :
                             {
                                 "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                                "certs" : 1,
+                                "cert" : "ISSUE",
                                 "owner" : "testdid01",
                                 "symbol" : "MVS.TST",
                                 "type" : "asset-cert"
@@ -1057,7 +1057,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
-                            "certs" : 4,
+                            "cert" : "NAMING",
                             "owner" : "testdid02",
                             "symbol" : "MVS.NAMINGRIGHT",
                             "type" : "asset-cert"
@@ -1072,7 +1072,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                            "certs" : 2,
+                            "cert" : "DOMAIN",
                             "owner" : "testdid01",
                             "symbol" : "MVS",
                             "type" : "asset-cert"
@@ -1105,7 +1105,7 @@ comments: false
 * ### `transfercert`
     * Parameters (optional)
     1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
-    2. `-c` or `[--cert]` Asset cert type name(s), "ISSUE", "DOMAIN" and "NAMING" are supported now.
+    2. `-c` or `[--cert]` Asset cert type name, "ISSUE", "DOMAIN" and "NAMING" are supported now.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
@@ -1137,7 +1137,7 @@ comments: false
             "testdid01",
             "MVS.NAMINGRIGHT",
             {
-                "cert":["ISSUE", "NAMING"]
+                "cert":"ISSUE"
             }
         ]
     }' http://127.0.0.1:8820/rpc/v2
@@ -1188,18 +1188,33 @@ comments: false
                 "outputs" :
                 [
                     {
-                        "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
+                        "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
                         "attachment" :
                         {
-                            "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
-                            "certs" : 5,
+                            "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                            "cert" : "DOMAIN",
                             "owner" : "testdid02",
-                            "symbol" : "MVS.NAMINGRIGHT",
+                            "symbol" : "MVS",
                             "type" : "asset-cert"
                         },
                         "index" : 0,
                         "locked_height_range" : 0,
-                        "script" : "dup hash160 [ dae1cde292d5b762c49ecdb18900e8e115df9695 ] equalverify checksig",
+                        "script" : "dup hash160 [ 830aa1718fc50ef867aa15bb8e4b3354a6b86bf1 ] equalverify checksig",
+                        "value" : 0
+                    },
+                    {
+                        "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
+                        "attachment" :
+                        {
+                            "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
+                            "cert" : "NAMING",
+                            "owner" : "testdid01",
+                            "symbol" : "MVS.NAMINGRIGHT",
+                            "type" : "asset-cert"
+                        },
+                        "index" : 1,
+                        "locked_height_range" : 0,
+                        "script" : "dup hash160 [ 830aa1718fc50ef867aa15bb8e4b3354a6b86bf1 ] equalverify checksig",
                         "value" : 0
                     },
                     {
@@ -1208,7 +1223,7 @@ comments: false
                         {
                             "type" : "etp"
                         },
-                        "index" : 1,
+                        "index" : 2,
                         "locked_height_range" : 0,
                         "script" : "dup hash160 [ 7f8c4bf15a7c4183ea69d853626be85e9336e09e ] equalverify checksig",
                         "value" : 299990000
