@@ -120,17 +120,17 @@ $ mvs-cli sendassetfrom test1 passwd1 MKWjVNAGSDjhQmUW9VUwcBNGTscYozNopJ MQTAjXo
 `transfercert`
 该命令所需五个参数依次为：帐户名，密码，接收did，资产符号，证书类型
 ```bash
-$ mvs-cli transfercert test1 passwd1 testdid KOK ISSUE
+$ mvs-cli transfercert test1 passwd1 testdid KOK issue
 ```
-目前仅仅支持“DOMAIN”、“ISSUE”、“NAMING”类型的证书。
+目前仅仅支持“domain”、“issue”、“naming”类型的证书。
 
 ## 颁发证书
 `issuecert`
 该命令所需五个参数依次为：帐户名，密码，接收did，资产符号，证书类型
 ```bash
-$ mvs-cli issuecert test1 passwd1 testdid KOK.MUSIC -c NAMING
+$ mvs-cli issuecert test1 passwd1 testdid KOK.MUSIC -c naming
 ```
-目前仅仅支持“NAMING”类型的证书。
+目前仅仅支持“naming”类型的证书。
 
 ##
 ## 高级 API 使用说明
@@ -258,7 +258,7 @@ SYMBOL               issued asset symbol
 ```
 **注： the asset is issued to the address of asset issuer.**
 **every asset can only be issued once, and with symbol not already exists in blockchain.**
-**when issue asset, the corresponding asset ISSUE cert will be generated.**
+**when issue asset, the corresponding asset issue cert will be generated.**
 **if the DIMAIN cert does not exist in blockchain, then DIMAIN cert will be generated too.**
 
 ***
@@ -355,7 +355,7 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 TODID                Target did
 SYMBOL               Asset cert symbol
-CERT                 Asset cert type, "NAMING" is supported now.
+CERT                 Asset cert type, "naming" is supported now.
 ```
 
 ***
@@ -377,7 +377,7 @@ ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 TODID                From did
 SYMBOL               Asset cert symbol
-CERT                 Asset cert type name. eg. "ISSUE", "DOMAIN" or "NAMING"
+CERT                 Asset cert type name. eg. "issue", "domain" or "naming"
 ```
 
 ***
@@ -429,7 +429,7 @@ secondaryissue must satisfy the folllowing conditions
 2. consider the threshold
     the target address must have specified name/symbol asset of quantity value greater than or equal to threshold percentage.
 3. consider the asset cert
-    the target address must have ISSUE asset cert of specified name/symbol asset.
+    the target address must have issue asset cert of specified name/symbol asset.
 
 ***
 
@@ -509,9 +509,9 @@ Attenuation model is an advanced lock mechanism. This model will lock some speci
 "address"： 证书所在地址
 "owner"：证书拥有者的did
 "cert" : 证书类型。目前仅支持如下类型：
-> ISSUE：发行证书，发布资产时自动获得该资产的发行证书，拥有发行证书才能增发相应的资产
-> DOMAIN：域名证书，发布资产时获得，其名字为资产名字（若资产名字中不包含"."）或第一个"."号之前的部分
-> NAMING：冠名权证书，域名证书的所有者可以通过 <code>issuecert</code> 颁发二级域名的冠名权证书
+> issue：发行证书，发布资产时自动获得该资产的发行证书，拥有发行证书才能增发相应的资产
+> domain：域名证书，发布资产时获得，其名字为资产名字（若资产名字中不包含"."）或第一个"."号之前的部分
+> naming：冠名权证书，域名证书的所有者可以通过 <code>issuecert</code> 颁发二级域名的冠名权证书
 
 **注： 并非所有的资产名字都含有有效的域名。示例：资产名字".MVS.TST"就没有有效域名，因此发行该名字的资产时不会产生域名证书。**
 
@@ -522,7 +522,7 @@ $ ./bin/mvs-cli getaccountasset --cert test1 passwd1
     [
         {
             "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
-            "cert" : "ISSUE",
+            "cert" : "issue",
             "owner" : "testdid",
             "symbol" : "A1"
         }
@@ -622,7 +622,7 @@ _use # comment to explain each key-value pair, these lines is not content of jso
 ```
 {
     # asset cert types. certs may combines many cert types.
-    "cert" : "ISSUE",
+    "cert" : "issue",
 
     # asset cert address.
     "address" : "MH6nu3JA1sdkjWFhcYGx42X9ztvStWWG3S",
@@ -751,7 +751,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issue", "params":["te
                     "attachment" :
                     {
                         "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
-                        "cert" : "ISSUE",
+                        "cert" : "issue",
                         "owner" : "testdid",
                         "symbol" : "A1",
                         "type" : "asset-cert"
@@ -766,7 +766,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"issue", "params":["te
                     "attachment" :
                     {
                         "address" : "MCy2N6BSrBZ9f2X1GS5KYrvvKLTVzvZCDg",
-                        "cert" : "DOMAIN",
+                        "cert" : "domain",
                         "owner" : "testdid",
                         "symbol" : "A1",
                         "type" : "asset-cert"
@@ -948,7 +948,7 @@ curl -X POST --data '{"id":125, "jsonrpc":"2.0", "method":"secondaryissue", "par
                     "address" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                     "attachment" :
                     {
-                        "cert" : "ISSUE",
+                        "cert" : "issue",
                         "owner" : "M8iiHdPdTyPfyQY8464bDso7b421JqdShE",
                         "symbol" : "A1",
                         "type" : "asset-cert"

@@ -225,7 +225,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                            "cert" : "ISSUE",
+                            "cert" : "issue",
                             "owner" : "testdid01",
                             "symbol" : "MVS.TST",
                             "type" : "asset-cert"
@@ -240,7 +240,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                            "cert" : "DOMAIN",
+                            "cert" : "domain",
                             "owner" : "testdid01",
                             "symbol" : "MVS",
                             "type" : "asset-cert"
@@ -350,7 +350,7 @@ comments: false
             [
                 {
                     "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "cert" : "ISSUE",
+                    "cert" : "issue",
                     "owner" : "testdid01",
                     "symbol" : "MVS.TST"
                 }
@@ -447,7 +447,7 @@ comments: false
             [
                 {
                     "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "cert" : "DOMAIN",
+                    "cert" : "domain",
                     "owner" : "testdid01",
                     "symbol" : "MVS"
                 }
@@ -841,7 +841,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                            "cert" : "ISSUE",
+                            "cert" : "issue",
                             "owner" : "testdid01",
                             "symbol" : "MVS.TST",
                             "type" : "asset-cert"
@@ -950,7 +950,7 @@ comments: false
                             "attachment" :
                             {
                                 "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                                "cert" : "ISSUE",
+                                "cert" : "issue",
                                 "owner" : "testdid01",
                                 "symbol" : "MVS.TST",
                                 "type" : "asset-cert"
@@ -988,7 +988,7 @@ comments: false
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `TODID` target did
     4. `SYMBOL` asset symbol
-    5. `CERT` Asset cert type name. eg. NAMING
+    5. `CERT` Asset cert type name. eg. naming
     ```js
     params:[
         "ACCOUNTNAME",
@@ -1013,7 +1013,7 @@ comments: false
             "123456",
             "testdid02",
             "MVS.NAMINGRIGHT",
-            "NAMING"
+            "naming"
             ]
     }' http://127.0.0.1:8820/rpc/v2
 
@@ -1057,7 +1057,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
-                            "cert" : "NAMING",
+                            "cert" : "naming",
                             "owner" : "testdid02",
                             "symbol" : "MVS.NAMINGRIGHT",
                             "type" : "asset-cert"
@@ -1072,7 +1072,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                            "cert" : "DOMAIN",
+                            "cert" : "domain",
                             "owner" : "testdid01",
                             "symbol" : "MVS",
                             "type" : "asset-cert"
@@ -1110,7 +1110,7 @@ comments: false
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `TODID` target did
     4. `SYMBOL` asset symbol
-    5. `CERT` Asset cert type name. eg. "ISSUE", "DOMAIN" or "NAMING"
+    5. `CERT` Asset cert type name. eg. "issue", "domain" or "naming"
 
     ```js
     params:[
@@ -1136,7 +1136,7 @@ comments: false
             "123456",
             "testdid01",
             "MVS.NAMINGRIGHT",
-            "ISSUE"
+            "issue"
         ]
     }' http://127.0.0.1:8820/rpc/v2
 
@@ -1190,7 +1190,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                            "cert" : "DOMAIN",
+                            "cert" : "domain",
                             "owner" : "testdid02",
                             "symbol" : "MVS",
                             "type" : "asset-cert"
@@ -1205,7 +1205,7 @@ comments: false
                         "attachment" :
                         {
                             "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
-                            "cert" : "NAMING",
+                            "cert" : "naming",
                             "owner" : "testdid01",
                             "symbol" : "MVS.NAMINGRIGHT",
                             "type" : "asset-cert"
