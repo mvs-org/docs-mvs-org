@@ -8,7 +8,7 @@ comments: false
 * [Build Wallet](/zh-cn/docs/build-linux.html)
 
 ## 标准程序
-1. 在Linux服务器上部署Metaverse节点。下载 [Metaverse钱包](https://mvs.org/#download)
+1. 在Linux服务器上部署Metaverse节点。下载Metaverse钱包<https://mvs.org/wallet.html>
 2. 使用mvs-cli命令执行以下步骤
 ```
 a. 创建钱包帐户

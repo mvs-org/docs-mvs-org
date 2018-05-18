@@ -2,7 +2,7 @@ title: 安装Linux版本钱包
 comments: false
 ---
 
-到官网[https://mvs.org/#download](https://mvs.org/#download)下载Linux钱包客户端, 目前支持Linux 64bit。
+到官网<https://mvs.org/wallet.html>下载Linux钱包客户端, 目前支持Linux 64bit。
 
 安装包为标准版，同时还独立提供数据包供安装。
 

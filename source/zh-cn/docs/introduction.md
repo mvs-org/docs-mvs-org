@@ -13,7 +13,7 @@ MVS全节点由两个程序和一个前端资源组成:
 * mvs-htmls: 基于浏览器的前端交互资源，angularjs实现，本资源对于开发者不是必需的;
 
 ## MVS全节点钱包下载地址
-通常在[官网](https://mvs.org#download)能够下载到最新版的MVS全节点客户端;
+通常在官网<https://mvs.org/wallet.html>能够下载到最新版的MVS全节点客户端;
 
 支持的版本:
 

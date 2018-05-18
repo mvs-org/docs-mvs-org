@@ -3,7 +3,7 @@ comments: false
 ---
 
 # 下载钱包客户端
-到官网[https://mvs.org/#download](https://mvs.org/#download)下载Windows钱包客户端，本客户端目前支持Windows 64位系统。
+到官网<https://mvs.org/wallet.html>下载Windows钱包客户端，本客户端目前支持Windows 64位系统。
 
 安装包有标准版和数据包版，数据包版为自带数据库的安装版本，可以极大节省第一次的区块同步时间，建议新用户下载安装；由于数据包版可能会覆盖原始数据，建议老用户安装标准版。请根据您的情况选择合适的安装包。
 

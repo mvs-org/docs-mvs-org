@@ -15,7 +15,7 @@ The MVS full node consists of two programs and a graphical interface:
 
 ## MVS full node wallet download address:
 
-Generally, the latest MVS full node client can be downloaded from Metaverse's official website (https://mvs.org#download)
+Generally, the latest MVS full node client can be downloaded from Metaverse's official website <https://mvs.org/wallet.html>
 
 
 Supported versions:

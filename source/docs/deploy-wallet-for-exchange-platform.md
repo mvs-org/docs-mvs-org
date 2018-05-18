@@ -7,7 +7,7 @@ comments: false
 * [Build Wallet](https://github.com/mvs-org/metaverse)
 
 ## Standard Procedure
-1. Deploy a Metaverse node on a Linux server. Download [Metaverse wallet binary](https://mvs.org/#download)
+1. Deploy a Metaverse node on a Linux server. Download Metaverse wallet binary <https://mvs.org/wallet.html>
 2. Do the following steps using mvs-cli commands
 ```
 a. Create a account in wallet

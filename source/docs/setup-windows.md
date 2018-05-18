@@ -3,7 +3,7 @@ comments: false
 ---
 
 # Download 
-Please download the wallet installation package from Metaverse’s official website [https://mvs.org/#download](https://mvs.org/#download). The wallet is now support Windows 64bit system.
+Please download the wallet installation package from Metaverse’s official website <https://mvs.org/wallet.html>. The wallet is now support Windows 64bit system.
 
 There are standard and data packet versions of the installation package. The packet version comes with a database, which greatly reduces the time required for initial block syncing. We recommend that new users download and install this version; existing users are recommended to install the standard version, because the packet version may overwrite some raw data. Please choose the appropriate installation package.
 
