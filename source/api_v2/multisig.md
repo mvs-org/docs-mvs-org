@@ -192,6 +192,8 @@ Related command:
     createmultisigtx
     * Parameters (optional)
     1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
+    2. `-s` or `[--symbol]` asset name, not specify this option for etp tx
+    3. `-t` or `[--type]`   Transaction type, defaults to 0. 0 -- transfer etp, 3 -- transfer asset
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
@@ -233,6 +235,41 @@ Related command:
         "result" :
         {
             "02000000016453713104d144387553bcb0fa457f40d2dc5fb916bd9e2256835a4b6de48d4c00000000b500483045022100cbfdda943648344dc03fd92a905072082af93dfd4f166e3d1bb258e3437069790220321ee22c6a2543392909e21cd347d009a6d32173c23700424b45b4592d4075e3014c69522102729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b92103d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e2103f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e0253aeffffffff02100d0000000000001976a9146a20e940e8d7be0a49c598e91fa79c8b36e5353588ac0100000000000000d0fb01000000000017a91457e1a19e5ee4c0065f8fd76b0351fa145e44435a87010000000000000000000000"
+        }
+    }
+    ```
+
+    * Example 2, send asset
+    ```bash
+    mvs-cli createmultisigtx -s ALICE20180518T111709.ASSET -t 3 test 123456 34EHRzpwKmFno8zPi3YvXBgqwzZGbYhS3a MKow3n2psKMwLuzufxoJzPycTyEiUcFJSQ 333
+    ```
+
+    // Request
+    ```js
+    curl -X POST --data '{
+        "jsonrpc":"2.0",
+        "method":"createmultisigtx",
+        "id":45,
+        "params":[
+            "test",
+            "123456",
+            "34EHRzpwKmFno8zPi3YvXBgqwzZGbYhS3a",
+            "MKow3n2psKMwLuzufxoJzPycTyEiUcFJSQ",
+            333,
+            {
+                "symbol":"ALICE20180518T111709.ASSET",
+                "type":3
+            }
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 45,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
+            "02000000027228f5e854b565c2abc0c76d03be2b35aee4e6ee1d5df31bf586944b7a0230dc000000009300483045022100e483f215974cd4033887e48bb1a8db7dc5d7ed189078a8a1769efa643f7b8ea202205f4c803a979c910fcc23acfffebe0c7cb6c3e5354b8eaa0b5ba52159cdeda5ba014c47522102f611da5c3c78472855aad6af94b6e56521999f3884bc25165720349556b823062103d54aa74f5832252992cc61ce62bc91e66f2715720cb15256d1bf132fef1f777852aeffffffff1fef544624891be0b3b7e3374a6ebeba3b989b8609f1812e2333d1ffb756e7cc0000000092004730440220243819f923a1d2bea11c2da729a746886ab1d6deef980d8effc64e2acd472b580220042ff9c7e7df3c6911f0e52283b053b00452acb8be4bfc90aed9a98f24f83783014c47522102f611da5c3c78472855aad6af94b6e56521999f3884bc25165720349556b823062103d54aa74f5832252992cc61ce62bc91e66f2715720cb15256d1bf132fef1f777852aeffffffff0300000000000000001976a91482a46ca6e0ac21a3b41eff496a57a902ec47654788ac0100000002000000020000001a414c4943453230313830353138543131313730392e41535345544d010000000000003ec642480000000017a9141bda177776546d2766bcfac2fc7a87cae746de1e870100000000000000000000000000000017a9141bda177776546d2766bcfac2fc7a87cae746de1e870100000002000000020000001a414c4943453230313830353138543131313730392e41535345549b0200000000000000000000"
         }
     }
     ```
