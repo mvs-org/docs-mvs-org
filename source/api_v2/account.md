@@ -199,43 +199,43 @@ comments: false
 * ### `importkeyfile`
     import account from file
     * Parameters (positional)
-    1. `FILE` account info file
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization. This is also used to decrypt the keyfile.
+    3. `FILE` key file path.
+    4. `FILECONTENT` key file content. This will omit the `FILE` argument if specified.
     ```js
     params:[
-        "FILE"
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
+        "FILE",
+        "FILECONTENT"
     ]
      ```
     * Returns
-    `Object` - 
-    1. `name` - account name
-    2. `address-count` - address count generated
-    3. `unissued-asset-count` - unissued asset count
+    `null` - 
 
     * Example
     ```js
-    // Request
+    // import key file by file path
     curl -X POST --data '{"jsonrpc":"2.0","method":"importkeyfile",
-    "params":["~/.metaverse/mvs-test.keystore"],"id":10}'
+    "params":["test", "123456", "~/.metaverse/mvs-test.json"],"id":10}'
 
     // Response
     {
         "jsonrpc": "2.0", 
         "id": 10, 
-        "result": {
-            "unissued-asset-count": "0", 
-            "name": "test", 
-            "address-count": "2"
-        }
+        "result": null
     }
+
     ```
 
 ***
 
 * ### `dumpkeyfile`
-    export account as file, file name is `mvs-$accountname.keystore`.
+    export account as file, file name is `mvs_keystore_$accountname.json`.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
-    2. `ACCOUNTAUTH` Account password/authorization.
+    2. `ACCOUNTAUTH` Account password/authorization. This is also used to encrypt the keyfile.
     3. `LASTWORD` The last word of your master private-key phrase.
     4. `DESTINATION` account info storage file directory, **optional, default to ~/.metaverse/mvs-htmls/keys/**
     ```js
@@ -259,7 +259,7 @@ comments: false
     {
         "jsonrpc": "2.0", 
         "id": 4, 
-        "result": "~/.metaverse/mvs-test.keystore"
+        "result": "~/.metaverse/mvs_keystore_test.json"
     }
     ```
 
