@@ -2,8 +2,6 @@ title: Introduction
 comments: false
 ---
 
-MVS，short for Metaverse
-
 ## Metaverse full node introduction
 Full nodes are nodes that store the entire Metaverse blockchain and are connected in a P2P network architecture. In the blockchain network, all full nodes are treated as equals, and serve as both clients and servers. 
 

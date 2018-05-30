@@ -21,28 +21,30 @@ page:
 sidebar:
   docs:
     getting_started: Get Started
-    overview: Quick start
-    mainnet_info: Mainnet information
+    overview: Quick Start
+    mainnet_info: Mainnet Information
     desktop: Desktop
     mobile: Mobile
     linux_setup: Setup on Linux
-    config_file: Config file
-    command_line: Command line
+    config_file: Config File
+    command_line: Command-Line
+
     features: Features
     issue_token: Issue token
     transfer_token: Transfer token
     onchain_deposit: Onchain deposit
-    full_node_usage: Full node wallet
+
+    full_node_usage: Full Node Wallet
     introduction: Introduction
-    options: Options
+    options: Start Running mvsd
     testnet: Testnet
-    commands_reference: Commands reference
-    private_chain: Private chain
-    platform_deployment: Deployment for platform
-    deploy_wallet: Deploy wallet on server
+    commands_reference: Commands Reference
+    private_chain: Private Chain
+    platform_deployment: Deployment For Platform
+    deploy_wallet: Rapid Deployment
     fronzen_etp: Recognize Fronzen ETP
     asset_operation: Metaverse Smart Token 
-    reset_mvs: Reset MVS
+    reset_mvs: Reset MVS Wallet
 
   baas:
     introduction: Introduction

@@ -2,8 +2,6 @@ title: 介绍
 comments: false
 ---
 
-本文Metaverse简称为MVS;
-
 ## MVS全节点介绍
 
 全节点（full nodes）是存储 MVS 区块链全部数据的节点，通过 P2P 的方式与区块链网络连接，在区块链网络中，所有的全节点都是平等的，既充当客户端又充当服务器。

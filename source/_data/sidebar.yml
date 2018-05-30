@@ -13,10 +13,10 @@ docs:
   full_node_usage:
     introduction: introduction.html
     linux_setup: setup-linux.html
+    options: options.html
     config_file: config-file.html
     command_line: command-line.html
     reset_mvs: reset-mvs.html
-    options: options.html
     testnet: testnet.html
     private_chain: private-chain.html
 

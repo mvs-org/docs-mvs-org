@@ -32,11 +32,4 @@ Click the "transfer" command shown next to your assets. Fill in transfer details
 ![图片29](http://ozr028g59.bkt.clouddn.com/17-11-21/59988969.jpg)
 
 
-# Metaverse full node wallet introduction
-Full nodes are nodes that store the entire Metaverse blockchain and are connected in a P2P network architecture. In the blockchain network, all full nodes are treated as equals, and serve as both clients and servers. 
-
-The MVS full node consists of two programs and a graphical interface:
-•   mvsd: The core wallet program, similar to Bitcoin’s bitcoind;
-•   mvs-cli: a command line interface, similar to Bitcoin’s bitcoin-cli
-•   mvs-htmls: a browser-based graphical user interface built with AngularJS. This GUI may not be necessary for developers. 
 

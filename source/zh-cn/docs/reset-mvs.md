@@ -1,5 +1,5 @@
 ---
-title: How To Reset Metaverse Environment?
+title: Reset MVS Wallet Environment
 date: 2017-04-18 13:44:21
 tags: Metaverse
 categories: Guide

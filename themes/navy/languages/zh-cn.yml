@@ -2,9 +2,9 @@ menu:
   docs: 文档
   api: API
   api_v2: API v2
-  whitepaper: 白皮书
   developers: 开发者
-  releases: 钱包发布
+  FAQ: FAQ
+  releases: 发布
   search: 搜索
 
 index:
@@ -28,10 +28,12 @@ sidebar:
     linux_setup: 在Linux上使用
     config_file: 配置文件
     command_line: 命令行使用
+
     features: 特性
     issue_token: 创建与发行资产
     transfer_token: 转移资产
     onchain_deposit: 链上存款(锁仓)
+
     full_node_usage: 全节点钱包
     introduction: 介绍
     options: 配置选项
@@ -41,7 +43,7 @@ sidebar:
     platform_deployment: 平台部署
     deploy_wallet: 服务端部署钱包
     fronzen_etp: 识别冻结的ETP
-    asset_operation: 元界智能资产使用说明
+    asset_operation: 元界MST使用说明
     reset_mvs: 重置钱包
 
   api:
