@@ -1,6 +1,43 @@
-title: Build On Windows
+title: How to Build MVS wallet
 comments: false
 ---
+
+Build On Linux
+------------
+## Available Linux versions
+Nearly all Linux versions support MVS full nodes’ compilation and MVS officially used Ubuntu 16.04 for compiling test.
+
+## Get the source code
+```bash
+git clone https://github.com/mvs-org/metaverse.git
+```
+
+## Refers to github.
+<https://github.com/mvs-org/metaverse/blob/master/README.md>
+
+
+Build On MacOSX
+---------
+
+## Get the source code
+```bash
+git clone https://github.com/mvs-org/metaverse.git
+```
+
+## Install Homebrew
+If you have installed Homebrew, just skip this step.
+
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+## Refers to github.
+<https://github.com/mvs-org/metaverse/blob/master/README.md>
+
+
+
+Build On Windows
+--------------
 
 ## Dependencies:
 * Microsoft Visual Studio Community 2015 With Update 3

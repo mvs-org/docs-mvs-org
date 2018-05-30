@@ -1,5 +1,43 @@
-title: Windows环境下编译
+title: 编译元界全节点钱包
 comments: false
+---
+
+Linux环境下编译
+----
+
+## 可以使用的Linux版本
+几乎所有的Linux都可进行MVS全节点钱包的编译，官方使用Ubuntu 16.04进行编译测试。
+
+## 获取源码
+```bash
+git clone https://github.com/mvs-org/metaverse.git
+```
+
+## 编译
+引用到github：
+<https://github.com/mvs-org/metaverse>
+
+
+MacOSX环境下编译
+----
+
+## 获取源码
+```bash
+git clone https://github.com/mvs-org/metaverse.git
+```
+
+## 安装Homebrew
+如果已经安装可以跳过此步骤。
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+## 编译
+引用到github：
+<https://github.com/mvs-org/metaverse>
+
+
+Windows环境下编译
 ---
 
 ## Dependencies:

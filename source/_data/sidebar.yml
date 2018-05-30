@@ -1,25 +1,25 @@
 docs:
   getting_started:
     overview: index.html
+    desktop: desktop.html
+    mobile: mobile.html
     mainnet_info : mainnet-info.html
-    windows_setup: setup-windows.html
-    macosx_setup: setup-macosx.html
-    linux_setup: setup-linux.html
-    config_file: config-file.html
-    command_line: command-line.html
+
   features:
     issue_token: features-issue-token.html
     transfer_token: features-transfer-token.html
     onchain_deposit: features-onchain-deposit.html
-  advanced_usage:
+
+  full_node_usage:
     introduction: introduction.html
-    windows_build: build-windows.html
-    macos_build: build-macosx.html
-    linux_build: build-linux.html
+    linux_setup: setup-linux.html
+    config_file: config-file.html
+    command_line: command-line.html
+    reset_mvs: reset-mvs.html
     options: options.html
     testnet: testnet.html
-    reset_mvs: reset-mvs.html
     private_chain: private-chain.html
+
   platform_deployment:
     deploy_wallet: deploy-wallet-for-exchange-platform.html
     fronzen_etp: recognize-fronzen-ETP-transaction-outputs.html
@@ -83,6 +83,7 @@ developers:
     introduction: index.html
     mvs_whitepaper: mvs-whitepaper.html
     mvs_avatar_whitepaper: mvs-avatar-whitepaper.html
+    build_mvs: build-mvs.html
 
   digital_asset:
     introduction: da-index.html
