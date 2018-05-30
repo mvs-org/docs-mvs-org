@@ -72,27 +72,36 @@ api_v2:
   xxx10:
     identity: identity.html
 
-
+faq:
+  faq_index:
+    ETP: index.html
+    MST: mst.html
+    Avatar: avatar.html
 
 developers:
   overview:
     introduction: index.html
-    utxo_limitation: utxo-limitation.html
+    mvs_whitepaper: mvs-whitepaper.html
+    mvs_avatar_whitepaper: mvs-avatar-whitepaper.html
+
   digital_asset:
     introduction: da-index.html
-    da_issue_token: da-issue-token.html
-    da_onchain_deposit: da-onchain-deposit.html
+    da_issue: da-issue.html
+    da_secondary_issue: da-secondary-issue.html
+    da_attenuation: da-attenuation.html
+    da_multi_sig: da-multi-sig.html
+    da_certification: da-certification.html
+    da_burn: da-burn.html
+    da_programmable: da-programmable.html
+
   digital_identity:
     introduction: di-index.html
-  base_layer:
-    account_model: account-model.html
-    consensus_and_mining: consensus-and-mining.html
-    database: database.html
-    httpserver: httpserver.html
-    p2p_network: p2p-network.html
-    utxo_and_script: utxo-and-script.html
 
-whitepaper:
-    whitepaper:
-      metaverse: index.html
-      digital_identity: digital-identity.html
+  tech_guide:
+    tech_account_model: account-model.html
+    tech_consensus_and_mining: consensus-and-mining.html
+    tech_database: database.html
+    tech_httpserver: httpserver.html
+    tech_p2p_network: p2p-network.html
+    tech_utxo_and_script: utxo-and-script.html
+    tech_utxo_limitation: utxo-limitation.html

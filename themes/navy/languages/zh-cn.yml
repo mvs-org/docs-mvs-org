@@ -70,22 +70,33 @@ sidebar:
     identity: 身份
 
   developers:
-    overview: 概览
-    utxo_limitation: UTXO的限制条件
+    overview: 开发者文档概览
     introduction: 介绍
-    digital_asset: 数字资产
-    da_issue_token: 发行Token
-    da_onchain_deposit: 链上存款(锁仓)
-    digital_identity: 数字身份
-    base_layer: 底层技术
-    account_model: 账户模型
-    consensus_and_mining: 共识与挖矿
-    database: 高性能数据库
-    httpserver: Httpserver
-    p2p_network: p2p网络
-    utxo_and_script: utxo与script
+    mvs_whitepaper: 简版白皮书
+    mvs_avatar_whitepaper: 简版数字身份白皮书
 
-  whitepaper:
-    whitepaper: 白皮书
-    metaverse: 元界白皮书
-    digital_identity: 元界数字身份白皮书
+    digital_asset: 数字资产-MST
+    da_issue: 发行MST
+    da_secondary_issue: MST多次增发
+    da_attenuation: MST曲线发行
+    da_multi_sig: MST的多重签名
+    da_certification: MST的资产证书
+    da_burn: MST数量销毁
+    da_programmable:  可编程MST
+
+    digital_identity: 数字身份-Avatar
+
+    tech_guide: 技术概览
+    tech_account_model: 账户模型
+    tech_consensus_and_mining: 共识与挖矿
+    tech_database: 高性能数据库
+    tech_httpserver: Httpserver
+    tech_p2p_network: p2p网络
+    tech_utxo_and_script: utxo与script
+    tech_utxo_limitation: UTXO的限制条件
+
+  faq:
+    faq_index: FAQ
+    ETP: ETP
+    MST: MST
+    Avatar: Avatar

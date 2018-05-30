@@ -3,8 +3,8 @@ menu:
   api_v2: API v2
   baas: BaaS
   search: Search
-  whitepaper: Whitepaper
   developers : Developers
+  faq: FAQ
   releases: Releases
 
 index:
@@ -41,10 +41,10 @@ sidebar:
     testnet: Testnet
     commands_reference: Commands reference
     private_chain: Private chain
-    platform_deployment: Platform deployment
+    platform_deployment: Deployment for platform
     deploy_wallet: Deploy wallet on server
-    fronzen_etp: Identify Fronzen ETP
-    asset_operation: Asset => MST token usage
+    fronzen_etp: Recognize Fronzen ETP
+    asset_operation: Metaverse Smart Token 
     reset_mvs: Reset MVS
 
   baas:
@@ -85,22 +85,33 @@ sidebar:
     identity: Identity
 
   developers:
-    overview: Overview
-    utxo_limitation: UTXO limitation
+    overview: Developers Overview
     introduction: Introduction
-    digital_asset: Digital asset
-    da_issue_token: Issue token
-    da_onchain_deposit: Onchain deposit
-    digital_identity: Digital identity
-    base_layer: Base layer
-    account_model: Account model
-    consensus_and_mining: Consensus and mining
-    database: Database
-    httpserver: HttpServer
-    p2p_network: P2P network
-    utxo_and_script: UTXO and script
+    mvs_whitepaper: Brief MVS whitepaper
+    mvs_avatar_whitepaper: Brief Avatar whitepaper
 
-  whitepaper:
-    whitepaper: Whitepaper
-    metaverse: Metaverse Whitepaper
-    digital_identity: Digital Identity Whitepaper
+    digital_asset: Digital Asset (MST)
+    da_issue: MST Issuance
+    da_secondary_issue: MST Secondary Issuance 
+    da_attenuation: MST Conditional Offering
+    da_multi_sig: MST Multi-signature
+    da_certification: MST Domain-name&Certification
+    da_burn: MST Burn
+    da_programmable: Programmable MST
+
+    digital_identity: Digital Identity (Avatar)
+
+    tech_guide: Tech-Guide
+    tech_account_model: Account model
+    tech_consensus_and_mining: Consensus and mining
+    tech_database: Database
+    tech_httpserver: HttpServer
+    tech_p2p_network: P2P network
+    tech_utxo_and_script: UTXO and script
+    tech_utxo_limitation: UTXO limitation
+
+  faq:                                                                         
+    faq_index: FAQ
+    ETP: ETP                                                                   
+    MST: MST                                                                   
+    Avatar: Avatar
