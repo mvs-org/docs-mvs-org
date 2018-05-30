@@ -26,7 +26,6 @@ domain 和 issue 两种类型的证书在发行资产时自动颁发给发行者
 
 1. 通过命令 `createasset` 创建可以二次增发的资产
 `createasset` 命令的 `--rate` 选项的值如果为 -1（自由增发）或在范围[1, 100]之间，则创建可以二次增发的资产
-
 ```bash
 命令：
 $ mvs-cli createasset Alice passwd1 --symbol MVS.ALICE --volume 1000000000000 --description "Asset of ZhangSan." --issuer Alice --decimalnumber 8 --rate -1
@@ -47,10 +46,8 @@ $ mvs-cli createasset Alice passwd1 --symbol MVS.ALICE --volume 1000000000000 --
 	}
 }
 ```
-
 2. 通过命令 `issue` 发行资产获得证书
 从输出中可以看到 "cert" 字段为 "issue" 和 "domain" 的两种证书。
-
 ```bash
 命令：
 $ ./mvs-cli issue Alice passwd1 MVS.ALICE
@@ -511,10 +508,10 @@ $ ./mvs-cli transfercert Bob passwd1 Alice MVS.BOB issue
 查看资产命令的 `listassets`, `getasset`, `getaccountasset` 以及 `getaddressasset` 有一个 `--cert` 选项用于查看资产证书信息。
 
 资产证书信息由四个字段组成：
-> address: 证书所在地址。
-> cert: 证书类型，目前支持 "domain", "issue", "naming" 类型的证书。
-> owner: 拥有证书的数字身份。
-> symbol: 资产名字
+> address: 证书所在地址。  
+> cert: 证书类型，目前支持 "domain", "issue", "naming" 类型的证书。  
+> owner: 拥有证书的数字身份。  
+> symbol: 资产名字。  
 
 ### `getasset`
 查询全网资产证书名字或指定帐户下的资产证书信息。
