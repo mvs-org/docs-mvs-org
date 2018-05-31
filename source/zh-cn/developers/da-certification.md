@@ -1,11 +1,11 @@
-title: 元界资产证书使用说明
+title: MST的资产证书
 comments: false
 ---
 
 ## 什么是资产证书
-资产证书是元界智能资产某种权利的凭证。资产证书全网唯一，可以转移。目前支持发行权凭证相关证书，如：域名权证书、增发权证书、冠名权证书，持有相应的证书才能够发行或者增发相关的智能资产。
+资产证书是元界智能资产某种权益的凭证。资产证书具有唯一性，可以在不同数字身份之间转移。目前支持发行权凭证相关证书，如：域名权证书、增发权证书、冠名权证书。持有相应的证书才能够发行、增发相关的智能资产，或者颁发证书。
 
-在下面的范例中，将统一使用帐户名为 `Alice`，密码为 `passwd1`，数字身份为 `Alice`，地址为`测试地址`，作为演示示例。您在参考时请修改为自己的帐户名、密码、数字身份以及正确的地址，账户与数字身份可以通过 `"mvs-cli getnewaccount 帐户名 密码"` 和 `"mvs-cli issuedid 帐户名 密码 测试地址 测试did"` 生成。
+在下面的范例中，将统一使用帐户名为 `Alice`，密码为 `passwd1`，数字身份（DID）为 `Alice`，地址为`测试地址`，作为演示示例。您在参考时请修改为自己的帐户名、密码、数字身份以及正确的地址。账户与数字身份可以通过 `"mvs-cli getnewaccount 帐户名 密码"` 和 `"mvs-cli issuedid 帐户名 密码 测试地址 测试DID"` 生成。
 
 有了帐户和数字身份，如果要发布或发送资产等，需要确保相关地址下有足够的 ETP 来缴纳手续费，每发行一笔资产需要 10 ETP 的手续费。可以通过 `"mvs-cli getbalance account_name password"` 查询帐户总余额详情，也可以通过 `"mvs-cli listbalances account_name password"` 查询帐户里各个地址下的余额。
 
@@ -14,21 +14,21 @@ comments: false
 ## 资产证书的种类
 目前支持域名权、增发权、冠名权三种类型的证书：
 > **issue**: 增发权证书，只有拥有该证书的账户才可以二次增发与证书名字同名的资产。该证书在发行可以二次增发的资产时自动颁发给发行者。相关命令：`createasset` 和 `issue`。  
-> **domain**: 域名权证书，拥有该证书的账户，可以发行资产名字以该证书名字为域名的资产。比如，拥有名为 `MVS` 的域名证书的账户可以发行名为 `MVS.XYZ` 的资产。该证书在首次发行以证书名字为域名的资产时自动颁发给发行者，遵循先发先得的公平原则。比如：全网没有以名为 `MVS` 的域名证书，`Alice`发行了名为 `MVS.ALICE` 的资产，这时`Alice`就自动获得了名为 `MVS` 的域名证书，此后`Alice`可以发行名字以 `MVS.` 开头的其他资产，而`Bob`则不可以发行名字以 `MVS.` 开头的资产，除非`Alice`颁发名字以 `MVS.` 开头的冠名权证书给`Bob`。相关命令：`createasset` 和 `issue`。  
-> **naming**: 冠名权证书，拥有该证书的账户，可以发行资产名字与证书名字同名的资产。拥有域名权证书的账户可以颁发以域名权证书名字为域名的冠名权证书。比如：拥有名为 `MVS` 的域名证书的`Alice`可以颁发名为 `MVS.LISI` 的冠名权证书给`Bob`，这样`Bob`就能够发行名为 `MVS.LISI` 的资产。相关命令：`issuecert`。    
+> **domain**: 域名权证书，拥有该证书的账户，可以发行资产名字以该证书名字为域名的资产。比如，拥有名为 `MVS` 的域名证书的账户可以发行名为 `MVS.XYZ` 的资产。该证书在首次发行以证书名字为域名的资产时自动颁发给发行者，遵循先发先得的公平原则。比如：全网没有以名为 `MVS` 的域名证书，账户 `Alice` 在发行名为 `MVS.ALICE` 的资产时，`Alice`就自动获得了名为 `MVS` 的域名证书，此后`Alice`可以发行名字以 `MVS.` 开头的其他资产，而账户 `Bob` 则不可以发行名字以 `MVS.` 开头的资产，除非 `Alice` 颁发名字以 `MVS.` 开头的冠名权证书给 `Bob`。相关命令：`createasset` 和 `issue`。  
+> **naming**: 冠名权证书，拥有该证书的账户，可以发行资产名字与证书名字同名的资产。拥有域名权证书的账户可以颁发以域名权证书名字为域名的冠名权证书。比如：拥有名为 `MVS` 的域名证书的账户 `Alice` 可以颁发名为 `MVS.BOB` 的冠名权证书给账户 `Bob` 的某个数字身份，这样 `Bob` 就能够发行名为 `MVS.BOB` 的资产。相关命令：`issuecert`。    
 
-**注：发行名字以句点`.`开头的资产不会获得任何域名证书。**
+**注：发行名字以句点`.`开头的资产不会获得任何域名证书，因为该资产名字不具有有效的域名。**
 
 ## 获得资产证书
-domain 和 issue 两种类型的证书在发行资产时自动颁发给发行者。关于发行资产请参考[元界智能资产(MST)使用说明](/zh-cn/docs/assets-operations.html)，naming 证书通过命令 `issuecert` 颁发。
+域名权和增发权两种类型的证书在发行资产时自动颁发给发行者，冠名权证书通过命令 `issuecert` 颁发。关于资产发行详情请参考[MST 资产发行](/zh-cn/developers/da-issue.html)。
 
-### 获得 domain 或 issue 证书
+### 获得域名权或增发权证书
 
 1. 通过命令 `createasset` 创建可以二次增发的资产
 `createasset` 命令的 `--rate` 选项的值如果为 -1（自由增发）或在范围[1, 100]之间，则创建可以二次增发的资产
 ```bash
 命令：
-$ mvs-cli createasset Alice passwd1 --symbol MVS.ALICE --volume 1000000000000 --description "Asset of ZhangSan." --issuer Alice --decimalnumber 8 --rate -1
+$ mvs-cli createasset Alice passwd1 --symbol MVS.ALICE --volume 1000000000000 --description "Asset of Alice." --issuer Alice --decimalnumber 8 --rate -1
 
 输出：
 {
@@ -36,7 +36,7 @@ $ mvs-cli createasset Alice passwd1 --symbol MVS.ALICE --volume 1000000000000 --
 	{
 		"address" : "",
 		"decimal_number" : 8,
-		"description" : "Asset of ZhangSan.",
+		"description" : "Asset of Alice.",
 		"is_secondaryissue" : false,
 		"issuer" : "Alice",
 		"maximum_supply" : 1000000000000,
@@ -47,7 +47,7 @@ $ mvs-cli createasset Alice passwd1 --symbol MVS.ALICE --volume 1000000000000 --
 }
 ```
 2. 通过命令 `issue` 发行资产获得证书
-从输出中可以看到 "cert" 字段为 "issue" 和 "domain" 的两种证书。
+在发行名为 `MVS.ALICE` 的资产前，全网还不存在名为 `MVS` 的域名权证书，因此 `Alice` 在发行该资产后，获得了名为 `MVS` 的域名权证书。该资产具有二次增发属性，所以 `Alice` 同时还获得了与资产名字同名的增发权证书。从下面示例输出的 "outputs" 中可以看到 "cert" 字段为 "issue" 和 "domain" 的两种证书。
 ```bash
 命令：
 $ ./mvs-cli issue Alice passwd1 MVS.ALICE
@@ -109,7 +109,7 @@ $ ./mvs-cli issue Alice passwd1 MVS.ALICE
 				{
 					"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
 					"decimal_number" : 8,
-					"description" : "Asset of ZhangSan.",
+					"description" : "Asset of Alice.",
 					"from_did" : "Alice",
 					"is_secondaryissue" : false,
 					"issuer" : "Alice",
@@ -175,12 +175,12 @@ $ ./mvs-cli issue Alice passwd1 MVS.ALICE
 }
 ```
 
-### 获得 naming 证书
-拥有域名证书的账户可以通过命令 `issuecert` 给指定数字身份颁发名字以域名证书名字为域名的冠名权证书。
+### 获得域名权证书
+拥有域名权证书的账户可以通过命令 `issuecert` 给指定数字身份颁发名字以域名权证书名字为域名的冠名权证书。
 
-该命令所需五个参数依次为：帐户名，密码，接收did，资产符号，证书类型。目前仅仅支持“naming”类型的证书。
+`issuecert` 命令所需五个参数依次为：帐户名，密码，接收数字身份，资产符号，证书类型。目前仅支持 `naming` 类型的证书。
 
-下面的示例中，`Alice` 拥有名为 `MVS` 的域名证书，`Alice` 向数字身份 `Bob` 颁发名为 `MVS.BOB` 的冠名权证书。
+下面的示例中，`Alice` 拥有名为 `MVS` 的域名权证书，`Alice` 向数字身份 `Bob` 颁发名为 `MVS.BOB` 的冠名权证书。
 
 ```bash
 命令：
@@ -269,10 +269,10 @@ $ ./mvs-cli issuecert Alice passwd1 Bob MVS.BOB naming
 ```
 
 ## 使用资产证书
-证书的使用通常都是隐式的，如资产发行（`issue`）或增发（`secondaryissue`）以及上例中的颁发证书（`issuecert`），但转移证书命令 `transfercert` 列外。
+证书的使用通常都是隐式的，如资产发行（`issue`）可能会使用域名权证书或冠名权证书，资产增发（`secondaryissue`）时会使用增发权证书，以及上例中的颁发（`issuecert`）冠名权证书会使用域名权证书。但转移证书命令 `transfercert` 列外，使用该命令时需要显式指定证书名字与证书类型。
 
 ### 使用冠名权证书发行资产
-`Bob` 使用名为 `MVS.BOB` 的冠名权证书创建并发行同名的资产。
+在前面的示例中，`Alice` 向 `Bob` 颁发了名为 `MVS.BOB` 的冠名权证书，接下来 `Bob` 就使用该冠名权证书创建并发行同名的资产。由于该资产具有增发属性，所以在该资产发行后，`Bob` 获得了名为 `MVS.BOB` 的增发权证书。
 
 1. 创建资产
 ```bash
@@ -431,10 +431,9 @@ $ ./mvs-cli issue Bob passwd1 MVS.BOB
 ### 转移证书
 通过命令 `transfercert` 可以将证书转移给其它数字身份。
 
-该命令所需五个参数依次为：帐户名，密码，接收did，资产符号，证书类型。目前仅仅支持“domain”、“issue”、“naming”类型的证书。
+该命令所需五个参数依次为：帐户名，密码，接收数字身份，资产符号，证书类型。目前仅仅支持 `domain`、`issue`、`naming` 类型的证书。该命令支持多重签名，即支持从多重签名地址转出或转入证书。
 
-示例：
-`Bob` 将名为 `MVS.BOB` 的增发权证书转移给数字身份`Alice`。
+在前面的示例中，`Bob` 获得了名为 `MVS.BOB` 的增发权证书，接下来 `Bob` 将该证书转移给数字身份 `Alice`。
 ```bash
 命令：
 $ ./mvs-cli transfercert Bob passwd1 Alice MVS.BOB issue
@@ -515,7 +514,6 @@ $ ./mvs-cli transfercert Bob passwd1 Alice MVS.BOB issue
 
 ### `getasset`
 查询全网资产证书名字或指定帐户下的资产证书信息。
-
 ```
 $ ./mvs-cli getasset
 {
@@ -544,7 +542,6 @@ $ ./mvs-cli getasset --cert MVS.BOB
 
 ### `listassets`
 查询全网资产证书信息或指定帐户下的资产证书信息。
-
 ```
 $ ./mvs-cli listassets --cert
 {
@@ -594,7 +591,6 @@ $ ./mvs-cli listassets --cert
 
 ### `getaccountasset`
 查询指定账户下的资产证书信息，可以指定证书名字。
-
 ```
 $ ./mvs-cli getaccountasset Bob passwd1 --cert
 {
@@ -625,7 +621,6 @@ $ ./mvs-cli getaccountasset Bob passwd1 MVS.BOB --cert
 
 ### `getaddressasset`
 查询指定地址下的资产证书信息。
-
 ```
 $ ./mvs-cli getaddressasset MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f --cert
 {
