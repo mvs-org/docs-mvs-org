@@ -28,6 +28,7 @@ sidebar:
     linux_setup: Setup on Linux
     config_file: Config File
     command_line: Command-Line
+    supernova: Supernova features
 
     features: Features
     issue_token: Issue token
@@ -43,7 +44,7 @@ sidebar:
     platform_deployment: Deployment For Platform
     deploy_wallet: Rapid Deployment
     fronzen_etp: Recognize Fronzen ETP
-    asset_operation: Metaverse Smart Token 
+    asset_operation: Metaverse Smart Token
     reset_mvs: Reset MVS Wallet
 
   baas:
@@ -93,7 +94,7 @@ sidebar:
     digital_asset: Digital Asset (MST)
     digital_asset2: Digital Asset (MIT)
     da_issue: MST Issuance
-    da_secondary_issue: MST Secondary Issuance 
+    da_secondary_issue: MST Secondary Issuance
     da_attenuation: MST Conditional Offering
     da_multi_sig: MST Multi-signature
     da_certification: MST Domain-name&Certification
@@ -113,8 +114,8 @@ sidebar:
     tech_utxo_and_script: UTXO and script
     tech_utxo_limitation: UTXO limitation
 
-  faq:                                                                         
+  faq:
     faq_index: FAQ
-    ETP: ETP                                                                   
-    MST: MST                                                                   
+    ETP: ETP
+    MST: MST
     Avatar: Avatar

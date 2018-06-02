@@ -4,6 +4,7 @@ docs:
     desktop: desktop.html
     mobile: mobile.html
     mainnet_info : mainnet-info.html
+    supernova: supernova.html
 
   features:
     issue_token: features-issue-token.html
