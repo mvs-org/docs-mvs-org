@@ -28,12 +28,12 @@ sidebar:
     linux_setup: Setup on Linux
     config_file: Config File
     command_line: Command-Line
-    supernova: Supernova features
+    supernova: Supernova Features
 
     features: Features
-    issue_token: Issue token
-    transfer_token: Transfer token
-    onchain_deposit: Onchain deposit
+    issue_token: Issue Tokens
+    transfer_token: Transfer Tokens
+    onchain_deposit: Deposit ETP
 
     full_node_usage: Full Node Wallet
     introduction: Introduction

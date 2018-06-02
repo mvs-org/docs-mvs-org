@@ -4,12 +4,12 @@ docs:
     desktop: desktop.html
     mobile: mobile.html
     mainnet_info : mainnet-info.html
-    supernova: supernova.html
 
   features:
     issue_token: features-issue-token.html
     transfer_token: features-transfer-token.html
     onchain_deposit: features-onchain-deposit.html
+    supernova: supernova.html
 
   full_node_usage:
     introduction: introduction.html
