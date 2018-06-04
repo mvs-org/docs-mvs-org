@@ -72,6 +72,7 @@ sidebar:
     xxx8: ----
     xxx9: ----
     xxx10: ----
+    xxx11: ----
     introduction: Introduction
     websocket: Websocket
     blockchain:  Blockchain
@@ -83,6 +84,7 @@ sidebar:
     transaction: Transaction
     asset: Asset
     identity: Identity
+    mit: MIT
 
   developers:
     overview: Developers Overview

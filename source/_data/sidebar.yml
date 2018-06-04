@@ -72,6 +72,8 @@ api_v2:
     rawtx: rawtx.html
   xxx10:
     identity: identity.html
+  xxx11:
+    mit: mit.html
 
 faq:
   faq_index:

@@ -68,6 +68,7 @@ sidebar:
     transaction: 交易
     asset: 资产
     identity: 身份
+    mit: MIT
 
   developers:
     overview: 开发者文档概览
