@@ -1,4 +1,4 @@
-title: mit
+title: MIT
 comments: false
 ---
 
@@ -28,7 +28,7 @@ comments: false
     ]
      ```
     * Returns
-    `Object` - the asset just created
+    `Object` - 
 
     * Example
     ```js
@@ -129,7 +129,7 @@ comments: false
     ]
      ```
     * Returns
-    `Object` - the asset just created
+    `Object` - 
 
     * Example
     ```js
@@ -231,7 +231,7 @@ comments: false
     ]
      ```
     * Returns
-    `Object` - the asset just created
+    `Object` - 
 
     * Example one
     ```js
@@ -316,7 +316,7 @@ comments: false
     ]
      ```
     * Returns
-    `Object` - the asset just created
+    `Object` - 
 
     * Example one
     ```js
