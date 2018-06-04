@@ -94,7 +94,6 @@ sidebar:
     build_mvs: Build MVS Full Node
 
     digital_asset: Digital Asset (MST)
-    digital_asset2: Digital Asset (MIT)
     da_issue: MST Issuance
     da_secondary_issue: MST Secondary Issuance
     da_attenuation: MST Conditional Offering
@@ -102,6 +101,9 @@ sidebar:
     da_certification: MST Domain-name&Certification
     da_burn: MST Burn
     da_programmable: Programmable MST
+
+    digital_asset2: Digital Asset (MIT)
+    introduction: MIT introduction
     mit_register: MIT register
     mit_transfer: MIT transfer
     mit_query: MIT query
