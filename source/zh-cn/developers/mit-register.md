@@ -1,8 +1,8 @@
-title: MIT 注册
+title: MIT 登记
 ---
 
 ## 前提简述
-这里主要介绍数字资产 MIT 的注册操作，其它的命令可以参考 [Command-line](/zh-cn/docs/command-line.html)
+这里主要介绍数字资产 MIT 的登记操作，其它的命令可以参考 [Command-line](/zh-cn/docs/command-line.html)
 
 在下面的范例中，将统一使用帐户名为 `Alice`，密码为 `passwd1`，数字身份（DID）为 `Alice`，地址为`测试地址`，作为演示示例。您在参考时请修改为自己的帐户名、密码、数字身份以及正确的地址。账户与数字身份可以通过 `"mvs-cli getnewaccount 帐户名 密码"` 和 `"mvs-cli registerdid 帐户名 密码 测试地址 测试DID"` 生成。
 
@@ -10,7 +10,7 @@ title: MIT 注册
 
 所有命令都可以通过 `help` 查询帮助，例如使用 `"mvs-cli help registermit"` 或者 `"mvs-cli registermit -h"` 查询命令 `registermit` 的帮助。
 
-## 注册 MIT
+## 登记 MIT
 命令：`registermit`
 
 ```bash
@@ -31,7 +31,7 @@ SYMBOL               MIT 资产标识，必须提供。
 ```
 **注：SYMBOL 的最大长度为 60，不区分大小写，且只能包含数字、字母以及字符：`.`、`-`、`_`、`@`；content 的最大长度为 256。MIT 资产标识全网唯一。**
 
-示例：账户 `Alice` 将名为 `Alice@MIT` 的 `MIT` 注册到数字身份 `Alice` 下。
+示例：账户 `Alice` 将名为 `Alice@MIT` 的 `MIT` 登记到数字身份 `Alice` 下。
 ```bash
 命令：
 $ ./mvs-cli registermit Alice passwd1 Alice Alice@MIT -c "Alice's MIT"
