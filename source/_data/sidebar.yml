@@ -99,7 +99,7 @@ developers:
     da_programmable: da-programmable.html
 
   digital_asset2:
-    introduction: mit-index.html
+    mit_index: mit-index.html
     mit_register: mit-register.html
     mit_transfer: mit-transfer.html
     mit_query: mit-query.html
