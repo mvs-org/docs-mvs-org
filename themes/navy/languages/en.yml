@@ -102,6 +102,7 @@ sidebar:
     da_programmable: Programmable MST
     mit_register: MIT register
     mit_transfer: MIT transfer
+    mit_query: MIT query
 
     digital_identity: Digital Identity (Avatar)
 
