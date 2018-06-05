@@ -56,17 +56,17 @@ comments: false
         {
             "transaction" : 
             {
-                "hash" : "715d4b774e87f7578ae37753fda93ee8b52b69a45271887f7b57a3841a7d0322",
+                "hash" : "b7afabb163c0a671ff37d194fea6b3580f0e5e4e1cb16894bd4eb6c3fc3a745d",
                 "inputs" : 
                 [
                     {
-                        "address" : "MP3ysdsU5MmgKC4HKfYGNsEmmYvBy6VCGU",
+                        "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
                         "previous_output" : 
                         {
-                            "hash" : "a022ff3e6396e46675f80a5c02db34938f11f683f94efe8f958e0d704e8d08f1",
+                            "hash" : "f84990d724931639cf0ad4533053ec6d9777692af49d61395f335c13836f021d",
                             "index" : 1
                         },
-                        "script" : "[ 30450221009522a0881239c0d0a0a94b28cc46a0e7c647c703b187cd636175aa6c54a797c30220513bc75a537aab9650acc527bfa04cc012e0cd16aba2d060d2031fa217dd503001 ] [ 032adeedfb355887d6736b7e288d8bb00c2400428b81e2ae73f71d6da9009ac82a ]",
+                        "script" : "[ 304402204992131b1a5f0f0f4b68715ae9ee3af5c3c089d5d948444a9bd12a2cd0348d1302201496a25c2c572185bc05d20c337569299cf0b74742502806c47e064485aca0ce01 ] [ 0364aa7630296855d0f8bd6bd6fb36d06910c38d69daf7517d59b37d0c35cc0a8c ]",
                         "sequence" : 4294967295
                     }
                 ],
@@ -74,10 +74,10 @@ comments: false
                 "outputs" : 
                 [
                     {
-                        "address" : "MP3ysdsU5MmgKC4HKfYGNsEmmYvBy6VCGU",
+                        "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
                         "attachment" : 
                         {
-                            "address" : "MP3ysdsU5MmgKC4HKfYGNsEmmYvBy6VCGU",
+                            "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
                             "content" : "test MIT",
                             "from_did" : "test",
                             "status" : "registered",
@@ -87,18 +87,18 @@ comments: false
                         },
                         "index" : 0,
                         "locked_height_range" : 0,
-                        "script" : "dup hash160 [ a634fbcac2d24a9b47b5a5c36070ead458ea2591 ] equalverify checksig",
+                        "script" : "dup hash160 [ d9c598f28e989df623e613be9ead3bc8dfaee3f5 ] equalverify checksig",
                         "value" : 0
                     },
                     {
-                        "address" : "MP3ysdsU5MmgKC4HKfYGNsEmmYvBy6VCGU",
+                        "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
                         "attachment" : 
                         {
                             "type" : "etp"
                         },
                         "index" : 1,
                         "locked_height_range" : 0,
-                        "script" : "dup hash160 [ a634fbcac2d24a9b47b5a5c36070ead458ea2591 ] equalverify checksig",
+                        "script" : "dup hash160 [ d9c598f28e989df623e613be9ead3bc8dfaee3f5 ] equalverify checksig",
                         "value" : 199990000
                     }
                 ],
@@ -154,27 +154,27 @@ comments: false
         {
             "transaction" : 
             {
-                "hash" : "ad33313d6782e8d441d0fbfe963a2b2fed98d81a1d102a4bfdac9524b8cb93f9",
+                "hash" : "d20d5835404557a2a6f4071969acab98c235ff4af0fe01c8c7eff850b0c2ee76",
                 "inputs" : 
                 [
                     {
-                        "address" : "MP3ysdsU5MmgKC4HKfYGNsEmmYvBy6VCGU",
+                        "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
                         "previous_output" : 
                         {
-                            "hash" : "715d4b774e87f7578ae37753fda93ee8b52b69a45271887f7b57a3841a7d0322",
+                            "hash" : "b7afabb163c0a671ff37d194fea6b3580f0e5e4e1cb16894bd4eb6c3fc3a745d",
                             "index" : 1
                         },
-                        "script" : "[ 3045022100b54829d80ce44f5b23a9626850dd9862ff0cc7b05cf67aef3ee6b1896c22fc3f02200c607f7918928c525955d70f38bca70079bd41d381c2df520d85ffe83c56635c01 ] [ 032adeedfb355887d6736b7e288d8bb00c2400428b81e2ae73f71d6da9009ac82a ]",
+                        "script" : "[ 30440220525817e37d8b9530838d071a24b82587421347159622fade31d0f5d973ed168502202f8c244aa2911ae4fd006bde66d9a9880a46acae256a744657127bacd971927f01 ] [ 0364aa7630296855d0f8bd6bd6fb36d06910c38d69daf7517d59b37d0c35cc0a8c ]",
                         "sequence" : 4294967295
                     },
                     {
-                        "address" : "MP3ysdsU5MmgKC4HKfYGNsEmmYvBy6VCGU",
+                        "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
                         "previous_output" : 
                         {
-                            "hash" : "715d4b774e87f7578ae37753fda93ee8b52b69a45271887f7b57a3841a7d0322",
+                            "hash" : "b7afabb163c0a671ff37d194fea6b3580f0e5e4e1cb16894bd4eb6c3fc3a745d",
                             "index" : 0
                         },
-                        "script" : "[ 3045022100ac8777d1089ef231389adf23588d9ee493db47557c18d117ca4293bf77e7f493022036bc1af1fac56fa719186514d647488fdbe9e09c29004afc89d24c9cbe2b4e2e01 ] [ 032adeedfb355887d6736b7e288d8bb00c2400428b81e2ae73f71d6da9009ac82a ]",
+                        "script" : "[ 30440220037abcd5f44fc46820bdab6d6928a33b092b2253e5d1856546a2fe843909ecf0022024835d7b9c1dd2d41e13dc70463adcc3b98047d1ecc86e491e5d6e7a38d7093201 ] [ 0364aa7630296855d0f8bd6bd6fb36d06910c38d69daf7517d59b37d0c35cc0a8c ]",
                         "sequence" : 4294967295
                     }
                 ],
@@ -182,11 +182,11 @@ comments: false
                 "outputs" : 
                 [
                     {
-                        "address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
+                        "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
                         "attachment" : 
                         {
-                            "address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
-                            "from_did" : "test",
+                            "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
+                            "from_did" : "",
                             "status" : "transfered",
                             "symbol" : "mit@test",
                             "to_did" : "Alice",
@@ -194,18 +194,18 @@ comments: false
                         },
                         "index" : 0,
                         "locked_height_range" : 0,
-                        "script" : "dup hash160 [ e4661b6687395fda26767695c7217fd5b2c4707f ] equalverify checksig",
+                        "script" : "dup hash160 [ 95c9a5e647870bbc535d83a3c394ef40d298aa46 ] equalverify checksig",
                         "value" : 0
                     },
                     {
-                        "address" : "MP3ysdsU5MmgKC4HKfYGNsEmmYvBy6VCGU",
+                        "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
                         "attachment" : 
                         {
                             "type" : "etp"
                         },
                         "index" : 1,
                         "locked_height_range" : 0,
-                        "script" : "dup hash160 [ a634fbcac2d24a9b47b5a5c36070ead458ea2591 ] equalverify checksig",
+                        "script" : "dup hash160 [ d9c598f28e989df623e613be9ead3bc8dfaee3f5 ] equalverify checksig",
                         "value" : 199980000
                     }
                 ],
@@ -251,20 +251,18 @@ comments: false
             "mits" : 
             [
                 {
-                    "address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
-                    "content" : "Alice's MIT",
-                    "status" : "registered",
-                    "symbol" : "Alice@MIT"
-                },
-                {
-                    "address" : "MP3ysdsU5MmgKC4HKfYGNsEmmYvBy6VCGU",
+                    "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
                     "content" : "test MIT",
+                    "height" : 13383,
                     "status" : "registered",
-                    "symbol" : "mit@test"
+                    "symbol" : "mit@test",
+                    "time_stamp" : 1528181287,
+                    "to_did" : "test"
                 }
             ]
         }
     }
+
     ```
 
     * Example two
@@ -289,7 +287,7 @@ comments: false
             "mits" : 
             [
                 {
-                    "address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
+                    "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
                     "content" : "test MIT",
                     "status" : "transfered",
                     "symbol" : "mit@test"
@@ -335,7 +333,6 @@ comments: false
         {
             "mits" : 
             [
-                "Alice@MIT",
                 "mit@test"
             ]
         }
@@ -360,10 +357,13 @@ comments: false
         "jsonrpc" : "2.0",
         "result" : 
         {
-            "address" : "MP3ysdsU5MmgKC4HKfYGNsEmmYvBy6VCGU",
+            "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
             "content" : "test MIT",
+            "height" : 13383,
             "status" : "registered",
-            "symbol" : "mit@test"
+            "symbol" : "mit@test",
+            "time_stamp" : 1528181287,
+            "to_did" : "test"
         }
     }
     ```
@@ -390,21 +390,19 @@ comments: false
             "mits" : 
             [
                 {
-                    "address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
-                    "from_did" : "test",
-                    "height" : 12581,
+                    "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
+                    "height" : 13824,
                     "status" : "transfered",
                     "symbol" : "mit@test",
-                    "time_stamp" : 1528101995,
+                    "time_stamp" : 1528181361,
                     "to_did" : "Alice"
                 },
                 {
-                    "address" : "MP3ysdsU5MmgKC4HKfYGNsEmmYvBy6VCGU",
-                    "from_did" : "test",
-                    "height" : 12109,
+                    "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
+                    "height" : 13383,
                     "status" : "registered",
                     "symbol" : "mit@test",
-                    "time_stamp" : 1528101796,
+                    "time_stamp" : 1528181287,
                     "to_did" : "test"
                 }
             ]
@@ -438,15 +436,15 @@ comments: false
             "mits" : 
             [
                 {
-                    "address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
-                    "from_did" : "test",
-                    "height" : 12581,
+                    "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
+                    "height" : 13824,
                     "status" : "transfered",
                     "symbol" : "mit@test",
-                    "time_stamp" : 1528101995,
+                    "time_stamp" : 1528181361,
                     "to_did" : "Alice"
                 }
             ]
         }
     }
     ```
+    

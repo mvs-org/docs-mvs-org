@@ -28,7 +28,7 @@ comments: false
 `createasset` 命令的 `--rate` 选项的值如果为 -1（自由增发）或在范围[1, 100]之间，则创建可以二次增发的资产
 ```bash
 命令：
-$ mvs-cli createasset Alice passwd1 --symbol MVS.ALICE --volume 1000000000000 --description "Asset of Alice." --issuer Alice --decimalnumber 8 --rate -1
+$ ./mvs-cli createasset Alice passwd1 --symbol MVS.ALICE --volume 1000000000000 --description "Asset of Alice." --issuer Alice --decimalnumber 8 --rate -1
 
 输出：
 {
@@ -56,47 +56,47 @@ $ ./mvs-cli issue Alice passwd1 MVS.ALICE
 {
 	"transaction" : 
 	{
-		"hash" : "c59dd8b85ccbeb3de74c2ae941e93fcb8382ab7a69232afbb9d1a75259261370",
+		"hash" : "c88bd3914577df14063f8df7b9365d0061ee902a9ab90bf80df541ec41536321",
 		"inputs" : 
 		[
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"previous_output" : 
 				{
-					"hash" : "2e3289b90684af4eb52ed165add145e0f676775c043168c53818c4b17f999406",
-					"index" : 0
+					"hash" : "6ff77f00f50b18f108e6f185c99bf226a0803a0a6e58844d4043c86003de8ef3",
+					"index" : 1
 				},
-				"script" : "[ 3044022029824345c3107291a18cad415af216c036c3ec4923470c3d09ff6b252e7cf3e20220043bc708a087f3275051f36526b9a893db9be5a071c63f751e78e7a4e5c14da601 ] [ 02a029b13a09ea3ae9cec784e3997c8f7098c73333c737e27a8cd82dcaad18040b ]",
+				"script" : "[ 3044022021d7739ba53653920b02bced24f1d9e0aed5d702188f6a28c2c7371883fc9b0b02204fe7bc03309331b0355cf79600691a63b5ee8f1c64cd8db01321db041614851b01 ] [ 038d7048a4e640a0e0a27ef85d2a7e5b339834cd565ada0d6ea042127732fa105e ]",
 				"sequence" : 4294967295
 			},
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"previous_output" : 
 				{
-					"hash" : "6d17adee2a7aaeacf31b0e7e7da128f9c43a02ef5a375391039fc639435c0379",
+					"hash" : "19dad273d07090648279817e8dcbce8dc06c9815ee94fa798d8e779cf66a9076",
 					"index" : 0
 				},
-				"script" : "[ 304402200d352a6ed742851405ee31e59f9baded2264fa1222b6d60f4dc8e90bb95d9b0902207534a74363c88b6115f85ed4cc8e2173f47bc158617aa2ec632cd583c6223d4201 ] [ 02a029b13a09ea3ae9cec784e3997c8f7098c73333c737e27a8cd82dcaad18040b ]",
+				"script" : "[ 304402205e6cb2bd7e9746bc9181ec66043a3244d9f502f03174a384d53853da44f2d2eb022056e19b54d01ae8ad164ca6e856ab7ed12c8c42081c0451cc66c990c08a783be101 ] [ 038d7048a4e640a0e0a27ef85d2a7e5b339834cd565ada0d6ea042127732fa105e ]",
 				"sequence" : 4294967295
 			},
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"previous_output" : 
 				{
-					"hash" : "12eb2520482032359a153c60950fe671b38a1af5292bc5a44b8225105207336b",
+					"hash" : "c42114b2626d9a6e82888deade68c82500e1e55494318c2c3eed7f0a065895e9",
 					"index" : 0
 				},
-				"script" : "[ 3045022100ba2ac6dbc5f7948bddb2e604e2379f44d10914ffd53a2cbfb608d8f9da3d67b602207cd390b3fcdf273c4d12223a31225f9c0d87fddc4d56de7f7f703d8899dceee201 ] [ 02a029b13a09ea3ae9cec784e3997c8f7098c73333c737e27a8cd82dcaad18040b ]",
+				"script" : "[ 304502210091b393ed73b59d89a37a7d8c2d0145f5f010a3ca29897b9ed0283782cebba7690220489e6564f17f62a9ec5b1f642be030395318f405ffeb4023c08282360070301b01 ] [ 038d7048a4e640a0e0a27ef85d2a7e5b339834cd565ada0d6ea042127732fa105e ]",
 				"sequence" : 4294967295
 			},
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"previous_output" : 
 				{
-					"hash" : "bd4034b2ccf216d1a892e20bb74bba50fd7b2e31561e5f4cb82b3cf7fe04a9e9",
+					"hash" : "cb62c51992f141490ba8934e422a47f5e8d11cf92cbfedbd99bf4247865d6579",
 					"index" : 0
 				},
-				"script" : "[ 3044022028a127eacd6d1675ebd046033a00c9cd0bbdce0ad7ba9536862a39c34ae0ccbd02202eff0705c5347c7aaf171211c0ef66aea294b2d8c570c466f9de643de16251f201 ] [ 02a029b13a09ea3ae9cec784e3997c8f7098c73333c737e27a8cd82dcaad18040b ]",
+				"script" : "[ 304402200a152c449de59abbd53bd54cd8164b2b2ede152e8350358b4aa1014f733b75a902200bc64b0edfd4c5cd3667d9b416f4361ea6cf24649aebe06e6d3e93b2fa0b2ce301 ] [ 038d7048a4e640a0e0a27ef85d2a7e5b339834cd565ada0d6ea042127732fa105e ]",
 				"sequence" : 4294967295
 			}
 		],
@@ -104,13 +104,13 @@ $ ./mvs-cli issue Alice passwd1 MVS.ALICE
 		"outputs" : 
 		[
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"attachment" : 
 				{
-					"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+					"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 					"decimal_number" : 8,
 					"description" : "Asset of Alice.",
-					"from_did" : "Alice",
+					"from_did" : "",
 					"is_secondaryissue" : false,
 					"issuer" : "Alice",
 					"quantity" : 1000000000000,
@@ -121,16 +121,16 @@ $ ./mvs-cli issue Alice passwd1 MVS.ALICE
 				},
 				"index" : 0,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 82ecff3d87cc01a8a539dfd8d5e0cac0639c0088 ] equalverify checksig",
+				"script" : "dup hash160 [ 95c9a5e647870bbc535d83a3c394ef40d298aa46 ] equalverify checksig",
 				"value" : 0
 			},
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"attachment" : 
 				{
-					"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+					"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 					"cert" : "issue",
-					"from_did" : "Alice",
+					"from_did" : "",
 					"owner" : "Alice",
 					"symbol" : "MVS.ALICE",
 					"to_did" : "Alice",
@@ -138,16 +138,16 @@ $ ./mvs-cli issue Alice passwd1 MVS.ALICE
 				},
 				"index" : 1,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 82ecff3d87cc01a8a539dfd8d5e0cac0639c0088 ] equalverify checksig",
+				"script" : "dup hash160 [ 95c9a5e647870bbc535d83a3c394ef40d298aa46 ] equalverify checksig",
 				"value" : 0
 			},
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"attachment" : 
 				{
-					"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+					"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 					"cert" : "domain",
-					"from_did" : "Alice",
+					"from_did" : "",
 					"owner" : "Alice",
 					"symbol" : "MVS",
 					"to_did" : "Alice",
@@ -155,19 +155,19 @@ $ ./mvs-cli issue Alice passwd1 MVS.ALICE
 				},
 				"index" : 2,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 82ecff3d87cc01a8a539dfd8d5e0cac0639c0088 ] equalverify checksig",
+				"script" : "dup hash160 [ 95c9a5e647870bbc535d83a3c394ef40d298aa46 ] equalverify checksig",
 				"value" : 0
 			},
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"attachment" : 
 				{
 					"type" : "etp"
 				},
 				"index" : 3,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 82ecff3d87cc01a8a539dfd8d5e0cac0639c0088 ] equalverify checksig",
-				"value" : 200000000
+				"script" : "dup hash160 [ 95c9a5e647870bbc535d83a3c394ef40d298aa46 ] equalverify checksig",
+				"value" : 100000000
 			}
 		],
 		"version" : "4"
@@ -176,41 +176,41 @@ $ ./mvs-cli issue Alice passwd1 MVS.ALICE
 ```
 
 ### 获得域名权证书
-拥有域名权证书的账户可以通过命令 `issuecert` 给指定数字身份颁发名字以域名权证书名字为域名的冠名权证书。
+拥有域名权证书的账户可以通过命令 `issuecert` 给指定数字身份颁发名字以域名权证书名字为域名的冠名权证书，指定的数字身份必须为该账户所拥有。
 
 `issuecert` 命令所需五个参数依次为：帐户名，密码，接收数字身份，资产符号，证书类型。目前仅支持 `naming` 类型的证书。
 
-下面的示例中，`Alice` 拥有名为 `MVS` 的域名权证书，`Alice` 向数字身份 `Bob` 颁发名为 `MVS.BOB` 的冠名权证书。
+下面的示例中，`Alice` 拥有名为 `MVS` 的域名权证书，`Alice` 向数字身份 `Alice` 颁发名为 `MVS.BOB` 的冠名权证书。
 
 ```bash
 命令：
-$ ./mvs-cli issuecert Alice passwd1 Bob MVS.BOB naming
+$ ./mvs-cli issuecert Alice passwd1 Alice MVS.BOB naming
 
 输出：
 {
 	"transaction" : 
 	{
-		"hash" : "4c4e7cf3b2bfe9e144034185fb196021624c7de7f3d0543f50f40ac92898f95d",
+		"hash" : "578c23781ab4251c02f2987f5ad0cbeb8ed526546877364efe853e5a345549d9",
 		"inputs" : 
 		[
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"previous_output" : 
 				{
-					"hash" : "9699bde668c9ff33ede227a348ac9168349b15d94e14ef50c3bb6215b0c6e331",
-					"index" : 0
+					"hash" : "c88bd3914577df14063f8df7b9365d0061ee902a9ab90bf80df541ec41536321",
+					"index" : 3
 				},
-				"script" : "[ 304402200315e981d5795301c52e605eff7863ad89c668bed6ab381ed8519fd092b48bf6022054fca9a9de7d6b5e2ddf73c5d4491ae682ab5ba3ed1ad2c012b6bc9269f88bc101 ] [ 02a029b13a09ea3ae9cec784e3997c8f7098c73333c737e27a8cd82dcaad18040b ]",
+				"script" : "[ 3045022100fef8cf721e972b256241aa983c5ce123be4ce0d50bfaf5c8696e5c17486e133f02203147741b4868e34e4f8a3b32e8b7ef1605582950e80c0cd04eee584989507cff01 ] [ 038d7048a4e640a0e0a27ef85d2a7e5b339834cd565ada0d6ea042127732fa105e ]",
 				"sequence" : 4294967295
 			},
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"previous_output" : 
 				{
-					"hash" : "c59dd8b85ccbeb3de74c2ae941e93fcb8382ab7a69232afbb9d1a75259261370",
+					"hash" : "c88bd3914577df14063f8df7b9365d0061ee902a9ab90bf80df541ec41536321",
 					"index" : 2
 				},
-				"script" : "[ 304402204d12ab35a9140059c4b6c813a5d44934b47d0a4dadf70aa686cb6356ceed5768022020dbfa0ca53b3f6e8f9849c34deffc89ecf4f91a2c8c2b7c3c31bd69062bdf9201 ] [ 02a029b13a09ea3ae9cec784e3997c8f7098c73333c737e27a8cd82dcaad18040b ]",
+				"script" : "[ 3045022100959f7b4e694610c1078b310dbf5ea1cf710175e1349b469239fb79e81ca974f502202bf495d589a5b9ef0341689a8c88bb739762b538cf472422216e0dfc33f51f8101 ] [ 038d7048a4e640a0e0a27ef85d2a7e5b339834cd565ada0d6ea042127732fa105e ]",
 				"sequence" : 4294967295
 			}
 		],
@@ -218,29 +218,29 @@ $ ./mvs-cli issuecert Alice passwd1 Bob MVS.BOB naming
 		"outputs" : 
 		[
 			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"attachment" : 
 				{
-					"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+					"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 					"cert" : "naming",
-					"from_did" : "Alice",
-					"owner" : "Bob",
+					"from_did" : "",
+					"owner" : "Alice",
 					"symbol" : "MVS.BOB",
-					"to_did" : "Bob",
+					"to_did" : "Alice",
 					"type" : "asset-cert"
 				},
 				"index" : 0,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 39990f81b91b7a35092517dfd5c8942c9e5f48f8 ] equalverify checksig",
+				"script" : "dup hash160 [ 95c9a5e647870bbc535d83a3c394ef40d298aa46 ] equalverify checksig",
 				"value" : 0
 			},
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"attachment" : 
 				{
-					"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+					"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 					"cert" : "domain",
-					"from_did" : "Alice",
+					"from_did" : "",
 					"owner" : "Alice",
 					"symbol" : "MVS",
 					"to_did" : "Alice",
@@ -248,18 +248,94 @@ $ ./mvs-cli issuecert Alice passwd1 Bob MVS.BOB naming
 				},
 				"index" : 1,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 82ecff3d87cc01a8a539dfd8d5e0cac0639c0088 ] equalverify checksig",
+				"script" : "dup hash160 [ 95c9a5e647870bbc535d83a3c394ef40d298aa46 ] equalverify checksig",
 				"value" : 0
 			},
 			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 				"attachment" : 
 				{
 					"type" : "etp"
 				},
 				"index" : 2,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 82ecff3d87cc01a8a539dfd8d5e0cac0639c0088 ] equalverify checksig",
+				"script" : "dup hash160 [ 95c9a5e647870bbc535d83a3c394ef40d298aa46 ] equalverify checksig",
+				"value" : 99990000
+			}
+		],
+		"version" : "4"
+	}
+}
+```
+
+
+### 转移证书
+通过命令 `transfercert` 可以将证书转移给其它数字身份，该数字身份可以是其它账户所用的数字身份。
+
+该命令所需五个参数依次为：帐户名，密码，接收数字身份，资产符号，证书类型。目前仅仅支持 `domain`、`issue`、`naming` 类型的证书。该命令支持多重签名，即支持从多重签名地址转出或转入证书。
+
+在前面的示例中，`Alice` 发行了名为 `MVS.BOB` 的冠名权证书，接下来 `Alice` 将该证书转移给数字身份 `Bob`。
+```bash
+命令：
+$ ./mvs-cli transfercert Alice passwd1 Bob MVS.BOB naming
+
+输出：
+{
+	"transaction" : 
+	{
+		"hash" : "0a985f55345cd5ca81df08c263033c34b8895bf18db6435e8b2509ebbe9f4b0f",
+		"inputs" : 
+		[
+			{
+				"address" : "MNz5WH5CH1T44hTpanbG1v1NBjcZXf4je4",
+				"previous_output" : 
+				{
+					"hash" : "98f70aba9c690700dd66ec0c8fce2c56c22043d1c20ff76f164170cc10050c70",
+					"index" : 0
+				},
+				"script" : "[ 3045022100a0527a44333aa92ed469b34431eff09d31a7eaaf20a7b86b09cd395d69f74c0e02203b28dc32d9db29ee1d398021a0652be0a2b4486b8137471efb29b77a215aa11701 ] [ 02eee915ccdb35cc35583a3ad58be24fe914d754d00cd75641f56cc90fc305e307 ]",
+				"sequence" : 4294967295
+			},
+			{
+				"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
+				"previous_output" : 
+				{
+					"hash" : "578c23781ab4251c02f2987f5ad0cbeb8ed526546877364efe853e5a345549d9",
+					"index" : 0
+				},
+				"script" : "[ 3045022100bada970681995f64fdd8716075f3b4ee7116d63376a5811ed1d897c99283eea3022027cd6761027155b7f892ad4d4944019fdb75ee3b15761e7e9f58738ed0010c0e01 ] [ 038d7048a4e640a0e0a27ef85d2a7e5b339834cd565ada0d6ea042127732fa105e ]",
+				"sequence" : 4294967295
+			}
+		],
+		"lock_time" : "0",
+		"outputs" : 
+		[
+			{
+				"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
+				"attachment" : 
+				{
+					"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
+					"cert" : "naming",
+					"from_did" : "",
+					"owner" : "Bob",
+					"symbol" : "MVS.BOB",
+					"to_did" : "Bob",
+					"type" : "asset-cert"
+				},
+				"index" : 0,
+				"locked_height_range" : 0,
+				"script" : "dup hash160 [ ee51cd6e869195dca48ede01f40a18c275322fbd ] equalverify checksig",
+				"value" : 0
+			},
+			{
+				"address" : "MNz5WH5CH1T44hTpanbG1v1NBjcZXf4je4",
+				"attachment" : 
+				{
+					"type" : "etp"
+				},
+				"index" : 1,
+				"locked_height_range" : 0,
+				"script" : "dup hash160 [ a57805573daf3760779ff5dfc820ba5728e462d2 ] equalverify checksig",
 				"value" : 299990000
 			}
 		],
@@ -268,11 +344,12 @@ $ ./mvs-cli issuecert Alice passwd1 Bob MVS.BOB naming
 }
 ```
 
+
 ## 使用资产证书
 证书的使用通常都是隐式的，如资产发行（`issue`）可能会使用域名权证书或冠名权证书，资产增发（`secondaryissue`）时会使用增发权证书，以及上例中的颁发（`issuecert`）冠名权证书会使用域名权证书。但转移证书命令 `transfercert` 列外，使用该命令时需要显式指定证书名字与证书类型。
 
 ### 使用冠名权证书发行资产
-在前面的示例中，`Alice` 向 `Bob` 颁发了名为 `MVS.BOB` 的冠名权证书，接下来 `Bob` 就使用该冠名权证书创建并发行同名的资产。由于该资产具有增发属性，所以在该资产发行后，`Bob` 获得了名为 `MVS.BOB` 的增发权证书。
+在前面的示例中，账户 `Alice` 向数字身份 `Alice` 颁发了名为 `MVS.BOB` 的冠名权证书，然后账户 `Alice` 通过 `transfercert` 命令将该证书转移给数字身份 `Bob`。接下来 `Bob` 就可以使用该冠名权证书创建并发行同名的资产。由于该资产具有增发属性，所以在该资产发行后，`Bob` 获得了名为 `MVS.BOB` 的增发权证书。
 
 1. 创建资产
 ```bash
@@ -299,57 +376,57 @@ $ ./mvs-cli issue Bob passwd1 MVS.BOB
 {
 	"transaction" : 
 	{
-		"hash" : "a0cb6febeaae13074820e213838fd11d781c037c92a54409dd9da1713d1b0310",
+		"hash" : "3e6084732f35dac309f2243ef890e9455ccf930f1f54be386666e52356961234",
 		"inputs" : 
 		[
 			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+				"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 				"previous_output" : 
 				{
-					"hash" : "d43765fa894578bdf439d3e003ecbcdc5ecfd27f176a01c2b2f295ae16842579",
+					"hash" : "0a985f55345cd5ca81df08c263033c34b8895bf18db6435e8b2509ebbe9f4b0f",
 					"index" : 0
 				},
-				"script" : "[ 3045022100e70d1466a1b95ab5804b2308320b3949b7a4c4d955cd2faa3a7ab48384915166022044e722ea727163fbb7252c3c03461a80c9ead7b6dcc74c1228c9a870c900ed0401 ] [ 029b5650eb1b896f76068a6867b03142f6cd25459b463d92aa4bd4b2efc10ef41d ]",
+				"script" : "[ 3045022100b79b10adf94b3cf7dfe33d45e6b65598c3008b348d87363cee429d24f9a0bd74022077ab16d574b0d3c118058316b950c27f1660c7ef2ece3e4bdbdd6b6bf2b7004701 ] [ 0218feb8b4eb5d83d5ca93116a09c1b16f9587db78af950a06c15c1c82e81866df ]",
 				"sequence" : 4294967295
 			},
 			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+				"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 				"previous_output" : 
 				{
-					"hash" : "cef2aacbc7d2151376b988a333d5ae975ff77ac6b4c7b1034ce952f8c0666576",
-					"index" : 0
+					"hash" : "a0b321d1ce636644fa51f78f3a4a2ea66aa52b623a4759ae5b61b9f57ea4b647",
+					"index" : 1
 				},
-				"script" : "[ 3044022009fa8559d74222ae15de78220af56d579c39297ee8897da7c365b3c672bb93c3022065ce5d50bfc6356241a3354a9edc90127aeb1abcb682e8f0a4ade6d86228121e01 ] [ 029b5650eb1b896f76068a6867b03142f6cd25459b463d92aa4bd4b2efc10ef41d ]",
+				"script" : "[ 3045022100ec6ff9fb6cdd7fb11883d05c43bbbb767111b4efbad2b96b5bfb456e470df54f0220531100981698ff204b76ffc53399de1bf33fbaf4dbd0ca666f57ceaf75bcfbf001 ] [ 0218feb8b4eb5d83d5ca93116a09c1b16f9587db78af950a06c15c1c82e81866df ]",
 				"sequence" : 4294967295
 			},
 			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+				"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 				"previous_output" : 
 				{
-					"hash" : "d1f0897657568fe6b9d796b46f7e60fb395b844c2051a4e83d7d449352c606e6",
+					"hash" : "5be8df2c2e3d2a7ecd6f1963cba046a78a4c959b6eb4d94a8396602d23c2a44a",
 					"index" : 0
 				},
-				"script" : "[ 3044022012937194a2717ec2663b57494bb5be7db02db1d19334a22ff566873f5fdd30db0220243153bbe7f067f61485f7fd49bbf49115e8cb5101997f20bc71b80cd220cb7901 ] [ 029b5650eb1b896f76068a6867b03142f6cd25459b463d92aa4bd4b2efc10ef41d ]",
+				"script" : "[ 3045022100e2d0c79673293c971b146fb3974ee5d36aa1c1fd8a24a785fe1577d634676df602203f048e25dd9c2920a29ecf2ea60774a8a1f6429b6c0ba1bc712d54757b9e994801 ] [ 0218feb8b4eb5d83d5ca93116a09c1b16f9587db78af950a06c15c1c82e81866df ]",
 				"sequence" : 4294967295
 			},
 			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+				"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 				"previous_output" : 
 				{
-					"hash" : "28dd30ea4f8f15d9bb1d3de9b3a87696e75451890dbb310ef40a155d4b0c7137",
+					"hash" : "91290adcfae5b490e0077ea6f2ba4484b4195f187a823023cc0bf829cae66147",
 					"index" : 0
 				},
-				"script" : "[ 3045022100f63c854d6d26d2425fcbe275d6c71e88d2c825b87e1bc072ae9224ecd393e59c02204a7c7cba03003e5ee2976fed853052955152e6f735f4cf8b5c3f17ddac500f1701 ] [ 029b5650eb1b896f76068a6867b03142f6cd25459b463d92aa4bd4b2efc10ef41d ]",
+				"script" : "[ 30440220790e9ac92450ae4bd18420d5d3bb94cdd85f50c30ec54dace549169deb500a7b0220384038a8fe308a1330af337d3f3e3404e62d147b1b00f30a4c4a304a205f2e7901 ] [ 0218feb8b4eb5d83d5ca93116a09c1b16f9587db78af950a06c15c1c82e81866df ]",
 				"sequence" : 4294967295
 			},
 			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+				"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 				"previous_output" : 
 				{
-					"hash" : "4c4e7cf3b2bfe9e144034185fb196021624c7de7f3d0543f50f40ac92898f95d",
+					"hash" : "e4df769a43a7fb28aa29c2c9809014c04335afd690ab48f5359bcf4f70f94e9a",
 					"index" : 0
 				},
-				"script" : "[ 304402201a1c2a76ae1060be8c9c7a058170e024dec0fc7e3a0d8e9a81a3c5568e73a6a1022007398ee84cc4074a4ffa4575436ac16f399f12da845b5656105b2654da8612ca01 ] [ 029b5650eb1b896f76068a6867b03142f6cd25459b463d92aa4bd4b2efc10ef41d ]",
+				"script" : "[ 3045022100f1eb735631261c4e7b1e7591f09d999dbcda13efec29f8e350c5ceb3772f7769022077168d79740e4ee1f0af9b5f733855cd70091b9564562d57e571ddcace1f139101 ] [ 0218feb8b4eb5d83d5ca93116a09c1b16f9587db78af950a06c15c1c82e81866df ]",
 				"sequence" : 4294967295
 			}
 		],
@@ -357,13 +434,13 @@ $ ./mvs-cli issue Bob passwd1 MVS.BOB
 		"outputs" : 
 		[
 			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+				"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 				"attachment" : 
 				{
-					"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+					"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 					"decimal_number" : 8,
 					"description" : "Asset of BOB.",
-					"from_did" : "Bob",
+					"from_did" : "",
 					"is_secondaryissue" : false,
 					"issuer" : "Bob",
 					"quantity" : 1000000000000,
@@ -374,16 +451,16 @@ $ ./mvs-cli issue Bob passwd1 MVS.BOB
 				},
 				"index" : 0,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 39990f81b91b7a35092517dfd5c8942c9e5f48f8 ] equalverify checksig",
+				"script" : "dup hash160 [ ee51cd6e869195dca48ede01f40a18c275322fbd ] equalverify checksig",
 				"value" : 0
 			},
 			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+				"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 				"attachment" : 
 				{
-					"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+					"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 					"cert" : "issue",
-					"from_did" : "Bob",
+					"from_did" : "",
 					"owner" : "Bob",
 					"symbol" : "MVS.BOB",
 					"to_did" : "Bob",
@@ -391,16 +468,16 @@ $ ./mvs-cli issue Bob passwd1 MVS.BOB
 				},
 				"index" : 1,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 39990f81b91b7a35092517dfd5c8942c9e5f48f8 ] equalverify checksig",
+				"script" : "dup hash160 [ ee51cd6e869195dca48ede01f40a18c275322fbd ] equalverify checksig",
 				"value" : 0
 			},
 			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+				"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 				"attachment" : 
 				{
-					"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+					"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 					"cert" : "naming",
-					"from_did" : "Bob",
+					"from_did" : "",
 					"owner" : "Bob",
 					"symbol" : "MVS.BOB",
 					"to_did" : "Bob",
@@ -408,19 +485,19 @@ $ ./mvs-cli issue Bob passwd1 MVS.BOB
 				},
 				"index" : 2,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 39990f81b91b7a35092517dfd5c8942c9e5f48f8 ] equalverify checksig",
+				"script" : "dup hash160 [ ee51cd6e869195dca48ede01f40a18c275322fbd ] equalverify checksig",
 				"value" : 0
 			},
 			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+				"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 				"attachment" : 
 				{
 					"type" : "etp"
 				},
 				"index" : 3,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 39990f81b91b7a35092517dfd5c8942c9e5f48f8 ] equalverify checksig",
-				"value" : 200000000
+				"script" : "dup hash160 [ ee51cd6e869195dca48ede01f40a18c275322fbd ] equalverify checksig",
+				"value" : 100000000
 			}
 		],
 		"version" : "4"
@@ -428,80 +505,6 @@ $ ./mvs-cli issue Bob passwd1 MVS.BOB
 }
 ```
 
-### 转移证书
-通过命令 `transfercert` 可以将证书转移给其它数字身份。
-
-该命令所需五个参数依次为：帐户名，密码，接收数字身份，资产符号，证书类型。目前仅仅支持 `domain`、`issue`、`naming` 类型的证书。该命令支持多重签名，即支持从多重签名地址转出或转入证书。
-
-在前面的示例中，`Bob` 获得了名为 `MVS.BOB` 的增发权证书，接下来 `Bob` 将该证书转移给数字身份 `Alice`。
-```bash
-命令：
-$ ./mvs-cli transfercert Bob passwd1 Alice MVS.BOB issue
-
-输出：
-{
-	"transaction" : 
-	{
-		"hash" : "3ccf7413e2670ea998ff6571589f166ec97c94669fe5d8aedcb47a6c0b2c8250",
-		"inputs" : 
-		[
-			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
-				"previous_output" : 
-				{
-					"hash" : "58d1a9f7610dbf3cb3a247d83f328ee98cd7cd0cccefb04e2d8ac59a16b59601",
-					"index" : 0
-				},
-				"script" : "[ 304402206a3757e7be64817059b93f0034ef2f12749e7e3d88510233c720bf166fd8a81e022021fc73e2966ff7c49e3c8a62f35040ea62e35d1f9b9860c1a01e69b57fdf9ea501 ] [ 029b5650eb1b896f76068a6867b03142f6cd25459b463d92aa4bd4b2efc10ef41d ]",
-				"sequence" : 4294967295
-			},
-			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
-				"previous_output" : 
-				{
-					"hash" : "a0cb6febeaae13074820e213838fd11d781c037c92a54409dd9da1713d1b0310",
-					"index" : 1
-				},
-				"script" : "[ 3044022058b0fd5a7a6512f224b50a1951935b801afcb2438f8e6d519ed62d328e1c1f8d022024fc62e86dc945f681eeb73963923fe6c51f4211be7350257150cb82d8299b4c01 ] [ 029b5650eb1b896f76068a6867b03142f6cd25459b463d92aa4bd4b2efc10ef41d ]",
-				"sequence" : 4294967295
-			}
-		],
-		"lock_time" : "0",
-		"outputs" : 
-		[
-			{
-				"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
-				"attachment" : 
-				{
-					"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
-					"cert" : "issue",
-					"from_did" : "Bob",
-					"owner" : "Alice",
-					"symbol" : "MVS.BOB",
-					"to_did" : "Alice",
-					"type" : "asset-cert"
-				},
-				"index" : 0,
-				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 82ecff3d87cc01a8a539dfd8d5e0cac0639c0088 ] equalverify checksig",
-				"value" : 0
-			},
-			{
-				"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
-				"attachment" : 
-				{
-					"type" : "etp"
-				},
-				"index" : 1,
-				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 39990f81b91b7a35092517dfd5c8942c9e5f48f8 ] equalverify checksig",
-				"value" : 299990000
-			}
-		],
-		"version" : "4"
-	}
-}
-```
 
 ## 查看证书
 查看资产命令的 `listassets`, `getasset`, `getaccountasset` 以及 `getaddressasset` 有一个 `--cert` 选项用于查看资产证书信息。
@@ -530,7 +533,7 @@ $ ./mvs-cli getasset --cert MVS.BOB
 	"assetcerts" : 
 	[
 		{
-			"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+			"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 			"cert" : "naming",
 			"owner" : "Bob",
 			"symbol" : "MVS.BOB"
@@ -548,25 +551,25 @@ $ ./mvs-cli listassets --cert
 	"assetcerts" : 
 	[
 		{
-			"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+			"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 			"cert" : "domain",
 			"owner" : "Alice",
 			"symbol" : "MVS"
 		},
 		{
-			"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
-			"cert" : "issue",
-			"owner" : "Alice",
-			"symbol" : "MVS.BOB"
-		},
-		{
-			"address" : "MKqRzDAtZJqcqvEqzYq3qeZLPoj3DHJAx4",
+			"address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
 			"cert" : "issue",
 			"owner" : "Alice",
 			"symbol" : "MVS.Alice"
-		}
+		},
 		{
-			"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+			"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
+			"cert" : "issue",
+			"owner" : "Bob",
+			"symbol" : "MVS.BOB"
+		},
+		{
+			"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 			"cert" : "naming",
 			"owner" : "Bob",
 			"symbol" : "MVS.BOB"
@@ -579,7 +582,7 @@ $ ./mvs-cli listassets --cert
 	"assetcerts" : 
 	[
 		{
-			"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+			"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 			"cert" : "naming",
 			"owner" : "Bob",
 			"symbol" : "MVS.BOB"
@@ -597,7 +600,7 @@ $ ./mvs-cli getaccountasset Bob passwd1 --cert
 	"assetcerts" : 
 	[
 		{
-			"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+			"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 			"cert" : "naming",
 			"owner" : "Bob",
 			"symbol" : "MVS.BOB"
@@ -610,7 +613,7 @@ $ ./mvs-cli getaccountasset Bob passwd1 MVS.BOB --cert
 	"assetcerts" : 
 	[
 		{
-			"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+			"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 			"cert" : "naming",
 			"owner" : "Bob",
 			"symbol" : "MVS.BOB"
@@ -627,7 +630,7 @@ $ ./mvs-cli getaddressasset MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f --cert
 	"assetcerts" : 
 	[
 		{
-			"address" : "MD9i7CXfRssTXr3DTtsn22KFyWwaxRLu4f",
+			"address" : "MVdH3pZrjPqgvg51pYfr7ct1hEqL4R25fz",
 			"cert" : "naming",
 			"owner" : "Bob",
 			"symbol" : "MVS.BOB"

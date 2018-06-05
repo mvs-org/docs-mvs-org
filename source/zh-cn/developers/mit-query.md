@@ -119,7 +119,6 @@ $ ./mvs-cli getmit Alice@MIT -t
 	[
 		{
 			"address" : "M9cFfg7xrv1kBvxBp93QVWhNxBYxE8g7Tk",
-			"from_did" : "Alice",
 			"height" : 9133,
 			"status" : "transfered",
 			"symbol" : "Alice@MIT",
@@ -128,7 +127,6 @@ $ ./mvs-cli getmit Alice@MIT -t
 		},
 		{
 			"address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
-			"from_did" : "Alice",
 			"height" : 8514,
 			"status" : "registered",
 			"symbol" : "Alice@MIT",
