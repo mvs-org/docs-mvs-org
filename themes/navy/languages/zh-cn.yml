@@ -46,6 +46,7 @@ sidebar:
     fronzen_etp: 识别冻结的ETP
     asset_operation: 元界MST使用说明
     reset_mvs: 重置钱包
+    backup_account: 备份账户
 
   api:
     introduction: 介绍

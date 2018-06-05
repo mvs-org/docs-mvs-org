@@ -46,6 +46,7 @@ sidebar:
     fronzen_etp: Recognize Fronzen ETP
     asset_operation: Metaverse Smart Token
     reset_mvs: Reset MVS Wallet
+    backup_account: Backup Account
 
   baas:
     introduction: Introduction

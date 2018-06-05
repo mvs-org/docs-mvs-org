@@ -26,7 +26,7 @@ TODID SYMBOL
 位置参数:
 ACCOUNTNAME          帐户名，必须提供。
 ACCOUNTAUTH          帐户密码，必须提供。
-TODID                接收者的数字身份，必须提供。
+TODID                接收者的数字身份，必须提供，支持多重签名的数字身份。
 SYMBOL               MIT 资产标识，必须提供。
 ```
 

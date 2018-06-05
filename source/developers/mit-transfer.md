@@ -28,7 +28,7 @@ Options (named):
 Arguments (positional):
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
-TODID                To DID required.
+TODID                To DID required, multi-sign DID is supported.
 SYMBOL               MIT identifier required.
 ```
 
