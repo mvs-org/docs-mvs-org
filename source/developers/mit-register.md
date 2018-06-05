@@ -42,17 +42,17 @@ Output：
 {
 	"transaction" : 
 	{
-		"hash" : "d48a0a03cce8b41dd9a3d38ca930cab20ce849f9c952ae996c3e82d5d8b18c8f",
+		"hash" : "9d52158296a9e33b49dcd0f9ceee26c8f2356f1486dc0d9a56ea49a1dd0d97e3",
 		"inputs" : 
 		[
 			{
-				"address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
+				"address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
 				"previous_output" : 
 				{
-					"hash" : "4d5b2cce79e0e684dbc4e910957c201cc05cfe0e4495ab9ae527c29b9c74b6af",
+					"hash" : "bce39df08273418f93d594185f23273225ae5aadfe6bd54ea4f7bbae50a61ea2",
 					"index" : 1
 				},
-				"script" : "[ 304402202da2f8c3ce9619f5ac20402082ab7ae4d3437ea200c36994eccf5f99e008bb89022015e4c79eb7ee23fb19bca8427ca656fd64f65457fe38dac9eb569420b5375acd01 ] [ 025ba481942947bd28613ac58a4ce7fae897e14ef113aca8b4dd76cd0fa2de0558 ]",
+				"script" : "[ 304402201f0d5f9c5c4d3de0db3ea80f3ae356558f76dfddc124c10eceb6523d2255b075022001f788e0a008b002c6bc9a31e2c945f9bbed4e6ba7def1f5c867e29f01d362c001 ] [ 039497a1b7e0dbc762fbd389d8b1ac3215782758c753c521fc4e40914f8e14d5e8 ]",
 				"sequence" : 4294967295
 			}
 		],
@@ -60,10 +60,10 @@ Output：
 		"outputs" : 
 		[
 			{
-				"address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
+				"address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
 				"attachment" : 
 				{
-					"address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
+					"address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
 					"content" : "Alice's MIT",
 					"from_did" : "Alice",
 					"status" : "registered",
@@ -73,18 +73,18 @@ Output：
 				},
 				"index" : 0,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ e4661b6687395fda26767695c7217fd5b2c4707f ] equalverify checksig",
+				"script" : "dup hash160 [ 75f7e6e4b14d0aaa72a96bd5751070e7b7f813fb ] equalverify checksig",
 				"value" : 0
 			},
 			{
-				"address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
+				"address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
 				"attachment" : 
 				{
 					"type" : "etp"
 				},
 				"index" : 1,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ e4661b6687395fda26767695c7217fd5b2c4707f ] equalverify checksig",
+				"script" : "dup hash160 [ 75f7e6e4b14d0aaa72a96bd5751070e7b7f813fb ] equalverify checksig",
 				"value" : 199990000
 			}
 		],

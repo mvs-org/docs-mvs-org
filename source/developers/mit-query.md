@@ -37,12 +37,15 @@ Output:
 	"mits" : 
 	[
 		{
-			"address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
+			"address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
 			"content" : "Alice's MIT",
+			"height" : 3692,
 			"status" : "registered",
-			"symbol" : "Alice@MIT"
-		},
-	}
+			"symbol" : "Alice@MIT",
+			"time_stamp" : 1528182825,
+			"to_did" : "Alice"
+		}
+	]
 }
 ```
 
@@ -56,7 +59,7 @@ Output:
 	"mits" : 
 	[
 		{
-			"address" : "M9cFfg7xrv1kBvxBp93QVWhNxBYxE8g7Tk",
+			"address" : "MFj3WGtCxWT2BJZSJUJ9N9A3hKqCoaehaX",
 			"content" : "Alice's MIT",
 			"status" : "transfered",
 			"symbol" : "Alice@MIT"
@@ -104,10 +107,13 @@ $ ./mvs-cli getmit Alice@MIT
 
 Output: 
 {
-	"address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
+	"address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
 	"content" : "Alice's MIT",
+	"height" : 3692,
 	"status" : "registered",
-	"symbol" : "Alice@MIT"
+	"symbol" : "Alice@MIT",
+	"time_stamp" : 1528182825,
+	"to_did" : "Alice"
 }
 ```
 
@@ -121,19 +127,19 @@ Output:
 	"mits" : 
 	[
 		{
-			"address" : "M9cFfg7xrv1kBvxBp93QVWhNxBYxE8g7Tk",
-			"height" : 9133,
+			"address" : "MFj3WGtCxWT2BJZSJUJ9N9A3hKqCoaehaX",
+			"height" : 7090,
 			"status" : "transfered",
 			"symbol" : "Alice@MIT",
-			"time_stamp" : 1528094263,
+			"time_stamp" : 1528183391,
 			"to_did" : "Bob"
 		},
 		{
-			"address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
-			"height" : 8514,
+			"address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+			"height" : 3692,
 			"status" : "registered",
 			"symbol" : "Alice@MIT",
-			"time_stamp" : 1528093720,
+			"time_stamp" : 1528182825,
 			"to_did" : "Alice"
 		}
 	]

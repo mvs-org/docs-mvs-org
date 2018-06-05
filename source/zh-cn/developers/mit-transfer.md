@@ -38,27 +38,27 @@ $ ./mvs-cli transfermit Alice passwd1 Bob Alice@MIT
 {
 	"transaction" : 
 	{
-		"hash" : "97f18446040831a1e51ac38d93064cdc1001aca16d4eb852c61c1f5ed602f78c",
+		"hash" : "4fe272acccf0dae96ca71fc34350bbc425588725ef9224b23447cca57b86be60",
 		"inputs" : 
 		[
 			{
-				"address" : "MANkcAf1RAwEMCNvD3byoh596JraAi3eZC",
+				"address" : "MH257NnjBJZNAy258c4bjVVkFB8phMFqtY",
 				"previous_output" : 
 				{
-					"hash" : "c09ea5ef791534014fad5256e33681ade13df5892a8e5d3844b927bbb3c62b3f",
+					"hash" : "6e34003a72537c7f0f8802c962ecb6c6660a581bfd34ba9e4e1132492b5cdd80",
 					"index" : 0
 				},
-				"script" : "[ 30450221008a9fca6fc0e7d42cd0df00ab87a1cedc19b22add25ea106698ab3d839cb31db802201892c5bf55d2cbbe663f893c92a862c5c065b3f532ea47e5380427627b3ebaf001 ] [ 03b714ee6fa096be717f68775e507fc87579aaca5eaf7e0393671563a5ff8ea0b2 ]",
+				"script" : "[ 304402203b281aed68b352d07fec303ac8baef47c4020edbeaa5a35ba146ba33d2e9c54c02202fb08aa2c1f3c0dda914a3c4f1630bbd795686690bec955475fef39283c78d2f01 ] [ 030848a4429c900e09159b39993e3edf6df1a4302d28d3a2af78a343042d7a8b5e ]",
 				"sequence" : 4294967295
 			},
 			{
-				"address" : "MUipcgtbBZVCn1n45SaCfK62YBrvkjWe7J",
+				"address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
 				"previous_output" : 
 				{
-					"hash" : "d48a0a03cce8b41dd9a3d38ca930cab20ce849f9c952ae996c3e82d5d8b18c8f",
+					"hash" : "9d52158296a9e33b49dcd0f9ceee26c8f2356f1486dc0d9a56ea49a1dd0d97e3",
 					"index" : 0
 				},
-				"script" : "[ 30440220282bb15403338b736ff8e871528caf88528d7f9b77f72cb953489b94436e86b902204e2be80df47678187badef8577e699a615f865891ff5a00635a70141ccdb3b3701 ] [ 025ba481942947bd28613ac58a4ce7fae897e14ef113aca8b4dd76cd0fa2de0558 ]",
+				"script" : "[ 304402200b8c33403b6cd72e086ebea2335812351fcb268421dffb9322f6e133518c393602202376aa29f4803150ed60a86984a0956e299f15a53f698bfcedd484ba2f722c1a01 ] [ 039497a1b7e0dbc762fbd389d8b1ac3215782758c753c521fc4e40914f8e14d5e8 ]",
 				"sequence" : 4294967295
 			}
 		],
@@ -66,11 +66,11 @@ $ ./mvs-cli transfermit Alice passwd1 Bob Alice@MIT
 		"outputs" : 
 		[
 			{
-				"address" : "M9cFfg7xrv1kBvxBp93QVWhNxBYxE8g7Tk",
+				"address" : "MFj3WGtCxWT2BJZSJUJ9N9A3hKqCoaehaX",
 				"attachment" : 
 				{
-					"address" : "M9cFfg7xrv1kBvxBp93QVWhNxBYxE8g7Tk",
-					"from_did" : "Alice",
+					"address" : "MFj3WGtCxWT2BJZSJUJ9N9A3hKqCoaehaX",
+					"from_did" : "",
 					"status" : "transfered",
 					"symbol" : "Alice@MIT",
 					"to_did" : "Bob",
@@ -78,18 +78,18 @@ $ ./mvs-cli transfermit Alice passwd1 Bob Alice@MIT
 				},
 				"index" : 0,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 12bdb7a3ddf892797e8787e300ddf0413977726c ] equalverify checksig",
+				"script" : "dup hash160 [ 55d73b3c20a6dd7391426624d4a7a697ed5c27cc ] equalverify checksig",
 				"value" : 0
 			},
 			{
-				"address" : "MANkcAf1RAwEMCNvD3byoh596JraAi3eZC",
+				"address" : "MH257NnjBJZNAy258c4bjVVkFB8phMFqtY",
 				"attachment" : 
 				{
 					"type" : "etp"
 				},
 				"index" : 1,
 				"locked_height_range" : 0,
-				"script" : "dup hash160 [ 1b282d5a09f00a957cdcb090491b00a4fc0ebb59 ] equalverify checksig",
+				"script" : "dup hash160 [ 6407c4bae99d9784c60ab5c991fb3e7fe20ad647 ] equalverify checksig",
 				"value" : 299990000
 			}
 		],
