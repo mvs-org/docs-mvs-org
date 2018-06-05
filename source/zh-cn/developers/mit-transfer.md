@@ -1,4 +1,5 @@
 title: MIT 转移
+comments: false
 ---
 
 ## 前提简述

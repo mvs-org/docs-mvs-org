@@ -1,4 +1,5 @@
 title: Register MIT
+comments: false
 ---
 
 ## Precondition

@@ -1,4 +1,5 @@
 title: Query MIT
+comments: false
 ---
 
 ## Precondition

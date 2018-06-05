@@ -1,4 +1,5 @@
 title: Digital Assets (MIT)
+comments: false
 ---
 
 ## Metaverse Identifiable Token (MIT)

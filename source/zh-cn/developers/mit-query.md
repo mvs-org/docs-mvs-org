@@ -1,4 +1,5 @@
 title: MIT 查询
+comments: false
 ---
 
 ## 前提简述

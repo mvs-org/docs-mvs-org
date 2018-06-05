@@ -1,4 +1,5 @@
 title: MIT 登记
+comments: false
 ---
 
 ## 前提简述

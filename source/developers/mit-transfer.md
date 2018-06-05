@@ -1,4 +1,5 @@
 title: Transfer MIT
+comments: false
 ---
 
 ## Precondition
