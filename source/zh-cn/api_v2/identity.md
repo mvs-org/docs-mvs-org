@@ -7,8 +7,8 @@ comments: false
 
 ## API Methods 
 ***
-* ### `issuedid`
-    issuedid
+* ### `registerdid`
+    registerdid
     * Parameters (optional)
     1. `-f` or `[--fee]` The fee of tx. default_value 10 etp
     * Parameters (positional)
@@ -33,7 +33,7 @@ comments: false
     curl -X POST -d '{
         "id":25,
         "jsonrpc":"2.0",
-        "method":"issuedid",
+        "method":"registerdid",
         "params":[
             "test",
             "123456",
@@ -75,7 +75,7 @@ comments: false
                                         "description" : "test did",
                                         "issuer" : "test",
                                         "symbol" : "TESTDID",
-                                        "type" : "did-issue"
+                                        "type" : "did-register"
                                 },
                                 "index" : 0,
                                 "locked_height_range" : 0,
@@ -114,7 +114,7 @@ comments: false
     * Example
     ```js
      // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"listdids","id":42}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"listdids","id":42}'  http://127.0.0.1:8820/rpc/v2/
     // Response
     {
         "jsonrpc": "2.0", 
@@ -169,7 +169,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"listdids",
-    "params":["test", "123456"],"id":42}'
+    "params":["test", "123456"],"id":42}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -224,7 +224,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"didsend",
-    "params":["test", "123456", "yang", "100"],"id":7}'
+    "params":["test", "123456", "yang", "100"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -280,6 +280,112 @@ comments: false
     }
     ```
 ***
+* ### `didsendmore`
+    didsendmore
+    send etp to  multi-receivers(did/address).
+    * Parameters (optional)
+    1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
+    2. `-m` or `[--mychange]` Mychange to this did/address
+    3. `-r` or `[--receivers]` Send to [did/address:amount]
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    ```js
+    params:[
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH"
+    ]
+     ```
+    * Returns
+    `Object` - return the transaction
+
+    * Example
+
+    ```js
+    // Request
+    curl -X POST --data '{
+        "id":125,
+        "jsonrpc":"2.0",
+        "method":"didsendmore",
+        "params":[
+            "lxf",
+            "123456",
+            {
+                "receivers":[
+                        "lxf1:10000",
+                        "lxf2:10000",
+                        "M95tQAUQ61acvpBWzpojseffTViWV5R9E7:10000"
+                ],
+                "mychange": "lxf3"
+            }
+        ]
+    }' 127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 7,
+        "jsonrpc" : "2.0",
+        "result" : 
+       {
+        "transaction" :
+        {
+                "hash" : "91b16c8498766edfe6f36d0cbcdbb2eea43124ea67181bba85844034be1c2fb7",
+                "inputs" :
+                [
+                        {
+                                "address" : "MBu7Bk4udQsL232PqBSzo8nAJpKjLbNo6x",
+                                "previous_output" :
+                                {
+                                        "hash" : "3d382ca4b754194840c3289a75aa5d6522f443101a8652da2408c7117aeac688",
+                                        "index" : 0
+                                },
+                                "script" : "[ 3045022100aa48e560417bfad021b3159d962c66a86b29f4ceeb2ea37b53bbf21118e5869c0220179e731d1a6a96d4ae5b7a4dfee6b1f82e2fcac410f3d58169759d745fda27b401 ] [02e710be4f24f7ad525d532df1f92944c494d6a1d66fefb5c8e535febaac0d8422 ]",
+                                "sequence" : 4294967295
+                        }
+                ],
+                "lock_time" : "0",
+                "outputs" :
+                [
+                        {
+                                "address" : "MV2zNNfTPjNAU3WpT1nyEMzQUnCuL2CuHb",
+                                "attachment" :
+                                {
+                                        "type" : "etp"
+                                },
+                                "index" : 0,
+                                "locked_height_range" : 0,
+                                "script" : "dup hash160 [ e7d5bc64873376a28ef795aeed25d25403e0e06c ] equalverify checksig",
+                                "value" : 10000
+                        },
+                        {
+                                "address" : "MPeT7urwkXn79e4Ef1vAFjhb8m5ezuj4G9",
+                                "attachment" :
+                                {
+                                        "type" : "etp"
+                                },
+                                "index" : 1,
+                                "locked_height_range" : 0,
+                                "script" : "dup hash160 [ acb9dec4c28f2728862d38f0d091b000c894b11d ] equalverify checksig",
+                                "value" : 10000
+                        },
+                        {
+                                "address" : "M95tQAUQ61acvpBWzpojseffTViWV5R9E7",
+                                "attachment" :
+                                {
+                                        "type" : "etp"
+                                },
+                                "index" : 2,
+                                "locked_height_range" : 0,
+                                "script" : "dup hash160 [ 0cff7c3ea1fb0c7d7a964056970882e9a4b1b19a ] equalverify checksig",
+                                "value" : 10000
+                        }
+                ],
+                "version" : "2"
+        }
+}
+    }
+    ```
+***
 
 * ### `didsendfrom`
     didsendfrom, send etp form a did or address
@@ -307,7 +413,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"didsendfrom",
-    "params":["test", "123456", "testdid", "guang", "10000"],"id":7}'
+    "params":["test", "123456", "testdid", "guang", "10000"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -390,7 +496,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"didsendasset",
-    "params":["yangguanglu", "123456", "testdid", "zgc", "99"],"id":7}'
+    "params":["yangguanglu", "123456", "testdid", "zgc", "99"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -500,7 +606,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"didsendfrom",
-    "params":["test", "123456", "testdid", "guang", "zgc", "85"],"id":7}'
+    "params":["test", "123456", "testdid", "guang", "zgc", "85"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -577,22 +683,20 @@ comments: false
     ```
 ***
 
-* ### `didmodifyaddress`
+* ### `didchangeaddress`
     change did address,and the toaddress will pay the fee,to prove that you own this address to hold the did.
     * Parameters (optional)
     1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
-    3. `FROMADDRESS` From address
-    4. `TOADDRESS` Target address
-    5. `SYMBOL` Did symbol
+    3. `TOADDRESS` Target address
+    4. `SYMBOL` Did symbol
 
     ```js
     params:[
         "ACCOUNTNAME", 
         "ACCOUNTAUTH", 
-        "FROMADDRESS", 
         "TOADDRESS", 
         "SYMBOL"
     ]
@@ -604,7 +708,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"didmodifyaddress",
-    "params":["test", "123456", "testdid", "MKNCEEsdS7tzbGHAT8E6VEpaxTHd5nSuxA", "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP", "guang"],"id":7}'
+    "params":["test", "123456", "testdid", "MKNCEEsdS7tzbGHAT8E6VEpaxTHd5nSuxA", "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP", "guang"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -671,17 +775,48 @@ comments: false
 ***
 
 
-* ### `listdidaddresses`
-    list history addresses of did.
+* ### `getdid`
+    list dids.
     * Parameters (positional)
-    1. `ACCOUNTNAME` Account name.
-    2. `ACCOUNTAUTH` Account password/authorization.
-    3. `SYMBOL` Did symbol.
+
     ```js
     params:[
-        "ACCOUNTNAME", 
-        "ACCOUNTAUTH",
-        "SYMBOL"
+    ]
+     ```
+    * Returns
+    `Object` - dids
+   
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getdid","params":[""],"id":42}'  http://127.0.0.1:8820/rpc/v2/
+
+    // Response
+    {
+        "jsonrpc": "2.0", 
+        "id": 42, 
+        "result":
+        {
+            "dids" :
+            [
+                "Alice",
+                "Bob",
+                "Cindy",
+                "Dale"
+            ]   
+        }
+    }
+    ```
+***
+
+* ### `getdid`
+    list history addresses of did.
+    * Parameters (positional)
+    1. `SYMDID/ADDRESS` Did symbol or address  .
+    
+    ```js
+    params:[
+        "SYMDID/ADDRESS"
     ]
      ```
     * Returns
@@ -690,31 +825,32 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"listdidaddresses",
-   " params":["li", "123456", "li"],"id":42}'  http://127.0.0.1/rpc/v2/
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getdid","params":["MSvm4CPTvzhgktUXu7BKrHuFuUcZd7jqzK"],"id":42}'  http://127.0.0.1:8820/rpc/v2/
 
-    e
-        "jsonrpc": "2.0", 
-        "id": 42, 
-        "result":
+    // Response
+    {
+        "id" : 42,
+        "jsonrpc" : "2.0",
+        "result" : 
         {
-            "addresses" :
-            [
-                {
-                    "address" : "M9hWFy4KjhVFM29VMp9Eb4w5h2i9HW3vQy",
-                    "status" : "current"
-                },
-                {
-                    "address" : "MLY9QQC7ad9XS2cPjyEL7UJgLcjqrd3sbE",
-                    "status" : "old"
-                },
-                {
-                    "address" : "M81jyVCYVvLHPCgkr2UXRDNwgtxLLM1LC2",
-                    "status" : "old"
-                },
-            ]   
+                "addresses" : 
+                [
+                        {
+                                "address" : "MSvm4CPTvzhgktUXu7BKrHuFuUcZd7jqzK",
+                                "status" : "current"
+                        },
+                        {
+                                "address" : "MB2gtNeGDVeqscVJF8DVNBsVTNdfAEJXU5",
+                                "status" : "history"
+                        },
+                        {
+                                "address" : "MSvm4CPTvzhgktUXu7BKrHuFuUcZd7jqzK",
+                                "status" : "history"
+                        }
+                ],
+                "did" : "Zac@20180601T102505T5167672"
         }
     }
+
     ```
 ***
-
