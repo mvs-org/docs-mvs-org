@@ -29,6 +29,7 @@ sidebar:
     config_file: Config File
     command_line: Command-Line
     supernova: Supernova Features
+    supernova_upgrade: Supernova Upgrade Manual
 
     features: Features
     issue_token: Issue Tokens

@@ -26,6 +26,7 @@ docs:
     deploy_wallet: deploy-wallet-for-exchange-platform.html
     fronzen_etp: recognize-fronzen-ETP-transaction-outputs.html
     asset_operation: assets-operations.html
+    supernova_upgrade: supernova-upgrade-manual.html
 
 baas:
   introduction:
