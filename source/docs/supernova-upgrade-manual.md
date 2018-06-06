@@ -12,7 +12,7 @@ A hard fork is a change to the underlying Metaverse protocol, creating new rules
 
 Please follow the following steps to upgrade your client.
 
-CAUTION: PLEASE BACKUP YOUR ACCOUNT’s MNEMONIC-PHRASE OF MASTER-KEY AT FIRST.
+**CAUTION: PLEASE BACKUP YOUR ACCOUNT’s MNEMONIC-PHRASE OF MASTER-KEY AT FIRST.**
 
 ### Backup
 Use cli command `dumpkeyfile` to backup your account information.
@@ -46,7 +46,7 @@ http://newmetaverse.org/mvs-download/mvs-win64-v0.8.0.exe
 http://newmetaverse.org/mvs-download/mvs-macOSX-x86_64-v0.8.0.pkg
 ```
 2. Install  
-Double click the install-pacakge on Windows or Mac to start installing.
+Double click the install-package on Windows or Mac to start installing.
 ```
 # for Centos
 $ cd mvs-centos-x86_64-v0.8.0
