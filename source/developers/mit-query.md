@@ -14,7 +14,7 @@ With an account, if you want to `issue` or `send` an asset, you have to make sur
 You can use `help` to get the help information of each command. For eaxmple, use `"mvs-cli help registermit"` or `"mvs-cli registermit -h"` to get the help information of `registermit` command.
 
 ## Query with listmits
-Command: `listmits`, query all registered `MIT` on blockchain or unspent `MIT` of spcified account。
+Command: `listmits`, query all registered `MIT` on blockchain or unspent `MIT` of specified account。
 ```bash
 Usage:
 mvs-cli listmits [-h] [ACCOUNTNAME] [ACCOUNTAUTH]   
@@ -26,7 +26,7 @@ Arguments (positional):
 ACCOUNTNAME          Account name required.
 ACCOUNTAUTH          Account password(authorization) required.
 ```
-**Note: If account name and password is specified, then query unspent `MIT` of spcified account.**
+**Note: If account name and password is specified, then query unspent `MIT` of specified account.**
 
 1. Example: query all registered `MIT` on blockchain：
 ```bash
