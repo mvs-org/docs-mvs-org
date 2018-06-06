@@ -34,9 +34,9 @@ $ ./mvs-cli dumpkeyfile account_name password last_word path_of_backup_keyfile
 $ wget http://newmetaverse.org/mvs-download/mvs-centos-x86_64-v0.8.0.tar.gz
 $ tar -zxf mvs-centos-x86_64-v0.8.0.tar.gz
 
-# for Ubuntu, MD5: fd953dbb7fa6ec8c18d18efa17a44954
-$ wget http://newmetaverse.org/mvs-download/mvs-ubuntu-x86_64-v0.8.0.tar.gz
-$ unzip mvs-ubuntu-x86_64-v0.8.0.tar.gz
+# for Linux, MD5: 23b40c9f3aa23ed1de5ac7ab6a3c21f2
+$ wget http://newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.8.0.tar.gz
+$ tar -zxf mvs-ubuntu-x86_64-v0.8.0.tar.gz
 
 # for Windows, MD5: 899c11c3b7c68c8941cad6cc3ae4ad42
 http://newmetaverse.org/mvs-download/mvs-win64-v0.8.0.exe
@@ -51,7 +51,7 @@ Windows 和 Mac 系统双击安装包运行。
 $ cd mvs-centos-x86_64-v0.8.0
 $ ./mvs-install.sh
 
-# for Ubuntu
+# for Linux
 $ cd mvs-ubuntu-x86_64-v0.8.0
 $ ./mvs-install.sh
 ```
@@ -59,7 +59,7 @@ $ ./mvs-install.sh
 参考链接：https://docs.mvs.org/zh-cn/docs/setup-linux.html
 
 ### 同步
-运行全节点钱包，同步区块数据，然后使用命令 `importkeyfile` 导入备份的账户信息。**数据同步时，请不要退出程序!**
+运行全节点钱包，同步区块数据，然后使用命令 `importkeyfile` 导入备份的账户信息。**在首次数据同步之前，请不要退出程序，建议同步到最新块高之后再进行其他操作!**
 ```
 $ ./mvsd -d
 $ ./mvs-cli importkeyfile account_name password path_of_backup_keyfile
