@@ -7,7 +7,10 @@ SuperNova is a hard-fork version which upgrades MVS mainnet protocol, new featur
 After height 1,270,000, if you do not upgrade (only full-node, Desktop/Linux), MVS wallet no blocks synchronizing.
 Refers to [Manual of upgrading to SuperNova](https://docs.mvs.org/docs/supernova-upgrade-manual.html)
 
-After wallet upgraded, please waiting for synchronizing to the latest height, DO NOT exit by force.
+<font color="#FF0000"> <b>
+After wallet program upgraded, please waiting for synchronizing to the latest height, DO NOT EXIT. 
+当钱包程序升级以后，请等待区块同步到最新，请勿直接退出；
+</b></font>
 
 ## Metaverse Full Node Wallet 0.8.0 Release Notes
 
