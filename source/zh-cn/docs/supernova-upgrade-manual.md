@@ -30,29 +30,29 @@ $ ./mvs-cli dumpkeyfile account_name password last_word path_of_backup_keyfile
 
 1. 下载
 ```
-# for Centos, MD5: 897c7259c1b5fb9b7e723a19cde67520
-$ wget http://newmetaverse.org/mvs-download/mvs-centos-x86_64-v0.8.0.tar.gz
-$ tar -zxf mvs-centos-x86_64-v0.8.0.tar.gz
+# for Centos, MD5: fde128f36838f9b2a74ebf5528bd1264
+$ wget http://newmetaverse.org/mvs-download/mvs-linux-backport-x86_64-v0.8.0.tar.gz
+$ tar -zxf mvs-linux-backport-x86_64-v0.8.0.tar.gz
 
-# for Linux, MD5: 23b40c9f3aa23ed1de5ac7ab6a3c21f2
+# for Linux, MD5: 1d97d188dd17cb3182758d5abc834340
 $ wget http://newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.8.0.tar.gz
-$ tar -zxf mvs-ubuntu-x86_64-v0.8.0.tar.gz
+$ tar -zxf mvs-linux-x86_64-v0.8.0.tar.gz
 
-# for Windows, MD5: 899c11c3b7c68c8941cad6cc3ae4ad42
+# for Windows, MD5: 46907900131b04d8d4d46ce4a7196211
 http://newmetaverse.org/mvs-download/mvs-win64-v0.8.0.exe
 
-# for Mac OS, MD5: 731b4e0aa76fd4269edba570f2fd3934
+# for Mac OS, MD5: 032d31f9bb2db907e1bd374ba155197e
 http://newmetaverse.org/mvs-download/mvs-macOSX-x86_64-v0.8.0.pkg
 ```
 2. 安装  
 Windows 和 Mac 系统双击安装包运行。
 ```
 # for Centos
-$ cd mvs-centos-x86_64-v0.8.0
+$ cd mvs-linux-backport-x86_64-v0.8.0
 $ ./mvs-install.sh
 
 # for Linux
-$ cd mvs-ubuntu-x86_64-v0.8.0
+$ cd mvs-linux-x86_64-v0.8.0
 $ ./mvs-install.sh
 ```
 
