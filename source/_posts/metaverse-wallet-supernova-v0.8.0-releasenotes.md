@@ -20,6 +20,7 @@ Refers to [Manual of upgrading to SuperNova](https://docs.mvs.org/docs/supernova
 1. [Digital identity(Avatar) Phase 1 - Change](https://docs.mvs.org/developers/di-index.html)
 1. [Digital identity(Avatar) Phase 1 - Display](https://docs.mvs.org/developers/di-index.html)
 1. [New digital asset(MIT) - Metaverse Identifiable Token](https://docs.mvs.org/developers/mit-index.html)
+1. [New digital asset(MIT) - Register](https://docs.mvs.org/developers/mit-register.html)
 1. [New digital asset(MIT) - Transfer](https://docs.mvs.org/developers/mit-transfer.html)
 1. [New digital asset(MIT) - Display](https://docs.mvs.org/developers/mit-query.html)
 3. [Share private-key by QRCODE between lightwallet and full node wallet](https://github.com/mvs-org/metaverse/issues/248)
