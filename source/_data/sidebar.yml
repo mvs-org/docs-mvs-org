@@ -18,6 +18,7 @@ docs:
     config_file: config-file.html
     command_line: command-line.html
     reset_mvs: reset-mvs.html
+    upgrade_mvs: upgrade-mvs.html
     backup_account: backup-account.html
     testnet: testnet.html
     private_chain: private-chain.html
