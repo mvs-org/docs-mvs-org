@@ -345,7 +345,7 @@ Output:
 ```
 
 
-## Using Certificate
+## Use Certificate
 Certificates are usually used implicitly. For example, domain certificate or naming certificate may be used while issuing asset by command `issue`; secondary issue certificate is used while secondary issuing asset by command `secondaryissue`; domain certificate is used while issuing naming certificate by command `issuecert`. Certificates can be used explicitly by command `transfercert` too.
 
 ### Using naming certificate to create asset
