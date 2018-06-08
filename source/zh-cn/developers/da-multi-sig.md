@@ -8,7 +8,7 @@ title: MST Multi-signature
 
 如果一个地址只能由一个私钥签名和支付，表现形式就是 `1/1`；而多重签名的表现形式是 `m/n`，也就是说一共 `n` 个私钥可以给一个账户签名，而当 `m` 个地址签名时，就可以支付一笔交易。所以，`m` 一定是小于等于 `n` 的。
 
-举几个例子：
+示例：
 > 多重签名 `2/3`，表示 `3` 个人拥有签名权，只要有两个人签名就可以完成这笔交易；  
 > 多重签名 `1/2`，表示 `2` 个人拥有签名权，只要有一个人签名就可以完成这笔交易。
 
@@ -19,8 +19,25 @@ title: MST Multi-signature
 4. m个参与者依次通过 `signmultisigtx` 对多重签名交易进行签名，每一个参与者通过链下的方式从前一个签名参与者获得已部分签名的交易；
 5. 通过 `sendrawtx` 广播拥有足够多签名的多重签名交易。
 
-## 范例
-该范例涉及到三个账户：`Alice`，`Bob` 以及 `Cindy`。多重签名命令使用手册请参考[API_v2_multisig](/zh-cn/api_v2/multisig.html)。
+## 支持多重签名的命令
+以下命令与多重签名相关或支持多重签名：
+
+> getpublickey  
+> getnewmultisig  
+> listmultisig  
+> deletemultisig  
+> createmultisigtx  
+> signmultisigtx  
+> sendrawtx  
+> decoderawtx  
+
+> registerdid  
+> didchangeaddress    
+> transfercert  
+> transfermit  
+
+## 示例
+该示例涉及到三个账户：`Alice`，`Bob` 以及 `Cindy`。多重签名命令使用手册请参考[API_v2_multisig](/zh-cn/api_v2/multisig.html)。
 
 ### 1. 获取和传播公钥
 每一个参与者通过 `getpublickey` 获得某个地址的公钥，该公钥对应的私钥用于签名随后创建的多重签名交易，并把该公钥告知其他所有参与者。
@@ -138,9 +155,7 @@ $ ./mvs-cli getnewmultisig Cindy C123456 -m 2 -n 3 -s "02729cae0c16009f44440f306
 $ ./mvs-cli createmultisigtx Cindy C123456 39hh1NY9xyTKzawD8zFKXgXa7XBwqck6BR MHaKHUFwAdcszvQarCmn1Rkq2uRoPQjZwm 3344
 
 输出：
-{
-    "rawtx" : "02000000016453713104d144387553bcb0fa457f40d2dc5fb916bd9e2256835a4b6de48d4c00000000b500483045022100cbfdda943648344dc03fd92a905072082af93dfd4f166e3d1bb258e3437069790220321ee22c6a2543392909e21cd347d009a6d32173c23700424b45b4592d4075e3014c69522102729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b92103d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e2103f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e0253aeffffffff02100d0000000000001976a9146a20e940e8d7be0a49c598e91fa79c8b36e5353588ac0100000000000000d0fb01000000000017a91457e1a19e5ee4c0065f8fd76b0351fa145e44435a87010000000000000000000000"
-}
+02000000016453713104d144387553bcb0fa457f40d2dc5fb916bd9e2256835a4b6de48d4c00000000b500483045022100cbfdda943648344dc03fd92a905072082af93dfd4f166e3d1bb258e3437069790220321ee22c6a2543392909e21cd347d009a6d32173c23700424b45b4592d4075e3014c69522102729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b92103d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e2103f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e0253aeffffffff02100d0000000000001976a9146a20e940e8d7be0a49c598e91fa79c8b36e5353588ac0100000000000000d0fb01000000000017a91457e1a19e5ee4c0065f8fd76b0351fa145e44435a87010000000000000000000000
 ```
 
 通过 `decoderawtx` 查看该交易详情：

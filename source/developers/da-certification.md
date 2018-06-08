@@ -22,7 +22,7 @@ Secondary issue certificate, domain certificate and naming certificate are suppo
 **Notes: Issuing a asset whose name starts with a dot `.` would not generate any certificate.**
 
 ## Obtain certificate
-Secondary issue certificate and domain certificate are provided after asset is issued. Naming certificate is provided by command `issuecert`. For issuing asset, Please refer to [MST issue](/developers/da-issue.html).
+Secondary issue certificate and domain certificate are provided after asset is issued. Naming certificate is provided by command `issuecert`. For issuing asset, please refer to [MST issue](/developers/da-issue.html).
 
 ### Obtain secondary issue certificate and domain certificate
 1. Create asset that can be secondary issued by command `createasset`  
