@@ -96,6 +96,12 @@ sidebar:
     mit_query: MIT 查询
 
     digital_identity: 数字身份-Avatar
+    di_index: 介绍
+    di_register: DID 注册
+    di_transfer: DID 转移
+    di_query: DID 查询
+    di_send: DID 发送交易
+
 
     tech_guide: 技术概览
     tech_account_model: 账户模型
