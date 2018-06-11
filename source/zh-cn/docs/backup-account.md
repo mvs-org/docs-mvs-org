@@ -21,7 +21,7 @@ categories: Guide
 > path_of_backup_keyfile 为备份文件路径  
 
 3 . 导入账户
-使用命令 `importkeyfile` 将账户信息导出到备份文件。
+使用命令 `importkeyfile` 从备份文件导入账户信息。
 	```
 	$ ./mvs-cli importkeyfile account_name password path_of_backup_keyfile
 	```
