@@ -1,4 +1,6 @@
-
+title: 数字身份
+comments: false
+---
 
 ## 发送etp到其他数字身份(或有效地址)
 兼容send接口

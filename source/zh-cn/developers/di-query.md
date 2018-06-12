@@ -1,3 +1,6 @@
+title: 数字身份
+comments: false
+---
 
 ## 查看数字身份列表
 注册成功的数字身份，可以通过listdids查看
