@@ -1,4 +1,4 @@
-title: 销毁资产
+title: Burn Asset
 ---
 
 # Introduction

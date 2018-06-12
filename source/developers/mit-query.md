@@ -79,9 +79,10 @@ mvs-cli getmit [-ht] [--index value] [--limit value] [SYMBOL]
 
 Options (named):
 -h [--help]          Get a description and instructions for this command.
--t [--trace]         Tracing history.
--i [--index]         Page index.
--l [--limit]         MIT count per page.
+-c [--current] 		 Show current status of MIT, default false.
+-t [--trace]         Tracing history, default false.
+-i [--index]         Page index, default 1.
+-l [--limit]         MIT count per page, default 100.
 
 Arguments (positional):
 SYMBOL               MIT identifier.
@@ -118,7 +119,24 @@ Output:
 }
 ```
 
-3. Example: query history of `MIT` named `Alice@MIT`:
+3. Example: query current status of `MIT` named `Alice@MIT`:
+```bash
+Command: 
+$ ./mvs-cli getmit Alice@MIT -c
+
+Output: 
+{
+	"address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+	"content" : "Alice's MIT",
+	"height" : 7090,
+	"status" : "transfered",
+	"symbol" : "Alice@MIT",
+	"time_stamp" : 1528183391,
+	"to_did" : "Bob"
+}
+```
+
+4. Example: query history of `MIT` named `Alice@MIT`:
 ```bash
 Command: 
 $ ./mvs-cli getmit Alice@MIT -t

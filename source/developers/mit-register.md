@@ -24,6 +24,7 @@ ACCOUNTNAME ACCOUNTAUTH TODID SYMBOL
 Options (named):
 -h [--help]          Get a description and instructions for this command.
 -c [--content]       The content of MIT, default is empty.
+-m [--mits]          List of symbol and content pair. Symbol and content are separated by a ':'.
 -f [--fee]           The fee of tx. default_value 0.0001 etp.
 
 Arguments (positional):
@@ -32,9 +33,12 @@ ACCOUNTAUTH          Account password(authorization) required.
 TODID                To DID required.
 SYMBOL               MIT identifier required.
 ```
-**Note：The max length of SYMBOL is 60, case insensitive, only numbers, letters and `.`、`-`、`_`、`@` are allowed. The max length of content is 256. MIT identifier is unique on blockchain.**
+**Note：**  
+1. The max length of SYMBOL is 60, case insensitive, only numbers, letters and `.`、`-`、`_`、`@` are allowed. The max length of content is 256. MIT identifier is unique on blockchain.  
+2. The maximum size of list of symbol and content pair is 100. Symbol and content are separated by a ':'.
 
-Example：Account `Alice` registers `MIT` named `Alice@MIT` to DID `Alice`。
+Example： 
+1. Account `Alice` registers `MIT` named `Alice@MIT` to DID `Alice`。
 ```bash
 Command：
 $ ./mvs-cli registermit Alice passwd1 Alice Alice@MIT -c "Alice's MIT"
@@ -91,5 +95,103 @@ Output：
 		],
 		"version" : "4"
 	}
+}
+```
+2. Account `Alice` registers three `MITs` to DID `Alice`: `BATCH_01@MIT` and `BATCH_02@MIT` with unified content, `BATCH_03@MIT` with customized content.  
+```bash
+Command：
+$ ./mvs-cli registermit Alice passwd1 Alice -c "unified content of batch registerring mit." -m "BATCH_01@MIT" -m "BATCH_02@MIT" -m "BATCH_03@MIT:customized content."
+
+Output：
+{
+    "id" : 25,
+    "jsonrpc" : "2.0",
+    "result" :
+    {
+        "transaction" :
+        {
+            "hash" : "67c520b7f0b514986c645f35bf116607e6de4cddb3051d38a1ead1228a5009cf",
+            "inputs" :
+            [
+                {
+                    "address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+                    "previous_output" :
+                    {
+                        "hash" : "94018aff4d4c9c5732486d3108b85e15e59982b65d0ac8964582ed3a2ddfb7ac",
+                        "index" : 2
+                    },
+                    "script" : "[ 304402201fd9b8068df744a02b6e4995c86827e24a126781b81a2598e93401fe3349ab9d02200cf4d3f4b262ca37b6aefef9b8ea9c1759f27cf44cc573688d579b06d7143cd701 ] [ 0351404c07aba6fe1fc78e4bc1a97a9b6f293b0909f1f4ea4eb0ef1b5bca4bf4af ]",
+                    "sequence" : 4294967295
+                }
+            ],
+            "lock_time" : "0",
+            "outputs" :
+            [
+                {
+                    "address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+                    "attachment" :
+                    {
+                        "address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+                        "content" : "unified content of batch registerring mit.",
+                        "from_did" : "Alice",
+                        "status" : "registered",
+                        "symbol" : "BATCH_01@MIT",
+                        "to_did" : "Alice",
+                        "type" : "mit"
+                    },
+                    "index" : 0,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ b5eb75b67ccc47363ea623a3c73b2d23c9dd801a ] equalverify checksig",
+                    "value" : 0
+                },
+                {
+                    "address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+                    "attachment" :
+                    {
+                        "address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+                        "content" : "unified content of batch registerring mit.",
+                        "from_did" : "Alice",
+                        "status" : "registered",
+                        "symbol" : "BATCH_02@MIT",
+                        "to_did" : "Alice",
+                        "type" : "mit"
+                    },
+                    "index" : 1,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ b5eb75b67ccc47363ea623a3c73b2d23c9dd801a ] equalverify checksig",
+                    "value" : 0
+                },
+                {
+                    "address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+                    "attachment" :
+                    {
+                        "address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+                        "content" : "customized content.",
+                        "from_did" : "Alice",
+                        "status" : "registered",
+                        "symbol" : "BATCH_03@MIT",
+                        "to_did" : "Alice",
+                        "type" : "mit"
+                    },
+                    "index" : 2,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ b5eb75b67ccc47363ea623a3c73b2d23c9dd801a ] equalverify checksig",
+                    "value" : 0
+                },
+                {
+                    "address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+                    "attachment" :
+                    {
+                        "type" : "etp"
+                    },
+                    "index" : 3,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ b5eb75b67ccc47363ea623a3c73b2d23c9dd801a ] equalverify checksig",
+                    "value" : 199980000
+                }
+            ],
+            "version" : "4"
+        }
+    }
 }
 ```

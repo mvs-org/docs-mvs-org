@@ -76,9 +76,10 @@ mvs-cli getmit [-ht] [--index value] [--limit value] [SYMBOL]
 
 选项:
 -h [--help]          获取帮助。
--t [--trace]         追踪 MIT 历史。
--i [--index]         分页显示 MIT 历史记录时，当前显示页的索引，从 1 开始计数。
--l [--limit]         分页显示 MIT 历史记录时，每一页显示记录的最大条数。
+-c [--current] 		 显示 MIT 的当前状态，默认为 false。
+-t [--trace]         追踪 MIT 历史，默认为 false。
+-i [--index]         分页显示 MIT 历史记录时，当前显示页的索引，从 1 开始计数，默认为 1。
+-l [--limit]         分页显示 MIT 历史记录时，每一页显示记录的最大条数，默认为 100。
 
 位置参数:
 SYMBOL               MIT 资产标识。
@@ -115,7 +116,24 @@ $ ./mvs-cli getmit Alice@MIT
 }
 ```
 
-3. 示例：查询名为 `Alice@MIT` 的 `MIT` 的历史记录：
+3. 示例：查询名为 `Alice@MIT` 的 `MIT` 的当前状态：
+```bash
+命令：
+$ ./mvs-cli getmit Alice@MIT -c
+
+输出：
+{
+	"address" : "MJevGQHGwKQGNpeJF1vDxBawxKoRZMqsRz",
+	"content" : "Alice's MIT",
+	"height" : 7090,
+	"status" : "transfered",
+	"symbol" : "Alice@MIT",
+	"time_stamp" : 1528183391,
+	"to_did" : "Bob"
+}
+```
+
+4. 示例：查询名为 `Alice@MIT` 的 `MIT` 的历史记录：
 ```bash
 命令：
 $ ./mvs-cli getmit Alice@MIT -t
