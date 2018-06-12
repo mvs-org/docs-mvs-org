@@ -108,7 +108,7 @@ developers:
     mit_query: mit-query.html
 
   digital_identity:
-    introduction: di-index.html
+    di_index: di-index.html
     di_register: di-register.html
     di_transfer: di-transfer.html
     di_query: di-query.html

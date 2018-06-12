@@ -112,7 +112,7 @@ sidebar:
     mit_query: MIT query
 
     digital_identity: Digital Identity (Avatar)
-    di_index: introduction
+    di_index: DID introduction
     di_register: DID register
     di_transfer: DID transfer
     di_query: DID query
