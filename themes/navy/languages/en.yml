@@ -112,6 +112,11 @@ sidebar:
     mit_query: MIT query
 
     digital_identity: Digital Identity (Avatar)
+    di_index: introduction
+    di_register: DID register
+    di_transfer: DID transfer
+    di_query: DID query
+    di_send: DID send etp or asset
 
     tech_guide: Tech-Guide
     tech_account_model: Account model

@@ -1,62 +1,12 @@
-title: Digital Identity(Avatar) Usage
-
+title: 数字身份
+comments: false
 ---
 
-# Digital Identity (did) introduction
+## 数字身份（Avatar）：
 
-The digital identity is bound with the user's private key, it has a unique identifier in the network. It is bound to the address of the user and can be transferred between different addresses in the same account. You can send etp and assets to other did(or addresses) through did.
-***
-##1. Create and issue did
+数字身份是用户所拥有的主私钥所对应的账户的Profile信息的统称，在全网中拥有唯一标识，与用户的地址是一一绑定的。拥有数字身份象征着在链上的有效身份，可以通过它来持有和发行资产。
+数字身份可以由单个或多个注册者共同持有，是不可伪造的，当多个用户共同持有时，绑定的是这几个用户创建的多重签名地址，此时发布交易必须通过多个人的共同签名确认。
+有效的数字身份可以在该账户下的不同地址间转移，也可以通过转移给多个账户的多重签名地址间接转移给其他账户，可以在链上查看数字身份迁移过程中的历史地址。
+可以不使用地址而是通过数字身份创建交易，通过数字身份创建的交易会在链上进行验证，使用无效的数字身份发送交易或者发送到无效的数字身份会被拒绝。
 
-
-* ### 1.1 Create and issue did
-    
-    >*issuedid ACCOUNTNAME ACCOUNTAUTH ADDRESS SYMBOL*
-    > ADDRESS belongs to current account;
-    SYMBOL consists of alphabets, numbers, and special characters ("@", ".", "_", "-"), case-sensitive, and the maximum length cannot exceed 64;
-    SYMBOL cannot be a valid address nor repeated on the chain;
-    SYMBOL cannot be the keyword "BLACKHOLE", "BLACKHOLE" is case-insensitive, ie "BLACKHOLE", "blockhole", "BlockHole" etc. are forbidden;
-    issuedid need at least 1 etp
-
-* ### 1.2 Query dids
-
-    >*listdids*
-    list dids on the chain
-    >
-    >*listdids ACCOUNTNAME ACCOUNTAUTH*
-    list dids under the current account
-
-* ### 1.3 Transfer did to other address 
-    
-    >*didmodifyaddress ACCOUNTNAME ACCOUNTAUTH TOADDRESS SYMBOL*
-    TOADDRESS belongs to the current account and didn't be bound with other did
- 
-* ### 1.4 List history addresses of did
-    >*listdidaddresses ACCOUNTNAME ACCOUNTAUTH SYMBOL*
-
-
-##2. did transaction
-
-* ### 2.1 Send etp to other did (or address)
-    >*didsend ACCOUNTNAME ACCOUNTAUTH TODID/TOADDRESS AMOUNT*
-    The target can be either did or address
-
-* ### 2.2 Send etp from current did (or address) to other did (or address)
-    >*didsendfrom ACCOUNTNAME ACCOUNTAUTH FROMDID/FROMADDRESS TODID/TOADDRESS AMOUNT*
-    FROMDID/FROMADDRESS is the current account's did or address
-
-* ### 2.3 send to multiple did (or address)
-    >*didsendmore ACCOUNTNAME ACCOUNTAUTH -r did1/address1:AMOUNT1 -r did2/address2:AMOUNT2 -m did3*
-    The "-r" option specifies the recive did (or address) and amount, supports multiple reviver;
-    The "-m" option specifies did or address for change
-
-* ### 2.4 Send assets to other did (or address)
-    >*didsendasset ACCOUNTNAME ACCOUNTAUTH TODID/TOADDRESS AMOUNT*
-    The target can be either did or address
-
-* ### 2.5 Send assets from current did (or address) to other did (or address)
-    >*didsendfrom ACCOUNTNAME ACCOUNTAUTH FROMDID/FROMADDRESS TODID/TOADDRESS AMOUNT*
-    FROMDID/FROMADDRESS is the current account's did or address
-***
-####For more details of did API, please refer to: https://docs.mvs.org/api_v2/identity.html
 
