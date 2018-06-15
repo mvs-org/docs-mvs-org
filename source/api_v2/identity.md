@@ -49,7 +49,7 @@ comments: false
         "result" : 
         {
            "transaction" :
-        {
+            {
                 "hash" : "ed1394b9d6bb2798b3c449035334911a6357da10f833e2b9fe573b9dbad185b4",
                 "inputs" :
                 [
@@ -93,6 +93,7 @@ comments: false
 					}
                 ],
                 "version" : "2"
+            }
         }
     }
     ```
