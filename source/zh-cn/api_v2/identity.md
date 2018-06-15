@@ -15,7 +15,7 @@ comments: false
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `ADDRESS` target address.
-    4. `SYMBOL` issued did symbol
+    4. `SYMBOL` register did symbol
     ```js
     params:[
         "ACCOUNTNAME", 
@@ -69,14 +69,12 @@ comments: false
                 [
                         {
                                 "address" : "MTfMLxFcYF2vLn3n1U1mCyjQgUES8Z4p49",
-                                "attachment" :
-                                {
-                                        "address" : "MTfMLxFcYF2vLn3n1U1mCyjQgUES8Z4p49",
-                                        "description" : "test did",
-                                        "issuer" : "test",
-                                        "symbol" : "TESTDID",
-                                        "type" : "did-register"
-                                },
+				"attachment" : 
+				{
+					"address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
+					"symbol" : "TESTDID",
+					"type" : "did-register"
+				},
                                 "index" : 0,
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ d8c5f7eb3c0a3f83a66b161baf74ffa330e4acac ] equalverify checksig",
@@ -125,24 +123,18 @@ comments: false
             [
                 {
                         "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
-                        "description" : "",
-                        "issuer" : "yangguanglu",
-                        "status" : "issued",
-                        "symbol" : "LU"
+                        "status" : "registered",
+                        "symbol" : "TESTDID"
                 },
                 {
-                        "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
-                        "description" : "",
-                        "issuer" : "yangguanglu",
-                        "status" : "issued",
+                        "address" : "35cY636TPTfFW8PxhqH3BNRL54g1T4mbR2",
+                        "status" : "registered",
                         "symbol" : "MVS.TST"
                 },
                 {
-                        "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
-                        "description" : "",
-                        "issuer" : "yangguanglu",
-                        "status" : "issued",
-                        "symbol" : "GUANG"
+                        "address" : "M9kDHsDKJj9hM8FzSmDu4xCDbo2DFzUhzj",
+                        "status" : "registered",
+                        "symbol" : "YANG"
                 }
             ]
         }
@@ -180,17 +172,13 @@ comments: false
              "dids" :
             [
                 {
-                        "address" : "",
-                        "description" : "test did",
-                        "issuer" : "test",
-                        "status" : "unissued",
+                        "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
+                        "status" : "registered",
                         "symbol" : "TESTDID"
                 },
                 {
-                        "address" : "",
-                        "description" : "",
-                        "issuer" : "test",
-                        "status" : "unissued",
+                        "address" : "M9kDHsDKJj9hM8FzSmDu4xCDbo2DFzUhzj",
+                        "status" : "registered",
                         "symbol" : "YANG"
                 }
             ]
@@ -224,7 +212,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"didsend",
-    "params":["test", "123456", "yang", "100"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
+    "params":["test", "123456", "YANG", "100"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -252,11 +240,13 @@ comments: false
                 "outputs" :
                 [
                         {
-                                "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
-                                "attachment" :
-                                {
-                                        "type" : "etp"
-                                },
+                                "address" : "M9kDHsDKJj9hM8FzSmDu4xCDbo2DFzUhzj",
+				"attachment" : 
+				{
+					"from_did" : "",
+					"to_did" : "YANG",
+					"type" : "etp"
+				},
                                 "index" : 0,
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ 9b243c66c9d4789ba056ef65573d4141e5ede73a ] equalverify checksig",
@@ -308,15 +298,15 @@ comments: false
         "jsonrpc":"2.0",
         "method":"didsendmore",
         "params":[
-            "lxf",
+            "test",
             "123456",
             {
                 "receivers":[
-                        "lxf1:10000",
-                        "lxf2:10000",
+                        "test1:10000",
+                        "test2:10000",
                         "M95tQAUQ61acvpBWzpojseffTViWV5R9E7:10000"
                 ],
-                "mychange": "lxf3"
+                "mychange": "test3"
             }
         ]
     }' 127.0.0.1:8820/rpc/v2
@@ -348,10 +338,12 @@ comments: false
                 [
                         {
                                 "address" : "MV2zNNfTPjNAU3WpT1nyEMzQUnCuL2CuHb",
-                                "attachment" :
-                                {
-                                        "type" : "etp"
-                                },
+				"attachment" : 
+				{
+					"from_did" : "",
+					"to_did" : "test1",
+					"type" : "etp"
+				},
                                 "index" : 0,
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ e7d5bc64873376a28ef795aeed25d25403e0e06c ] equalverify checksig",
@@ -359,10 +351,12 @@ comments: false
                         },
                         {
                                 "address" : "MPeT7urwkXn79e4Ef1vAFjhb8m5ezuj4G9",
-                                "attachment" :
-                                {
-                                        "type" : "etp"
-                                },
+				"attachment" : 
+				{
+					"from_did" : "",
+					"to_did" : "test2",
+					"type" : "etp"
+				},
                                 "index" : 1,
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ acb9dec4c28f2728862d38f0d091b000c894b11d ] equalverify checksig",
@@ -378,7 +372,21 @@ comments: false
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ 0cff7c3ea1fb0c7d7a964056970882e9a4b1b19a ] equalverify checksig",
                                 "value" : 10000
-                        }
+                        },
+                        {
+				"address" : "MLasJFxZQnA49XEvhTHmRKi2qstkj9ppjo",
+				"attachment" : 
+				{
+					"from_did" : "",
+					"to_did" : "test3",
+					"type" : "etp"
+				},
+				"index" : 3,
+				"locked_height_range" : 0,
+				"script" : "dup hash160 [ 8b24031888c2896cedb764012677868b5c64ef3b ] equalverify checksig",
+				"value" : 299960000
+			}
+
                 ],
                 "version" : "2"
         }
@@ -413,7 +421,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"didsendfrom",
-    "params":["test", "123456", "testdid", "guang", "10000"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
+    "params":["test", "123456", "TESTDID", "GUANG", "10000"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -442,10 +450,12 @@ comments: false
                 [
                         {
                                 "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
-                                "attachment" :
-                                {
-                                        "type" : "etp"
-                                },
+				"attachment" : 
+				{
+					"from_did" : "",
+					"to_did" : "GUANG",
+					"type" : "etp"
+				},
                                 "index" : 0,
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ 9b243c66c9d4789ba056ef65573d4141e5ede73a ] equalverify checksig",
@@ -453,10 +463,12 @@ comments: false
                         },
                         {
                                 "address" : "MTfMLxFcYF2vLn3n1U1mCyjQgUES8Z4p49",
-                                "attachment" :
-                                {
-                                        "type" : "etp"
-                                },
+				"attachment" : 
+				{
+					"from_did" : "TESTDID",
+					"to_did" : "",
+					"type" : "etp"
+				},
                                 "index" : 1,
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ d8c5f7eb3c0a3f83a66b161baf74ffa330e4acac ] equalverify checksig",
@@ -496,7 +508,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"didsendasset",
-    "params":["yangguanglu", "123456", "testdid", "zgc", "99"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
+    "params":["test", "123456", "TESTDID", "MVS.AST", "99"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -535,12 +547,14 @@ comments: false
                 [
                         {
                                 "address" : "MTfMLxFcYF2vLn3n1U1mCyjQgUES8Z4p49",
-                                "attachment" :
-                                {
-                                        "quantity" : 99,
-                                        "symbol" : "ZGC",
-                                        "type" : "asset-transfer"
-                                },
+				"attachment" : 
+				{
+					"from_did" : "",
+					"quantity" : 99,
+					"symbol" : "MVS.AST",
+					"to_did" : "TESTDID",
+					"type" : "asset-transfer"
+				},
                                 "index" : 0,
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ d8c5f7eb3c0a3f83a66b161baf74ffa330e4acac ] equalverify checksig",
@@ -562,7 +576,7 @@ comments: false
                                 "attachment" :
                                 {
                                         "quantity" : 8800,
-                                        "symbol" : "ZGC",
+                                        "symbol" : "MVS.AST",
                                         "type" : "asset-transfer"
                                 },
                                 "index" : 2,
@@ -606,7 +620,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"didsendfrom",
-    "params":["test", "123456", "testdid", "guang", "zgc", "85"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
+    "params":["test", "123456", "TESTDID", "GUANG", "MVS.AST", "85"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -641,12 +655,14 @@ comments: false
                 [
                         {
                                 "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
-                                "attachment" :
-                                {
-                                        "quantity" : 85,
-                                        "symbol" : "ZGC",
-                                        "type" : "asset-transfer"
-                                },
+				"attachment" : 
+				{
+					"from_did" : "TESTDID",
+					"quantity" : 85,
+					"symbol" : "MVS.AST",
+					"to_did" : "GUANG",
+					"type" : "asset-transfer"
+				},
                                 "index" : 0,
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ 9b243c66c9d4789ba056ef65573d4141e5ede73a ] equalverify checksig",
@@ -668,7 +684,7 @@ comments: false
                                 "attachment" :
                                 {
                                         "quantity" : 14,
-                                        "symbol" : "ZGC",
+                                        "symbol" : "MVS.AST",
                                         "type" : "asset-transfer"
                                 },
                                 "index" : 2,
@@ -708,7 +724,7 @@ comments: false
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"didmodifyaddress",
-    "params":["test", "123456", "testdid", "MKNCEEsdS7tzbGHAT8E6VEpaxTHd5nSuxA", "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP", "guang"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
+    "params":["test", "123456",  "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP", "GUANG"],"id":7}'  http://127.0.0.1:8820/rpc/v2/
 
     // Response
     {
@@ -743,14 +759,12 @@ comments: false
                 [
                         {
                                 "address" : "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP",
-                                "attachment" :
-                                {
-                                        "address" : "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP",
-                                        "description" : "",
-                                        "issuer" : "yangguanglu",
-                                        "symbol" : "GUANG",
-                                        "type" : "did-transfer"
-                                },
+				"attachment" : 
+				{
+					"address" : "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP",
+					"symbol" : "GUANG",
+					"type" : "did-transfer"
+				},
                                 "index" : 0,
                                 "locked_height_range" : 0,
                                 "script" : "dup hash160 [ 58be74eccf7dc9a4edd067d63d75c5bae99c5913 ] equalverify checksig",
