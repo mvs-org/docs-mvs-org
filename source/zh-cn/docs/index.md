@@ -23,7 +23,7 @@ title: 轻松使用
 设置用户名和密码，点击“创建用户”。
 ![创建用户](https://i.imgur.com/Q6DPsWC.png)
 
-备份好助计词，点击“我同意”完成注册操作。
+备份好助记词，点击“我同意”完成注册操作。
 ![我同意](https://i.imgur.com/DWKeErp.png)
 
 ### ETP 收取

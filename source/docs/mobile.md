@@ -21,7 +21,7 @@ Click “Menu”
 ![Menu](https://i.imgur.com/KSLxylx.png)
 
 Click “Settings”
-[Settings](https://i.imgur.com/ig6Kxe1.png)
+![Settings](https://i.imgur.com/ig6Kxe1.png)
 
 Click “Connect phone”
 ![Connect phone](https://i.imgur.com/mRNDG4b.png)
@@ -29,26 +29,33 @@ Click “Connect phone”
 After confirm the disclaimer, click “SHOW QR CODE”
 ![SHOW QR CODE](https://i.imgur.com/zmifram.png)
 
-Open mobile app, click ”Open wallet from QR cord”. You need to confirm the disclaimer and click ”Scan QR Code” to scan the computer’s QR code and enter password to complete login action 
+Open mobile app, click ”Open wallet from QR cord”.  
 ![Open wallet from QR cord](https://i.imgur.com/v7xLns2.jpg)
 
+You need to confirm the disclaimer and click ”Scan QR Code” to scan the computer’s QR code and enter password to complete login action.
 ![confirm the disclaimer](https://i.imgur.com/hDhrmDz.png)
 
 
 ### Receiving ETP
-Open the wallet and click “Receive”. Any of the addresses in your wallet can be used to receive digital currencies developed on the Metaverse public blockchain. You may choose any one of your wallet addresses as the receiving address.
+Open the wallet and click “Receive”. Any of the addresses in your wallet can be used to receive digital currencies developed on the Metaverse public blockchain. 
 ![Receive](https://i.imgur.com/j31hHuC.jpg)
+
+You may choose any one of your wallet addresses as the receiving address.
 ![Address](https://i.imgur.com/76WkHGv.jpg)
 
  
 ### Query transaction
 Click “History”, all the transaction history can be searched on the phone.    
 ![Query History](https://i.imgur.com/TBFBO9p.jpg) 
-![Display History](https://i.imgur.com/j31hHuC.jpg)
+
+Display the history:
+![Display History](https://i.imgur.com/dVPu7sD.jpg)
 
 ### Sending ETP
-Click the “Send” button shown under your assets. Fill in transfer details such as recipient address, transfer amount and password, then click “Send”.
+Click the “Send” button shown under your assets. 
 ![Send](https://i.imgur.com/UiH1eUO.jpg)
+
+Fill in transfer details such as recipient address, transfer amount and password, then click “Send”.
 ![Transfer](https://i.imgur.com/oPZOgXD.jpg)
 
 After the transaction sent, app will mention you by a notification.
