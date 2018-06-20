@@ -6,9 +6,9 @@ title: 轻松使用
 您也可以试用我们的Web版SPV轻钱包<https://myetpwallet.com>。
 
 ## 安装钱包
-* [Windows下安装](setup-windows.html)
+* [Windows下安装](desktop.html)
 * [Linux下安装](setup-linux.html)
-* [MacOSX下安装](setup-macosx.html)
+* [MacOSX下安装](desktop.html)
 
 可以在[在这里](http://mymvs.info/free)领取小额主网ETP。
 

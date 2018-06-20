@@ -8,9 +8,9 @@ The Metaverse full-node wallet is a cross-platform wallet program that operates 
 You may also use our light web wallet verified using SPV at https://myetpwallet.com.
 
 ## Wallet installation
-* [Windows download](setup-windows.html)
+* [Windows download](desktop.html)
 * [Linux download](setup-linux.html)
-* [MacOSX download](setup-macosx.html)
+* [MacOSX download](desktop.html)
 
 You may collect a small amount of mainnet ETP here. 
 
