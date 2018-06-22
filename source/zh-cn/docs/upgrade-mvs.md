@@ -16,12 +16,12 @@ URL: <https://docs.mvs.org/news/>
 
 三、退出正在运行的老版本钱包，如果没有钱包正在运行则略过此步骤
 
-四、备份钱包账户和数据库
+四、备份钱包账户和数据表 <font color="#FF0000"><b>(重要)</b></font>
 1. 备份账户
 <font color="#FF0000"> <b> 注意: 请在做升级操作前备份好您所有账户的主私钥助记符（即注册账户时生成的24个单词）。
-</b></font> 参考文档 [备份账户](backup-account.html)。
+</b></font> 参考文档 [备份账户](backup-account.html#%E5%A4%87%E4%BB%BD%E4%B8%8E%E5%AF%BC%E5%85%A5%E8%B4%A6%E6%88%B7)。
 
-2. 备份数据库
+2. 备份数据表
 在文件浏览器中打开以下位置：
 ```
 # Windows: Explorer
@@ -34,6 +34,9 @@ URL: <https://docs.mvs.org/news/>
 ~/.metaverse
 ```
 拷贝粘贴 `mainnet` 目录以作备份。
+
+为了节省磁盘空间，可以只备份账户信息相关的数据表（这些表的表名前缀均为 `account_`）。
+参考文档 [备份账户相关表](backup-account.html#%E5%A4%87%E4%BB%BD%E4%B8%8E%E5%AF%BC%E5%85%A5%E8%B4%A6%E6%88%B7%E7%9B%B8%E5%85%B3%E8%A1%A8)。
 
 五、安装新版本钱包
 

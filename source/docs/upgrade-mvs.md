@@ -16,12 +16,12 @@ URL: <https://docs.mvs.org/news/>
 
 **3 Exit the running old wallet (ignore this step if no one is running)**
 
-**4 Backup accounts and database**
-4.1 Backup accounts
+**4 Backup account and database** <font color="#FF0000"><b>(IMPORTANT)</b></font>
+**4.1 Backup account**
 <font color="#FF0000"><b>CAUTION: PLEASE BACKUP YOUR ACCOUNT's MNEMONIC-PHRASE OF MASTER-KEY AT FIRST.
-</b></font> Ref. [How To Backup And Import Account](backup-account.html)
+</b></font> Ref. [How To Backup And Import Account](backup-account.html#Backup-and-import-account)
 
-4.2 Backup database
+**4.2 Backup database**
 Open or enter the following directory:
 ```
 # Windows: Explorer
@@ -34,6 +34,8 @@ Open or enter the following directory:
 ~/.metaverse
 ```
 Copy and paste the whole `mainnet` directory as a backup.
+
+In order to save disk space, you can only backup the account related tables whose table name have prefix `account_`.  Ref. [How To Backup And Import Account Related Tables](backup-account.html#Backup-and-import-tables)
 
 **5 Install latest version of Metaverse full node wallet**
 

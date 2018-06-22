@@ -21,6 +21,7 @@ Using cli command `dumpkeyfile` to export your account information to backup fil
 
 3. Import Account
 Using cli command `importkeyfile` to import your account information from backup file.
+NOTICE: you must use the same password as when using dumpkeyfile.
 	```
 	$ ./mvs-cli importkeyfile account_name password path_of_backup_keyfile
 	```
@@ -54,3 +55,4 @@ If you want to backup and import your account related tables, please do as beblo
 	```
 2. Import account related tables
 Just copy the backuped tables in the above step back into the `mainet` sub-directory.
+NOTICE: when access your account, you must use the same username and password as in the backuped account tables.

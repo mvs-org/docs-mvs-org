@@ -22,6 +22,7 @@ categories: Guide
 
 3 . 导入账户
 使用命令 `importkeyfile` 从备份文件导入账户信息。
+注意，导入时需要使用与导出时一致的账户密码。
 	```
 	$ ./mvs-cli importkeyfile account_name password path_of_backup_keyfile
 	```
@@ -53,4 +54,5 @@ categories: Guide
 
 2 . 导入账户相关的表
 只需将上一步备份好的账户相关表拷贝加 `mainnet` 子目录即可。
+注意，使用时需要记住备份表中的账户名和密码。
 
