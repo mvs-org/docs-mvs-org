@@ -5,7 +5,7 @@ tags: Metaverse
 categories: Guide
 ---
 
-# Backup and import account
+# Backup and import single account
 
 If you want to backup and import your account, please do as beblow:
 
@@ -28,11 +28,11 @@ NOTICE: you must use the same password as when using dumpkeyfile.
 	> path_of_backup_keyfile: The path of backup file.  
 
 
-# Backup and import tables
+# Backup and import accounts' database file
 
-If you want to backup and import your account related tables, please do as beblow:
+Somehow, We have to backup/import database of accounts, we can do as below:
 
-1. Backup account related tables
+1. Backup accounts database (without blocks)
 	Copy and paste the below into the path search function on your device's explorer:
 	```
 	# Windows: Explorer
@@ -53,6 +53,51 @@ If you want to backup and import your account related tables, please do as beblo
 	account_asset_table
 	account_table
 	```
-2. Import account related tables
+
+2. Import accounts' database file
 Just copy the backuped tables in the above step back into the `mainet` sub-directory.
 NOTICE: when access your account, you must use the same username and password as in the backuped account tables.
+
+
+
+### Solution - re-syncing from height 0 (Linux) :
+```bash
+# backup old mainnet directory
+$ mv ~/.metaverse/mainnet ~/.metaverse/mainnet.bak
+
+# re-build new database
+$ ./mvsd -i
+
+# import accounts database(overwirte)
+$ cp -f ~/.metaverse/mainnet.bak/account_* ~/.metaverse/mainnet/
+
+# re-start mvsd in daemon mode:
+$ ./mvsd -d
+
+# waiting for syncing completed.
+$ tail -f ~/.metaverse/debug.log
+
+```
+
+### Solution - re-syncing from height 1270000+ (Linux) :
+```bash
+# backup old mainnet directory
+$ mv ~/.metaverse/mainnet ~/.metaverse/mainnet.bak
+
+# re-build new database
+# use mainnet-linux-height-1273528.tar.gz (md5sum is 723f3bc0125ba658266df5e332b843f0)
+$ cd ~/.metaverse
+$ wget http://newmetaverse.org/mvs-download/block-data/mainnet-linux-height-1273528.tar.gz
+$ tar -xzvf mainnet-linux-height-1273528.tar.gz
+
+# import accounts database(overwirte)
+$ cp -f ~/.metaverse/mainnet.bak/account_* ~/.metaverse/mainnet/
+
+# re-start mvsd in daemon mode:
+$ ./mvsd -d
+
+# waiting for syncing completed.
+$ tail -f ~/.metaverse/debug.log
+
+```
+
