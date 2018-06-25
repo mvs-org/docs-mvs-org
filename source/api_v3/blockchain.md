@@ -70,17 +70,17 @@ comments: false
         "jsonrpc" : "3.0",
         "result" : 
         {
-            "database-version" : "0.6.2",
+            "database_version" : "0.6.3",
             "difficulty" : "2109083",
-            "hash-rate" : 0,
+            "hash_rate" : 0,
             "height" : 105506,
-            "is-mining" : false,
-            "network-assets-count" : 9,
+            "is_mining" : false,
+            "network_assets_count" : 9,
             "peers" : 2,
-            "protocol-version" : 70012,
+            "protocol_version" : 70012,
             "testnet" : true,
-            "wallet-account-count" : 2,
-            "wallet-version" : "0.7.2"
+            "wallet_account_count" : 2,
+            "wallet_version" : "0.7.2"
         }
     }
     ```
@@ -163,13 +163,10 @@ comments: false
         "jsonrpc" : "3.0",
         "result" : 
         {
-            "mining-info" : 
-            {
-                "difficulty" : "2233275",
-                "height" : "108374",
-                "is-mining" : false,
-                "rate" : "0"
-            }
+            "difficulty" : "2233275",
+            "height" : "108374",
+            "is_mining" : false,
+            "rate" : "0"
         }
     }
     ```

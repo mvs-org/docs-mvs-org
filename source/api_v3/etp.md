@@ -46,11 +46,11 @@ comments: false
         "jsonrpc" : "3.0",
         "result" :
         {
-            "total-available" : 2000606696,
-            "total-confirmed" : 2000606696,
-            "total-frozen" : 0,
-            "total-received" : 49291956690,
-            "total-unspent" : 2000606696
+            "total_available" : 2000606696,
+            "total_confirmed" : 2000606696,
+            "total_frozen" : 0,
+            "total_received" : 49291956690,
+            "total_unspent" : 2000606696
         }
     }
     ```
@@ -97,29 +97,22 @@ comments: false
         "jsonrpc" : "3.0",
         "result" :
         {
-            "balances" :
             [
                 {
-                    "balance" :
-                    {
-                        "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
-                        "available" : 100646696,
-                        "confirmed" : 100646696,
-                        "frozen" : 0,
-                        "received" : 47391996691,
-                        "unspent" : 100646696
-                    }
+                    "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                    "available" : 100646696,
+                    "confirmed" : 100646696,
+                    "frozen" : 0,
+                    "received" : 47391996691,
+                    "unspent" : 100646696
                 },
                 {
-                    "balance" :
-                    {
-                        "address" : "tKc8dxEEj9cWr4Ys2oUbgQxGtRgUEg9e5q",
-                        "available" : 1899960000,
-                        "confirmed" : 1899960000,
-                        "frozen" : 0,
-                        "received" : 1899960000,
-                        "unspent" : 1899960000
-                    }
+                    "address" : "tKc8dxEEj9cWr4Ys2oUbgQxGtRgUEg9e5q",
+                    "available" : 1899960000,
+                    "confirmed" : 1899960000,
+                    "frozen" : 0,
+                    "received" : 1899960000,
+                    "unspent" : 1899960000
                 }
             ]
         }

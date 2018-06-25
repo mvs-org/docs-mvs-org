@@ -38,7 +38,7 @@ comments: false
         "id": 7, 
         "result": {
             "mnemonic": "actor slam shove essence person between lucky harsh myself hole tomorrow sausage buddy young kitten motor traffic rare wisdom month payment drill vanish oval", 
-            "default-address": "MDtdyESeZB73RCYR1G4b7443ModzGwYWrF"
+            "default_address": "MDtdyESeZB73RCYR1G4b7443ModzGwYWrF"
         }
     }
     ```
@@ -140,10 +140,10 @@ comments: false
         "id": 16, 
         "result":
         {
-            "address-type" : "p2kh(test-net)",
-            "is-valid" : true,
+            "address_type" : "p2kh(test-net)",
+            "is_valid" : true,
             "message" : "valid address ",
-            "test-net" : true
+            "test_net" : true
         }
     }
     ```
@@ -370,10 +370,10 @@ comments: false
         "jsonrpc": "3.0", 
         "id": 5, 
         "result": {
-            "user-status": "2", 
+            "user_status": "2", 
             "name": "test", 
-            "mnemonic-key": "mother ride despair impose degree truck pet scrub mind art brain galaxy sadness cover crater waste arrest invest hip crush loan brisk pave cheap", 
-            "address-count": "2"
+            "mnemonic": "mother ride despair impose degree truck pet scrub mind art brain galaxy sadness cover crater waste arrest invest hip crush loan brisk pave cheap", 
+            "address_count": "2"
         }
     }
     ```

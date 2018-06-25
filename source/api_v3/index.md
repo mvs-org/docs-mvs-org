@@ -45,7 +45,7 @@ $ ./mvs-cli help
 $ ./mvs-cli help $command
 ```
 
-### API v2 Call List
+### API v3 Call List
 
 #### Account
 
@@ -153,5 +153,5 @@ administrator_required = 1
 
 
 ### mvs-cli
-mvs-cli uses `/rpc/v3` to call mvsd after v0.7.3.
+mvs-cli uses `/rpc/v3` to call mvsd after v0.8.2.
 

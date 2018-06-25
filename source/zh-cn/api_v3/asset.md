@@ -56,18 +56,15 @@ comments: false
         "jsonrpc" : "3.0",
         "result" :
         {
-            "asset" :
-            {
-                "address" : "",
-                "decimal_number" : 8,
-                "description" : "test asset",
-                "is_secondaryissue" : false,
-                "issuer" : "testdid01",
-                "maximum_supply" : 10000000,
-                "secondaryissue_threshold" : 127,
-                "status" : "unissued",
-                "symbol" : "MVS.TST"
-            }
+            "address" : "",
+            "decimal_number" : 8,
+            "description" : "test asset",
+            "is_secondaryissue" : false,
+            "issuer" : "testdid01",
+            "maximum_supply" : 10000000,
+            "secondaryissue_threshold" : 127,
+            "status" : "unissued",
+            "symbol" : "MVS.TST"
         }
     }
     ```
@@ -308,7 +305,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" :
         {
-            "assets" :
             [
                 {
                     "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
@@ -346,7 +342,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" :
         {
-            "assetcerts" :
             [
                 {
                     "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
@@ -390,7 +385,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" :
         {
-            "assets" :
             [
                 {
                     "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
@@ -443,7 +437,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" :
         {
-            "assetcerts" :
             [
                 {
                     "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
@@ -493,7 +486,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" :
         {
-            "assets" :
             [
                 {
                     "decimal_number" : 8,

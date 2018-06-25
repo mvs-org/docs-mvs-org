@@ -4,12 +4,10 @@ comments: false
 
 ## Description
 ***
-多重签名使用流程：
-1. 每一个参与者通过 `getpublickey` 获得某个地址的公钥，该公钥对应的私钥用于签名随后创建的多重签名交易，并把该公钥告知其他所有参与者；
-2. 每一个参与者各自通过 `getnewmultisig` 使用自己的公钥创建签名约束条件相同（即相同的m，n以及公钥列表）的多重签名，得到相同的以3开头的多重签名地址：P2SH（Pay-to-Script-Hash）；
-3. 某个参与者通过 `createmultisigtx` 使用多重签名地址发起一笔多重签名交易，该参与者的签名已包含在该命令输出交易的中；可以使用 `decoderawtx` 命令查看该交易详情；
-4. m - 1 个参与者依次通过 `signmultisigtx` 对多重签名交易进行签名，每一个参与者通过链下的方式从前一个签名参与者获得已部分签名的交易；
-5. 可以在 `signmultisigtx` 命令中使用 `--broadcast` 选项自动广播拥有足够多签名的多重签名交易，或通过 `sendrawtx` 广播拥有足够多签名的多重签名交易，推荐使用前者。
+Related command:
+> `getpublickey`: get the public key of an address;
+> `decoderawtx`: get the original information of raw Base16 transaction;
+> `sendrawtx`: broadcast the raw Base16 transaction to network;
 
 ## API Methods
 ***
@@ -66,15 +64,15 @@ comments: false
             "description" : "",
             "index" : 1,
             "m" : 2,
-            "multisig-script" : "2 [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]  [ 03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e ]  [ 03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02 ] 3 checkmultisig",
+            "multisig_script" : "2 [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]  [ 03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e ]  [ 03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02 ] 3 checkmultisig",
             "n" : 3,
-            "public-keys" :
+            "public_keys" :
             [
                 "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9",
                 "03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e",
                 "03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02"
             ],
-            "self-publickey" : "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9"
+            "self_publickey" : "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9"
         }
     }
     ```
@@ -118,15 +116,15 @@ comments: false
                     "description" : "",
                     "index" : 1,
                     "m" : 2,
-                    "multisig-script" : "2 [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]  [ 03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e ]  [ 03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02 ] 3 checkmultisig",
+                    "multisig_script" : "2 [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]  [ 03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e ]  [ 03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02 ] 3 checkmultisig",
                     "n" : 3,
-                    "public-keys" :
+                    "public_keys" :
                     [
                         "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9",
                         "03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e",
                         "03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02"
                     ],
-                    "self-publickey" : "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9"
+                    "self_publickey" : "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9"
                 }
             ]
         }
@@ -175,15 +173,15 @@ comments: false
             "description" : "",
             "index" : 1,
             "m" : 2,
-            "multisig-script" : "2 [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]  [ 03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e ]  [ 03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02 ] 3 checkmultisig",
+            "multisig_script" : "2 [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]  [ 03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e ]  [ 03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02 ] 3 checkmultisig",
             "n" : 3,
-            "public-keys" :
+            "public_keys" :
             [
                 "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9",
                 "03d29f0b96f332e50d6014cb91c334214ecb8caf2881a97e7d944bdf4e5fd6a39e",
                 "03f97e079ccae21e1ee65d5ee64e5c27d7d6ce9a867cec75e9736ad5f258329e02"
             ],
-            "self-publickey" : "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9"
+            "self_publickey" : "02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9"
         }
     }
     ```

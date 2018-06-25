@@ -363,7 +363,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" : 
         {
-            "mits" : 
             [
                 {
                     "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
@@ -399,7 +398,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" : 
         {
-            "mits" : 
             [
                 {
                     "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
@@ -447,7 +445,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" : 
         {
-            "mits" : 
             [
                 "mit@test"
             ]
@@ -503,7 +500,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" : 
         {
-            "mits" : 
             [
                 {
                     "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
@@ -549,7 +545,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" : 
         {
-            "mits" : 
             [
                 {
                     "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",

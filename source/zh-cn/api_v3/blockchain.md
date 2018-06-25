@@ -70,17 +70,17 @@ comments: false
         "jsonrpc" : "3.0",
         "result" : 
         {
-            "database-version" : "0.6.2",
+            "database_version" : "0.6.3",
             "difficulty" : "2109083",
-            "hash-rate" : 0,
+            "hash_rate" : 0,
             "height" : 105506,
-            "is-mining" : false,
-            "network-assets-count" : 9,
+            "is_mining" : false,
+            "network_assets_count" : 9,
             "peers" : 2,
-            "protocol-version" : 70012,
+            "protocol_version" : 70012,
             "testnet" : true,
-            "wallet-account-count" : 2,
-            "wallet-version" : "0.7.2"
+            "wallet_account_count" : 2,
+            "wallet_version" : "0.7.2"
         }
     }
     ```
@@ -163,13 +163,10 @@ comments: false
         "jsonrpc" : "3.0",
         "result" : 
         {
-            "mining-info" : 
-            {
-                "difficulty" : "2233275",
-                "height" : "108374",
-                "is-mining" : false,
-                "rate" : "0"
-            }
+            "difficulty" : "2233275",
+            "height" : "108374",
+            "is_mining" : false,
+            "rate" : "0"
         }
     }
     ```
@@ -271,7 +268,32 @@ comments: false
 ***
 
 * ### `addnode`
-    _The command is in develeping, replace it with original command._
+    This command is used to add/remove p2p node.
+    * Parameters (optional)
+    1. `-o` or `[--operation]` The operation `add`/`ban` to the target node address. default: `add`.
+    * Parameters (positional)
+    1. `NODEADDRESS` The target node address, e.g: 10.10.10.1:5251.
+    ```js
+    params:[
+        "NODEADDRESS", 
+    ]
+     ```
+    * Returns
+    `String` - 
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"jsonrpc":"3.0","method":"addnode",
+    "params":["10.10.20.1:5251"],"id":21}'
+
+    // Response
+    {
+        "jsonrpc": "3.0", 
+        "id": 21, 
+        "result": "success"
+    }
+    ```
 
 ***
 
@@ -337,6 +359,19 @@ comments: false
     }
     ```
 
+***
+
+* ### `eth_getWork`
+    eth_getWork to get mining info. 
+    Note: this API is almost the same as eth_getWork in ethereum, but for the `URI` shall be set to `/rpc/v3`, not `/rpc/v3`.
+    For details, please refer to: https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getwork
+
+***
+
+* ### `eth_submitWork`
+    eth_submitWork to submit mining result.
+    Note: this API is almost the same as eth_submitWork in ethereum, but for the `URI` shall be set to `/rpc/v3`, not `/rpc/v3`.
+    For details, please refer to: https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_submitwork
 ***
 
 * ### `getmemorypool`

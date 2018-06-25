@@ -149,7 +149,7 @@ comments: false
 	                        {
 	                            "type" : "etp"
 	                        },
-	                        "etp-value" : 20000000000,
+	                        "etp_value" : 20000000000,
 	                        "locked_height_range" : 0,
 	                        "own" : false,
 	                        "script" : "dup hash160 [ 301a31d2e18aec13e32967c6af011138e50f49df ] equalverify checksig"
@@ -160,7 +160,7 @@ comments: false
 	                        {
 	                            "type" : "etp"
 	                        },
-	                        "etp-value" : 35099948644,
+	                        "etp_value" : 35099948644,
 	                        "locked_height_range" : 0,
 	                        "own" : true,
 	                        "script" : "dup hash160 [ e20a6312ddf0715d7c1cbb00ab91d8cd7b44862c ] equalverify checksig"
@@ -187,7 +187,7 @@ comments: false
 	                        {
 	                            "type" : "etp"
 	                        },
-	                        "etp-value" : 15000000000,
+	                        "etp_value" : 15000000000,
 	                        "locked_height_range" : 0,
 	                        "own" : false,
 	                        "script" : "dup hash160 [ 950387d28bd76529bbdd403925969817cdb392c5 ] equalverify checksig"
@@ -198,7 +198,7 @@ comments: false
 	                        {
 	                            "type" : "etp"
 	                        },
-	                        "etp-value" : 55099958644,
+	                        "etp_value" : 55099958644,
 	                        "locked_height_range" : 0,
 	                        "own" : true,
 	                        "script" : "dup hash160 [ e20a6312ddf0715d7c1cbb00ab91d8cd7b44862c ] equalverify checksig"
@@ -225,7 +225,7 @@ comments: false
 	                        {
 	                            "type" : "etp"
 	                        },
-	                        "etp-value" : 70000000000,
+	                        "etp_value" : 70000000000,
 	                        "locked_height_range" : 0,
 	                        "own" : false,
 	                        "script" : "dup hash160 [ ee5f3ba0e887433b0ad12680d135b65f48f9e1d8 ] equalverify checksig"
@@ -236,7 +236,7 @@ comments: false
 	                        {
 	                            "type" : "etp"
 	                        },
-	                        "etp-value" : 70099968644,
+	                        "etp_value" : 70099968644,
 	                        "locked_height_range" : 0,
 	                        "own" : true,
 	                        "script" : "dup hash160 [ e20a6312ddf0715d7c1cbb00ab91d8cd7b44862c ] equalverify checksig"
@@ -263,7 +263,7 @@ comments: false
 	                        {
 	                            "type" : "etp"
 	                        },
-	                        "etp-value" : 40000000000,
+	                        "etp_value" : 40000000000,
 	                        "locked_height_range" : 0,
 	                        "own" : false,
 	                        "script" : "dup hash160 [ e43806444753a7804961ec7cdbfd8bafd25bb037 ] equalverify checksig"
@@ -274,7 +274,7 @@ comments: false
 	                        {
 	                            "type" : "etp"
 	                        },
-	                        "etp-value" : 140099978644,
+	                        "etp_value" : 140099978644,
 	                        "locked_height_range" : 0,
 	                        "own" : true,
 	                        "script" : "dup hash160 [ e20a6312ddf0715d7c1cbb00ab91d8cd7b44862c ] equalverify checksig"
@@ -301,7 +301,7 @@ comments: false
 	                        {
 	                            "type" : "etp"
 	                        },
-	                        "etp-value" : 30000000000,
+	                        "etp_value" : 30000000000,
 	                        "locked_height_range" : 0,
 	                        "own" : false,
 	                        "script" : "dup hash160 [ 3af2ae30896bebafa32e338662b20e91061b2250 ] equalverify checksig"
@@ -312,7 +312,7 @@ comments: false
 	                        {
 	                            "type" : "etp"
 	                        },
-	                        "etp-value" : 180099988644,
+	                        "etp_value" : 180099988644,
 	                        "locked_height_range" : 0,
 	                        "own" : true,
 	                        "script" : "dup hash160 [ e20a6312ddf0715d7c1cbb00ab91d8cd7b44862c ] equalverify checksig"

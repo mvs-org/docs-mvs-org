@@ -848,7 +848,6 @@ comments: false
         "jsonrpc" : "3.0",
         "result" : 
         {
-            "addresses" : 
             [
                 {
                         "address" : "MSvm4CPTvzhgktUXu7BKrHuFuUcZd7jqzK",
@@ -862,8 +861,7 @@ comments: false
                         "address" : "MSvm4CPTvzhgktUXu7BKrHuFuUcZd7jqzK",
                         "status" : "history"
                 }
-            ],
-            "did" : "Zac@20180601T102505T5167672"
+            ]
         }
     }
     ```
