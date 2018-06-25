@@ -444,11 +444,9 @@ comments: false
         "id" : 26,
         "jsonrpc" : "3.0",
         "result" : 
-        {
-            [
-                "mit@test"
-            ]
-        }
+        [
+            "mit@test"
+        ]
     }
     ```
 
@@ -499,26 +497,24 @@ comments: false
         "id" : 26,
         "jsonrpc" : "3.0",
         "result" : 
-        {
-            [
-                {
-                    "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
-                    "height" : 13824,
-                    "status" : "transfered",
-                    "symbol" : "mit@test",
-                    "time_stamp" : 1528181361,
-                    "to_did" : "Alice"
-                },
-                {
-                    "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
-                    "height" : 13383,
-                    "status" : "registered",
-                    "symbol" : "mit@test",
-                    "time_stamp" : 1528181287,
-                    "to_did" : "test"
-                }
-            ]
-        }
+        [
+            {
+                "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
+                "height" : 13824,
+                "status" : "transfered",
+                "symbol" : "mit@test",
+                "time_stamp" : 1528181361,
+                "to_did" : "Alice"
+            },
+            {
+                "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
+                "height" : 13383,
+                "status" : "registered",
+                "symbol" : "mit@test",
+                "time_stamp" : 1528181287,
+                "to_did" : "test"
+            }
+        ]
     }
     ```
 
@@ -544,18 +540,16 @@ comments: false
         "id" : 26,
         "jsonrpc" : "3.0",
         "result" : 
-        {
-            [
-                {
-                    "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
-                    "height" : 13824,
-                    "status" : "transfered",
-                    "symbol" : "mit@test",
-                    "time_stamp" : 1528181361,
-                    "to_did" : "Alice"
-                }
-            ]
-        }
+        [
+            {
+                "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
+                "height" : 13824,
+                "status" : "transfered",
+                "symbol" : "mit@test",
+                "time_stamp" : 1528181361,
+                "to_did" : "Alice"
+            }
+        ]
     }
     ```
     

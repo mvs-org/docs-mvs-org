@@ -96,26 +96,24 @@ comments: false
         "id" : 25,
         "jsonrpc" : "3.0",
         "result" :
-        {
-            [
-                {
-                    "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
-                    "available" : 100646696,
-                    "confirmed" : 100646696,
-                    "frozen" : 0,
-                    "received" : 47391996691,
-                    "unspent" : 100646696
-                },
-                {
-                    "address" : "tKc8dxEEj9cWr4Ys2oUbgQxGtRgUEg9e5q",
-                    "available" : 1899960000,
-                    "confirmed" : 1899960000,
-                    "frozen" : 0,
-                    "received" : 1899960000,
-                    "unspent" : 1899960000
-                }
-            ]
-        }
+        [
+            {
+                "address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+                "available" : 100646696,
+                "confirmed" : 100646696,
+                "frozen" : 0,
+                "received" : 47391996691,
+                "unspent" : 100646696
+            },
+            {
+                "address" : "tKc8dxEEj9cWr4Ys2oUbgQxGtRgUEg9e5q",
+                "available" : 1899960000,
+                "confirmed" : 1899960000,
+                "frozen" : 0,
+                "received" : 1899960000,
+                "unspent" : 1899960000
+            }
+        ]
     }
     ```
 

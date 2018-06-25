@@ -119,26 +119,23 @@ comments: false
         "jsonrpc": "3.0", 
         "id": 42, 
         "result":
-        {
-            "dids" :
-            [
-                {
-                    "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
-                    "status" : "registered",
-                    "symbol" : "TESTDID"
-                },
-                {
-                    "address" : "35cY636TPTfFW8PxhqH3BNRL54g1T4mbR2",
-                    "status" : "registered",
-                    "symbol" : "MVS.TST"
-                },
-                {
-                    "address" : "M9kDHsDKJj9hM8FzSmDu4xCDbo2DFzUhzj",
-                    "status" : "registered",
-                    "symbol" : "YANG"
-                }
-            ]
-        }
+        [
+            {
+                "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
+                "status" : "registered",
+                "symbol" : "TESTDID"
+            },
+            {
+                "address" : "35cY636TPTfFW8PxhqH3BNRL54g1T4mbR2",
+                "status" : "registered",
+                "symbol" : "MVS.TST"
+            },
+            {
+                "address" : "M9kDHsDKJj9hM8FzSmDu4xCDbo2DFzUhzj",
+                "status" : "registered",
+                "symbol" : "YANG"
+            }
+        ]
     }
     ```
 
@@ -169,21 +166,18 @@ comments: false
         "jsonrpc": "3.0", 
         "id": 42, 
         "result":
-        {
-            "dids" :
-            [
-                {
-                    "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
-                    "status" : "registered",
-                    "symbol" : "TESTDID"
-                },
-                {
-                    "address" : "M9kDHsDKJj9hM8FzSmDu4xCDbo2DFzUhzj",
-                    "status" : "registered",
-                    "symbol" : "YANG"
-                }
-            ]
-        }
+        [
+            {
+                "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
+                "status" : "registered",
+                "symbol" : "TESTDID"
+            },
+            {
+                "address" : "M9kDHsDKJj9hM8FzSmDu4xCDbo2DFzUhzj",
+                "status" : "registered",
+                "symbol" : "YANG"
+            }
+        ]
     }
     ```
 ***
@@ -811,15 +805,12 @@ comments: false
         "jsonrpc": "3.0", 
         "id": 42, 
         "result":
-        {
-            "dids" :
-            [
-                "Alice",
-                "Bob",
-                "Cindy",
-                "Dale"
-            ]   
-        }
+        [
+            "Alice",
+            "Bob",
+            "Cindy",
+            "Dale"
+        ]   
     }
     ```
 ***
