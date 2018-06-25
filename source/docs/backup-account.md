@@ -59,8 +59,10 @@ Just copy the backuped tables in the above step back into the `mainet` sub-direc
 NOTICE: when access your account, you must use the same username and password as in the backuped account tables.
 
 
+# Re-syncing blocks
+If your database has some problem, please take one of the following solutions to re-syncing.
 
-### Solution - re-syncing from height 0 (Linux) :
+### Solution 1 - re-syncing from height 0 (Linux) :
 ```bash
 # backup old mainnet directory
 $ mv ~/.metaverse/mainnet ~/.metaverse/mainnet.bak
@@ -79,7 +81,7 @@ $ tail -f ~/.metaverse/debug.log
 
 ```
 
-### Solution - re-syncing from height 1270000+ (Linux) :
+### Solution 2 - re-syncing from height 1270000+ (Linux) :
 ```bash
 # backup old mainnet directory
 $ mv ~/.metaverse/mainnet ~/.metaverse/mainnet.bak

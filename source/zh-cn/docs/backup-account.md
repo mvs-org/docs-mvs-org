@@ -13,7 +13,7 @@ categories: Guide
 </b></font> 
 
 2 . 备份账户
-使用命令 `dumpkeyfile` 将账户信息导出到备份文件。
+使用命令 `dumpkeyfile` 逐个将账户信息导出到备份文件。
 	```
 	$ ./mvs-cli dumpkeyfile account_name password last_word path_of_backup_keyfile
 	```
@@ -21,7 +21,7 @@ categories: Guide
 > path_of_backup_keyfile 为备份文件路径  
 
 3 . 导入账户
-使用命令 `importkeyfile` 从备份文件导入账户信息。
+使用命令 `importkeyfile` 从备份文件逐个导入账户信息。
 注意，导入时需要使用与导出时一致的账户密码。
 	```
 	$ ./mvs-cli importkeyfile account_name password path_of_backup_keyfile
@@ -56,3 +56,47 @@ categories: Guide
 只需将上一步备份好的账户相关表拷贝加 `mainnet` 子目录即可。
 注意，使用时需要记住备份表中的账户名和密码。
 
+
+# 重新同步区块
+以下为数据库出现问题时重新同步的两种解决方案
+
+### 方案一 - 重新从块高0同步(Linux)
+```bash
+# 备份老的 mainnet 目录
+$ mv ~/.metaverse/mainnet ~/.metaverse/mainnet.bak
+
+# 重建新的数据库
+$ ./mvsd -i
+
+# 导入账户相关的表(覆盖)
+$ cp -f ~/.metaverse/mainnet.bak/account_* ~/.metaverse/mainnet/
+
+# 重新启动 mvsd （以守护进程方式运行）
+$ ./mvsd -d
+
+# 等待同步完成，查看日志
+$ tail -f ~/.metaverse/debug.log
+
+```
+
+### 方案二 - 重新从块高1270000+同步(Linux)
+```bash
+# 备份老的 mainnet 目录
+$ mv ~/.metaverse/mainnet ~/.metaverse/mainnet.bak
+
+# 重建新的数据库
+# 下载 mainnet-linux-height-1273528.tar.gz 区块数据包 (md5sum 为 723f3bc0125ba658266df5e332b843f0)
+$ cd ~/.metaverse
+$ wget http://newmetaverse.org/mvs-download/block-data/mainnet-linux-height-1273528.tar.gz
+$ tar -xzvf mainnet-linux-height-1273528.tar.gz
+
+# 导入账户相关的表(覆盖)
+$ cp -f ~/.metaverse/mainnet.bak/account_* ~/.metaverse/mainnet/
+
+# 重新启动 mvsd （以守护进程方式运行）
+$ ./mvsd -d
+
+# 等待同步完成，查看日志
+$ tail -f ~/.metaverse/debug.log
+
+```
