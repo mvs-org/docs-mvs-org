@@ -57,7 +57,7 @@ comments: false
     * Returns
     `Object` -
     1. `header` - block header
-    2. `txs` - transactions
+    2. `transactions` - transactions
 
     * Example
     ```js
@@ -71,59 +71,50 @@ comments: false
 	    "jsonrpc" : "3.0",
 	    "result" :
 	    {
-	        "header" :
-	        {
-	            "result" :
-	            {
-	                "bits" : "1",
-	                "hash" : "b81848ef9ae86e84c3da26564bc6ab3a79efc628239d11471ab5cd25c0684c2d",
-	                "merkle_tree_hash" : "2a845dfa63a7c20d40dbc4b15c3e970ef36332b367500fd89307053cb4c1a2c1",
-	                "mixhash" : "0",
-	                "nonce" : "0",
-	                "number" : 0,
-	                "previous_block_hash" : "0000000000000000000000000000000000000000000000000000000000000000",
-	                "time_stamp" : 1486796400,
-	                "transaction_count" : 1,
-	                "version" : 1
-	            }
-	        },
-	        "txs" :
-	        {
-	            "transactions" :
-	            [
-	                {
-	                    "hash" : "2a845dfa63a7c20d40dbc4b15c3e970ef36332b367500fd89307053cb4c1a2c1",
-	                    "inputs" :
-	                    [
-	                        {
-	                            "previous_output" :
-	                            {
-	                                "hash" : "0000000000000000000000000000000000000000000000000000000000000000",
-	                                "index" : 4294967295
-	                            },
-	                            "script" : "[ 36653634633230393862383462303461306439663631613630643562633866356638306633376531396633616439633339626665343139646234323262333363 ]",
-	                            "sequence" : 0
-	                        }
-	                    ],
-	                    "lock_time" : "0",
-	                    "outputs" :
-	                    [
-	                        {
-	                            "address" : "MGqHvbaH9wzdr6oUDFz4S1HptjoKQcjRve",
-	                            "attachment" :
-	                            {
-	                                "type" : "etp"
-	                            },
-	                            "index" : 0,
-	                            "locked_height_range" : 0,
-	                            "script" : "dup hash160 [ 61fde3bd4e6955c99b16de2d71e2a369888a1c0b ] equalverify checksig",
-	                            "value" : 5000000000000000
-	                        }
-	                    ],
-	                    "version" : "0"
-	                }
-	            ]
-	        }
+            "bits" : "1",
+            "hash" : "b81848ef9ae86e84c3da26564bc6ab3a79efc628239d11471ab5cd25c0684c2d",
+            "merkle_tree_hash" : "2a845dfa63a7c20d40dbc4b15c3e970ef36332b367500fd89307053cb4c1a2c1",
+            "mixhash" : "0",
+            "nonce" : "0",
+            "number" : 0,
+            "previous_block_hash" : "0000000000000000000000000000000000000000000000000000000000000000",
+            "time_stamp" : 1486796400,
+            "transaction_count" : 1,
+            "version" : 1
+            "transactions" :
+            [
+                {
+                    "hash" : "2a845dfa63a7c20d40dbc4b15c3e970ef36332b367500fd89307053cb4c1a2c1",
+                    "inputs" :
+                    [
+                        {
+                            "previous_output" :
+                            {
+                                "hash" : "0000000000000000000000000000000000000000000000000000000000000000",
+                                "index" : 4294967295
+                            },
+                            "script" : "[ 36653634633230393862383462303461306439663631613630643562633866356638306633376531396633616439633339626665343139646234323262333363 ]",
+                            "sequence" : 0
+                        }
+                    ],
+                    "lock_time" : "0",
+                    "outputs" :
+                    [
+                        {
+                            "address" : "MGqHvbaH9wzdr6oUDFz4S1HptjoKQcjRve",
+                            "attachment" :
+                            {
+                                "type" : "etp"
+                            },
+                            "index" : 0,
+                            "locked_height_range" : 0,
+                            "script" : "dup hash160 [ 61fde3bd4e6955c99b16de2d71e2a369888a1c0b ] equalverify checksig",
+                            "value" : 5000000000000000
+                        }
+                    ],
+                    "version" : "0"
+                }
+            ]
 	    }
 	}
     ```
