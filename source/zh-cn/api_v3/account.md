@@ -24,7 +24,7 @@ comments: false
     * Returns
     `Object` - 
     1. `mnemonic` - the master private key of your account
-    2. `default-address` - address of the account
+    2. `default_address` - address of the account
 
     * Example
     ```js
@@ -123,10 +123,10 @@ comments: false
      ```
     * Returns
     `Object` -
-    1. `address-type` - address type
-    2. `is-valid` - the address is valid or not
+    1. `address_type` - address type
+    2. `is_valid` - the address is valid or not
     3. `message` - message like "valid address"
-    4. `test-net` - if the address is in test-net
+    4. `testnet` - if the address is in test-net
 
     * Example
     ```js
@@ -143,7 +143,7 @@ comments: false
             "address_type" : "p2kh(test-net)",
             "is_valid" : true,
             "message" : "valid address ",
-            "test_net" : true
+            "testnet" : true
         }
     }
     ```
@@ -355,9 +355,9 @@ comments: false
     * Returns
     `Object` - 
     1. `name` - account name
-    2. `mnemonic-key` - master private key
-    3. `address-count` - addresses created
-    4. `user-status` - 0:locked, 2: normal
+    2. `mnemonic` - master private key
+    3. `address_count` - addresses created
+    4. `user_status` - 0:locked, 2: normal
 
     * Example
     ```js

@@ -21,11 +21,11 @@ comments: false
      ```
     * Returns
     `Object` - balance summaries
-    1. `total-confirmed` - total confirmed(unspent) etp amount
-    2. `total-received` - total received etp amount
-    3. `total-unspent` - total unspent etp amount
-    4. `total-available` - total available etp amount
-    5. `total-frozen` - total frozen etp amount
+    1. `total_confirmed` - total confirmed(unspent) etp amount
+    2. `total_received` - total received etp amount
+    3. `total_unspent` - total unspent etp amount
+    4. `total_available` - total available etp amount
+    5. `total_frozen` - total frozen etp amount
 
     * Example
     ```js

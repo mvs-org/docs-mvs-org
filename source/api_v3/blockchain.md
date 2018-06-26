@@ -42,17 +42,17 @@ comments: false
     getinfo
     * Returns
     `Object` -
-    `database-version` - database version 
+    `database_version` - database version 
     `difficulty` - difficulty
-    `hash-rate` - hash rate
+    `hash_rate` - hash rate
     `height` - block height
-    `is-mining` - is mining flag
-    `network-assets-count` - network assets count
+    `is_mining` - is mining flag
+    `asset_count` - network assets count
     `peers` - number of peers
     `protocol-version` - protocol version
     `testnet` - testnet flag
-    `wallet-account-count` - wallet account count 
-    `wallet-version` - wallet version
+    `wallet_account_count` - wallet account count 
+    `wallet_version` - wallet version
 
     * Example
     ```js
@@ -75,7 +75,7 @@ comments: false
             "hash_rate" : 0,
             "height" : 105506,
             "is_mining" : false,
-            "network_assets_count" : 9,
+            "asset_count" : 9,
             "peers" : 2,
             "protocol_version" : 70012,
             "testnet" : true,
