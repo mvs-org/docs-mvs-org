@@ -304,21 +304,19 @@ comments: false
         "id" : 25,
         "jsonrpc" : "3.0",
         "result" :
-        {
-            [
-                {
-                    "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "decimal_number" : 8,
-                    "description" : "test asset",
-                    "issuer" : "testdid01",
-                    "locked_quantity" : 0,
-                    "quantity" : 10000000,
-                    "secondaryissue_threshold" : 127,
-                    "status" : "unspent",
-                    "symbol" : "MVS.TST"
-                }
-            ]
-        }
+        [
+            {
+                "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
+                "decimal_number" : 8,
+                "description" : "test asset",
+                "issuer" : "testdid01",
+                "locked_quantity" : 0,
+                "quantity" : 10000000,
+                "secondaryissue_threshold" : 127,
+                "status" : "unspent",
+                "symbol" : "MVS.TST"
+            }
+        ]
     }
     ```
 

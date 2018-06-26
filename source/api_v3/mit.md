@@ -362,19 +362,17 @@ comments: false
         "id" : 26,
         "jsonrpc" : "3.0",
         "result" : 
-        {
-            [
-                {
-                    "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
-                    "content" : "test MIT",
-                    "height" : 13383,
-                    "status" : "registered",
-                    "symbol" : "mit@test",
-                    "time_stamp" : 1528181287,
-                    "to_did" : "test"
-                }
-            ]
-        }
+        [
+            {
+                "address" : "MTkdaNMWvpXDyBGTdmHovvnUosHfSW3B4V",
+                "content" : "test MIT",
+                "height" : 13383,
+                "status" : "registered",
+                "symbol" : "mit@test",
+                "time_stamp" : 1528181287,
+                "to_did" : "test"
+            }
+        ]
     }
 
     ```
@@ -397,16 +395,14 @@ comments: false
         "id" : 26,
         "jsonrpc" : "3.0",
         "result" : 
-        {
-            [
-                {
-                    "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
-                    "content" : "test MIT",
-                    "status" : "transfered",
-                    "symbol" : "mit@test"
-                }
-            ]
-        }
+        [
+            {
+                "address" : "MMZAUmJke7f1FEY67dAHUYfmfh2wWC4vFL",
+                "content" : "test MIT",
+                "status" : "transfered",
+                "symbol" : "mit@test"
+            }
+        ]
     }
     ```
 

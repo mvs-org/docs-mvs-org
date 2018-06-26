@@ -24,9 +24,8 @@ comments: false
 退出后根据之前购买的香港 `Apple ID` 填写 `Apple ID` 和密码，并点击“登录”。
 ![登录](https://i.imgur.com/2FEF5x9.jpg)
 
-4. 登录成功后，搜索“`tokenmaster`”便可搜索到 `Metaverse IOS` 钱包 `App`，点击“取得”便可直接下载钱包 `App`。
-![tokenmaster](https://i.imgur.com/rQJClUi.jpg) 
-
+4. 登录成功后，搜索“`MyETPWallet`”便可搜索到 `MyETPWallet` 钱包 `App`，点击“取得”便可直接下载钱包 `App`。
+![MyETPWallet](https://i.imgur.com/OXCxwqn.jpg)
  
 ### `Android` 钱包下载
 如果你的手机可以访问 `Google Play` 商城，请直接通过手机访问 [Google Play](https://play.google.com/store/apps/details?id=com.myetpwallet.app&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1) 下载`MyETPWallet`。
