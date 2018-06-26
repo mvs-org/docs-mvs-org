@@ -838,22 +838,13 @@ comments: false
         "id" : 42,
         "jsonrpc" : "3.0",
         "result" : 
-        {
-            [
-                {
-                        "address" : "MSvm4CPTvzhgktUXu7BKrHuFuUcZd7jqzK",
-                        "status" : "current"
-                },
-                {
-                        "address" : "MB2gtNeGDVeqscVJF8DVNBsVTNdfAEJXU5",
-                        "status" : "history"
-                },
-                {
-                        "address" : "MSvm4CPTvzhgktUXu7BKrHuFuUcZd7jqzK",
-                        "status" : "history"
-                }
-            ]
-        }
+        [
+            {
+                    "address" : "MSvm4CPTvzhgktUXu7BKrHuFuUcZd7jqzK",
+                    "status" : "current",
+                    "symbol" : "Alice"
+            }
+        ]
     }
     ```
 ***

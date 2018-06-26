@@ -8,7 +8,7 @@ Compatiblity for API v2, please refers to [API v2](/api_v2).
 Compatiblity for API v1, please refers to [API v1](/api).
 
 ## API v3 Usage
-** Supported [v0.8.2](/news) and later**
+** Supported [v0.8.0](/news) and later**
 
 |   API      |  Default Port | URI | Default URL |
 | ------------------ | ------------ | ------------- |
@@ -127,12 +127,16 @@ $ ./mvs-cli help $command
 #### DID
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [createrawtx](rawtx.html#createrawtx)     | × | × | × | 0.8.2 |
-| [signrawtx](rawtx.html#signrawtx)         | × | × | √ | 0.8.2 |
-| [decoderawtx](rawtx.html#decoderawtx)     | × | × | × | 0.8.2 |
-| [sendrawtx](rawtx.html#sendrawtx)         | × | × | × | 0.8.2 |
+| [registerdid](identity.html#registerdid)     	| √ | × | √ | 0.8.0 |
+| [didchangeaddress](identity.html#didchangeaddress)	| √ | × | √ | 0.8.0 |
+| [listdids](identity.html#listdids)     		| × | × | × | 0.8.0 |
+| [getdid](identity.html#getdid)     			| × | × | × | 0.8.0 |
+| [didsend](identity.html#didsend)         		| √ | × | √ | 0.8.0 |
+| [didsendmore](identity.html#didsendmore)     	| √ | × | √ | 0.8.0 |
+| [didsendasset](identity.html#didsendasset)   	| √ | × | √ | 0.8.0 |
+| [didsendassetfrom](raidentitywtx.html#didsendassetfrom)   | √ | × | √ | 0.8.0 |
 
-#### Asset
+#### MST
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
@@ -140,7 +144,7 @@ $ ./mvs-cli help $command
 | [deletelocalasset](asset.html#deletelocalasset)| × | ×  | √ | 0.7.3 |
 | [getaccountasset](asset.html#getaccountasset)  | √ | × | √ | 0.7.3 |
 | [getaddressasset](asset.html#getaddressasset)  | √ | × | √ | 0.7.3 |
-| [getasset](asset.html#getasset)                | √ | × | ×   | 0.7.3 |
+| [getasset](asset.html#getasset)                | × | × | × | 0.7.3 |
 | [issue](asset.html#issue)                      | √ | × | √ | 0.7.3 |
 | [issuefrom](asset.html#issuefrom)              | √ | × | √ | 0.7.3 |
 | [listassets](asset.html#listassets)            | √ | × | optional | 0.7.3 |
@@ -150,18 +154,16 @@ $ ./mvs-cli help $command
 #### Cert
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [registermit](rawtx.html#registermit)     | √ | × | √ | 0.8.2 |
-| [transfermit](rawtx.html#signrawtx)       | √ | × | √ | 0.8.2 |
-| [listmits](rawtx.html#listmits)     		| × | × | optional | 0.8.2 |
-| [getmit](rawtx.html#sendrawtx)         	| × | × | × | 0.8.2 |
+| [issuecert](asset.html#issuecert)     	| √ | × | √ | 0.8.0 |
+| [transfercert](asset.html#transfercert)   | √ | × | √ | 0.8.0 |
 
 #### MIT
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [registermit](rawtx.html#registermit)     | √ | × | √ | 0.8.2 |
-| [transfermit](rawtx.html#signrawtx)       | √ | × | √ | 0.8.2 |
-| [listmits](rawtx.html#listmits)     		| × | × | optional | 0.8.2 |
-| [getmit](rawtx.html#sendrawtx)         	| × | × | × | 0.8.2 |
+| [registermit](mit.html#registermit)     	| √ | × | √ | 0.8.0 |
+| [transfermit](mit.html#transfermit)     	| √ | × | √ | 0.8.0 |
+| [listmits](mit.html#listmits)     		| × | × | optional | 0.8.0 |
+| [getmit](mit.html#sendrawtx)         		| × | × | × | 0.8.0 |
 
 
 * Method : JSON-RPC Method
@@ -177,5 +179,5 @@ administrator_required = 1
 
 
 ### mvs-cli
-mvs-cli uses `/rpc/v3` to call mvsd after v0.8.2.
+mvs-cli uses `/rpc/v3` to call mvsd after v0.8.0.
 

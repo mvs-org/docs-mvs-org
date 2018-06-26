@@ -8,7 +8,7 @@ Compatiblity for API v2, please refers to [API v2](/api_v2).
 Compatiblity for API v1, please refers to [API v1](/api).
 
 ## API v3 Usage
-** Supported [v0.8.2](/news) and later**
+** Supported [v0.8.0](/news) and later**
 
 |   API      |  Default Port | URI | Default URL |
 | ------------------ | ------------ | ------------- |
@@ -51,93 +51,119 @@ $ ./mvs-cli help $command
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [getnewaccount](account.html#getnewaccount)    |  × | × | ×  | 0.7.3 |
-| [validateaddress](account.html#validateaddress)|  × | × | ×  | 0.7.3 |
-| [importaccount](account.html#importaccount)    |  × | × | ×  | 0.7.3 |
-| [importkeyfile](account.html#importkeyfile)    |  × | × | ×  | 0.7.3 |
-| [dumpkeyfile](account.html#dumpkeyfile)        |  × | × | yes | 0.7.3 |
-| [getnewaddress](account.html#getnewaddress)    |  × | × | yes | 0.7.3 |
-| [listaddresses](account.html#listaddresses)    |  × | × | yes | 0.7.3 |
-| [changepasswd](account.html#changepasswd)      |  × | × | yes | 0.7.3 |
-| [deleteaccount](account.html#deleteaccount)    |  × | × | yes | 0.7.3 |
-| [getaccount](account.html#getaccount)          |  × | × | yes | 0.7.3 |
+| [getnewaccount](account.html#getnewaccount)    |  × | × | × | 0.7.3 |
+| [validateaddress](account.html#validateaddress)|  × | × | × | 0.7.3 |
+| [importaccount](account.html#importaccount)    |  × | × | × | 0.7.3 |
+| [importkeyfile](account.html#importkeyfile)    |  × | × | × | 0.7.3 |
+| [dumpkeyfile](account.html#dumpkeyfile)        |  × | × | √ | 0.7.3 |
+| [getnewaddress](account.html#getnewaddress)    |  × | × | √ | 0.7.3 |
+| [listaddresses](account.html#listaddresses)    |  × | × | √ | 0.7.3 |
+| [changepasswd](account.html#changepasswd)      |  × | × | √ | 0.7.3 |
+| [deleteaccount](account.html#deleteaccount)    |  × | × | √ | 0.7.3 |
+| [getaccount](account.html#getaccount)          |  × | × | √ | 0.7.3 |
 
 #### Blockchain
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [shutdown](blockchain.html#shutdown)          | × | yes | × | 0.7.3 |
-| [getinfo](blockchain.html#getinfo)            | × | yes | × | 0.7.3 |
-| [getheight](blockchain.html#getheight)        | × | yes | × | 0.7.3 |
-| [getpeerinfo](blockchain.html#getpeerinfo)    | × | yes | × | 0.7.3 |
-| [getmininginfo](blockchain.html#getmininginfo)| yes | yes | × | 0.7.3 |
-| [startmining](blockchain.html#startmining)    | yes | ×  | yes | 0.7.3 |
-| [stopmining](blockchain.html#stopmining)      | yes | ×  | yes | 0.7.3 |
-| [getwork](blockchain.html#getwork)            | yes | ×  | yes | 0.7.3 |
-| [addnode](blockchain.html#addnode)            | × | yes | × | 0.7.3 |
-| [setminingaccount](blockchain.html#setminingaccount)| yes | ×  | yes | 0.7.3 |
-| [submitwork](blockchain.html#submitwork)      | yes | ×  | yes | 0.7.3 |
-| [getmemorypool](blockchain.html#getmemorypool)| × | yes | × | 0.7.3 |
+| [shutdown](blockchain.html#shutdown)          | × | √ | × | 0.7.3 |
+| [getinfo](blockchain.html#getinfo)            | × | √ | × | 0.7.3 |
+| [getheight](blockchain.html#getheight)        | × | √ | × | 0.7.3 |
+| [getpeerinfo](blockchain.html#getpeerinfo)    | × | √ | × | 0.7.3 |
+| [getmininginfo](blockchain.html#getmininginfo)| √ | √ | × | 0.7.3 |
+| [startmining](blockchain.html#startmining)    | √ | × | √ | 0.7.3 |
+| [stopmining](blockchain.html#stopmining)      | √ | × | √ | 0.7.3 |
+| [getwork](blockchain.html#getwork)            | √ | × | √ | 0.7.3 |
+| [addnode](blockchain.html#addnode)            | × | √ | × | 0.7.3 |
+| [setminingaccount](blockchain.html#setminingaccount)| √ | × | √ | 0.7.3 |
+| [submitwork](blockchain.html#submitwork)      | √ | × | √ | 0.7.3 |
+| [getmemorypool](blockchain.html#getmemorypool)| × | √ | × | 0.7.3 |
 
 #### Block
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [getblock](block.html#getblock)                    | × | yes | × | 0.7.3 |
-| [getblockheader](block.html#getblockheader)        | × | yes | × | 0.7.3 |
+| [getblock](block.html#getblock)                    | × | √ | × | 0.7.3 |
+| [getblockheader](block.html#getblockheader)        | × | √ | × | 0.7.3 |
 
 #### ETP
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [getbalance](etp.html#getbalance)     | yes | × | yes | 0.7.3 |
-| [listbalances](etp.html#listbalances) | yes | × | yes | 0.7.3 |
-| [deposit](etp.html#deposit)           | yes | × | yes | 0.7.3 |
-| [send](etp.html#send)                 | yes | × | yes | 0.7.3 |
-| [sendfrom](etp.html#sendfrom)         | yes | × | yes | 0.7.3 |
-| [sendmore](etp.html#sendmore)         | yes | × | yes | 0.7.3 |
+| [getbalance](etp.html#getbalance)     | √ | × | √ | 0.7.3 |
+| [listbalances](etp.html#listbalances) | √ | × | √ | 0.7.3 |
+| [deposit](etp.html#deposit)           | √ | × | √ | 0.7.3 |
+| [send](etp.html#send)                 | √ | × | √ | 0.7.3 |
+| [sendfrom](etp.html#sendfrom)         | √ | × | √ | 0.7.3 |
+| [sendmore](etp.html#sendmore)         | √ | × | √ | 0.7.3 |
 
 #### Transaction
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [gettx](transaction.html#gettx)    | yes | × | × | 0.7.3 |
-| [listtxs](transaction.html#listtxs)| yes | × | yes | 0.7.3 |
-
-#### Asset
-
-|  Method | Online-required | Admin-required | Account-required | Version | 
-|  ------- | -------| --------| --------------| -------| 
-| [createasset](asset.html#createasset)          | × | ×  | yes  | 0.7.3 |
-| [deletelocalasset](asset.html#deletelocalasset)| × | ×  | yes | 0.7.3 |
-| [getaccountasset](asset.html#getaccountasset)  | yes | × | yes | 0.7.3 |
-| [getaddressasset](asset.html#getaddressasset)  | yes | × | yes | 0.7.3 |
-| [getasset](asset.html#getasset)                | yes | × | ×   | 0.7.3 |
-| [issue](asset.html#issue)                      | yes | × | yes | 0.7.3 |
-| [issuefrom](asset.html#issuefrom)              | yes | × | yes | 0.7.3 |
-| [listassets](asset.html#listassets)            | yes | × | optional | 0.7.3 |
-| [sendasset](asset.html#sendasset)              | yes | × | yes | 0.7.3 |
-| [sendassetfrom](asset.html#sendassetfrom)      | yes | × | yes | 0.7.3 |
+| [gettx](transaction.html#gettx)    | √ | × | × | 0.7.3 |
+| [listtxs](transaction.html#listtxs)| √ | × | √ | 0.7.3 |
 
 #### Multi-Signatue
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [createmultisigtx](multisig.html#createmultisigtx)    | × | ×  | yes | 0.7.3 |
-| [getpublickey](multisig.html#getpublickey)            | × | ×  | yes | 0.7.3 |
-| [deletemultisig](multisig.html#deletemultisig)        | × | × | yes | 0.7.3 |
-| [getnewmultisig](multisig.html#getnewmultisig)        | × | × | yes | 0.7.3 |
-| [listmultisig](multisig.html#listmultisig)            | × | × | yes | 0.7.3 |
-| [signmultisigtx](multisig.html#signmultisigtx)        | × | × | yes | 0.7.3 |
+| [createmultisigtx](multisig.html#createmultisigtx)    | × | × | √ | 0.7.3 |
+| [getpublickey](multisig.html#getpublickey)            | × | × | √ | 0.7.3 |
+| [deletemultisig](multisig.html#deletemultisig)        | × | × | √ | 0.7.3 |
+| [getnewmultisig](multisig.html#getnewmultisig)        | × | × | √ | 0.7.3 |
+| [listmultisig](multisig.html#listmultisig)            | × | × | √ | 0.7.3 |
+| [signmultisigtx](multisig.html#signmultisigtx)        | × | × | √ | 0.7.3 |
 
 #### Rawtx(offline-sign)
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
 | [createrawtx](rawtx.html#createrawtx)     | × | × | × | 0.7.3 |
-| [signrawtx](rawtx.html#signrawtx)         | × | × | yes | 0.7.3 |
+| [signrawtx](rawtx.html#signrawtx)         | × | × | √ | 0.7.3 |
 | [decoderawtx](rawtx.html#decoderawtx)     | × | × | × | 0.7.3 |
-| [sendrawtx](rawtx.html#sendrawtx)         | × | ×  | × | 0.7.3 |
+| [sendrawtx](rawtx.html#sendrawtx)         | √ | × | × | 0.7.3 |
+
+#### DID
+|  Method | Online-required | Admin-required | Account-required | Version | 
+|  ------- | -------| --------| --------------| -------| 
+| [registerdid](identity.html#registerdid)     	| √ | × | √ | 0.8.0 |
+| [didchangeaddress](identity.html#didchangeaddress)	| √ | × | √ | 0.8.0 |
+| [listdids](identity.html#listdids)     		| × | × | × | 0.8.0 |
+| [getdid](identity.html#getdid)     			| × | × | × | 0.8.0 |
+| [didsend](identity.html#didsend)         		| √ | × | √ | 0.8.0 |
+| [didsendmore](identity.html#didsendmore)     	| √ | × | √ | 0.8.0 |
+| [didsendasset](identity.html#didsendasset)   	| √ | × | √ | 0.8.0 |
+| [didsendassetfrom](raidentitywtx.html#didsendassetfrom)   | √ | × | √ | 0.8.0 |
+
+#### MST
+
+|  Method | Online-required | Admin-required | Account-required | Version | 
+|  ------- | -------| --------| --------------| -------| 
+| [createasset](asset.html#createasset)          | × | ×  | √ | 0.7.3 |
+| [deletelocalasset](asset.html#deletelocalasset)| × | ×  | √ | 0.7.3 |
+| [getaccountasset](asset.html#getaccountasset)  | √ | × | √ | 0.7.3 |
+| [getaddressasset](asset.html#getaddressasset)  | √ | × | √ | 0.7.3 |
+| [getasset](asset.html#getasset)                | × | × | × | 0.7.3 |
+| [issue](asset.html#issue)                      | √ | × | √ | 0.7.3 |
+| [issuefrom](asset.html#issuefrom)              | √ | × | √ | 0.7.3 |
+| [listassets](asset.html#listassets)            | √ | × | optional | 0.7.3 |
+| [sendasset](asset.html#sendasset)              | √ | × | √ | 0.7.3 |
+| [sendassetfrom](asset.html#sendassetfrom)      | √ | × | √ | 0.7.3 |
+
+#### Cert
+|  Method | Online-required | Admin-required | Account-required | Version | 
+|  ------- | -------| --------| --------------| -------| 
+| [issuecert](asset.html#issuecert)     	| √ | × | √ | 0.8.0 |
+| [transfercert](asset.html#transfercert)   | √ | × | √ | 0.8.0 |
+
+#### MIT
+|  Method | Online-required | Admin-required | Account-required | Version | 
+|  ------- | -------| --------| --------------| -------| 
+| [registermit](mit.html#registermit)     	| √ | × | √ | 0.8.0 |
+| [transfermit](mit.html#transfermit)     	| √ | × | √ | 0.8.0 |
+| [listmits](mit.html#listmits)     		| × | × | optional | 0.8.0 |
+| [getmit](mit.html#sendrawtx)         		| × | × | × | 0.8.0 |
 
 
 * Method : JSON-RPC Method
@@ -153,5 +179,5 @@ administrator_required = 1
 
 
 ### mvs-cli
-mvs-cli uses `/rpc/v3` to call mvsd after v0.8.2.
+mvs-cli uses `/rpc/v3` to call mvsd after v0.8.0.
 
