@@ -8,7 +8,7 @@ Compatiblity for API v2, please refers to [API v2](/api_v2).
 Compatiblity for API v1, please refers to [API v1](/api).
 
 ## API v3 Usage
-** Supported [v0.8.0](/news) and later**
+** Supported [v0.8.2](/news) and later**
 
 |   API      |  Default Port | URI | Default URL |
 | ------------------ | ------------ | ------------- |
@@ -125,6 +125,7 @@ $ ./mvs-cli help $command
 | [sendrawtx](rawtx.html#sendrawtx)         | √ | × | × | 0.7.3 |
 
 #### DID
+
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
 | [registerdid](identity.html#registerdid)     	| √ | × | √ | 0.8.0 |
@@ -152,18 +153,20 @@ $ ./mvs-cli help $command
 | [sendassetfrom](asset.html#sendassetfrom)      | √ | × | √ | 0.7.3 |
 
 #### Cert
+
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
 | [issuecert](asset.html#issuecert)     	| √ | × | √ | 0.8.0 |
 | [transfercert](asset.html#transfercert)   | √ | × | √ | 0.8.0 |
 
 #### MIT
+
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
 | [registermit](mit.html#registermit)     	| √ | × | √ | 0.8.0 |
 | [transfermit](mit.html#transfermit)     	| √ | × | √ | 0.8.0 |
 | [listmits](mit.html#listmits)     		| × | × | optional | 0.8.0 |
-| [getmit](mit.html#sendrawtx)         		| × | × | × | 0.8.0 |
+| [getmit](mit.html#getmit)         		| × | × | × | 0.8.0 |
 
 
 * Method : JSON-RPC Method

@@ -163,7 +163,7 @@ $ ./mvs-cli help $command
 | [registermit](mit.html#registermit)     	| √ | × | √ | 0.8.0 |
 | [transfermit](mit.html#transfermit)     	| √ | × | √ | 0.8.0 |
 | [listmits](mit.html#listmits)     		| × | × | optional | 0.8.0 |
-| [getmit](mit.html#sendrawtx)         		| × | × | × | 0.8.0 |
+| [getmit](mit.html#getmit)         		| × | × | × | 0.8.0 |
 
 
 * Method : JSON-RPC Method
