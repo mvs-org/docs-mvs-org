@@ -6,8 +6,8 @@ comments: false
 
 ### Tech&Bugfix
 1. [Commands issue fix](https://github.com/mvs-org/metaverse/issues/297)
-1. User experience enhancement
-1. Full-node stability enhancement
+1. Fix bug of data synchronization.
+1. Fix bug of mvsd blocks.
 
 ### Support
 If you have any issue, please contact us.
