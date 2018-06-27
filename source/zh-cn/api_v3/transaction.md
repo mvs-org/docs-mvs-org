@@ -25,13 +25,13 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"gettx",
-    "params":["18908d2035f40a9d4f1e07c1a3f16ace0882afbd31a7dfa3176843dd620abe9d"],"id":31}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"gettx",
+    "params":["18908d2035f40a9d4f1e07c1a3f16ace0882afbd31a7dfa3176843dd620abe9d"],"id":31}' http://127.0.0.1:8820/rpc/v3
 
     // Response
 	{
 	    "id" : 31,
-	    "jsonrpc" : "3.0",
+	    "jsonrpc" : "2.0",
 	    "result" :
 	    {
 	        "hash" : "18908d2035f40a9d4f1e07c1a3f16ace0882afbd31a7dfa3176843dd620abe9d",
@@ -116,13 +116,13 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"listtxs",
-    "params":["chenhao", "chenhaopassword",{"height":"919599:920046"}],"id":31}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"listtxs",
+    "params":["chenhao", "chenhaopassword",{"height":"919599:920046"}],"id":31}' http://127.0.0.1:8820/rpc/v3
 
     // Response
 	{
 	    "id" : 31,
-	    "jsonrpc" : "3.0",
+	    "jsonrpc" : "2.0",
 	    "result" :
 	    {
 	        "current_page" : 1,

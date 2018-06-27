@@ -20,12 +20,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"getblockheader",
-    "params":[],"id":26}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getblockheader",
+    "params":[],"id":26}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 26, 
         "result": {
             "nonce": "7722496578557022359", 
@@ -36,7 +36,7 @@ comments: false
             "transaction_count": "0", 
             "version": "1", 
             "mixhash": "47597797143417045886903555345346333109819709284889931755188005936950690907038", 
-            "time_stamp": "1509096803", 
+            "timestamp": "1509096803", 
             "merkle_tree_hash": "f91fcae5d3223441175735e7adb318004a6e7400eb01b6f3df13fa4b1e3feab9"
         }
     }
@@ -55,20 +55,18 @@ comments: false
     ]
      ```
     * Returns
-    `Object` -
-    1. `header` - block header
-    2. `transactions` - transactions
+    `Object` - block header with transactions
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"getblock",
-        "params":[0],"id":27}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getblock",
+        "params":[0],"id":27}' http://127.0.0.1:8820/rpc/v3
 
     // Response
 	{
 	    "id" : 27,
-	    "jsonrpc" : "3.0",
+	    "jsonrpc" : "2.0",
 	    "result" :
 	    {
             "bits" : "1",
@@ -78,7 +76,7 @@ comments: false
             "nonce" : "0",
             "number" : 0,
             "previous_block_hash" : "0000000000000000000000000000000000000000000000000000000000000000",
-            "time_stamp" : 1486796400,
+            "timestamp" : 1486796400,
             "transaction_count" : 1,
             "version" : 1
             "transactions" :

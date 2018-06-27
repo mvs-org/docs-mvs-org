@@ -1,7 +1,7 @@
 title: API v3 Usage
 comments: false
 ---
-This documentation provides more detailed information about the **API.v3(JSON-RPC 3.0)** list and will be particularly helpful for people who want to build BaaS(Blockchain As A Service) appliacations. If you are interested in more basic usage of Metaverse, please refer to the [docs](../docs) instead.
+This documentation provides more detailed information about the **API.v3(JSON-RPC 2.0)** list and will be particularly helpful for people who want to build BaaS(Blockchain As A Service) appliacations. If you are interested in more basic usage of Metaverse, please refer to the [docs](../docs) instead.
 
 Please note that this documentation is only valid for MVS FULL NODE.
 Compatiblity for API v2, please refers to [API v2](/api_v2).
@@ -35,8 +35,8 @@ Build Json, then HTTP POST to URL:
 
 Example:
 ```bash
-$ curl -X POST --data '{"jsonrpc":"3.0","method":"getinfo","params":[],"id":25}' http://127.0.0.1:8820/rpc/v3
-$ curl -X POST --data '{"jsonrpc":"3.0","method":"sendmore","params":["account_name","account_auth",{"receivers":"t7r9twiK5gAwhR2gXDqT2zqpzS6ogvaqnJ:100000"}],"id":25}' http://127.0.0.1:8820/rpc/v3
+$ curl -X POST --data '{"jsonrpc":"2.0","method":"getinfo","params":[],"id":25}' http://127.0.0.1:8820/rpc/v3
+$ curl -X POST --data '{"jsonrpc":"2.0","method":"sendmore","params":["account_name","account_auth",{"receivers":"t7r9twiK5gAwhR2gXDqT2zqpzS6ogvaqnJ:100000"}],"id":25}' http://127.0.0.1:8820/rpc/v3
 ```
 
 Obviously, Use `help` to get all commands(methods) list.
@@ -151,6 +151,7 @@ $ ./mvs-cli help $command
 | [listassets](asset.html#listassets)            | √ | × | optional | 0.7.3 |
 | [sendasset](asset.html#sendasset)              | √ | × | √ | 0.7.3 |
 | [sendassetfrom](asset.html#sendassetfrom)      | √ | × | √ | 0.7.3 |
+| [burn](asset.html#burn)                      	 | √ | × | √ | 0.8.0 |
 
 #### Cert
 

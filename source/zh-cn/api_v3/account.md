@@ -29,16 +29,20 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"getnewaccount",
-    "params":["test", "123456", {"language": "en"}],"id":7}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getnewaccount",
+    "params":["test", "123456", {"language": "en"}],"id":7}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 7, 
         "result": {
+            "name": "test",
             "mnemonic": "actor slam shove essence person between lucky harsh myself hole tomorrow sausage buddy young kitten motor traffic rare wisdom month payment drill vanish oval", 
-            "default_address": "MDtdyESeZB73RCYR1G4b7443ModzGwYWrF"
+            "addresses": "MDtdyESeZB73RCYR1G4b7443ModzGwYWrF"
+            [
+                "MDtdyESeZB73RCYR1G4b7443ModzGwYWrF"
+            ]
         }
     }
     ```
@@ -64,12 +68,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"getnewaddress",
-    "params":["test", "123456", {"number": 2}],"id":8}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getnewaddress",
+    "params":["test", "123456", {"number": 2}],"id":8}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 8, 
         "result": [
             "MM6VxRZ9b1GzbapkVCnWwqo3gbe5sDgf9G", 
@@ -97,12 +101,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"listaddresses",
-    "params":["test", "123456"],"id":11}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"listaddresses",
+    "params":["test", "123456"],"id":11}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 11, 
         "result": [
             "MBVDxEdhpyA1SvAnFhRxuUmsh5TsaURieV", 
@@ -131,12 +135,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"validateaddress",
-    "params":["MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"],"id":16}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"validateaddress",
+    "params":["MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"],"id":16}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 16, 
         "result":
         {
@@ -167,19 +171,18 @@ comments: false
     `Object` - 
     1. `name` - account name.
     2. `mnemonic` - master private key
-    3. `hd_index` - how many addresses generated.
-    4. `address` - address list
+    3. `addresses` - address list
 
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"importaccount",
+    curl -X POST --data '{"jsonrpc":"2.0","method":"importaccount",
     "params":["mother ride despair impose degree truck pet scrub mind art brain galaxy sadness cover crater waste arrest invest hip crush loan brisk pave cheap",
-    {"accountname":"test","password":"123456","hd_index":3,"language":"en"}],"id":9}'
+    {"accountname":"test","password":"123456","hd_index":3,"language":"en"}],"id":9}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 9, 
         "result": {
             "mnemonic": "mother ride despair impose degree truck pet scrub mind art brain galaxy sadness cover crater waste arrest invest hip crush loan brisk pave cheap", 
@@ -188,8 +191,7 @@ comments: false
                 "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2", 
                 "MS9m8zpVPkDYAXhmeHmhE3TgJugP3zHtAL"
             ], 
-            "name": "test", 
-            "hd_index": 3
+            "name": "test"
         }
     }
     ```
@@ -217,12 +219,12 @@ comments: false
     * Example
     ```js
     // import key file by file path
-    curl -X POST --data '{"jsonrpc":"3.0","method":"importkeyfile",
-    "params":["test", "123456", "~/.metaverse/mvs-test.json"],"id":10}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"importkeyfile",
+    "params":["test", "123456", "~/.metaverse/mvs-test.json"],"id":10}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 10, 
         "result": null
     }
@@ -252,12 +254,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"dumpkeyfile",
-    "params":["test", "123456", "lastword", "~/.metaverse/"],"id":4}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"dumpkeyfile",
+    "params":["test", "123456", "lastword", "~/.metaverse/"],"id":4}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 4, 
         "result": "~/.metaverse/mvs_keystore_test.json"
     }
@@ -286,17 +288,17 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"changepasswd",
-    "params":["test", "123456", {"password": "test123456"}],"id":1}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"changepasswd",
+    "params":["test", "123456", {"password": "test123456"}],"id":1}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 1, 
         "result":
         {
             "name": "test",
-            "status": "password changed"
+            "status": "changed successfully"
         }
     }
     ```
@@ -323,12 +325,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"deleteaccount",
-    "params":["test", "123456", "lastword"],"id":2}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"deleteaccount",
+    "params":["test", "123456", "lastword"],"id":2}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 2, 
         "result":
         {
@@ -362,15 +364,14 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"getaccount",
-    "params":["test", "123456", "lastword"],"id":5}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getaccount",
+    "params":["test", "123456", "lastword"],"id":5}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 5, 
         "result": {
-            "user_status": "2", 
             "name": "test", 
             "mnemonic": "mother ride despair impose degree truck pet scrub mind art brain galaxy sadness cover crater waste arrest invest hip crush loan brisk pave cheap", 
             "address_count": "2"

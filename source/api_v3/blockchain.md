@@ -25,12 +25,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"shutdown",
-    "params":["test", "123456"],"id":22}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"shutdown",
+    "params":["test", "123456"],"id":22}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 22, 
         "result": "sending SIGTERM to mvsd."
     }
@@ -59,7 +59,7 @@ comments: false
     // Request
     curl -X POST -d '{
         "id":25,
-        "jsonrpc":"3.0",
+        "jsonrpc":"2.0",
         "method":"getinfo",
         "params":[]
     }' http://127.0.0.1:8820/rpc/v3
@@ -67,7 +67,7 @@ comments: false
     // Response
     {
         "id" : 25,
-        "jsonrpc" : "3.0",
+        "jsonrpc" : "2.0",
         "result" : 
         {
             "database_version" : "0.6.3",
@@ -96,7 +96,7 @@ comments: false
     // Request
     curl -X POST -d '{
         "id":25,
-        "jsonrpc":"3.0",
+        "jsonrpc":"2.0",
         "method":"getheight",
         "params":[]
     }' http://127.0.0.1:8820/rpc/v3
@@ -104,7 +104,7 @@ comments: false
     // Response
     {
         "id" : 25,
-        "jsonrpc" : "3.0",
+        "jsonrpc" : "2.0",
         "result" : 105506
     }
     ```
@@ -120,7 +120,7 @@ comments: false
     // Request
     curl -X POST -d '{
         "id":25,
-        "jsonrpc":"3.0",
+        "jsonrpc":"2.0",
         "method":"getpeerinfo",
         "params":[]
     }' http://127.0.0.1:8820/rpc/v3
@@ -128,7 +128,7 @@ comments: false
     // Response
     {
         "id" : 25,
-        "jsonrpc" : "3.0",
+        "jsonrpc" : "2.0",
         "result" : 
         [
             "118.178.16.25:15251",
@@ -149,7 +149,7 @@ comments: false
     // Request
     curl -X POST -d '{
         "id":25,
-        "jsonrpc":"3.0",
+        "jsonrpc":"2.0",
         "method":"getmininginfo",
         "params":[]
     }' http://127.0.0.1:8820/rpc/v3
@@ -157,7 +157,7 @@ comments: false
     // Response
     {
         "id" : 25,
-        "jsonrpc" : "3.0",
+        "jsonrpc" : "2.0",
         "result" : 
         {
             "difficulty" : "2233275",
@@ -187,12 +187,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"startmining",
-    "params":["test", "123456"],"id":20}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"startmining",
+    "params":["test", "123456"],"id":20}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 20, 
         "result": "solo mining started at MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2."
     }
@@ -217,12 +217,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"stopmining",
-    "params":["test", "123456"],"id":21}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"stopmining",
+    "params":["test", "123456"],"id":21}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 21, 
         "result": "mining stoped."
     }
@@ -247,12 +247,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"getwork",
-    "params":["test", "123456"],"id":18}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getwork",
+    "params":["test", "123456"],"id":18}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 18, 
         "result": [
             "0x3581eb99481009c9e42bb667a64658c37422b01c6282b0cbdcdfc821f84b4edb",
@@ -281,12 +281,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"addnode",
-    "params":["10.10.20.1:5251"],"id":21}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"addnode",
+    "params":["10.10.20.1:5251"],"id":21}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 21, 
         "result": "success"
     }
@@ -313,12 +313,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"setminingaccount",
-    "params":["test", "123456", "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"],"id":19}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"setminingaccount",
+    "params":["test", "123456", "MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2"],"id":19}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 19, 
         "result": "Address [tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y] setted."
     }
@@ -345,12 +345,12 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"submitwork",
-    "params":["510e97b19fd66cc1", "0x3581eb99481009c9e42bb667a64658c37422b01c6282b0cbdcdfc821f84b4edb", "0x84466639954022912678747341235003283994844539402926174863653111473524386000443"],"id":23}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"submitwork",
+    "params":["510e97b19fd66cc1", "0x3581eb99481009c9e42bb667a64658c37422b01c6282b0cbdcdfc821f84b4edb", "0x84466639954022912678747341235003283994844539402926174863653111473524386000443"],"id":23}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 23, 
         "result": true
     }
@@ -360,14 +360,14 @@ comments: false
 
 * ### `eth_getWork`
     eth_getWork to get mining info. 
-    Note: this API is almost the same as eth_getWork in ethereum, but for the `URI` shall be set to `/rpc/v3`, not `/rpc/v3`.
+    Note: this API is almost the same as eth_getWork in ethereum, but for the `URI` shall be set to `/rpc/v3`.
     For details, please refer to: https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getwork
 
 ***
 
 * ### `eth_submitWork`
     eth_submitWork to submit mining result.
-    Note: this API is almost the same as eth_submitWork in ethereum, but for the `URI` shall be set to `/rpc/v3`, not `/rpc/v3`.
+    Note: this API is almost the same as eth_submitWork in ethereum, but for the `URI` shall be set to `/rpc/v3`.
     For details, please refer to: https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_submitwork
 ***
 
@@ -379,11 +379,11 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"3.0","method":"getmemorypool","params":[],"id":28}'
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getmemorypool","params":[],"id":28}' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
-        "jsonrpc": "3.0", 
+        "jsonrpc" : "2.0", 
         "id": 28, 
         "result": [
             {
