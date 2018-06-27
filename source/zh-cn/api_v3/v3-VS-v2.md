@@ -12,7 +12,7 @@ API v3 returns object itself as `result` field of response not a dictionary of `
 ### transaction object
 API v3 returns a transaction object while API v2 return a dictionary of `transaction : object`. 
 
-Following cmd are affected.
+Following commands are affected.
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `burn`                | [v3](../api_v3/asset.html#burn) | [v2](../api_v2/asset.html#burn) |
@@ -40,7 +40,7 @@ Following cmd are affected.
 ### asset object
 API v3 returns a asset object while API v2 return a dictionary of `asset : object`. 
 
-Following cmd are affected.
+Following commands are affected.
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `createasset`   | [v3](../api_v3/asset.html#createasset) | [v2](../api_v2/asset.html#createasset) |
@@ -48,7 +48,7 @@ Following cmd are affected.
 ### list object
 API v3 returns a list of object while API v2 return a dictionary of `name : list of object`. 
 
-Following cmd are affected.
+Following commands are affected.
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `listmultisig`    | [v3](../api_v3/multisig.html#listmultisig) | [v2](../api_v2/multisig.html#listmultisig) |
@@ -65,7 +65,7 @@ Following cmd are affected.
 ### string object
 API v3 returns a string object while API v2 return a dictionary of `name : string object`. 
 
-Following cmd are affected.
+Following commands are affected.
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `createrawtx`    | [v3](../api_v3/rawtx.html#createrawtx) | [v2](../api_v2/rawtx.html#createrawtx) |
@@ -208,12 +208,27 @@ API v3 changes some fields of command.
     }
 ```
 
+### signmultisigtx
+[v3](../api_v3/rawtx.html#signmultisigtx)
+```js
+    {
+        "hash",
+        "rawtx"
+    }
+```
+
+[v2](../api_v2/rawtx.html#signmultisigtx)
+```js
+    {
+        "hex"
+    }
+```
 
 ## Change name of field
 
 ### API v3 replaces `time_stamp` with `timestamp`. 
 
-Following cmd are affected.
+Following commands are affected.
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `getblock`    | [v3](../api_v3/block.html#getblock) | [v2](../api_v2/block.html#getblock) |
