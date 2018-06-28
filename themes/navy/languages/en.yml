@@ -53,6 +53,7 @@ sidebar:
   baas:
     introduction: Introduction
     sdk: SDKs
+    micro_service: Micro Services
 
   api:
     introduction: Introduction
