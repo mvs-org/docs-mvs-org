@@ -49,6 +49,7 @@ sidebar:
     reset_mvs: Reset MVS Wallet
     upgrade_mvs: Upgrade MVS Wallet
     backup_account: Backup Account
+    setup_mining_pool: Setup Mining Pool
 
   baas:
     introduction: Introduction
