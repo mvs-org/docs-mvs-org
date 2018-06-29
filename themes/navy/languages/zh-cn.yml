@@ -51,6 +51,11 @@ sidebar:
     backup_account: 备份账户
     setup_mining_pool: 搭建简易矿池
 
+  baas:
+    introduction: 介绍
+    sdk: SDKs
+    micro_service: 微服务
+
   api:
     introduction: 介绍
     sendetp: 发送ETP

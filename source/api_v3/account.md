@@ -380,3 +380,44 @@ comments: false
     ```
 ***
 
+* ### `getpublickey`
+    Show public key of address
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    3. `ADDRESS` Address.
+    ```js
+    params:[
+        "ACCOUNTNAME", 
+        "ACCOUNTAUTH", 
+        "ADDRESS"
+    ]
+     ```
+    * Returns
+    `Object` - string
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{
+        "jsonrpc":"2.0",
+        "method":"getpublickey",
+        "id":5,
+        "params":[
+            "test", 
+            "123456", 
+            "MLTxV5JAu5sFhQmJYNRmPuu31CkNWrF5rj"
+        ]
+    }' http://127.0.0.1:8820/rpc/v2
+
+    // Response
+    {
+        "id" : 5,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "address" : "MLTxV5JAu5sFhQmJYNRmPuu31CkNWrF5rj",
+            "public_key" : "031c7ac7f12a05ea4952289801fa52142aa421f11efe8ab7090fb823562156a321"
+        }
+    }
+    ```***

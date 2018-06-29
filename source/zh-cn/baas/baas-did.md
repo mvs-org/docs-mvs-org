@@ -1,12 +1,10 @@
-title: DID micro service
+title: 数字身份微服务
 ---
 
-## Introduction
-DID micro service provides API for exchanges to allow their customers to register DID and bind DID to customer's wallet.
+## 概要
+数字身份微服务提供 `API` 接口以方便交易所为用户注册数字身份，并绑定到用户钱包。
 
-Exchanges can implement the same feature according to this documemt.
-
-Related MVS commands:
+交易所也可以参照本文档中的设计自己实现同样的功能。涉及到的`CLI command`:
 > getnewaddress  
 > registerdid  
 > didchangeaddress  
@@ -16,50 +14,53 @@ Related MVS commands:
 > sendrawtx  
 > send  
 
-For details of these command, please refer to [API Document](https://docs.mvs.org/zh-cn/api_v2/)。
+以上命令的详细文档可以查看[API文档](https://docs.mvs.org/zh-cn/api_v2/)。
 
-## User Case
-In the following user case, two actors are involed exchange and user `Alice`。
+## 用例
+以下用例场景涉及到两个角色：交易所和用户 `Alice`。
 
-### User requests registering an DID
-`Alice` request registering an DID named `Alias@Alice` on exchange's website or app.
+### 一，用户申请登记数字身份
+`Alice` 通过交易所的交互界面申请登记名为 `Alias@Alice` 的数字身份。
 
-### Exchange registers DID
-Exchange generates a new address by `getnewaddress` and registers DID named `Alias@Alice` to it.
+### 二，交易所登记数字身份
+交易所使用自己的 `MVS` 账户用命令 `getnewaddress` 生成新的地址，然后通过命令 `registerdid` 将名为 `Alias@Alice` 的数字身份绑定到该地址。
 
-### User binds DID to user's wallet
+### 三，用户绑定数字身份到自己的钱包
 
-1. Generate multi-signature address  
-Exchange and `Alice` get public-key of an address of their account by `getpublickey`. Exchange and `Alice` swap the public-keys and generate multi-signature addresses by `getnewmultisig` with the public-keys and parameter `m:n` valued `1:2`.
+1. 生成多重签名地址
+`Alice` 和交易所通过命令 `getpublickey` 获取各自账号下某个地址的公钥，并交换公钥。然后各自通过命令 `getnewmultisig` 使用公钥信息生成 `m:n` 为 `1:2` 的相同多重签名地址 `multisig_address`。交易所
 
-2. Exchange transfers DID to the multi-signature address  
-Exchange creates a transcation by `didchangeaddress` to transfer DID named `Alias@Alice` to the multi-signature address. Exchange broadcasts the transcation by `sendrawtx`.
+2. 交易所转出数字身份到多重签名地址
+交易所通过命令 `didchangeaddress` 创建将数字身份 `Alias@Alice` 转出到多重签名地址 `multisig_address` 的交易，并使用命令 `sendrawtx` 广播交易。
 
-3. User transfers DID from the multi-signature address to wallet  
-`Alice` creates a transcation by `didchangeaddress` to transfer DID named `Alias@Alice` from the multi-signature address. `Alice` broadcasts the transcation by `sendrawtx`.
+3. 用户转入数字身份到钱包地址
+`Alice` 通过命令 `didchangeaddress` 创建将数字身份 `Alias@Alice` 转入到钱包地址的交易，并使用命令 `sendrawtx` 广播交易。
 
-4. Confirmation  
-`Alice` confirms the result by `getdid`.
+4. 确认数字身份
+交易所或者 `Alice` 通过命令 `getdid` 可以查看数字身份 `Alias@Alice` 的历史记录确认。
 
-## DID micro service
-DID micro service provides API for exchanges to process the business logics above.
+## 数字身份微服务
+为了简化交易所的工作，数字身份微服务对以上业务进行了封装，提供了便利的接口。
 
-1. Exchange registers DID  
-Exchange generates a new address by `getnewaddress` and registers DID to it. Exchange saves user's account ID, DID name and address by micro service api `savedid`.
+1. 交易所登记数字身份
+交易所使用自己的 `MVS` 账户用命令 `getnewaddress` 生成新的地址，然后通过命令 `registerdid` 将用户请求的数字身份绑定到该地址。然后交易所将用户在交易所的帐户ID，登记的数字身份名称以及绑定的地址通过数字身份微服务接口 `savedid` 保存起来。
 
-2. Exchange generates a multi-signature address  
-Exchange queries DID name and address with user's account ID by micro service api `querydid` when user requests binding DID to user's wallet. Exchange gets the public key of DID address by `getpublickey`. After exchange and user swaps their public-keys, exchange generates a multi-signature addresses by `getnewmultisig`.
+2. 交易所生成多重签名地址
+当用户申请转出数字身份到用户钱包时，交易所用用户在交易所的帐户ID通过数字身份微服务接口 `querydid` 获得数字身份名称以及绑定的地址。
 
-4. Exchange tansfers DID to the multi-signature address  
-Exchange creates a transcation by `didchangeaddress` to transfer DID to the multi-signature address. Exchange broadcasts the transcation by `sendrawtx`.
+3. 交易所通过命令 `getpublickey` 获取绑定地址的公钥，并将该公钥出示给用户，同时要求用户输入用户地址的公钥。然后通过命令 `getnewmultisig` 使用公钥信息生成 `m:n` 为 `1:2` 的多重签名地址。
 
-## Implementation
+4. 交易所转出数字身份到多重签名地址
+交易所通过命令 `didchangeaddress` 创建将数字身份转出到多重签名地址的交易，并使用命令 `sendrawtx` 广播交易。
 
-### User requests registering an DID
-`Alice` request registering an DID named `Alias@Alice` on exchange's website or app.
+## 实现
+根据上面的用例，下面详细地描述了各命令的调用过程。
 
-### Exchange registers DID
-1. Exchange generates a new address `MLTxV5JAu5sFhQmJYNRmPuu31CkNWrF5rj` by `getnewaddress`.  
+### 一，用户申请登记数字身份
+`Alice` 通过交易所的交互界面申请登记名为 `Alias@Alice` 的数字身份。
+
+### 二，交易所登记数字身份
+1. 交易所使用自己的 `MVS` 账户用命令 `getnewaddress` 生成新的地址用于登记用户的数字身份。
     ```js
     // Request
     curl -X POST --data '{
@@ -89,7 +90,7 @@ Exchange creates a transcation by `didchangeaddress` to transfer DID to the mult
     }
     ```
 
-2. Exchange sends `100000000` satoshi(`1 ETP`) to the new address as fee of registering DID.  
+2. 交易所向该地址转入 `100000000` 聪（`1 ETP`）作为后续登记数字身份的手续费。
     ```js
     // Request
     curl -X POST --data '{
@@ -106,11 +107,11 @@ Exchange creates a transcation by `didchangeaddress` to transfer DID to the mult
 
     // Response
     {
-        // omit...
+        // 略...
     }
     ```
 
-3. Exchange registers DID named `Alias@Alice` to the new address by `registerdid`.  
+3. 交易所通过命令 `registerdid` 将名为 `Alias@Alice` 的数字身份绑定到该地址。
     ```js
     // Request
     curl -X POST -d '{
@@ -181,12 +182,12 @@ Exchange creates a transcation by `didchangeaddress` to transfer DID to the mult
     }
     ```
 
-4. Exchange saves user's account ID, DID name and address by micro service api `savedid`.
+4. 交易所将用户在交易所的帐户ID，登记的数字身份名称以及绑定的地址通过数字身份微服务接口 `savedid` 保存起来。
 
-### User transfers DID to wallet
-1. Exchange queries DID `Alias@Alice` and address `MLTxV5JAu5sFhQmJYNRmPuu31CkNWrF5rj` with user's account ID by micro service api `querydid` when user requests binding DID to user's wallet.
+### 三，用户绑定数字身份到自己的钱包  
+1. `Alice` 通过交易所交互页面申请绑定数字身份到自己的钱包。交易所用 `Alice` 在交易所的帐户ID通过数字身份微服务接口 `querydid` 获得数字身份名称 `Alias@Alice` 以及绑定的地址 `MLTxV5JAu5sFhQmJYNRmPuu31CkNWrF5rj`。
 
-2. Exchange gets the public-key `031c7ac7f12a05ea4952289801fa52142aa421f11efe8ab7090fb823562156a321` of address `MLTxV5JAu5sFhQmJYNRmPuu31CkNWrF5rj` by `getpublickey`. Exchange displays the public-key to `Alice` and `Alice` records it to generate a multi-signature address later.
+2. 交易所通过命令 `getpublickey` 获取绑定的地址的公钥 `031c7ac7f12a05ea4952289801fa52142aa421f11efe8ab7090fb823562156a321`，然后通过交互页面展示给 `Alice`， `Alice` 记录下该公钥用于后续生成多重签名地址。
     ```js
     // Request
     curl -X POST --data '{
@@ -212,7 +213,7 @@ Exchange creates a transcation by `didchangeaddress` to transfer DID to the mult
     }
     ```
 
-3. `Alice` gets the public-key `0344befcd59670651a6441c00ef26caa104bab8ff9e5ec3f6e9b65bac9194cad0a` of address that DID binds to  by `getpublickey`. `Alice` commits this public-key to exchange.
+3. `Alice` 通过钱包获取账户下某个可以使用的地址 `MSqhPipeAZ1Ua9GfNbBi65RPdT7x4iHvwF` 以及对应的公钥 `0344befcd59670651a6441c00ef26caa104bab8ff9e5ec3f6e9b65bac9194cad0a`，并通过交互页面将该公钥提交给交易所。
     ```js
     // Request
     curl -X POST --data '{
@@ -238,9 +239,9 @@ Exchange creates a transcation by `didchangeaddress` to transfer DID to the mult
     }
     ```
 
-4. Generate multi-signature address  
-Now, both exchange and `Alice` have enough information to generate multi-signature address. They generate the same multi-signature address by `getnewmultisig` with public-keys and parament `m:n` valued `1:2`.    
-Exchange generates a multi-signature address `35ZW2TFThaK96DzwRwrfq5SRH2u7zfKTCF`:
+4. 生成多重签名地址  
+至此，交易所和 `Alice` 双方都获得了对方的公钥，因此交易所和 `Alice` 各自通过命令 `getnewmultisig` 使用公钥信息生成 `m:n` 为 `1:2` 的相同多重签名地址 `multisig_address`。  
+交易所生成多重签名地址 `35ZW2TFThaK96DzwRwrfq5SRH2u7zfKTCF`：
     ```js
     curl -X POST --data '{
         "id":7,
@@ -281,7 +282,7 @@ Exchange generates a multi-signature address `35ZW2TFThaK96DzwRwrfq5SRH2u7zfKTCF
         }
     }
     ```
-`Alice` generates a multi-signature address `35ZW2TFThaK96DzwRwrfq5SRH2u7zfKTCF`:  
+`Alice` 生成多重签名地址 `35ZW2TFThaK96DzwRwrfq5SRH2u7zfKTCF`：
     ```js
     curl -X POST --data '{
         "id":7,
@@ -323,8 +324,8 @@ Exchange generates a multi-signature address `35ZW2TFThaK96DzwRwrfq5SRH2u7zfKTCF
     }
     ```
 
-5. Exchange transfers DID to the multi-signature address  
-Exchange sends `10000` satoshi(`0.0001 ETP`) to the multi-signature address as fee of transfering DID later.  
+5. 交易所转出数字身份到多重签名地址  
+交易所向多重签名地址 `35ZW2TFThaK96DzwRwrfq5SRH2u7zfKTCF`转入 `10000` 聪（`0.0001 ETP`） 作为后续转出数字身份的手续费。
     ```js
     // Request
     curl -X POST --data '{
@@ -344,8 +345,8 @@ Exchange sends `10000` satoshi(`0.0001 ETP`) to the multi-signature address as f
         // 略...
     }
     ```
-Exchange creates a transcation by `didchangeaddress` to transfer DID `Alias@Alice` to the multi-signature address `35ZW2TFThaK96DzwRwrfq5SRH2u7zfKTCF`. Exchange broadcasts the transcation by `sendrawtx`.
-Exchange creates a transcation:
+交易所通过命令 `didchangeaddress` 创建将数字身份 `Alias@Alice` 转出到多重签名地址 `35ZW2TFThaK96DzwRwrfq5SRH2u7zfKTCF` 的交易，然后使用命令 `sendrawtx` 广播交易。  
+交易所创建转出数字身份的多重签名交易：
     ```js
     // Request
     curl -X POST -d '{
@@ -368,7 +369,7 @@ Exchange creates a transcation:
         "result" : "0400000002c3acf1058e8ae5341fed5b944fe86b83edecbadc5d386e6a968af6eff6378ae7000000009300483045022100c1cbb2235c057e3fac37d4884a3929009336978d5a1feba27acad3012d7e1f550220009a6385d42d28964ccc85c0416aa448933213875901c64695ac7e70b79f3c51014c475121031c7ac7f12a05ea4952289801fa52142aa421f11efe8ab7090fb823562156a321210344befcd59670651a6441c00ef26caa104bab8ff9e5ec3f6e9b65bac9194cad0a52aeffffffff7f1b4024cd22de9115389a0cfdbafaa0c0122bf853ae57717fc00d3269ab50c3000000006b483045022100f88ea6c345e1164e7bc2331ea11bf0bb795ad104b02b1da394d976751de378ba02203f02e841e27aae877ff1bcd22fd72737586539e3d40e3451661ac32ab686e7690121031c7ac7f12a05ea4952289801fa52142aa421f11efe8ab7090fb823562156a321ffffffff01000000000000000017a9142a74a23b4ed1bb90f575e73c0208106d37eb653a870100000004000000020000000b416c69617340416c6963652233355a573254465468614b3936447a775277726671355352483275377a664b54434600000000"
     }
     ```
-Exchange broadcasts the transcation:
+交易所广播多重签名交易：
     ```js
     // Request
     curl -X POST -d '{
@@ -392,9 +393,9 @@ Exchange broadcasts the transcation:
     }
     ```
 
-6. `Alice` transfers DID from the multi-signature address   
-`Alice` creates a transcation by `didchangeaddress` to transfer DID `Alias@Alice` from the multi-signature address `35ZW2TFThaK96DzwRwrfq5SRH2u7zfKTCF`. `Alice` broadcasts the transcation by `sendrawtx`.
-`Alice` creates a transcation:
+6. 用户转入数字身份到钱包地址  
+`Alice` 通过钱包用命令 `didchangeaddress` 创建将数字身份 `Alias@Alice` 转入到钱包地址 `MSqhPipeAZ1Ua9GfNbBi65RPdT7x4iHvwF`的交易，并使用命令 `sendrawtx` 广播交易。  
+`Alice` 创建转入数字身份的多重签名交易：
     ```js
     // Request
     curl -X POST -d '{
@@ -417,7 +418,7 @@ Exchange broadcasts the transcation:
         "result" : "0400000002c9567f3b1dfff3bced7a947575870ddaa02dec70db5bc01027851c0720e881a9000000009300483045022100adb80306458db15f8e82108f92a3ecf9d0dd221f89386b1d006a09b88dba243c022007a5198bb84f203b6a91bc2fcc7fd5413cfc0e7982dabdc89feb2f3a5cf3405c014c475121031c7ac7f12a05ea4952289801fa52142aa421f11efe8ab7090fb823562156a321210344befcd59670651a6441c00ef26caa104bab8ff9e5ec3f6e9b65bac9194cad0a52aeffffffffb6a654253b99292f7ce585fc718c0e28dbe730c79dded3eb373f9b51ce9ddd0e000000006a47304402205beb823ab2395e8ceecd1595327f3d1f8fe9bec12e6d1e71df94acf29d168bf502204152096109155468fd6f501e5494ac947fba2e7f313ec2b398e6b3aec5eeb59701210344befcd59670651a6441c00ef26caa104bab8ff9e5ec3f6e9b65bac9194cad0affffffff0200000000000000001976a914cfc2bcbdc96854fe00dbe86db689fd1ea918bdd888ac0100000004000000020000000b416c69617340416c696365224d53716850697065415a3155613947664e6242693635525064543778346948767746f07be111000000001976a914cfc2bcbdc96854fe00dbe86db689fd1ea918bdd888ac010000000000000000000000"
     }
     ```
-`Alice` broadcasts the transcation:
+`Alice` 广播多重签名交易：
     ```js
     // Request
     curl -X POST -d '{
@@ -441,8 +442,8 @@ Exchange broadcasts the transcation:
     }
     ```
 
-7. Confirmation  
-`Alice` confirms the result by `getdid`.
+7. 确认数字身份  
+交易所或者 `Alice` 通过命令 `getdid` 可以查看数字身份 `Alias@Alice` 的历史记录确认。
     ```js
     // Request
     curl -X POST --data '{

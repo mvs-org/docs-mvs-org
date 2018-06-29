@@ -199,7 +199,7 @@ comments: false
     ]
     ```
     * Returns
-    `Object` - 
+    `Object` - transation
 
     * Example
     ```js
@@ -277,7 +277,7 @@ comments: false
     ]
     ```
     * Returns
-    `Object` - return the transaction
+    `Object` - transaction
 
     * Example
 
@@ -402,7 +402,7 @@ comments: false
     ]
     ```
     * Returns
-    `Object` - 
+    `Object` - transation
 
     * Example
     ```js
@@ -486,7 +486,7 @@ comments: false
     ]
     ```
     * Returns
-    `Object` - 
+    `Object` - transation
 
     * Example
     ```js
@@ -595,7 +595,7 @@ comments: false
     ]
     ```
     * Returns
-    `Object` - 
+    `Object` - transation
 
     * Example
     ```js
@@ -783,7 +783,7 @@ comments: false
     ]
     ```
     * Returns
-    `Object` - dids
+    `Object` - did symbols
 
     * Example
     ```js
@@ -816,7 +816,7 @@ comments: false
     ]
     ```
     * Returns
-    `Object` - addresses
+    `Object` - dids
 
     * Example
     ```js
