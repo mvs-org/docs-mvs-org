@@ -49,6 +49,7 @@ sidebar:
     reset_mvs: 重置钱包
     upgrade_mvs: 升级钱包
     backup_account: 备份账户
+    setup_mining_pool: 搭建简易矿池
 
   api:
     introduction: 介绍
