@@ -1,12 +1,12 @@
-title: 搭建简易矿池
+title: Setup a Simple Mining Pool
 comments: false
 ---
 
-# 安装环境
+# Environment
 OS: Ubuntu 16.04
-矿池适配mvs补丁与相关配置文件：<https://github.com/mvs-org/docs-mvs-org/tree/master/.appendix/mining_pool_setup>
+mvs customized patch and config files: <https://github.com/mvs-org/docs-mvs-org/tree/master/.appendix/mining_pool_setup>
 
-# 安装步骤
+# Setup steps
 ## 1. Install redis(3.2.8):
 ```
 $ wget http://download.redis.io/releases/redis-3.2.8.tar.gz
@@ -76,13 +76,12 @@ Note: the ip address '10.10.10.37' in 'mvs_mining_pool_config.json' should be mo
 $ ./build/bin/open-ethereum-pool ./config.json
 ```
 
-# 注意事项 
-1. MVS矿池基于以太坊开源的open_mining_pool修改，补丁仅支持获取/提交挖矿信息，不支持自动给矿工发钱。如果需要支持其他功能，请自行基于open-mining-pool的代码修改。
-2. 需要先在MVS钱包上设置好挖矿帐号（setminingaccount），否则调用getwork会失败。
-3. MVS go SDK(开发中)下载路径: https://github.com/mvshub/mvs_rpc_go.git
+# Note
+1. This mining pool is modified based on open_mining_pool, which is suit to ethereum. Only getwork/submitwork are supported in the patch. If you need more functions, you shall develop them by yourself.
+2. Remember `setminingaccount` first，otherwise `getwork` will fail.
+3. MVS go SDK(in developing): https://github.com/mvshub/mvs_rpc_go.git
 
-测试日期: `2018-06-18`
+Test date: `2018-06-18`
 By: `chengzhpchn@163.com`
-测试用挖矿软件取自UUPool.cn http://www.uupool.cn/course/etp 
-挖矿软件版本： `ETC ETH ETP原版软件v11.8.zip`
-配套MVS钱包版本：0.8.1
+Thanks UUPool.cn [http://www.uupool.cn/course/etp] for their mining software of `ETC ETH ETP原版软件v11.8.zip`.
+MVS Wallet：0.8.1
