@@ -18,7 +18,7 @@ Related MVS commands:
 > sendrawtx  
 > send  
 
-For details of these command, please refer to [API Document](https://docs.mvs.org/zh-cn/api_v2/)。
+For details of these command, please refer to [API Document](https://docs.mvs.org/api_v2/)。
 
 ## User Case
 ***

@@ -6,7 +6,7 @@ title: 数字身份微服务
 
 数字身份微服务提供 `API` 接口以方便交易所为用户注册数字身份，并绑定到用户钱包。
 
-交易所也可以参照本文档中的设计自己实现同样的功能。涉及到的`CLI command`:
+交易所也可以参照本文档中的设计自己实现同样的功能。涉及到的`command`:
 > getnewaddress  
 > registerdid  
 > didchangeaddress  
