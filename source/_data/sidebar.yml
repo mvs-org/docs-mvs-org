@@ -36,7 +36,7 @@ baas:
   sdk:
     sdk: sdk.html
   micro_service:
-    did: baas-did.html
+    ms_did: baas-did.html
 
 api:
   introduction:

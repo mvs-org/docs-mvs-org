@@ -57,7 +57,7 @@ sidebar:
     sdk: SDKs
 
     micro_service: Micro Services
-    did: Avatar
+    ms_did: Avatar
 
   api:
     introduction: Introduction

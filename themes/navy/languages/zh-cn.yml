@@ -57,7 +57,7 @@ sidebar:
     sdk: SDKs
 
     micro_service: 微服务
-    did: 数字身份
+    ms_did: 数字身份
 
   api:
     introduction: 介绍
