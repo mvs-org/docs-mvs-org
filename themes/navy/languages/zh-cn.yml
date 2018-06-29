@@ -53,8 +53,11 @@ sidebar:
 
   baas:
     introduction: 介绍
+
     sdk: SDKs
+
     micro_service: 微服务
+    did: baas-did.html
 
   api:
     introduction: 介绍

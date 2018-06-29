@@ -53,8 +53,11 @@ sidebar:
 
   baas:
     introduction: Introduction
+
     sdk: SDKs
+
     micro_service: Micro Services
+    did: baas-did.html
 
   api:
     introduction: Introduction
