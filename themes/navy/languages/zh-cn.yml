@@ -1,7 +1,7 @@
 menu:
   docs: 文档
-  api: API
   api_v2: API v2
+  baas: BaaS
   developers: 开发者
   FAQ: FAQ
   releases: 发布
@@ -57,7 +57,7 @@ sidebar:
     sdk: SDKs
 
     micro_service: 微服务
-    did: baas-did.html
+    did: DID
 
   api:
     introduction: 介绍

@@ -57,7 +57,7 @@ sidebar:
     sdk: SDKs
 
     micro_service: Micro Services
-    did: baas-did.html
+    did: DID
 
   api:
     introduction: Introduction
