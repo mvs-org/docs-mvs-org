@@ -22,6 +22,7 @@ docs:
     backup_account: backup-account.html
     testnet: testnet.html
     private_chain: private-chain.html
+    setup_mining_pool: setup_mining_pool.html
 
   platform_deployment:
     deploy_wallet: deploy-wallet-for-exchange-platform.html

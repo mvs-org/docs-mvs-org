@@ -1,0 +1,49 @@
+diff --git a/proxy/handlers.go b/proxy/handlers.go
+index 6f1fa90..c5c7f65 100644
+--- a/proxy/handlers.go
++++ b/proxy/handlers.go
+@@ -22,7 +22,7 @@ func (s *ProxyServer) handleLoginRPC(cs *Session, params []string, id string) (b
+ 
+ 	login := strings.ToLower(params[0])
+ 	if !util.IsValidHexAddress(login) {
+-		return false, &ErrorReply{Code: -1, Message: "Invalid login"}
++		//return false, &ErrorReply{Code: -1, Message: "Invalid login"}
+ 	}
+ 	if !s.policy.ApplyLoginPolicy(login, cs.ip) {
+ 		return false, &ErrorReply{Code: -1, Message: "You are blacklisted"}
+diff --git a/rpc/rpc.go b/rpc/rpc.go
+index 96137bb..79b8058 100644
+--- a/rpc/rpc.go
++++ b/rpc/rpc.go
+@@ -46,6 +46,11 @@ type GetBlockReplyPart struct {
+ 	Difficulty string `json:"difficulty"`
+ }
+ 
++type GetBlockHeader struct {
++	Number     uint64 `json:"number"`
++	Difficulty string `json:"bits"`
++}
++
+ const receiptStatusSuccessful = "0x1"
+ 
+ type TxReceipt struct {
+@@ -99,14 +104,16 @@ func (r *RPCClient) GetWork() ([]string, error) {
+ }
+ 
+ func (r *RPCClient) GetPendingBlock() (*GetBlockReplyPart, error) {
+-	rpcResp, err := r.doPost(r.Url, "eth_getBlockByNumber", []interface{}{"pending", false})
++	//rpcResp, err := r.doPost(r.Url, "eth_getBlockByNumber", []interface{}{"pending", false})
++	rpcResp, err := r.doPost(r.Url, "getblockheader", []interface{}{})
+ 	if err != nil {
+ 		return nil, err
+ 	}
+ 	if rpcResp.Result != nil {
+-		var reply *GetBlockReplyPart
++		var reply *GetBlockHeader
+ 		err = json.Unmarshal(*rpcResp.Result, &reply)
+-		return reply, err
++		ret := &GetBlockReplyPart{"0x"+strconv.FormatUint((*reply).Number,16), (*reply).Difficulty}
++		return ret, err
+ 	}
+ 	return nil, nil
+ }
