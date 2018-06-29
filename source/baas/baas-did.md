@@ -2,6 +2,8 @@ title: DID Micro Service
 ---
 
 ## Introduction
+***
+
 DID micro service provides API for exchanges to allow their customers to register DID and bind DID to customer's wallet.
 
 Exchanges can implement the same feature according to this documemt.
@@ -19,6 +21,8 @@ Related MVS commands:
 For details of these command, please refer to [API Document](https://docs.mvs.org/zh-cn/api_v2/)。
 
 ## User Case
+***
+
 In the following user case, two actors are involed exchange and user `Alice`。
 
 ### User requests registering an DID
@@ -42,6 +46,8 @@ Exchange creates a transcation by `didchangeaddress` to transfer DID named `Alia
 `Alice` confirms the result by `getdid`.
 
 ## DID micro service
+***
+
 DID micro service provides API for exchanges to process the business logics above.
 
 1. Exchange registers DID  
@@ -54,6 +60,7 @@ Exchange queries DID name and address with user's account ID by micro service ap
 Exchange creates a transcation by `didchangeaddress` to transfer DID to the multi-signature address. Exchange broadcasts the transcation by `sendrawtx`.
 
 ## Implementation
+***
 
 ### User requests registering an DID
 `Alice` request registering an DID named `Alias@Alice` on exchange's website or app.
