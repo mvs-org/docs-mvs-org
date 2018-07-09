@@ -13,6 +13,7 @@ API v3 returns object itself as `result` field of response not a dictionary of `
 API v3 returns a transaction object while API v2 return a dictionary of `transaction : object`. 
 
 Following commands are affected.
+
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `burn`                | [v3](../api_v3/asset.html#burn) | [v2](../api_v2/asset.html#burn) |
@@ -41,6 +42,7 @@ Following commands are affected.
 API v3 returns a asset object while API v2 return a dictionary of `asset : object`. 
 
 Following commands are affected.
+
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `createasset`   | [v3](../api_v3/asset.html#createasset) | [v2](../api_v2/asset.html#createasset) |
@@ -49,6 +51,7 @@ Following commands are affected.
 API v3 returns a list of object while API v2 return a dictionary of `name : list of object`. 
 
 Following commands are affected.
+
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `listmultisig`    | [v3](../api_v3/multisig.html#listmultisig) | [v2](../api_v2/multisig.html#listmultisig) |
@@ -66,6 +69,7 @@ Following commands are affected.
 API v3 returns a string object while API v2 return a dictionary of `name : string object`. 
 
 Following commands are affected.
+
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `createrawtx`    | [v3](../api_v3/rawtx.html#createrawtx) | [v2](../api_v2/rawtx.html#createrawtx) |
@@ -75,6 +79,7 @@ Following commands are affected.
 API v3 replaces `-` with `_` in the field name of response.
 
 Following field names are affected.
+
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `deletemultisig`    | [v3](../api_v3/multisig.html#deletemultisig) | [v2](../api_v2/multisig.html#deletemultisig) |
@@ -229,6 +234,7 @@ API v3 changes some fields of command.
 ### API v3 replaces `time_stamp` with `timestamp`. 
 
 Following commands are affected.
+
 |  Method         | API v3                | API v2               | 
 |  -------------- | --------------------- | ---------------------| 
 | `getblock`    | [v3](../api_v3/block.html#getblock) | [v2](../api_v2/block.html#getblock) |
