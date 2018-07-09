@@ -4,6 +4,7 @@ comments: false
 This documentation provides more detailed information about the **API.v3(JSON-RPC 2.0)** list and will be particularly helpful for people who want to build BaaS(Blockchain As A Service) appliacations. If you are interested in more basic usage of Metaverse, please refer to the [docs](../docs) instead.
 
 Please note that this documentation is only valid for MVS FULL NODE.
+Differences between **API.v3** and **API.v2**, please refers to [v3 VS v2](../api_v3/v3-VS-v2.html)
 Compatiblity for API v2, please refers to [API v2](/api_v2).
 Compatiblity for API v1, please refers to [API v1](/api).
 

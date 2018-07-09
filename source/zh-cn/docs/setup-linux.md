@@ -7,29 +7,24 @@ comments: false
 安装包为标准版，同时还独立提供数据包供安装。
 
 数据包包含已经同步好了的数据库，可以极大节省第一次的区块同步时间，建议新用户下载安装；由于数据包版可能会覆盖原始数据，建议老用户安装标准版。请根据您的情况选择是否安装数据包。
-本文以v0.7.3为示例。
+本文以v0.8.1为示例。
 
 ## 下载并解压标准版
 ```bash
-# for zip balls
-wget http://sfo.newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.7.3.zip
-unzip mvs-linux-x86_64-v0.7.3.zip
-```
-```bash
 # for tarballs
-wget http://sfo.newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.7.5.tar.gz
-tar -zxf mvs-linux-x86_64-v0.7.5.tar.gz
+wget http://newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.8.1.tar.gz
+tar -zxf mvs-linux-x86_64-v0.8.1.tar.gz
 ```
 ## 安装标准版
 ```bash
-cd mvs-linux-x86_64-v0.7.3
+cd mvs-linux-x86_64-v0.8.1
 ./mvs-install.sh
 ```
 
 ## 下载并解压数据包
 ```bash
-wget http://newmetaverse.org/blockdata/metaverse-mainnet-blocks-840000.tar.gz
-tar -zxvf metaverse-mainnet-blocks-840000.tar.gz
+wget http://newmetaverse.org/mvs-download/block-data/mainnet-linux-height-1273528.tar.gz
+tar -zxvf mainnet-linux-height-1273528.tar.gz
 ```
 ## 安装数据包
 ```bash

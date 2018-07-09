@@ -6,30 +6,25 @@ Please download the wallet installation package from Metaverse’s official webs
 
 There are standard and data packet versions of the installation package. The packet version comes with a database, which greatly reduces the time required for initial block syncing. We recommend that new users download and install this version; existing users are recommended to install the standard version, because the packet version may overwrite some raw data. Please choose the appropriate installation package.
 
-**Take version v0.7.3 as an example.**
+**Take version v0.8.1 as an example.**
 
 ## Download and unzip
 Download standard versions
 ```bash
-# for zip balls
-wget http://sfo.newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.7.3.zip
-unzip mvs-linux-x86_64-v0.7.3.zip
-```
-```bash
 # for tarballs
-wget http://sfo.newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.7.5.tar.gz
-tar -zxf mvs-linux-x86_64-v0.7.5.tar.gz
+wget http://newmetaverse.org/mvs-download/mvs-linux-x86_64-v0.8.1.tar.gz
+tar -zxf mvs-linux-x86_64-v0.8.1.tar.gz
 ```
 ## Install standard versions
 ```bash
-cd mvs-linux-x86_64-v0.7.3
+cd mvs-linux-x86_64-v0.8.1
 ./mvs-install.sh
 ```
 
 Download data packet
 ```bash
-wget http://newmetaverse.org/blockdata/metaverse-mainnet-blocks-840000.tar.gz
-tar -zxvf metaverse-mainnet-blocks-840000.tar.gz
+wget http://newmetaverse.org/mvs-download/block-data/mainnet-linux-height-1273528.tar.gz
+tar -zxvf mainnet-linux-height-1273528.tar.gz
 ```
 
 ## Install data packet

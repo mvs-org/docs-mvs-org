@@ -1,6 +1,6 @@
 menu:
   docs: 文档
-  api_v2: API v2
+  api_v3: API v3
   baas: BaaS
   developers: 开发者
   FAQ: FAQ
@@ -70,6 +70,19 @@ sidebar:
     asset: 资产
 
   api_v2:
+    introduction: 介绍
+    blockchain:  区块链操作
+    rawtx:  离线交易
+    multisig: 多重签名
+    etp:  ETP
+    block: 区块
+    account: 账户
+    transaction: 交易
+    asset: 资产
+    identity: 身份
+    mit: MIT
+
+  api_v3:
     introduction: 介绍
     blockchain:  区块链操作
     rawtx:  离线交易

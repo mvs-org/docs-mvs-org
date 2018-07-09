@@ -82,28 +82,28 @@ api_v2:
     mit: mit.html
 
 api_v3:
-  xxx1:
+  xxxx1:
     introduction: index.html
     websocket: websocket.html
-  xxx2:
+  xxxx2:
     block: block.html
-  xxx3:
+  xxxx3:
     account: account.html
-  xxx4:
+  xxxx4:
     blockchain: blockchain.html
-  xxx5:
+  xxxx5:
     etp: etp.html
-  xxx6:
+  xxxx6:
     transaction: transaction.html
-  xxx7:
+  xxxx7:
     asset: asset.html
-  xxx8:
+  xxxx8:
     multisig : multisig.html
-  xxx9:
+  xxxx9:
     rawtx: rawtx.html
-  xxx10:
+  xxxx10:
     identity: identity.html
-  xxx11:
+  xxxx11:
     mit: mit.html
 
 faq:

@@ -1,6 +1,6 @@
 menu:
   docs: Docs
-  api_v2: API v2
+  api_v3: API v3
   baas: BaaS
   search: Search
   developers : Developers
@@ -81,6 +81,31 @@ sidebar:
     xxx9: ----
     xxx10: ----
     xxx11: ----
+    introduction: Introduction
+    websocket: Websocket
+    blockchain:  Blockchain
+    rawtx:  RawTx
+    multisig: Multi-signature
+    etp:  ETP
+    block: Block
+    account: Account
+    transaction: Transaction
+    asset: Asset
+    identity: Identity
+    mit: MIT
+
+  api_v3:
+    xxxx1: ----
+    xxxx2: ----
+    xxxx3: ----
+    xxxx4: ----
+    xxxx5: ----
+    xxxx6: ----
+    xxxx7: ----
+    xxxx8: ----
+    xxxx9: ----
+    xxxx10: ----
+    xxxx11: ----
     introduction: Introduction
     websocket: Websocket
     blockchain:  Blockchain
