@@ -184,5 +184,5 @@ administrator_required = 1
 
 
 ### mvs-cli
-mvs-cli uses `/rpc/v3` to call mvsd after v0.8.0.
+mvs-cli uses `/rpc/v3` to call mvsd after v0.8.2.
 
