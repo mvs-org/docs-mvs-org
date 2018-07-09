@@ -1,6 +1,10 @@
 title: API v2 Usage
 comments: false
 ---
+
+## NOTICE
+<font color=red size=4>强烈建议使用<a href=/api_v3/>API v3</a>来替代本文档中的API v2.</font>
+
 This documentation provides more detailed information about the **API.v2(JSON-RPC 2.0)** list and will be particularly helpful for people who want to build BaaS(Blockchain As A Service) appliacations. If you are interested in more basic usage of Metaverse, please refer to the [docs](../docs) instead.
 
 Please note that this documentation is only valid for MVS FULL NODE.

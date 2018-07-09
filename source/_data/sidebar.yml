@@ -81,6 +81,31 @@ api_v2:
   xxx11:
     mit: mit.html
 
+api_v3:
+  xxx1:
+    introduction: index.html
+    websocket: websocket.html
+  xxx2:
+    block: block.html
+  xxx3:
+    account: account.html
+  xxx4:
+    blockchain: blockchain.html
+  xxx5:
+    etp: etp.html
+  xxx6:
+    transaction: transaction.html
+  xxx7:
+    asset: asset.html
+  xxx8:
+    multisig : multisig.html
+  xxx9:
+    rawtx: rawtx.html
+  xxx10:
+    identity: identity.html
+  xxx11:
+    mit: mit.html
+
 faq:
   faq_index:
     ETP: index.html
