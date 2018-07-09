@@ -60,7 +60,10 @@ comments: false
 * ### `listbalances`
     List all balance details of each address of this account.
     * Parameters (optional)
-    1. `-n` or `[--nozero]` List non-zero upsent records.
+    1. `-d` or `[--deposited]` List deposited ETPs, default is false.
+    2. `-g` or `[--greater_equal]` Greater than ETP bits.
+    3. `-l` or `[--lesser_equal]` Lesser than ETP bits.
+    4. `-n` or `[--nozero]` List non-zero upsent records.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
@@ -112,6 +115,41 @@ comments: false
                 "frozen" : 0,
                 "received" : 1899960000,
                 "unspent" : 1899960000
+            }
+        ]
+    }
+    ```
+
+    ```js
+    // Request for list deposited balances
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"listbalances",
+        "params":[
+            "test1",
+            "passwd1",
+            "--deposited"
+        ]
+    }' http://127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" : 
+        [
+            {
+                "address" : "M9qeDursSJsxK9nHzTcRMnqpe78YXCKv48",
+                "deposited_balance" : 300,
+                "deposited_height" : 25200,
+                "expiration_height" : 27227
+            },
+            {
+                "address" : "M9L3ipy3Hcf6kdvknU3mH7mwH9ER3uCziu",
+                "deposited_balance" : 300287670,
+                "deposited_height" : 25200,
+                "expiration_height" : 27031
             }
         ]
     }
