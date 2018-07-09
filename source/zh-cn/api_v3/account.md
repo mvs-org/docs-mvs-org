@@ -39,7 +39,7 @@ comments: false
         "result": {
             "name": "test",
             "mnemonic": "actor slam shove essence person between lucky harsh myself hole tomorrow sausage buddy young kitten motor traffic rare wisdom month payment drill vanish oval", 
-            "addresses": "MDtdyESeZB73RCYR1G4b7443ModzGwYWrF"
+            "addresses": 
             [
                 "MDtdyESeZB73RCYR1G4b7443ModzGwYWrF"
             ]
