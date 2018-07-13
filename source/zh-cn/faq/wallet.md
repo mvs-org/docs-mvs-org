@@ -27,3 +27,6 @@ Windows 系统：安装路径为 `C:\Program Files (x86)\Metaverse`，配置与�
 
 ## 7. 如何修改默认配置？
 请参考[配置文件](https://docs.mvs.org/zh-cn/docs/config-file.html)以及[配置选项](https://docs.mvs.org/zh-cn/docs/options.html)。
+
+## 8. 如何联系第三方钱包客服？
+云链钱包客服微信：h792567950，比特购钱包QQ客服：1903924553。
