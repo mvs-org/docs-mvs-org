@@ -42,7 +42,6 @@ title: MST Conditional Offering
 5. `key`的含义
     ```
     为了方便统一衰减模型的计算公式，我们定义了如下缩写变量：
-
     IQ：资产总数量，必须为大于 0 的整数  
     LQ：锁定的总数量，必须为大于 0 的整数  
     LP：锁定的总间隔，单位为块高，必须为大于 0 的整数  
@@ -51,19 +50,19 @@ title: MST Conditional Offering
     IR_t: 第 t 期的通胀率  
     ```
 
-    缩写变量解释：
+6. 缩写变量解释：
 
-    |  模型参数名字         | 缩写  | 含义                                | 
-    |  -------------------  | ----- | ------------------------------------| 
-    |  current_period_nbr        |  PN   |   当前解锁期的索引，从0开始 |
-    |  next_interval             |  LH   |   当前解锁期解锁间隔，单位为块高 |
-    |  type                      |  TYPE |   模型参数类型 |
-    |  lock_quantity             |  LQ   |   锁定的总数量 |
-    |  lock_period               |  LP   |   锁定的总间隔 |
-    |  inflation_rate            |  IR   |   通胀率 |
-    |  total_period_nbr          |  UN   |   锁定的总期数 |
-    |  custom_lock_number_array  |  UC   |   用户自定义的每期锁定间隔数组 |
-    |  custom_lock_quantity_array|  UQ   |   用户自定义的每期锁定数量数组 |
+|  模型参数名字         | 缩写  | 含义                                | 
+|  -------------------  | ----- | ------------------------------------| 
+|  current_period_nbr        |  PN   |   当前解锁期的索引，从0开始 |
+|  next_interval             |  LH   |   当前解锁期解锁间隔，单位为块高 |
+|  type                      |  TYPE |   模型参数类型 |
+|  lock_quantity             |  LQ   |   锁定的总数量 |
+|  lock_period               |  LP   |   锁定的总间隔 |
+|  inflation_rate            |  IR   |   通胀率 |
+|  total_period_nbr          |  UN   |   锁定的总期数 |
+|  custom_lock_number_array  |  UC   |   用户自定义的每期锁定间隔数组 |
+|  custom_lock_quantity_array|  UQ   |   用户自定义的每期锁定数量数组 |
 
 # 模型参数值的约束
 * 定量解锁类型
