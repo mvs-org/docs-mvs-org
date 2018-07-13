@@ -214,6 +214,6 @@ title: MST Conditional Offering
     },
 ```
 ```
-    该模型参数表示总数量 1000000000 (lock_quantity) 的资产将在 12000 (LP) 个块高之后被完全被完全解锁。
+    该模型参数表示总数量 1000000000 (lock_quantity) 的资产将在 12000 (LP) 个块高之后被完全解锁。
     这些资产将分 12 (total_period_nbr) 期按照固定通胀率 50% 解锁，每一期的锁定数量与间隔分别由 locked 数组给出。
 ```
