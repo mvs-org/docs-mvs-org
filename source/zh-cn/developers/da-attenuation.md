@@ -107,7 +107,7 @@ title: MST Conditional Offering
     },
 ```
 ```
-    该模型参数表示总数量为 9001 (lock_quantity) 的资产将在 60001 (lock_period) 个块高之后被完全被完全解锁。
+    该模型参数表示总数量为 9001 (lock_quantity) 的资产将在 60001 (lock_period) 个块高之后被完全解锁。
     这些资产将分 3 (total_period_nbr) 期按照固定数量与块高间隔解锁。
     我们通过公式 **UC=lock_period/total_period_nbr** 与 **UQ=lock_quantity/total_period_nbr** 计算出每一期的解锁数量与锁定间隔。
         UC=60001/3=20000， UQ=9001/3=3000，因此：
