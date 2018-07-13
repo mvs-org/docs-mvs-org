@@ -14,7 +14,7 @@ title: MST Conditional Offering
 * 如何查询资产锁定的情况？
     命令 `getaccountasset` 和 `getaddressasset`可查询资产锁定的数量，对应的输出项为：**locked_quantity**。
 * 如何查看衰减模型参数？
-    命令 `gettx` 和 `lsittxs` 的 `json` 格式输出中可以查看衰减模型参数，对应的输出项为：**attenuation_model_param**。
+    命令 `gettx` 和 `listtxs` 的 `json` 格式输出中可以查看衰减模型参数，对应的输出项为：**attenuation_model_param**。
 * 锁定的资产是如何被解锁的？
     锁定的资产是根据块高来解锁的。无需手动解锁，如果当前块高超过锁定块高，被锁定的资产会自动解锁。
 
