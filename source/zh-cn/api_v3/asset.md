@@ -901,7 +901,15 @@ comments: false
                         "symbol" : "MVS.TST",
                         "type" : "asset-issue"
                     },
-                    "attenuation_model_param" : "TYPE=1;LQ=60002;LP=6002;UN=3",
+                    "attenuation_model_param" : 
+                    {
+                        "current_period_nbr" : 0,
+                        "lock_period" : 6002,
+                        "lock_quantity" : 60002,
+                        "next_interval" : 2000,
+                        "total_period_nbr" : 3,
+                        "type" : 1
+                    },
                     "index" : 0,
                     "locked_height_range" : 0,
                     "script" : "[ 504e3d303b4c483d323030303b545950453d313b4c513d36303030323b4c503d363030323b554e3d33 ] [ 0000000000000000000000000000000000000000000000000000000000000000ffffffff ] checkattenuationverify dup hash160 [ dae1cde292d5b762c49ecdb18900e8e115df9695 ] equalverify checksig",

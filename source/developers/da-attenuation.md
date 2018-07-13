@@ -106,8 +106,8 @@ ref <https://github.com/mvs-org/mips/issues/7> for more information.
     * after the left 20001 block height, the all lefted 3001 will be unlocked.
 ```
 * example of custom model param
-    **user input: "TYPE=2;LQ=90001;LP=600001;UN=3;UC=20000,20000,20001;UQ=3000,3000,3001"**
-    **after init: "PN=0;LH=20000;TYPE=2;LQ=90001;LP=600001;UN=3;UC=20000,20000,20001;UQ=3000,3000,3001"**
+    **user input: "TYPE=2;LQ=9001;LP=60001;UN=3;UC=20000,20000,20001;UQ=3000,3000,3001"**
+    **after init: "PN=0;LH=20000;TYPE=2;LQ=9001;LP=60001;UN=3;UC=20000,20000,20001;UQ=3000,3000,3001"**
 ```
     This custom model has the same effect with the above example.
     It's unlock quantity and time interval is specified by arrays.
