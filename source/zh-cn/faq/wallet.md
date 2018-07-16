@@ -20,7 +20,13 @@ comments: true
 在[区块链浏览器](https://explorer.mvs.org/#!/)中查询存款地址，蓝字白字“存款-利息”里有明确数量和到账时间。参考问题`3`。
 
 ## 5. 为什么我的轻钱包资产显示为`0`？
-从轻钱包导出秘钥文件，用记事本打开秘钥文件，将index后的地址数量修改为一个较大的值重新登录。参考问题`2`。
+1. 用谷歌浏览器打开[myetpwallet.com](https://explorer.mvs.org/#!/blocks)
+2. 选择从助记词创建钱包文件，输入助记词，导出钱包文件（默认名称为：mvs_keystore.json）
+3. 用记事本打开钱包文件，将`index`后的地址数量修改为一个较大的值，如下示例修改为`200`
+```js
+{"algo":"aes","index":200,"mnemonic":
+```
+4. 重新访问[myetpwallet.com](https://app.myetpwallet.com/#/login)，选择“从文件打开钱包”，选择刚刚修改的钱包文件，点击重新同步。
 
 ## 6. 全节点钱包安装与配置与数据文件路径默认在哪里？
 Windows 系统：安装路径为 `C:\Program Files (x86)\Metaverse`，配置与数据文件路径为：`C:\Users\kesalin\AppData\Roaming\Metaverse`。
