@@ -23,18 +23,19 @@ $ ./redis-server &
 
 ## 2. Install Node.js:
 ```
+$ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
 ```
 
 ## 3. Build open-mining-pool frontend. 
 before building please change ApiUrl: '//example.net/' in www/config/environment.js to match your domain name. Also don't forget to adjust other options.
 ```
+$ cd open-ethereum-pool/www
 $ sudo apt install npm
 $ sudo npm install -g ember-cli@2.9.1
 $ sudo npm install -g bower
 $ sudo npm install
 $ bower install
-$ cd open-ethereum-pool/www
 $ ./build.sh
 ```
 
@@ -59,7 +60,16 @@ $ sudo ./objs/nginx -c ./conf/nginx.conf
 
 ## 5. Build open-mining-pool
 
-### 5.1 download open-mining-pool source code & apply patch for mvs & build
+### 5.1 download & install go 1.9.1
+```
+$ wget https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz
+$ sudo tar -xzf go1.9.1.linux-amd64.tar.gz -C /usr/local
+$ export GOROOT=/usr/local/go
+$ export GOPATH=$HOME/go
+$ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+```
+
+### 5.2 download open-mining-pool source code & apply patch for mvs & build
 ```
 $ git clone https://github.com/sammy007/open-ethereum-pool.git
 $ cd open-ethereum-pool
@@ -67,11 +77,11 @@ $ git apply ../mvs_mining_pool.diff
 $ make
 ```
 
-### 5.2 Change open-mining-pool config
+### 5.3 Change open-mining-pool config
 Please refer to the difference between 'mvs_mining_pool_config.json' and config.example.json, and generate your own config.json.
 Note: the ip address '10.10.10.37' in 'mvs_mining_pool_config.json' should be modified to your own ip address.
 
-### 5.3 Start open-mining-pool
+### 5.4 Start open-mining-pool
 ```
 $ ./build/bin/open-ethereum-pool ./config.json
 ```
