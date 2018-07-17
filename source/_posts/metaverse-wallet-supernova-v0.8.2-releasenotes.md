@@ -11,6 +11,9 @@ comments: false
 1. Release RPC SDKs: [.Net SDK](https://github.com/mvshub/mvs_rpc_dotnet), [Go SDK](https://github.com/mvshub/mvs_rpc_go) and [Python SDK](https://github.com/mvshub/mvs_rpc_python)
 1. Add new Avatar, MST and MIT logos.
 
+### Download Wallet
+[Download Wallet](https://mvs.org/wallet.html)
+
 ### Support
 If you have any issue, please contact us.
 Thank you for your continuous support! 
