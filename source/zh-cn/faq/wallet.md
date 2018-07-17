@@ -28,11 +28,14 @@ comments: true
 ```
 4. 重新访问[myetpwallet.com](https://app.myetpwallet.com/#/login)，选择“从文件打开钱包”，选择刚刚修改的钱包文件，点击重新同步。
 
-## 6. 全节点钱包安装与配置与数据文件路径默认在哪里？
+## 6. 为什么全节点钱包访问`http:\\127.0.0.1:8820`时显示`Open failed`？
+这是由于钱包的安装路径与网页访问路径不匹配导致的。`Windows`系统下，请先卸载当前钱包程序，然后使用默认安装路径为`C:\Program Files (x86)\Metaverse`，重新安装程序。
+
+## 7. 全节点钱包安装与配置与数据文件路径默认在哪里？
 Windows 系统：安装路径为 `C:\Program Files (x86)\Metaverse`，配置与数据文件路径为：`C:\Users\kesalin\AppData\Roaming\Metaverse`。
 
-## 7. 如何修改默认配置？
+## 8. 如何修改默认配置？
 请参考[配置文件](https://docs.mvs.org/zh-cn/docs/config-file.html)以及[配置选项](https://docs.mvs.org/zh-cn/docs/options.html)。
 
-## 8. 如何联系第三方钱包客服？
+## 9. 如何联系第三方钱包客服？
 云链钱包客服微信：h792567950，比特购钱包QQ客服：1903924553。
