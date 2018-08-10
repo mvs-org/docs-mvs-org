@@ -30,6 +30,7 @@ sidebar:
     command_line: 命令行使用
     supernova: Supernova新特性
     supernova_upgrade: Supernova升级手册
+    cross_chain_swap: 跨链置换
 
     features: 特性
     issue_token: 创建与发行资产

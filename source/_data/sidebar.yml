@@ -29,6 +29,7 @@ docs:
     fronzen_etp: recognize-fronzen-ETP-transaction-outputs.html
     asset_operation: assets-operations.html
     supernova_upgrade: supernova-upgrade-manual.html
+    cross_chain_swap: cross-chain-swap.html
 
 baas:
   introduction:

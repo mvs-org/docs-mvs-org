@@ -30,6 +30,7 @@ sidebar:
     command_line: Command-Line
     supernova: Supernova Features
     supernova_upgrade: Supernova Upgrade Manual
+    cross_chain_swap: Cross Chain Swap
 
     features: Features
     issue_token: Issue Tokens
