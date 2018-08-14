@@ -38,7 +38,26 @@ XYZ 对应 ERC.XYZ
 
 可以通过钱包操作，也可以使用其它工具。
 
-* 以下为 truffle 使用示例  
+* 通过imtoken钱包绑定
+通过钱包向合约地址(0x9faa766fcbcd3bdbab27681c7cca6e1a6016b7c5)发起一笔交易
+点击高级选项，输入十六进制数据(用来调用合约map_address(string)方法绑定元界did或者地址)
+
+绑定ETH当前账户地址到ALICE.DIID示例:
+~~~
+参数：ALICE.DIID
+data数据:0xfa42f3e50000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000a414c4943452e4449494400000000000000000000000000000000000000000000
+
+数据解析：
+0xfa42f3e5: 函数ID, map_address(string) 通过sha1加密后的前8个字符
+0000000000000000000000000000000000000000000000000000000000000020:第一个参数(ALICE.DIID)的位置，0x20,从当前位置跳过0x20(32)个字节
+000000000000000000000000000000000000000000000000000000000000000a:第一个参数的长度，0x0a(ALICE.DIID的长度)
+414c4943452e4449494400000000000000000000000000000000000000000000:第一个参数的信息，ALICE.DIID由ASCII转换为十六进制后的数据
+
+以太坊十六进制生成规则参考:http://solidity.readthedocs.io/en/v0.4.24/abi-spec.html
+~~~
+
+
+* truffle 使用示例  
 
 ```
 truffle(development)> etpmap_abi = [{"constant":true,"inputs":[{"name":"addr","type":"address"}],"name":"get_address","outputs":[{"name":"","type":"string","value":""}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"etpaddr","type":"string"}],"name":"map_address","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"","type":"address"},{"indexed":false,"name":"","type":"string"}],"name":"MapAddress","type":"event"}]
