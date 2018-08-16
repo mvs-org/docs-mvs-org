@@ -490,20 +490,23 @@ comments: false
 ***
 
 * ### `sendasset`
-    sendasset
+    `sendasset`, alias `didsendasset`
     * Parameters (optional)
-    1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
+    1. `-c` or `[--change]` Change to this did/address.
+    2. `-f` or `[--fee]`    The fee of tx. default_value 0.0001 etp.
+    3. `-i` or `[--memo]`   Attached memo for this transaction.
+    4. `-m` or `[--model]`  The token offering model by block height.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
-    3. `ADDRESS` Asset receiver.
+    3. `TO` Asset receiver did/address.
     4. `SYMBOL` Asset symbol/name.
     5. `AMOUNT` Asset count.
     ```js
     params:[
         "ACCOUNTNAME",
         "ACCOUNTAUTH",
-        "ADDRESS",
+        "TO",
         "SYMBOL",
         "AMOUNT"
     ]
@@ -521,104 +524,110 @@ comments: false
         "params":[
             "test",
             "123456",
-            "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
-            "MVS.TST", "1000"]
+            "avatar2@test",
+            "MVS.TST", 
+            "1000"]
     }' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
         "id" : 7,
         "jsonrpc" : "2.0",
-        "result" :
+        "result" : 
         {
-            "hash" : "a7990b9e597de5f6384cf2971deaa0105474d82a2868e598faa114219a2b96d0",
-            "inputs" :
+            "hash" : "26b4fdb3d142c98685a83107d8126b2f127eeb1c321f5829458dbd9f02889888",
+            "inputs" : 
             [
                 {
-                    "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "previous_output" :
+                    "address" : "MQA3r2AVy9TLzoYwdyCmT2roCqTHVRk2Tj",
+                    "previous_output" : 
                     {
-                        "hash" : "a8b3181cb9579427d126910283078edca5521c56ee6b8824a839de65fdea804b",
-                        "index" : 0
+                        "hash" : "58f3e33ecdb7a6310d37e7946f752843656f2ff479abc55d7a710699cb4f3180",
+                        "index" : 4
                     },
-                    "script" : "[ 3045022100be3bd72f61fc99050dd22c919f370b8b45887b38715b740e8ca1c2d2064cf918022053ee5275402ec9189dfeb11911e17528e1dae62f95282f8576ee05451359840601 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                    "script" : "[ 3045022100d18cd54b30b38066bfb7c8dd91016b74eab95267df6eae38d35b17b3a27890b902203e76503c5bb5c4c0df6b6e31ba768c3d5f9b6cd0c39ab70684291cd9e414a25a01 ] [ 028c56141ad8a906286a9d0abedf38e74d8d023b9fd1d94a550bb65e2f0cdc51f9 ]",
                     "sequence" : 4294967295
                 },
                 {
-                    "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "previous_output" :
+                    "address" : "MG8NrUax9CwCmXxYcGFcEsDxYMMC2WyPvk",
+                    "previous_output" : 
                     {
-                        "hash" : "60036d05751217dcb8966b72bf6a63b9698119852b8db207aae2a097f33e97f1",
+                        "hash" : "a007f6811107a6f3207973eca13cb79ee7ddb9ef234827f4b4ff8f47211c831a",
                         "index" : 0
                     },
-                    "script" : "[ 3044022050f36bc61437e69fc65b1539e3379d2240ac298e9ea304f164a59ea0cb49bb6f02205cb6b5d97c40f4031d93cec5e350089bb558f14a04be91573be304a68d5d24a501 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                    "script" : "[ 3044022100c9b6d2e40d316102d6ea1ec96b7c23bcaa7146348c40c00d269a1a011346a20e021f6aa02312b8d757f76e212bb101ab6a84dece9d18314f202136eb5a3dbf082801 ] [ 029cc98cc43c694e5ef26e504fdcdcb818563ce8b910fb2ffbf5ca2e399a0a9ce1 ]",
                     "sequence" : 4294967295
                 }
             ],
             "lock_time" : "0",
-            "outputs" :
+            "outputs" : 
             [
                 {
-                    "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
-                    "attachment" :
+                    "address" : "MDdET3ybWc2cGEXXxBcjtXNCcmzJe48bhc",
+                    "attachment" : 
                     {
+                        "from_did" : "",
                         "quantity" : 1000,
                         "symbol" : "MVS.TST",
+                        "to_did" : "avatar2@test",
                         "type" : "asset-transfer"
                     },
                     "index" : 0,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ dae1cde292d5b762c49ecdb18900e8e115df9695 ] equalverify checksig",
+                    "script" : "dup hash160 [ 3ecd9eb8af1d9459da10fc3a096c460ff24aaa6d ] equalverify checksig",
                     "value" : 0
                 },
                 {
-                    "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "attachment" :
+                    "address" : "MQA3r2AVy9TLzoYwdyCmT2roCqTHVRk2Tj",
+                    "attachment" : 
                     {
                         "type" : "etp"
                     },
                     "index" : 1,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 7f8c4bf15a7c4183ea69d853626be85e9336e09e ] equalverify checksig",
-                    "value" : 299990000
+                    "script" : "dup hash160 [ b252ebbfdbfc38f1ed7d845bbb1f8e25fa7c1693 ] equalverify checksig",
+                    "value" : 99990000
                 },
                 {
-                    "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "attachment" :
+                    "address" : "MG8NrUax9CwCmXxYcGFcEsDxYMMC2WyPvk",
+                    "attachment" : 
                     {
-                        "quantity" : 9999000,
+                        "quantity" : 19999999000,
                         "symbol" : "MVS.TST",
                         "type" : "asset-transfer"
                     },
                     "index" : 2,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 7f8c4bf15a7c4183ea69d853626be85e9336e09e ] equalverify checksig",
+                    "script" : "dup hash160 [ 5a40f31ced32e9fcad58a9b54e6f607843efac87 ] equalverify checksig",
                     "value" : 0
                 }
             ],
-            "version" : "2"
+            "version" : "4"
         }
     }
     ```
 ***
 
 * ### `sendassetfrom`
-    sendassetfrom, should specify `from address`
+    `sendassetfrom`, alias `didsendassetfrom`
     * Parameters (optional)
-    1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
+    1. `-c` or `[--change]` Change to this did/address.
+    2. `-f` or `[--fee]`    The fee of tx. default_value 0.0001 etp.
+    3. `-i` or `[--memo]`   Attached memo for this transaction.
+    4. `-m` or `[--model]`  The token offering model by block height.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
-    3. `FROMADDRESS` from address
-    4. `TOADDRESS` target address
+    3. `FROM` From did/address
+    4. `TO` Target did/address
     5. `SYMBOL` asset symbol
     6. `AMOUNT` The asset amount shares
     ```js
     params:[
         "ACCOUNTNAME",
         "ACCOUNTAUTH",
-        "FROMADDRESS",
-        "TOADDRESS",
+        "FROM",
+        "TO",
         "SYMBOL",
         "AMOUNT"
     ]
@@ -636,83 +645,86 @@ comments: false
         "params":[
             "test",
             "123456",
-            "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-            "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
-            "MVS.TST", "1000"]
+            "avatar1@test",
+            "avatar2@test",
+            "MVS.TST", 
+            "1000"]
     }' http://127.0.0.1:8820/rpc/v3
 
     // Response
     {
         "id" : 7,
         "jsonrpc" : "2.0",
-        "result" :
+        "result" : 
         {
-            "hash" : "cc80c841c836833a3b76592ffeb9c4838c7025093ef13e2ef56f866155a6f6a5",
-            "inputs" :
+            "hash" : "48e9c786a9967133d797c2a4d357c6cbcc9aae9950a22bece8952a0f9f0a2c64",
+            "inputs" : 
             [
                 {
-                    "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "previous_output" :
+                    "address" : "MG8NrUax9CwCmXxYcGFcEsDxYMMC2WyPvk",
+                    "previous_output" : 
                     {
-                        "hash" : "31582738df5a4fbc51769d066f6b9ae4af621058c87451ad863fadb6da62b71a",
-                        "index" : 0
+                        "hash" : "26b4fdb3d142c98685a83107d8126b2f127eeb1c321f5829458dbd9f02889888",
+                        "index" : 2
                     },
-                    "script" : "[ 304402203d0cb466779ba3700b6b9e0dbcb2f68ecd5af744adfef6d0061d89b80e49842802205f0d40054bf1c498c87f7f786530b50eb1abf02a6b10c7282f6479e2c8aac9d501 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                    "script" : "[ 3045022100ff7454a3f2b182c21644633ccd619b461fba80825b03c589c9cf3d2dc754f36502204df868be4cac9620410eba6f0a44985e48ef3506fc6cc299d4954f4995fc635701 ] [ 029cc98cc43c694e5ef26e504fdcdcb818563ce8b910fb2ffbf5ca2e399a0a9ce1 ]",
                     "sequence" : 4294967295
                 },
                 {
-                    "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "previous_output" :
+                    "address" : "MG8NrUax9CwCmXxYcGFcEsDxYMMC2WyPvk",
+                    "previous_output" : 
                     {
-                        "hash" : "a7990b9e597de5f6384cf2971deaa0105474d82a2868e598faa114219a2b96d0",
+                        "hash" : "a007f6811107a6f3207973eca13cb79ee7ddb9ef234827f4b4ff8f47211c831a",
                         "index" : 2
                     },
-                    "script" : "[ 30440220750d1b0e26174b41160db36e2f74d535a169b1231c2e6b944dbb12abe44bf3dd02207af6536378831fd27ac22abedfa142dc06736584abd281259822f25777493f4c01 ] [ 02729cae0c16009f44440f306b76fafb7a7d2503741a619c15b41ff927c1afd6b9 ]",
+                    "script" : "[ 304402203a5f5ebc7ec3a69e85de66aab9040d65d59d53c251ed7200503f23fc970f8a7502204025820e443c32a3c44a443e7c00668e4b9a1be3cccc9750ae1c2590769a3c8901 ] [ 029cc98cc43c694e5ef26e504fdcdcb818563ce8b910fb2ffbf5ca2e399a0a9ce1 ]",
                     "sequence" : 4294967295
                 }
             ],
             "lock_time" : "0",
-            "outputs" :
+            "outputs" : 
             [
                 {
-                    "address" : "MTrW3QK8mjmTYSozdkLa7k9hyCExUBWYwP",
-                    "attachment" :
+                    "address" : "MDdET3ybWc2cGEXXxBcjtXNCcmzJe48bhc",
+                    "attachment" : 
                     {
+                        "from_did" : "avatar1@test",
                         "quantity" : 1000,
                         "symbol" : "MVS.TST",
+                        "to_did" : "avatar2@test",
                         "type" : "asset-transfer"
                     },
                     "index" : 0,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ dae1cde292d5b762c49ecdb18900e8e115df9695 ] equalverify checksig",
+                    "script" : "dup hash160 [ 3ecd9eb8af1d9459da10fc3a096c460ff24aaa6d ] equalverify checksig",
                     "value" : 0
                 },
                 {
-                    "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "attachment" :
+                    "address" : "MG8NrUax9CwCmXxYcGFcEsDxYMMC2WyPvk",
+                    "attachment" : 
                     {
                         "type" : "etp"
                     },
                     "index" : 1,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 7f8c4bf15a7c4183ea69d853626be85e9336e09e ] equalverify checksig",
-                    "value" : 299990000
+                    "script" : "dup hash160 [ 5a40f31ced32e9fcad58a9b54e6f607843efac87 ] equalverify checksig",
+                    "value" : 199980000
                 },
                 {
-                    "address" : "MKXa7mtzNaGCEF9vM2sUmmTS93iDpHYd4m",
-                    "attachment" :
+                    "address" : "MG8NrUax9CwCmXxYcGFcEsDxYMMC2WyPvk",
+                    "attachment" : 
                     {
-                        "quantity" : 9998000,
+                        "quantity" : 19999998000,
                         "symbol" : "MVS.TST",
                         "type" : "asset-transfer"
                     },
                     "index" : 2,
                     "locked_height_range" : 0,
-                    "script" : "dup hash160 [ 7f8c4bf15a7c4183ea69d853626be85e9336e09e ] equalverify checksig",
+                    "script" : "dup hash160 [ 5a40f31ced32e9fcad58a9b54e6f607843efac87 ] equalverify checksig",
                     "value" : 0
                 }
             ],
-            "version" : "2"
+            "version" : "4"
         }
     }
     ```

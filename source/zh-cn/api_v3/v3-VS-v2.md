@@ -20,11 +20,11 @@ Following commands are affected.
 | `decoderawtx`         | [v3](../api_v3/rawtx.html#decoderawtx) | [v2](../api_v2/rawtx.html#decoderawtx) |
 | `deposit`             | [v3](../api_v3/etp.html#deposit) | [v2](../api_v2/etp.html#deposit) |
 | `didchangeaddress`    | [v3](../api_v3/identity.html#didchangeaddress) | [v2](../api_v2/identity.html#didchangeaddress) |
-| `didsend`             | [v3](../api_v3/identity.html#didsend) | [v2](../api_v2/identity.html#didsend) |
-| `didsendasset`        | [v3](../api_v3/identity.html#didsendasset) | [v2](../api_v2/identity.html#didsendasset) |
-| `didsendassetfrom`    | [v3](../api_v3/identity.html#didsendassetfrom) | [v2](../api_v2/identity.html#didsendassetfrom) |
-| `didsendfrom`         | [v3](../api_v3/identity.html#didsendfrom) | [v2](../api_v2/identity.html#didsendfrom) |
-| `didsendmore`         | [v3](../api_v3/identity.html#didsendmore) | [v2](../api_v2/identity.html#didsendmore) |
+| `didsend`             | [v3](../api_v3/etp.html#send) | [v2](../api_v2/identity.html#didsend) |
+| `didsendfrom`         | [v3](../api_v3/etp.html#sendfrom) | [v2](../api_v2/identity.html#didsendfrom) |
+| `didsendmore`         | [v3](../api_v3/etp.html#sendmore) | [v2](../api_v2/identity.html#didsendmore) |
+| `didsendasset`        | [v3](../api_v3/asset.html#sendasset) | [v2](../api_v2/identity.html#didsendasset) |
+| `didsendassetfrom`    | [v3](../api_v3/asset.html#sendassetfrom) | [v2](../api_v2/identity.html#didsendassetfrom) |
 | `issue`               | [v3](../api_v3/asset.html#issue) | [v2](../api_v2/asset.html#issue) |
 | `issuecert`           | [v3](../api_v3/asset.html#issuecert) | [v2](../api_v2/asset.html#issuecert) |
 | `transfercert`        | [v3](../api_v3/asset.html#transfercert) | [v2](../api_v2/asset.html#transfercert) |

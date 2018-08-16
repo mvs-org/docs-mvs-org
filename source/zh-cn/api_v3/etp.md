@@ -154,7 +154,6 @@ comments: false
         ]
     }
     ```
-
 ***
 
 * ### `deposit`
@@ -249,20 +248,21 @@ comments: false
 ***
 
 * ### `send`
-    send etp to a targert address, mychange goes to another existed address of this account.
+    `send`, alias `didsend` 
     * Parameters (optional)
-    1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
-    2. `-m` or `[--memo]` The memo to descript transaction
+    1. `-f` or `[--fee]`    The fee of tx. default_value 0.0001 etp
+    2. `-c` or `[--change]` Change to this did/address
+    3. `-m` or `[--memo]`   Attached memo for this transaction
     * Parameters (positional)
-    1. `ACCOUNTNAME` Account name.
-    2. `ACCOUNTAUTH` Account password/authorization.
-    3. `TOADDRESS` Send to this address
-    4. `AMOUNT` How many you will spend
+    1. `ACCOUNTNAME`    Account name.
+    2. `ACCOUNTAUTH`    Account password/authorization.
+    3. `TO`             Send to this did/address
+    4. `AMOUNT`         How many you will spend
     ```js
     params:[
         "ACCOUNTNAME",
         "ACCOUNTAUTH",
-        "TOADDRESS",
+        "TO",
         "AMOUNT"
     ]
      ```
@@ -338,22 +338,23 @@ comments: false
 ***
 
 * ### `sendfrom`
-    send etp from a specified address of this account to target address, mychange goes to from_address.
+    `sendfrom`, alias `didsendfrom`.
     * Parameters (optional)
-    1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
-    2. `-m` or `[--memo]` The memo to descript transaction
+    1. `-f` or `[--fee]`    The fee of tx. default_value 0.0001 etp
+    2. `-c` or `[--change]` Change to this did/address
+    3. `-m` or `[--memo]`   Attached memo for this transaction
     * Parameters (positional)
-    1. `ACCOUNTNAME` Account name.
-    2. `ACCOUNTAUTH` Account password/authorization.
-    3. `FROMADDRESS` Send from this address
-    4. `TOADDRESS` Send to this address
-    5. `AMOUNT` How many you will spend
+    1. `ACCOUNTNAME`    Account name.
+    2. `ACCOUNTAUTH`    Account password/authorization.
+    3. `FROM`           Send from this did/address
+    4. `TO`             Send to this did/address
+    5. `AMOUNT`         How many you will spend
     ```js
     params:[
         "ACCOUNTNAME",
         "ACCOUNTAUTH",
-        "FROMADDRESS",
-        "TOADDRESS",
+        "FROM",
+        "TO",
         "AMOUNT"
     ]
      ```
@@ -430,11 +431,12 @@ comments: false
 ***
 
 * ### `sendmore`
-    send etp to multi target addresses, must specify mychange address.
+    send etp to multi target addresses, change is required, alias `didsendmore`.
     * Parameters (optional)
-    1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
-    2. `-m` or `[--mychange]` Mychange to this address
-    3. `-r` or `[--receivers]` Send to [address:amount]
+    1. `-f` or `[--fee]`        The fee of tx. default_value 0.0001 etp
+    2. `-m` or `[--mychange]`   Change to this did/address
+    4. `-r` or `[--receivers]`  Send to [did/address:amount]
+
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.

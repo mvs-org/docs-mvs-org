@@ -98,7 +98,12 @@ comments: false
 
 * ### `listdids`
     list dids details of blockchain.
+    * Parameters (optional)
+    1. `-i` or `[--index]` Page index. Default is 1. 
+    1. `-l` or `[--limit]` DID count per page.Default is 100. 
     * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
 
     ```js
     params:[
@@ -118,21 +123,27 @@ comments: false
         "id": 42, 
         "result":
         [
-            {
-                "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
-                "status" : "registered",
-                "symbol" : "TESTDID"
-            },
-            {
-                "address" : "35cY636TPTfFW8PxhqH3BNRL54g1T4mbR2",
-                "status" : "registered",
-                "symbol" : "MVS.TST"
-            },
-            {
-                "address" : "M9kDHsDKJj9hM8FzSmDu4xCDbo2DFzUhzj",
-                "status" : "registered",
-                "symbol" : "YANG"
-            }
+            "current_page" : 1,
+            "dids" :
+            [
+                {
+                    "address" : "MN3UNt5FbUbpsYtW6UfhcieykUb8rXKP5g",
+                    "status" : "registered",
+                    "symbol" : "TESTDID"
+                },
+                {
+                    "address" : "35cY636TPTfFW8PxhqH3BNRL54g1T4mbR2",
+                    "status" : "registered",
+                    "symbol" : "MVS.TST"
+                },
+                {
+                    "address" : "M9kDHsDKJj9hM8FzSmDu4xCDbo2DFzUhzj",
+                    "status" : "registered",
+                    "symbol" : "YANG"
+                }
+            ],
+            "total_count" : 3,
+            "total_page" : 1
         ]
     }
     ```
