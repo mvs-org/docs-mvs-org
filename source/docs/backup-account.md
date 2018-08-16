@@ -108,7 +108,7 @@ $ tail -f ~/.metaverse/debug.log
 #### Windows
 1. Stop wallet, upgrade to [the lastest version](https://mvs.org/wallet.html)
 2. Rename 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet' to 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet_bak'
-3. Download block data [mainnet_windows_1420000.zip](https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/mainnet_windows_1420000.zip) and save to 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet-windows-height-1273490.zip'.
-4. Unzip 'mainnet-windows-height-1273490.zip' to where it is.
+3. Download block data [mainnet_windows_1420000.zip](https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/mainnet_windows_1420000.zip) and save to 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet_windows_1420000.zip'.
+4. Unzip 'mainnet_windows_1420000.zip' to where it is.
 5. Copy all files that start with 'account_' from folder 'mainnet_bak' to folder 'mainnet'. Files that need to be copyed: 'account_address_rows', 'account_address_table', 'account_asset_row', 'account_asset_table' and 'account_table'.
 6. Start wallet and wait for syncing block data to the lastest height. 
