@@ -133,10 +133,11 @@ $ ./mvs-cli help $command
 | [didchangeaddress](identity.html#didchangeaddress)	| √ | × | √ | 0.8.0 |
 | [listdids](identity.html#listdids)     		| × | × | × | 0.8.0 |
 | [getdid](identity.html#getdid)     			| × | × | × | 0.8.0 |
-| [didsend](identity.html#didsend)         		| √ | × | √ | 0.8.0 |
-| [didsendmore](identity.html#didsendmore)     	| √ | × | √ | 0.8.0 |
-| [didsendasset](identity.html#didsendasset)   	| √ | × | √ | 0.8.0 |
-| [didsendassetfrom](raidentitywtx.html#didsendassetfrom)   | √ | × | √ | 0.8.0 |
+| [didsend](etp.html#send)         		| √ | × | √ | 0.8.0 |
+| [didsendfrom](etp.html#sendfrom)     	| √ | × | √ | 0.8.0 |
+| [didsendmore](etp.html#sendmore)         | √ | × | √ | 0.8.0 |
+| [didsendasset](asset.html#sendasset)   	| √ | × | √ | 0.8.0 |
+| [didsendassetfrom](asset.html#sendassetfrom)   | √ | × | √ | 0.8.0 |
 
 #### MST
 
