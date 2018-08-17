@@ -1,9 +1,9 @@
-title: Register MIT
+title: Plugin CLI
 comments: false
 ---
 
 ## Summary
-You can extend the Metaverse wallet functionality by creating your own plugins. Also you can use other third party plugins or share your own with others. To make the creation and development of plugins even easier we created a CLI tool that can help you to get started.
+You can extend the Metaverse lightwallet functionality by creating your own plugins. Also you can use other third party plugins or share your own with others. To make the creation and development of plugins even easier we created a CLI tool that can help you to get started.
 
 ## Installation
 First you need to install node.js. Then you can install the CLI tool using the following command:
