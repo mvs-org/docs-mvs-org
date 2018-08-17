@@ -1210,6 +1210,9 @@ comments: false
 ***
 
 * ### `burn`
+    * Parameters (optional)
+    1. `-c` or `[--cert]` cert type name, If specified, then only burn related cert. Default is not specified.
+    2. `-m` or `[--mit]` If specified, then only burn related mit. Default is not specified.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
