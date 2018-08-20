@@ -140,16 +140,12 @@ comments: false
         "result" : 
         [
             {
-                "address" : "M9qeDursSJsxK9nHzTcRMnqpe78YXCKv48",
-                "deposited_balance" : 300,
+                "address" : "MV1VWVC7NiJ6BmZPXooiamZcp51SxMUFv3",
+                "bonus_balance" : 117944,
+                "deposited_balance" : 123000000,
                 "deposited_height" : 25200,
-                "expiration_height" : 27227
-            },
-            {
-                "address" : "M9L3ipy3Hcf6kdvknU3mH7mwH9ER3uCziu",
-                "deposited_balance" : 300287670,
-                "deposited_height" : 25200,
-                "expiration_height" : 27031
+                "expiration_height" : 28429,
+                "tx_hash" : "bb51854e90fab434e37815e60ba6c7d3c335edfac97b41d6c2f6748fbc841d3c"
             }
         ]
     }
