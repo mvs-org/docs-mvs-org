@@ -266,7 +266,9 @@ comments: false
 * ### `getaccountasset`
     getaccountasset
     * Parameters (optional)
-    1. `-c` or `[--cert]` If specified, then only get related asset cert. Default is not specified.
+    1. `-c` or `[--cert]` If specified, then only get related cert. Default is not specified.
+    2. `-d` or `[--deposited]` If specified, then only get deposited assets.
+    3. `-s` or `[--symbol]` Asset symbol.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
@@ -350,7 +352,9 @@ comments: false
 * ### `getaddressasset`
     getaddressasset
     * Parameters (optional)
-    1. `-c` or `[--cert]` If specified, then only get related asset cert. Default is not specified.
+    1. `-c` or `[--cert]` If specified, then only get related cert. Default is not specified.
+    2. `-d` or `[--deposited]` If specified, then only get deposited assets. Default is not specified.
+    3. `-s` or `[--symbol]` Asset symbol.
     * Parameters (positional)
     1. `ADDRESS` address
     ```js
@@ -397,7 +401,7 @@ comments: false
 * ### `getasset`
     getasset by symbol
     * Parameters (optional)
-    1. `-c` or `[--cert]` If specified, then only get related asset cert. Default is not specified.
+    1. `-c` or `[--cert]` If specified, then only get related cert. Default is not specified.
     * Parameters (positional)
     1. `SYMBOL` Asset symbol.
     ```js
@@ -442,7 +446,7 @@ comments: false
 * ### `listassets`
     list assets details.
     * Parameters (optional)
-    1. `-c` or `[--cert]` If specified, then only get related asset cert. Default is not specified.
+    1. `-c` or `[--cert]` If specified, then only get related cert. Default is not specified.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
