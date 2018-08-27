@@ -40,6 +40,15 @@ $ ./build.sh
 ```
 
 ## 4. Install nginx
+
+### 4.1 install nginx dependency
+```
+$ sudo apt-get install openssl libssl-dev
+$ sudo apt-get install libpcre3 libpcre3-dev
+$ sudo apt-get install zlib1g-dev
+```
+
+### 4.2 download & build nginx
 ```
 $ wget http://nginx.org/download/nginx-1.10.3.tar.gz
 $ tar -zxvf  nginx-1.10.3.tar.gz
@@ -49,10 +58,10 @@ $ make
 $ sudo make install
 ```
 
-### 4.1 nginx setting
+### 4.3 nginx setting
 Please refer to the difference between 'mvs_mining_pool_nginx.conf' and 'conf/nginx.conf'.
 
-### 4.2 Start nginx
+### 4.4 Start nginx
 ```
 $ cd /usr/local/nginx
 $ sudo ./objs/nginx -c ./conf/nginx.conf

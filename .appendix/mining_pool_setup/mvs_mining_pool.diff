@@ -1,49 +1,1934 @@
-diff --git a/proxy/handlers.go b/proxy/handlers.go
-index 6f1fa90..c5c7f65 100644
---- a/proxy/handlers.go
-+++ b/proxy/handlers.go
-@@ -22,7 +22,7 @@ func (s *ProxyServer) handleLoginRPC(cs *Session, params []string, id string) (b
+diff --git a/api/server.go b/api/server.go
+index dd021a1..9767eb4 100644
+--- a/api/server.go
++++ b/api/server.go
+@@ -5,7 +5,7 @@ import (
+ 	"log"
+ 	"net/http"
+ 	"sort"
+-	"strings"
++	//"strings"
+ 	"sync"
+ 	"sync/atomic"
+ 	"time"
+@@ -107,7 +107,7 @@ func (s *ApiServer) listen() {
+ 	r.HandleFunc("/api/miners", s.MinersIndex)
+ 	r.HandleFunc("/api/blocks", s.BlocksIndex)
+ 	r.HandleFunc("/api/payments", s.PaymentsIndex)
+-	r.HandleFunc("/api/accounts/{login:0x[0-9a-fA-F]{40}}", s.AccountIndex)
++	r.HandleFunc("/api/accounts/{login:M[0-9a-zA-Z]{10,50}}", s.AccountIndex)
+ 	r.NotFoundHandler = http.HandlerFunc(notFound)
+ 	err := http.ListenAndServe(s.config.Listen, r)
+ 	if err != nil {
+@@ -249,7 +249,8 @@ func (s *ApiServer) AccountIndex(w http.ResponseWriter, r *http.Request) {
+ 	w.Header().Set("Access-Control-Allow-Origin", "*")
+ 	w.Header().Set("Cache-Control", "no-cache")
  
- 	login := strings.ToLower(params[0])
- 	if !util.IsValidHexAddress(login) {
--		return false, &ErrorReply{Code: -1, Message: "Invalid login"}
-+		//return false, &ErrorReply{Code: -1, Message: "Invalid login"}
- 	}
- 	if !s.policy.ApplyLoginPolicy(login, cs.ip) {
- 		return false, &ErrorReply{Code: -1, Message: "You are blacklisted"}
-diff --git a/rpc/rpc.go b/rpc/rpc.go
-index 96137bb..79b8058 100644
---- a/rpc/rpc.go
-+++ b/rpc/rpc.go
-@@ -46,6 +46,11 @@ type GetBlockReplyPart struct {
- 	Difficulty string `json:"difficulty"`
+-	login := strings.ToLower(mux.Vars(r)["login"])
++	login := mux.Vars(r)["login"]
++
+ 	s.minersMu.Lock()
+ 	defer s.minersMu.Unlock()
+ 
+diff --git a/main.go b/main.go
+index faff57e..b53a7bb 100644
+--- a/main.go
++++ b/main.go
+@@ -33,11 +33,16 @@ func startApi() {
  }
  
-+type GetBlockHeader struct {
-+	Number     uint64 `json:"number"`
-+	Difficulty string `json:"bits"`
+ func startBlockUnlocker() {
++	cfg.BlockUnlocker.Account = cfg.Account
++	cfg.BlockUnlocker.Password = cfg.Password
++	cfg.BlockUnlocker.Address = cfg.Payouts.Address
+ 	u := payouts.NewBlockUnlocker(&cfg.BlockUnlocker, backend)
+ 	u.Start()
+ }
+ 
+ func startPayoutsProcessor() {
++	cfg.Payouts.Account = cfg.Account
++	cfg.Payouts.Password = cfg.Password
+ 	u := payouts.NewPayoutsProcessor(&cfg.Payouts, backend)
+ 	u.Start()
+ }
+diff --git a/payouts/payer.go b/payouts/payer.go
+index 97009eb..ca62c91 100644
+--- a/payouts/payer.go
++++ b/payouts/payer.go
+@@ -30,6 +30,8 @@ type PayoutsConfig struct {
+ 	// In Shannon
+ 	Threshold int64 `json:"threshold"`
+ 	BgSave    bool  `json:"bgsave"`
++	Account   string
++	Password  string
+ }
+ 
+ func (self PayoutsConfig) GasHex() string {
+@@ -52,7 +54,7 @@ type PayoutsProcessor struct {
+ 
+ func NewPayoutsProcessor(cfg *PayoutsConfig, backend *storage.RedisClient) *PayoutsProcessor {
+ 	u := &PayoutsProcessor{config: cfg, backend: backend}
+-	u.rpc = rpc.NewRPCClient("PayoutsProcessor", cfg.Daemon, cfg.Timeout)
++	u.rpc = rpc.NewRPCClient("PayoutsProcessor", cfg.Daemon, cfg.Account, cfg.Password, cfg.Timeout)
+ 	return u
+ }
+ 
+@@ -102,7 +104,7 @@ func (u *PayoutsProcessor) Start() {
+ 	}()
+ }
+ 
+-func (u *PayoutsProcessor) process() {
++func (u *PayoutsProcessor) XXprocess() {
+ 	if u.halt {
+ 		log.Println("Payments suspended due to last critical error:", u.lastFail)
+ 		return
+@@ -120,9 +122,6 @@ func (u *PayoutsProcessor) process() {
+ 		amount, _ := u.backend.GetBalance(login)
+ 		amountInShannon := big.NewInt(amount)
+ 
+-		// Shannon^2 = Wei
+-		amountInWei := new(big.Int).Mul(amountInShannon, util.Shannon)
+-
+ 		if !u.reachedThreshold(amountInShannon) {
+ 			continue
+ 		}
+@@ -133,20 +132,21 @@ func (u *PayoutsProcessor) process() {
+ 			break
+ 		}
+ 		// Require unlocked account
+-		if !u.isUnlockedAccount() {
+-			break
+-		}
++		//if !u.isUnlockedAccount() {
++		//	break
++		//}
+ 
+ 		// Check if we have enough funds
++		log.Printf("u.rpc.GetBalance(u.config.Address) %s", u.config.Address)
+ 		poolBalance, err := u.rpc.GetBalance(u.config.Address)
+ 		if err != nil {
+ 			u.halt = true
+ 			u.lastFail = err
+ 			break
+ 		}
+-		if poolBalance.Cmp(amountInWei) < 0 {
++		if poolBalance.Cmp(amountInShannon) < 0 {
+ 			err := fmt.Errorf("Not enough balance for payment, need %s Wei, pool has %s Wei",
+-				amountInWei.String(), poolBalance.String())
++				amountInShannon.String(), poolBalance.String())
+ 			u.halt = true
+ 			u.lastFail = err
+ 			break
+@@ -160,21 +160,21 @@ func (u *PayoutsProcessor) process() {
+ 			u.lastFail = err
+ 			break
+ 		}
+-		log.Printf("Locked payment for %s, %v Shannon", login, amount)
++		log.Printf("Locked payment for %s, %v Satoshi", login, amount)
+ 
+ 		// Debit miner's balance and update stats
+ 		err = u.backend.UpdateBalance(login, amount)
+ 		if err != nil {
+-			log.Printf("Failed to update balance for %s, %v Shannon: %v", login, amount, err)
++			log.Printf("Failed to update balance for %s, %v Satoshi: %v", login, amount, err)
+ 			u.halt = true
+ 			u.lastFail = err
+ 			break
+ 		}
+ 
+-		value := hexutil.EncodeBig(amountInWei)
+-		txHash, err := u.rpc.SendTransaction(u.config.Address, login, u.config.GasHex(), u.config.GasPriceHex(), value, u.config.AutoGas)
++		//value := hexutil.EncodeBig(amountInWei)
++		txHash, err := u.rpc.SendTransaction(u.config.Address, login, strconv.FormatInt(amount, 10))
+ 		if err != nil {
+-			log.Printf("Failed to send payment to %s, %v Shannon: %v. Check outgoing tx for %s in block explorer and docs/PAYOUTS.md",
++			log.Printf("Failed to send payment to %s, %v Satoshi: %v. Check outgoing tx for %s in block explorer and docs/PAYOUTS.md",
+ 				login, amount, err, login)
+ 			u.halt = true
+ 			u.lastFail = err
+@@ -184,7 +184,7 @@ func (u *PayoutsProcessor) process() {
+ 		// Log transaction hash
+ 		err = u.backend.WritePayment(login, txHash, amount)
+ 		if err != nil {
+-			log.Printf("Failed to log payment data for %s, %v Shannon, tx: %s: %v", login, amount, txHash, err)
++			log.Printf("Failed to log payment data for %s, %v Satoshi, tx: %s: %v", login, amount, txHash, err)
+ 			u.halt = true
+ 			u.lastFail = err
+ 			break
+@@ -192,7 +192,7 @@ func (u *PayoutsProcessor) process() {
+ 
+ 		minersPaid++
+ 		totalAmount.Add(totalAmount, big.NewInt(amount))
+-		log.Printf("Paid %v Shannon to %v, TxHash: %v", amount, login, txHash)
++		log.Printf("Paid %v Satoshi to %v, TxHash: %v", amount, login, txHash)
+ 
+ 		// Wait for TX confirmation before further payouts
+ 		for {
+@@ -216,7 +216,7 @@ func (u *PayoutsProcessor) process() {
+ 	}
+ 
+ 	if mustPay > 0 {
+-		log.Printf("Paid total %v Shannon to %v of %v payees", totalAmount, minersPaid, mustPay)
++		log.Printf("Paid total %v Satoshi to %v of %v payees", totalAmount, minersPaid, mustPay)
+ 	} else {
+ 		log.Println("No payees that have reached payout threshold")
+ 	}
+@@ -227,6 +227,136 @@ func (u *PayoutsProcessor) process() {
+ 	}
+ }
+ 
++
++func (u *PayoutsProcessor) process() {
++	if u.halt {
++		log.Println("Payments suspended due to last critical error:", u.lastFail)
++		return
++	}
++	mustPay := 0
++	minersPaid := 0
++	totalAmount := big.NewInt(0)
++	
++	toPay := make(map[string]int64)
++	payees, err := u.backend.GetPayees()
++	if err != nil {
++		log.Println("Error while retrieving payees from backend:", err)
++		return
++	}
++
++	for _, login := range payees {
++		amount, _ := u.backend.GetBalance(login)
++		amountInSatoshi := big.NewInt(amount)
++		log.Printf("check payment for %s, %v Satoshi", login, amount)
++		if !u.reachedThreshold(amountInSatoshi) {
++			continue
++		}
++		mustPay++
++
++		toPay[login] = amount
++		totalAmount.Add(totalAmount, amountInSatoshi)
++		log.Printf("To Pay %v Satoshi to %v", amount, login)
++	}
++
++	if u.halt {
++		return
++	}
++
++	if mustPay > 0 {
++		log.Printf("Paid total %v Satoshi to %v of %v payees", totalAmount, minersPaid, mustPay)
++	} else {
++		log.Println("No payees that have reached payout threshold")
++		return
++	}
++
++	// Require active peers before processing
++	if !u.checkPeers() {
++		return
++	}
++
++	// Check if we have enough funds
++	log.Printf("u.rpc.GetBalance(u.config.Address) %s", u.config.Address)
++	poolBalance, err := u.rpc.GetBalance(u.config.Address)
++	if err != nil {
++		u.halt = true
++		u.lastFail = err
++		return
++	}
++	if poolBalance.Cmp(totalAmount) < 0 {
++		err := fmt.Errorf("Not enough balance for payment, need %s Satoshi, pool has %s Satoshi",
++			totalAmount.String(), poolBalance.String())
++		u.halt = true
++		u.lastFail = err
++		return
++	}
++
++	txHash, err := u.rpc.SendMore(u.config.Address, toPay)
++	if err != nil {
++		log.Printf("Failed to send payment to miners! %s, %v", txHash, err)
++		u.halt = true
++		u.lastFail = err
++		return
++	}
++
++	for	login, amount := range toPay {
++		// Lock payments for current payout
++		err = u.backend.LockPayouts(login, amount)
++		if err != nil {
++			log.Printf("Failed to lock payment for %s: %v", login, err)
++			u.halt = true
++			u.lastFail = err
++			break
++		}
++		log.Printf("Locked payment for %s, %v Satoshi", login, amount)
++
++		// Debit miner's balance and update stats
++		err = u.backend.UpdateBalance(login, amount)
++		if err != nil {
++			log.Printf("Failed to update balance for %s, %v Satoshi: %v", login, amount, err)
++			u.halt = true
++			u.lastFail = err
++			break
++		}
++
++		minersPaid++
++		// Log transaction hash
++		err = u.backend.WritePayment(login, txHash, amount)
++		if err != nil {
++			log.Printf("Failed to log payment data for %s, %v Satoshi, tx: %s: %v", login, amount, txHash, err)
++			u.halt = true
++			u.lastFail = err
++			break
++		}
++	}
++
++	// Wait for TX confirmation before further payouts
++	for {
++		log.Printf("Waiting for tx confirmation: %v", txHash)
++		time.Sleep(txCheckInterval)
++		receipt, err := u.rpc.GetTxReceipt(txHash)
++		if err != nil {
++			log.Printf("Failed to get tx receipt for %v: %v", txHash, err)
++			continue
++		}
++		// Tx has been mined
++		if receipt != nil && receipt.Confirmed() {
++			if receipt.Successful() {
++				log.Printf("Payout tx successful %s", txHash)
++			} else {
++				log.Printf("Payout tx failed %s. Address contract throws on incoming tx.", txHash)
++			}
++			break
++		}
++	}
++
++	// Save redis state to disk
++	if minersPaid > 0 && u.config.BgSave {
++		u.bgSave()
++	}
++
 +}
 +
++
+ func (self PayoutsProcessor) isUnlockedAccount() bool {
+ 	_, err := self.rpc.Sign(self.config.Address, "0x0")
+ 	if err != nil {
+@@ -237,6 +367,8 @@ func (self PayoutsProcessor) isUnlockedAccount() bool {
+ }
+ 
+ func (self PayoutsProcessor) checkPeers() bool {
++	return true
++	/*
+ 	n, err := self.rpc.GetPeerCount()
+ 	if err != nil {
+ 		log.Println("Unable to start payouts, failed to retrieve number of peers from node:", err)
+@@ -247,6 +379,7 @@ func (self PayoutsProcessor) checkPeers() bool {
+ 		return false
+ 	}
+ 	return true
++	*/
+ }
+ 
+ func (self PayoutsProcessor) reachedThreshold(amount *big.Int) bool {
+@@ -256,7 +389,7 @@ func (self PayoutsProcessor) reachedThreshold(amount *big.Int) bool {
+ func formatPendingPayments(list []*storage.PendingPayment) string {
+ 	var s string
+ 	for _, v := range list {
+-		s += fmt.Sprintf("\tAddress: %s, Amount: %v Shannon, %v\n", v.Address, v.Amount, time.Unix(v.Timestamp, 0))
++		s += fmt.Sprintf("\tAddress: %s, Amount: %v Satoshi, %v\n", v.Address, v.Amount, time.Unix(v.Timestamp, 0))
+ 	}
+ 	return s
+ }
+@@ -279,10 +412,10 @@ func (self PayoutsProcessor) resolvePayouts() {
+ 		for _, v := range payments {
+ 			err := self.backend.RollbackBalance(v.Address, v.Amount)
+ 			if err != nil {
+-				log.Printf("Failed to credit %v Shannon back to %s, error is: %v", v.Amount, v.Address, err)
++				log.Printf("Failed to credit %v Satoshi back to %s, error is: %v", v.Amount, v.Address, err)
+ 				return
+ 			}
+-			log.Printf("Credited %v Shannon back to %s", v.Amount, v.Address)
++			log.Printf("Credited %v Satoshi back to %s", v.Amount, v.Address)
+ 		}
+ 		err := self.backend.UnlockPayouts()
+ 		if err != nil {
+diff --git a/payouts/unlocker.go b/payouts/unlocker.go
+index c073ef0..d31eefd 100644
+--- a/payouts/unlocker.go
++++ b/payouts/unlocker.go
+@@ -3,6 +3,7 @@ package payouts
+ import (
+ 	"fmt"
+ 	"log"
++	_math "math"
+ 	"math/big"
+ 	"strconv"
+ 	"strings"
+@@ -26,6 +27,9 @@ type UnlockerConfig struct {
+ 	Interval       string  `json:"interval"`
+ 	Daemon         string  `json:"daemon"`
+ 	Timeout        string  `json:"timeout"`
++	Account        string
++	Password       string
++	Address        string
+ }
+ 
+ const minDepth = 16
+@@ -47,7 +51,7 @@ type BlockUnlocker struct {
+ }
+ 
+ func NewBlockUnlocker(cfg *UnlockerConfig, backend *storage.RedisClient) *BlockUnlocker {
+-	if len(cfg.PoolFeeAddress) != 0 && !util.IsValidHexAddress(cfg.PoolFeeAddress) {
++	if len(cfg.PoolFeeAddress) != 0 && !util.IsValidBitcoinAddress(cfg.PoolFeeAddress) {
+ 		log.Fatalln("Invalid poolFeeAddress", cfg.PoolFeeAddress)
+ 	}
+ 	if cfg.Depth < minDepth*2 {
+@@ -57,7 +61,7 @@ func NewBlockUnlocker(cfg *UnlockerConfig, backend *storage.RedisClient) *BlockU
+ 		log.Fatalf("Immature depth can't be < %v, your depth is %v", minDepth, cfg.ImmatureDepth)
+ 	}
+ 	u := &BlockUnlocker{config: cfg, backend: backend}
+-	u.rpc = rpc.NewRPCClient("BlockUnlocker", cfg.Daemon, cfg.Timeout)
++	u.rpc = rpc.NewRPCClient("BlockUnlocker", cfg.Daemon, cfg.Account, cfg.Password, cfg.Timeout)
+ 	return u
+ }
+ 
+@@ -104,80 +108,29 @@ func (u *BlockUnlocker) unlockCandidates(candidates []*storage.BlockData) (*Unlo
+ 
+ 	// Data row is: "height:nonce:powHash:mixDigest:timestamp:diff:totalShares"
+ 	for _, candidate := range candidates {
+-		orphan := true
++		height := candidate.Height
+ 
+-		/* Search for a normal block with wrong height here by traversing 16 blocks back and forward.
+-		 * Also we are searching for a block that can include this one as uncle.
+-		 */
+-		for i := int64(minDepth * -1); i < minDepth; i++ {
+-			height := candidate.Height + i
++		block, err := u.rpc.GetBlockByHeight(height)
++		if err != nil {
++			log.Printf("Error while retrieving block %v from node: %v", height, err)
++			return nil, err
++		}
++		if block == nil {
++			return nil, fmt.Errorf("Error while retrieving block %v from node, wrong node height", height)
++		}
+ 
+-			if height < 0 {
+-				continue
+-			}
++		if u.matchCandidate(block, candidate) {
++			result.blocks++
+ 
+-			block, err := u.rpc.GetBlockByHeight(height)
++			err = u.handleBlock(block, candidate)
+ 			if err != nil {
+-				log.Printf("Error while retrieving block %v from node: %v", height, err)
++				u.halt = true
++				u.lastFail = err
+ 				return nil, err
+ 			}
+-			if block == nil {
+-				return nil, fmt.Errorf("Error while retrieving block %v from node, wrong node height", height)
+-			}
+-
+-			if matchCandidate(block, candidate) {
+-				orphan = false
+-				result.blocks++
+-
+-				err = u.handleBlock(block, candidate)
+-				if err != nil {
+-					u.halt = true
+-					u.lastFail = err
+-					return nil, err
+-				}
+-				result.maturedBlocks = append(result.maturedBlocks, candidate)
+-				log.Printf("Mature block %v with %v tx, hash: %v", candidate.Height, len(block.Transactions), candidate.Hash[0:10])
+-				break
+-			}
+-
+-			if len(block.Uncles) == 0 {
+-				continue
+-			}
+-
+-			// Trying to find uncle in current block during our forward check
+-			for uncleIndex, uncleHash := range block.Uncles {
+-				uncle, err := u.rpc.GetUncleByBlockNumberAndIndex(height, uncleIndex)
+-				if err != nil {
+-					return nil, fmt.Errorf("Error while retrieving uncle of block %v from node: %v", uncleHash, err)
+-				}
+-				if uncle == nil {
+-					return nil, fmt.Errorf("Error while retrieving uncle of block %v from node", height)
+-				}
+-
+-				// Found uncle
+-				if matchCandidate(uncle, candidate) {
+-					orphan = false
+-					result.uncles++
+-
+-					err := handleUncle(height, uncle, candidate)
+-					if err != nil {
+-						u.halt = true
+-						u.lastFail = err
+-						return nil, err
+-					}
+-					result.maturedBlocks = append(result.maturedBlocks, candidate)
+-					log.Printf("Mature uncle %v/%v of reward %v with hash: %v", candidate.Height, candidate.UncleHeight,
+-						util.FormatReward(candidate.Reward), uncle.Hash[0:10])
+-					break
+-				}
+-			}
+-			// Found block or uncle
+-			if !orphan {
+-				break
+-			}
+-		}
+-		// Block is lost, we didn't find any valid block or uncle matching our data in a blockchain
+-		if orphan {
++			result.maturedBlocks = append(result.maturedBlocks, candidate)
++			log.Printf("Mature block %v, hash: %v", candidate.Height, candidate.Hash[0:10])
++		} else {
+ 			result.orphans++
+ 			candidate.Orphan = true
+ 			result.orphanedBlocks = append(result.orphanedBlocks, candidate)
+@@ -187,35 +140,45 @@ func (u *BlockUnlocker) unlockCandidates(candidates []*storage.BlockData) (*Unlo
+ 	return result, nil
+ }
+ 
+-func matchCandidate(block *rpc.GetBlockReply, candidate *storage.BlockData) bool {
+-	// Just compare hash if block is unlocked as immature
+-	if len(candidate.Hash) > 0 && strings.EqualFold(candidate.Hash, block.Hash) {
+-		return true
++func (u *BlockUnlocker) matchCandidate(block *rpc.GetBlockReply, candidate *storage.BlockData) bool {
++	log.Printf("========> calling matchCandidate %v:%v with coinbase address[%s]", candidate.RoundHeight, candidate.Nonce, block.Transactions[0].Outputs[0].Address)
++	// check coinbase target address
++	if block.Transactions[0].Outputs[0].Address != u.config.Address {
++		log.Printf("Orphaned block %v:%v for coinbase address[%s] mismatch error", candidate.RoundHeight, candidate.Nonce, block.Transactions[0].Outputs[0].Address)
++		return false
+ 	}
+-	// Geth-style candidate matching
+-	if len(block.Nonce) > 0 {
+-		return strings.EqualFold(block.Nonce, candidate.Nonce)
+-	}
+-	// Parity's EIP: https://github.com/ethereum/EIPs/issues/95
+-	if len(block.SealFields) == 2 {
+-		return strings.EqualFold(candidate.Nonce, block.SealFields[1])
++
++	// Just compare hash if block is unlocked as immature
++	if len(candidate.Hash) > 0 {
++		if !strings.EqualFold(candidate.Hash, block.Hash) {
++			return false
++		}
+ 	}
+-	return false
++	
++	nonce1, _ := strconv.ParseInt(block.Nonce, 10, 64)
++	nonce2, _ := strconv.ParseInt(strings.Replace(candidate.Nonce, "0x", "", -1), 16, 64)
++
++	return nonce1 == nonce2 
+ }
+ 
+ func (u *BlockUnlocker) handleBlock(block *rpc.GetBlockReply, candidate *storage.BlockData) error {
+-	correctHeight, err := strconv.ParseInt(strings.Replace(block.Number, "0x", "", -1), 16, 64)
+-	if err != nil {
+-		return err
+-	}
++	correctHeight := block.Number
+ 	candidate.Height = correctHeight
+ 	reward := getConstReward(candidate.Height)
+-
++	
+ 	// Add TX fees
+-	extraTxReward, err := u.getExtraRewardForTx(block)
++	extraTxReward, err := u.getRewardWithFee(block)
+ 	if err != nil {
+ 		return fmt.Errorf("Error while fetching TX receipt: %v", err)
+ 	}
++
++	if extraTxReward.Cmp(reward) < 0  {
++		return fmt.Errorf("extraTxReward[%s] must be >= reward[%s]", extraTxReward, reward)
++	}
++
++	extraTxReward.Sub(extraTxReward, reward)
++	
++
+ 	if u.config.KeepTxFees {
+ 		candidate.ExtraReward = extraTxReward
+ 	} else {
+@@ -223,9 +186,9 @@ func (u *BlockUnlocker) handleBlock(block *rpc.GetBlockReply, candidate *storage
+ 	}
+ 
+ 	// Add reward for including uncles
+-	uncleReward := getRewardForUncle(candidate.Height)
+-	rewardForUncles := big.NewInt(0).Mul(uncleReward, big.NewInt(int64(len(block.Uncles))))
+-	reward.Add(reward, rewardForUncles)
++	//uncleReward := getRewardForUncle(candidate.Height)
++	//rewardForUncles := big.NewInt(0).Mul(uncleReward, big.NewInt(int64(len(block.Uncles))))
++	//reward.Add(reward, rewardForUncles)
+ 
+ 	candidate.Orphan = false
+ 	candidate.Hash = block.Hash
+@@ -233,20 +196,6 @@ func (u *BlockUnlocker) handleBlock(block *rpc.GetBlockReply, candidate *storage
+ 	return nil
+ }
+ 
+-func handleUncle(height int64, uncle *rpc.GetBlockReply, candidate *storage.BlockData) error {
+-	uncleHeight, err := strconv.ParseInt(strings.Replace(uncle.Number, "0x", "", -1), 16, 64)
+-	if err != nil {
+-		return err
+-	}
+-	reward := getUncleReward(uncleHeight, height)
+-	candidate.Height = height
+-	candidate.UncleHeight = uncleHeight
+-	candidate.Orphan = false
+-	candidate.Hash = uncle.Hash
+-	candidate.Reward = reward
+-	return nil
+-}
+-
+ func (u *BlockUnlocker) unlockPendingBlocks() {
+ 	if u.halt {
+ 		log.Println("Unlocking suspended due to last critical error:", u.lastFail)
+@@ -257,10 +206,11 @@ func (u *BlockUnlocker) unlockPendingBlocks() {
+ 	if err != nil {
+ 		u.halt = true
+ 		u.lastFail = err
+-		log.Printf("Unable to get current blockchain height from node: %v", err)
++		log.Printf("Unable to get current blockchain height from node1: %v", err)
+ 		return
+ 	}
+-	currentHeight, err := strconv.ParseInt(strings.Replace(current.Number, "0x", "", -1), 16, 64)
++	//currentHeight, err := strconv.ParseInt(strings.Replace(current.Number, "0x", "", -1), 16, 64)
++	currentHeight, err := int64(current.Number), nil
+ 	if err != nil {
+ 		u.halt = true
+ 		u.lastFail = err
+@@ -312,6 +262,7 @@ func (u *BlockUnlocker) unlockPendingBlocks() {
+ 			log.Printf("Failed to calculate rewards for round %v: %v", block.RoundKey(), err)
+ 			return
+ 		}
++		//log.Printf("backend WriteImmatureBlock, roundRewards=%s, Height=%d, Reward=%d, RewardString=%s", roundRewards, block.Height, *block.Reward, block.RewardString)
+ 		err = u.backend.WriteImmatureBlock(block, roundRewards)
+ 		if err != nil {
+ 			u.halt = true
+@@ -332,7 +283,7 @@ func (u *BlockUnlocker) unlockPendingBlocks() {
+ 		)
+ 		entries := []string{logEntry}
+ 		for login, reward := range roundRewards {
+-			entries = append(entries, fmt.Sprintf("\tREWARD %v: %v: %v Shannon", block.RoundKey(), login, reward))
++			entries = append(entries, fmt.Sprintf("\tREWARD %v: %v: %v Satoshi", block.RoundKey(), login, reward))
+ 		}
+ 		log.Println(strings.Join(entries, "\n"))
+ 	}
+@@ -355,10 +306,11 @@ func (u *BlockUnlocker) unlockAndCreditMiners() {
+ 	if err != nil {
+ 		u.halt = true
+ 		u.lastFail = err
+-		log.Printf("Unable to get current blockchain height from node: %v", err)
++		log.Printf("Unable to get current blockchain height from node2: %v", err)
+ 		return
+ 	}
+-	currentHeight, err := strconv.ParseInt(strings.Replace(current.Number, "0x", "", -1), 16, 64)
++	//currentHeight, err := strconv.ParseInt(strings.Replace(current.Number, "0x", "", -1), 16, 64)
++	currentHeight, err := int64(current.Number), nil//strconv.ParseInt(current.Number, 10, 64)
+ 	if err != nil {
+ 		u.halt = true
+ 		u.lastFail = err
+@@ -431,7 +383,7 @@ func (u *BlockUnlocker) unlockAndCreditMiners() {
+ 		)
+ 		entries := []string{logEntry}
+ 		for login, reward := range roundRewards {
+-			entries = append(entries, fmt.Sprintf("\tREWARD %v: %v: %v Shannon", block.RoundKey(), login, reward))
++			entries = append(entries, fmt.Sprintf("\tREWARD %v: %v: %v Satoshi", block.RoundKey(), login, reward))
+ 		}
+ 		log.Println(strings.Join(entries, "\n"))
+ 	}
+@@ -465,12 +417,13 @@ func (u *BlockUnlocker) calculateRewards(block *storage.BlockData) (*big.Rat, *b
+ 		var donation = new(big.Rat)
+ 		poolProfit, donation = chargeFee(poolProfit, donationFee)
+ 		login := strings.ToLower(donationAccount)
+-		rewards[login] += weiToShannonInt64(donation)
++		fee, _ := strconv.ParseInt(donation.FloatString(0), 10, 64)
++		rewards[login] += fee
+ 	}
+ 
+ 	if len(u.config.PoolFeeAddress) != 0 {
+-		address := strings.ToLower(u.config.PoolFeeAddress)
+-		rewards[address] += weiToShannonInt64(poolProfit)
++		fee, _ := strconv.ParseInt(poolProfit.FloatString(0), 10, 64)
++		rewards[u.config.PoolFeeAddress] += fee
+ 	}
+ 
+ 	return revenue, minersProfit, poolProfit, rewards, nil
+@@ -482,7 +435,8 @@ func calculateRewardsForShares(shares map[string]int64, total int64, reward *big
+ 	for login, n := range shares {
+ 		percent := big.NewRat(n, total)
+ 		workerReward := new(big.Rat).Mul(reward, percent)
+-		rewards[login] += weiToShannonInt64(workerReward)
++		fee, _ := strconv.ParseInt(workerReward.FloatString(0), 10, 64)
++		rewards[login] += fee
+ 	}
+ 	return rewards
+ }
+@@ -494,47 +448,14 @@ func chargeFee(value *big.Rat, fee float64) (*big.Rat, *big.Rat) {
+ 	return new(big.Rat).Sub(value, feeValue), feeValue
+ }
+ 
+-func weiToShannonInt64(wei *big.Rat) int64 {
+-	shannon := new(big.Rat).SetInt(util.Shannon)
+-	inShannon := new(big.Rat).Quo(wei, shannon)
+-	value, _ := strconv.ParseInt(inShannon.FloatString(0), 10, 64)
+-	return value
+-}
+-
+ func getConstReward(height int64) *big.Int {
+-	if height >= byzantiumHardForkHeight {
+-		return new(big.Int).Set(byzantiumReward)
+-	}
+-	return new(big.Int).Set(homesteadReward)
+-}
+-
+-func getRewardForUncle(height int64) *big.Int {
+-	reward := getConstReward(height)
+-	return new(big.Int).Div(reward, new(big.Int).SetInt64(32))
++	return big.NewInt(int64(300000000 * _math.Pow(0.95 , float64(height/500000))))
+ }
+ 
+-func getUncleReward(uHeight, height int64) *big.Int {
+-	reward := getConstReward(height)
+-	k := height - uHeight
+-	reward.Mul(big.NewInt(8-k), reward)
+-	reward.Div(reward, big.NewInt(8))
+-	return reward
+-}
+-
+-func (u *BlockUnlocker) getExtraRewardForTx(block *rpc.GetBlockReply) (*big.Int, error) {
+-	amount := new(big.Int)
+-
+-	for _, tx := range block.Transactions {
+-		receipt, err := u.rpc.GetTxReceipt(tx.Hash)
+-		if err != nil {
+-			return nil, err
+-		}
+-		if receipt != nil {
+-			gasUsed := util.String2Big(receipt.GasUsed)
+-			gasPrice := util.String2Big(tx.GasPrice)
+-			fee := new(big.Int).Mul(gasUsed, gasPrice)
+-			amount.Add(amount, fee)
+-		}
++func (u *BlockUnlocker) getRewardWithFee(block *rpc.GetBlockReply) (*big.Int, error) {
++	if len(block.Transactions[0].Outputs) != 1 {
++		return nil, fmt.Errorf("coinbase invalid output length")
+ 	}
+-	return amount, nil
++
++	return big.NewInt( block.Transactions[0].Outputs[0].Value ), nil
+ }
+diff --git a/proxy/blocks.go b/proxy/blocks.go
+index cf06ce8..9b57e5c 100644
+--- a/proxy/blocks.go
++++ b/proxy/blocks.go
+@@ -4,11 +4,10 @@ import (
+ 	"log"
+ 	"math/big"
+ 	"strconv"
+-	"strings"
++	//"strings"
+ 	"sync"
+ 
+ 	"github.com/ethereum/go-ethereum/common"
+-
+ 	"github.com/sammy007/open-ethereum-pool/rpc"
+ 	"github.com/sammy007/open-ethereum-pool/util"
+ )
+@@ -49,22 +48,32 @@ func (b Block) NumberU64() uint64        { return b.number }
+ func (s *ProxyServer) fetchBlockTemplate() {
+ 	rpc := s.rpc()
+ 	t := s.currentBlockTemplate()
++
++	_, err := rpc.SetAddress(s.config.Payouts.Address)
++	if err != nil {
++		log.Printf("Failed to SetAddress[%s] on %s: %s", s.config.Payouts.Address, rpc.Name, err)
++		return
++	}
++
+ 	pendingReply, height, diff, err := s.fetchPendingBlock()
+ 	if err != nil {
+ 		log.Printf("Error while refreshing pending block on %s: %s", rpc.Name, err)
+ 		return
+ 	}
++	
+ 	reply, err := rpc.GetWork()
+ 	if err != nil {
+ 		log.Printf("Error while refreshing block template on %s: %s", rpc.Name, err)
+ 		return
+ 	}
++
+ 	// No need to update, we have fresh job
+ 	if t != nil && t.Header == reply[0] {
+ 		return
+ 	}
+ 
+-	pendingReply.Difficulty = util.ToHex(s.config.Proxy.Difficulty)
++	//pendingReply.Difficulty = util.ToHex(s.config.Proxy.Difficulty)
++	pendingReply.Difficulty = util.ToHex(diff)
+ 
+ 	newTemplate := BlockTemplate{
+ 		Header:               reply[0],
+@@ -90,9 +99,11 @@ func (s *ProxyServer) fetchBlockTemplate() {
+ 	s.blockTemplate.Store(&newTemplate)
+ 	log.Printf("New block to mine on %s at height %d / %s", rpc.Name, height, reply[0][0:10])
+ 
+-	// Stratum
+-	if s.config.Proxy.Stratum.Enabled {
+-		go s.broadcastNewJobs()
++	// Stratums
++	for i, setting := range s.config.Proxy.Stratums {
++		if setting.Enabled {
++			go s.broadcastNewJobs(i)
++		}
+ 	}
+ }
+ 
+@@ -103,12 +114,13 @@ func (s *ProxyServer) fetchPendingBlock() (*rpc.GetBlockReplyPart, uint64, int64
+ 		log.Printf("Error while refreshing pending block on %s: %s", rpc.Name, err)
+ 		return nil, 0, 0, err
+ 	}
+-	blockNumber, err := strconv.ParseUint(strings.Replace(reply.Number, "0x", "", -1), 16, 64)
++	blockNumber, err := reply.Number, nil//strconv.ParseUint(reply.Number, 10, 64)
+ 	if err != nil {
+ 		log.Println("Can't parse pending block number")
+ 		return nil, 0, 0, err
+ 	}
+-	blockDiff, err := strconv.ParseInt(strings.Replace(reply.Difficulty, "0x", "", -1), 16, 64)
++	blockDiff, err := strconv.ParseInt(reply.Difficulty, 10, 64)
++	
+ 	if err != nil {
+ 		log.Println("Can't parse pending block difficulty")
+ 		return nil, 0, 0, err
+diff --git a/proxy/config.go b/proxy/config.go
+index 6248c53..acc6c35 100644
+--- a/proxy/config.go
++++ b/proxy/config.go
+@@ -8,6 +8,8 @@ import (
+ )
+ 
+ type Config struct {
++	Account               string        `json:"account"`
++	Password              string        `json:"password"`
+ 	Name                  string        `json:"name"`
+ 	Proxy                 Proxy         `json:"proxy"`
+ 	Api                   api.ApiConfig `json:"api"`
+@@ -35,7 +37,7 @@ type Proxy struct {
+ 	LimitBodySize        int64  `json:"limitBodySize"`
+ 	BehindReverseProxy   bool   `json:"behindReverseProxy"`
+ 	BlockRefreshInterval string `json:"blockRefreshInterval"`
+-	Difficulty           int64  `json:"difficulty"`
++	//Difficulty           int64  `json:"difficulty"`
+ 	StateUpdateInterval  string `json:"stateUpdateInterval"`
+ 	HashrateExpiration   string `json:"hashrateExpiration"`
+ 
+@@ -44,13 +46,14 @@ type Proxy struct {
+ 	MaxFails    int64 `json:"maxFails"`
+ 	HealthCheck bool  `json:"healthCheck"`
+ 
+-	Stratum Stratum `json:"stratum"`
++	Stratums []Stratum `json:"stratums"`
+ }
+ 
+ type Stratum struct {
+ 	Enabled bool   `json:"enabled"`
+ 	Listen  string `json:"listen"`
+ 	Timeout string `json:"timeout"`
++	Difficulty           int64  `json:"difficulty"`
+ 	MaxConn int    `json:"maxConn"`
+ }
+ 
+diff --git a/proxy/handlers.go b/proxy/handlers.go
+index 6f1fa90..d5bba25 100644
+--- a/proxy/handlers.go
++++ b/proxy/handlers.go
+@@ -3,7 +3,7 @@ package proxy
+ import (
+ 	"log"
+ 	"regexp"
+-	"strings"
++	//"strings"
+ 
+ 	"github.com/sammy007/open-ethereum-pool/rpc"
+ 	"github.com/sammy007/open-ethereum-pool/util"
+@@ -20,8 +20,8 @@ func (s *ProxyServer) handleLoginRPC(cs *Session, params []string, id string) (b
+ 		return false, &ErrorReply{Code: -1, Message: "Invalid params"}
+ 	}
+ 
+-	login := strings.ToLower(params[0])
+-	if !util.IsValidHexAddress(login) {
++	login := params[0]
++	if !util.IsValidBitcoinAddress(login) {
+ 		return false, &ErrorReply{Code: -1, Message: "Invalid login"}
+ 	}
+ 	if !s.policy.ApplyLoginPolicy(login, cs.ip) {
+@@ -38,14 +38,15 @@ func (s *ProxyServer) handleGetWorkRPC(cs *Session) ([]string, *ErrorReply) {
+ 	if t == nil || len(t.Header) == 0 || s.isSick() {
+ 		return nil, &ErrorReply{Code: 0, Message: "Work not ready"}
+ 	}
+-	return []string{t.Header, t.Seed, s.diff}, nil
++	diff := s.stratums[cs.stratum_id].diff
++	return []string{t.Header, t.Seed, diff}, nil
+ }
+ 
+ // Stratum
+ func (s *ProxyServer) handleTCPSubmitRPC(cs *Session, id string, params []string) (bool, *ErrorReply) {
+-	s.sessionsMu.RLock()
+-	_, ok := s.sessions[cs]
+-	s.sessionsMu.RUnlock()
++	s.stratums[cs.stratum_id].sessionsMu.RLock()
++	_, ok := s.stratums[cs.stratum_id].sessions[cs]
++	s.stratums[cs.stratum_id].sessionsMu.RUnlock()
+ 
+ 	if !ok {
+ 		return false, &ErrorReply{Code: 25, Message: "Not subscribed"}
+@@ -69,7 +70,7 @@ func (s *ProxyServer) handleSubmitRPC(cs *Session, login, id string, params []st
+ 		return false, &ErrorReply{Code: -1, Message: "Malformed PoW result"}
+ 	}
+ 	t := s.currentBlockTemplate()
+-	exist, validShare := s.processShare(login, id, cs.ip, t, params)
++	exist, validShare := s.processShare(login, id, cs.ip, t, params, cs.stratum_id)
+ 	ok := s.policy.ApplySharePolicy(cs.ip, !exist && validShare)
+ 
+ 	if exist {
+diff --git a/proxy/miner.go b/proxy/miner.go
+index 8d312f9..b9863da 100644
+--- a/proxy/miner.go
++++ b/proxy/miner.go
+@@ -12,21 +12,20 @@ import (
+ 
+ var hasher = ethash.New()
+ 
+-func (s *ProxyServer) processShare(login, id, ip string, t *BlockTemplate, params []string) (bool, bool) {
++func (s *ProxyServer) processShare(login, id, ip string, t *BlockTemplate, params []string, stratum_id int) (bool, bool) {
+ 	nonceHex := params[0]
+ 	hashNoNonce := params[1]
+ 	mixDigest := params[2]
+ 	nonce, _ := strconv.ParseUint(strings.Replace(nonceHex, "0x", "", -1), 16, 64)
+-	shareDiff := s.config.Proxy.Difficulty
++	shareDiff := s.config.Proxy.Stratums[stratum_id].Difficulty
+ 
+-	h, ok := t.headers[hashNoNonce]
+-	if !ok {
++	if !strings.EqualFold(t.Header, hashNoNonce) {
+ 		log.Printf("Stale share from %v@%v", login, ip)
+ 		return false, false
+ 	}
+ 
+ 	share := Block{
+-		number:      h.height,
++		number:      t.Height,
+ 		hashNoNonce: common.HexToHash(hashNoNonce),
+ 		difficulty:  big.NewInt(shareDiff),
+ 		nonce:       nonce,
+@@ -34,9 +33,9 @@ func (s *ProxyServer) processShare(login, id, ip string, t *BlockTemplate, param
+ 	}
+ 
+ 	block := Block{
+-		number:      h.height,
++		number:      t.Height,
+ 		hashNoNonce: common.HexToHash(hashNoNonce),
+-		difficulty:  h.diff,
++		difficulty:  t.Difficulty,
+ 		nonce:       nonce,
+ 		mixDigest:   common.HexToHash(mixDigest),
+ 	}
+@@ -45,28 +44,32 @@ func (s *ProxyServer) processShare(login, id, ip string, t *BlockTemplate, param
+ 		return false, false
+ 	}
+ 
+-	if hasher.Verify(block) {
+-		ok, err := s.rpc().SubmitBlock(params)
++	if hasher.Verify(block) { 
++		n := nonce ^ 0x6675636b6d657461
++		nn := strconv.FormatUint(n, 16)
++		params_ := []string{nn, params[1], params[2]}
++
++		ok, err := s.rpc().SubmitBlock(params_)
+ 		if err != nil {
+-			log.Printf("Block submission failure at height %v for %v: %v", h.height, t.Header, err)
++			log.Printf("Block submission failure at height %v for %v: %v", t.Height, t.Header, err)
+ 		} else if !ok {
+-			log.Printf("Block rejected at height %v for %v", h.height, t.Header)
++			log.Printf("Block rejected at height %v for %v", t.Height, t.Header)
+ 			return false, false
+ 		} else {
+ 			s.fetchBlockTemplate()
+-			exist, err := s.backend.WriteBlock(login, id, params, shareDiff, h.diff.Int64(), h.height, s.hashrateExpiration)
++			exist, err := s.backend.WriteBlock(login, id, params, shareDiff, t.Difficulty.Int64(), t.Height, s.hashrateExpiration)
+ 			if exist {
+ 				return true, false
+ 			}
+ 			if err != nil {
+ 				log.Println("Failed to insert block candidate into backend:", err)
+ 			} else {
+-				log.Printf("Inserted block %v to backend", h.height)
++				log.Printf("Inserted block %v to backend", t.Height)
+ 			}
+-			log.Printf("Block found by miner %v@%v at height %d", login, ip, h.height)
++			log.Printf("Block found by miner %v@%v at height %d", login, ip, t.Height)
+ 		}
+ 	} else {
+-		exist, err := s.backend.WriteShare(login, id, params, shareDiff, h.height, s.hashrateExpiration)
++		exist, err := s.backend.WriteShare(login, id, params, shareDiff, t.Height, s.hashrateExpiration)
+ 		if exist {
+ 			return true, false
+ 		}
+diff --git a/proxy/proto.go b/proxy/proto.go
+index 16de943..5cd927c 100644
+--- a/proxy/proto.go
++++ b/proxy/proto.go
+@@ -3,9 +3,9 @@ package proxy
+ import "encoding/json"
+ 
+ type JSONRpcReq struct {
+-	Id     json.RawMessage `json:"id"`
+-	Method string          `json:"method"`
+-	Params json.RawMessage `json:"params"`
++	Id     *json.RawMessage `json:"id"`
++	Method string           `json:"method"`
++	Params *json.RawMessage `json:"params"`
+ }
+ 
+ type StratumReq struct {
+@@ -22,10 +22,10 @@ type JSONPushMessage struct {
+ }
+ 
+ type JSONRpcResp struct {
+-	Id      json.RawMessage `json:"id"`
+-	Version string          `json:"jsonrpc"`
+-	Result  interface{}     `json:"result"`
+-	Error   interface{}     `json:"error,omitempty"`
++	Id      *json.RawMessage `json:"id"`
++	Version string           `json:"jsonrpc"`
++	Result  interface{}      `json:"result"`
++	Error   interface{}      `json:"error,omitempty"`
+ }
+ 
+ type SubmitReply struct {
+diff --git a/proxy/proxy.go b/proxy/proxy.go
+index 1ace550..e46b789 100644
+--- a/proxy/proxy.go
++++ b/proxy/proxy.go
+@@ -6,7 +6,7 @@ import (
+ 	"log"
+ 	"net"
+ 	"net/http"
+-	"strings"
++	//"strings"
+ 	"sync"
+ 	"sync/atomic"
+ 	"time"
+@@ -19,24 +19,39 @@ import (
+ 	"github.com/sammy007/open-ethereum-pool/util"
+ )
+ 
++type StratumServer struct {
++	sessionsMu sync.RWMutex
++	sessions   map[*Session]struct{}
++	timeout    time.Duration
++	diff               string
++}
++
+ type ProxyServer struct {
+ 	config             *Config
+ 	blockTemplate      atomic.Value
+ 	upstream           int32
+ 	upstreams          []*rpc.RPCClient
+ 	backend            *storage.RedisClient
+-	diff               string
++	//diff               string
+ 	policy             *policy.PolicyServer
+ 	hashrateExpiration time.Duration
+ 	failsCount         int64
+ 
++	/*
+ 	// Stratum
+ 	sessionsMu sync.RWMutex
+ 	sessions   map[*Session]struct{}
+ 	timeout    time.Duration
++	*/
++
++	// Stratums
++	stratums []*StratumServer
+ }
+ 
+ type Session struct {
++	// the statum instance id
++	stratum_id int
++
+ 	ip  string
+ 	enc *json.Encoder
+ 
+@@ -53,18 +68,22 @@ func NewProxy(cfg *Config, backend *storage.RedisClient) *ProxyServer {
+ 	policy := policy.Start(&cfg.Proxy.Policy, backend)
+ 
+ 	proxy := &ProxyServer{config: cfg, backend: backend, policy: policy}
+-	proxy.diff = util.GetTargetHex(cfg.Proxy.Difficulty)
++	//proxy.diff = util.GetTargetHex(cfg.Proxy.Difficulty)
+ 
+ 	proxy.upstreams = make([]*rpc.RPCClient, len(cfg.Upstream))
+ 	for i, v := range cfg.Upstream {
+-		proxy.upstreams[i] = rpc.NewRPCClient(v.Name, v.Url, v.Timeout)
++		proxy.upstreams[i] = rpc.NewRPCClient(v.Name, v.Url, cfg.Account, cfg.Password, v.Timeout)
+ 		log.Printf("Upstream: %s => %s", v.Name, v.Url)
+ 	}
+ 	log.Printf("Default upstream: %s => %s", proxy.rpc().Name, proxy.rpc().Url)
+-
+-	if cfg.Proxy.Stratum.Enabled {
+-		proxy.sessions = make(map[*Session]struct{})
+-		go proxy.ListenTCP()
++	proxy.stratums = make([]*StratumServer, len(cfg.Proxy.Stratums))
++	log.Printf("Total StratumServer count: %d", len(cfg.Proxy.Stratums))
++	for i, st := range cfg.Proxy.Stratums {
++		stratumserver := StratumServer{sessions: make(map[*Session]struct{}), diff: util.GetTargetHex(st.Difficulty)}
++		proxy.stratums[i] = &stratumserver
++		if st.Enabled {
++			go proxy.ListenTCP(i)
++		}
+ 	}
+ 
+ 	proxy.fetchBlockTemplate()
+@@ -128,6 +147,7 @@ func (s *ProxyServer) Start() {
+ 	r := mux.NewRouter()
+ 	r.Handle("/{login:0x[0-9a-fA-F]{40}}/{id:[0-9a-zA-Z-_]{1,8}}", s)
+ 	r.Handle("/{login:0x[0-9a-fA-F]{40}}", s)
++	r.Handle("/{login:[0-9a-zA-Z]{27,34}}", s)
+ 	srv := &http.Server{
+ 		Addr:           s.config.Proxy.Listen,
+ 		Handler:        r,
+@@ -193,7 +213,8 @@ func (s *ProxyServer) handleClient(w http.ResponseWriter, r *http.Request, ip st
+ 	r.Body = http.MaxBytesReader(w, r.Body, s.config.Proxy.LimitBodySize)
+ 	defer r.Body.Close()
+ 
+-	cs := &Session{ip: ip, enc: json.NewEncoder(w)}
++	// use the first stratum diffculty as the proxy diffculty
++	cs := &Session{stratum_id: 0, ip: ip, enc: json.NewEncoder(w)}
+ 	dec := json.NewDecoder(r.Body)
+ 	for {
+ 		var req JSONRpcReq
+@@ -216,13 +237,8 @@ func (cs *Session) handleMessage(s *ProxyServer, r *http.Request, req *JSONRpcRe
+ 	}
+ 
+ 	vars := mux.Vars(r)
+-	login := strings.ToLower(vars["login"])
++	login := vars["login"]
+ 
+-	if !util.IsValidHexAddress(login) {
+-		errReply := &ErrorReply{Code: -1, Message: "Invalid login"}
+-		cs.sendError(req.Id, errReply)
+-		return
+-	}
+ 	if !s.policy.ApplyLoginPolicy(login, cs.ip) {
+ 		errReply := &ErrorReply{Code: -1, Message: "You are blacklisted"}
+ 		cs.sendError(req.Id, errReply)
+@@ -241,7 +257,7 @@ func (cs *Session) handleMessage(s *ProxyServer, r *http.Request, req *JSONRpcRe
+ 	case "eth_submitWork":
+ 		if req.Params != nil {
+ 			var params []string
+-			err := json.Unmarshal(req.Params, &params)
++			err := json.Unmarshal(*req.Params, &params)
+ 			if err != nil {
+ 				log.Printf("Unable to parse params from %v", cs.ip)
+ 				s.policy.ApplyMalformedPolicy(cs.ip)
+@@ -258,6 +274,7 @@ func (cs *Session) handleMessage(s *ProxyServer, r *http.Request, req *JSONRpcRe
+ 			errReply := &ErrorReply{Code: -1, Message: "Malformed request"}
+ 			cs.sendError(req.Id, errReply)
+ 		}
++
+ 	case "eth_getBlockByNumber":
+ 		reply := s.handleGetBlockByNumberRPC()
+ 		cs.sendResult(req.Id, reply)
+@@ -269,12 +286,12 @@ func (cs *Session) handleMessage(s *ProxyServer, r *http.Request, req *JSONRpcRe
+ 	}
+ }
+ 
+-func (cs *Session) sendResult(id json.RawMessage, result interface{}) error {
++func (cs *Session) sendResult(id *json.RawMessage, result interface{}) error {
+ 	message := JSONRpcResp{Id: id, Version: "2.0", Error: nil, Result: result}
+ 	return cs.enc.Encode(&message)
+ }
+ 
+-func (cs *Session) sendError(id json.RawMessage, reply *ErrorReply) error {
++func (cs *Session) sendError(id *json.RawMessage, reply *ErrorReply) error {
+ 	message := JSONRpcResp{Id: id, Version: "2.0", Error: reply}
+ 	return cs.enc.Encode(&message)
+ }
+diff --git a/proxy/stratum.go b/proxy/stratum.go
+index ff3b61a..2c266df 100644
+--- a/proxy/stratum.go
++++ b/proxy/stratum.go
+@@ -16,11 +16,11 @@ const (
+ 	MaxReqSize = 1024
+ )
+ 
+-func (s *ProxyServer) ListenTCP() {
+-	timeout := util.MustParseDuration(s.config.Proxy.Stratum.Timeout)
+-	s.timeout = timeout
++func (s *ProxyServer) ListenTCP(stratum_id int) {
++	timeout := util.MustParseDuration(s.config.Proxy.Stratums[stratum_id].Timeout)
++	s.stratums[stratum_id].timeout = timeout
+ 
+-	addr, err := net.ResolveTCPAddr("tcp", s.config.Proxy.Stratum.Listen)
++	addr, err := net.ResolveTCPAddr("tcp", s.config.Proxy.Stratums[stratum_id].Listen)
+ 	if err != nil {
+ 		log.Fatalf("Error: %v", err)
+ 	}
+@@ -30,8 +30,8 @@ func (s *ProxyServer) ListenTCP() {
+ 	}
+ 	defer server.Close()
+ 
+-	log.Printf("Stratum listening on %s", s.config.Proxy.Stratum.Listen)
+-	var accept = make(chan int, s.config.Proxy.Stratum.MaxConn)
++	log.Printf("Stratum[%d] of Difficulty[%d] listening on %s", stratum_id, s.config.Proxy.Stratums[stratum_id].Difficulty, s.config.Proxy.Stratums[stratum_id].Listen)
++	var accept = make(chan int, s.config.Proxy.Stratums[stratum_id].MaxConn)
+ 	n := 0
+ 
+ 	for {
+@@ -48,7 +48,7 @@ func (s *ProxyServer) ListenTCP() {
+ 			continue
+ 		}
+ 		n += 1
+-		cs := &Session{conn: conn, ip: ip}
++		cs := &Session{stratum_id: stratum_id, conn: conn, ip: ip}
+ 
+ 		accept <- n
+ 		go func(cs *Session) {
+@@ -65,7 +65,7 @@ func (s *ProxyServer) ListenTCP() {
+ func (s *ProxyServer) handleTCPClient(cs *Session) error {
+ 	cs.enc = json.NewEncoder(cs.conn)
+ 	connbuff := bufio.NewReaderSize(cs.conn, MaxReqSize)
+-	s.setDeadline(cs.conn)
++	s.setDeadline(cs.conn, cs.stratum_id)
+ 
+ 	for {
+ 		data, isPrefix, err := connbuff.ReadLine()
+@@ -90,7 +90,7 @@ func (s *ProxyServer) handleTCPClient(cs *Session) error {
+ 				log.Printf("Malformed stratum request from %s: %v", cs.ip, err)
+ 				return err
+ 			}
+-			s.setDeadline(cs.conn)
++			s.setDeadline(cs.conn, cs.stratum_id)
+ 			err = cs.handleTCPMessage(s, &req)
+ 			if err != nil {
+ 				return err
+@@ -105,7 +105,7 @@ func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error {
+ 	switch req.Method {
+ 	case "eth_submitLogin":
+ 		var params []string
+-		err := json.Unmarshal(req.Params, &params)
++		err := json.Unmarshal(*req.Params, &params)
+ 		if err != nil {
+ 			log.Println("Malformed stratum request params from", cs.ip)
+ 			return err
+@@ -123,7 +123,7 @@ func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error {
+ 		return cs.sendTCPResult(req.Id, &reply)
+ 	case "eth_submitWork":
+ 		var params []string
+-		err := json.Unmarshal(req.Params, &params)
++		err := json.Unmarshal(*req.Params, &params)
+ 		if err != nil {
+ 			log.Println("Malformed stratum request params from", cs.ip)
+ 			return err
+@@ -141,7 +141,7 @@ func (cs *Session) handleTCPMessage(s *ProxyServer, req *StratumReq) error {
+ 	}
+ }
+ 
+-func (cs *Session) sendTCPResult(id json.RawMessage, result interface{}) error {
++func (cs *Session) sendTCPResult(id *json.RawMessage, result interface{}) error {
+ 	cs.Lock()
+ 	defer cs.Unlock()
+ 
+@@ -157,7 +157,7 @@ func (cs *Session) pushNewJob(result interface{}) error {
+ 	return cs.enc.Encode(&message)
+ }
+ 
+-func (cs *Session) sendTCPError(id json.RawMessage, reply *ErrorReply) error {
++func (cs *Session) sendTCPError(id *json.RawMessage, reply *ErrorReply) error {
+ 	cs.Lock()
+ 	defer cs.Unlock()
+ 
+@@ -169,40 +169,43 @@ func (cs *Session) sendTCPError(id json.RawMessage, reply *ErrorReply) error {
+ 	return errors.New(reply.Message)
+ }
+ 
+-func (self *ProxyServer) setDeadline(conn *net.TCPConn) {
+-	conn.SetDeadline(time.Now().Add(self.timeout))
++func (self *ProxyServer) setDeadline(conn *net.TCPConn, stratum_id int) {
++	conn.SetDeadline(time.Now().Add(self.stratums[stratum_id].timeout))
+ }
+ 
+ func (s *ProxyServer) registerSession(cs *Session) {
+-	s.sessionsMu.Lock()
+-	defer s.sessionsMu.Unlock()
+-	s.sessions[cs] = struct{}{}
++	s.stratums[cs.stratum_id].sessionsMu.Lock()
++	defer s.stratums[cs.stratum_id].sessionsMu.Unlock()
++	s.stratums[cs.stratum_id].sessions[cs] = struct{}{}
+ }
+ 
+ func (s *ProxyServer) removeSession(cs *Session) {
+-	s.sessionsMu.Lock()
+-	defer s.sessionsMu.Unlock()
+-	delete(s.sessions, cs)
++	s.stratums[cs.stratum_id].sessionsMu.Lock()
++	defer s.stratums[cs.stratum_id].sessionsMu.Unlock()
++	delete(s.stratums[cs.stratum_id].sessions, cs)
+ }
+ 
+-func (s *ProxyServer) broadcastNewJobs() {
++func (s *ProxyServer) broadcastNewJobs(stratum_id int) {
+ 	t := s.currentBlockTemplate()
+ 	if t == nil || len(t.Header) == 0 || s.isSick() {
+ 		return
+ 	}
+-	reply := []string{t.Header, t.Seed, s.diff}
+ 
+-	s.sessionsMu.RLock()
+-	defer s.sessionsMu.RUnlock()
++	stratum := s.stratums[stratum_id]
+ 
+-	count := len(s.sessions)
++	reply := []string{t.Header, t.Seed, stratum.diff}
++
++	stratum.sessionsMu.RLock()
++	defer stratum.sessionsMu.RUnlock()
++
++	count := len(stratum.sessions)
+ 	log.Printf("Broadcasting new job to %v stratum miners", count)
+ 
+ 	start := time.Now()
+ 	bcast := make(chan int, 1024)
+ 	n := 0
+ 
+-	for m, _ := range s.sessions {
++	for m, _ := range stratum.sessions {
+ 		n++
+ 		bcast <- n
+ 
+@@ -213,7 +216,7 @@ func (s *ProxyServer) broadcastNewJobs() {
+ 				log.Printf("Job transmit error to %v@%v: %v", cs.login, cs.ip, err)
+ 				s.removeSession(cs)
+ 			} else {
+-				s.setDeadline(cs.conn)
++				s.setDeadline(cs.conn, cs.stratum_id)
+ 			}
+ 		}(m)
+ 	}
+diff --git a/rpc/rpc.go b/rpc/rpc.go
+index 96137bb..78e6b89 100644
+--- a/rpc/rpc.go
++++ b/rpc/rpc.go
+@@ -9,7 +9,7 @@ import (
+ 	"math/big"
+ 	"net/http"
+ 	"strconv"
+-	"strings"
++	//"strings"
+ 	"sync"
+ 
+ 	"github.com/ethereum/go-ethereum/common"
+@@ -21,12 +21,42 @@ type RPCClient struct {
+ 	sync.RWMutex
+ 	Url         string
+ 	Name        string
++	Account     string
++	Password    string
+ 	sick        bool
+ 	sickRate    int
+ 	successRate int
+ 	client      *http.Client
+ }
+ 
++type GetBalanceReply struct {
++	Unspent int64 `json:"unspent"`
++	Frozen int64 `json:"frozen"`
++}
++
++
++type GetPeerCountReply struct {
++	Peers []string `json:"peers"`
++}
++
++type MVSTxOutput struct {
++	Address     string `json:"address"`
++	Value       int64 `json:"value"`
++}
++
++type MVSTx struct {
++	Hash     string `json:"hash"`
++	Locktime string `json:"lock_time"`
++	Version  string `json:"version"`
++	Outputs  []MVSTxOutput `json:"outputs"`
++}
++
++type MVSSignRawTxReply struct {
++	Hash     string `json:"hash"`
++	RawTx string `json:"rawtx"`
++}
++
++/*
+ type GetBlockReply struct {
+ 	Number       string   `json:"number"`
+ 	Hash         string   `json:"hash"`
+@@ -39,48 +69,59 @@ type GetBlockReply struct {
+ 	Uncles       []string `json:"uncles"`
+ 	// https://github.com/ethereum/EIPs/issues/95
+ 	SealFields []string `json:"sealFields"`
++}*/
++
++type GetBlockReply struct {
++	Difficulty       string `json:"bits"`
++	Hash             string `json:"hash"`
++	MerkleTreeHash   string `json:"merkle_tree_hash"`
++	Nonce            string `json:"nonce"`
++	PrevHash         string `json:"previous_block_hash"`
++	TimeStamp        uint32 `json:"time_stamp"`
++	Version          int32 `json:"version"`
++	Mixhash          string `json:"mixhash"`
++	Number           int64 `json:"number"`
++	TransactionCount int32 `json:"transaction_count"`
++	Transactions     []MVSTx `json:"transactions"`
+ }
+ 
+ type GetBlockReplyPart struct {
+-	Number     string `json:"number"`
+-	Difficulty string `json:"difficulty"`
++	Number     uint64 `json:"number"`
++	Difficulty string `json:"bits"`
+ }
+ 
  const receiptStatusSuccessful = "0x1"
  
  type TxReceipt struct {
-@@ -99,14 +104,16 @@ func (r *RPCClient) GetWork() ([]string, error) {
+-	TxHash    string `json:"transactionHash"`
+-	GasUsed   string `json:"gasUsed"`
+-	BlockHash string `json:"blockHash"`
+-	Status    string `json:"status"`
++	TxHash string `json:"hash"`
++	Height int64  `json:"height"`
++	//TxHash    string `json:"transactionHash"`
++	//GasUsed   string `json:"gasUsed"`
++	//BlockHash string `json:"blockHash"`
++	//Status    string `json:"status"`
  }
  
- func (r *RPCClient) GetPendingBlock() (*GetBlockReplyPart, error) {
--	rpcResp, err := r.doPost(r.Url, "eth_getBlockByNumber", []interface{}{"pending", false})
-+	//rpcResp, err := r.doPost(r.Url, "eth_getBlockByNumber", []interface{}{"pending", false})
-+	rpcResp, err := r.doPost(r.Url, "getblockheader", []interface{}{})
+ func (r *TxReceipt) Confirmed() bool {
+-	return len(r.BlockHash) > 0
++	//return len(r.BlockHash) > 0
++	return r.Height != 0
+ }
+ 
+ // Use with previous method
+ func (r *TxReceipt) Successful() bool {
+-	if len(r.Status) > 0 {
++	/*if len(r.Status) > 0 {
+ 		return r.Status == receiptStatusSuccessful
+-	}
++	}*/
+ 	return true
+ }
+ 
+-type Tx struct {
+-	Gas      string `json:"gas"`
+-	GasPrice string `json:"gasPrice"`
+-	Hash     string `json:"hash"`
+-}
+-
+ type JSONRpcResp struct {
+ 	Id     *json.RawMessage       `json:"id"`
+ 	Result *json.RawMessage       `json:"result"`
+ 	Error  map[string]interface{} `json:"error"`
+ }
+ 
+-func NewRPCClient(name, url, timeout string) *RPCClient {
+-	rpcClient := &RPCClient{Name: name, Url: url}
++func NewRPCClient(name, url, account, password, timeout string) *RPCClient {
++	rpcClient := &RPCClient{Name: name, Url: url, Account: account, Password: password}
+ 	timeoutIntv := util.MustParseDuration(timeout)
+ 	rpcClient.client = &http.Client{
+ 		Timeout: timeoutIntv,
+@@ -89,7 +130,8 @@ func NewRPCClient(name, url, timeout string) *RPCClient {
+ }
+ 
+ func (r *RPCClient) GetWork() ([]string, error) {
+-	rpcResp, err := r.doPost(r.Url, "eth_getWork", []string{})
++	//rpcResp, err := r.doPost(r.Url, "eth_getWork", []string{})
++	rpcResp, err := r.doPost(r.Url, "getwork", []string{})
  	if err != nil {
  		return nil, err
  	}
- 	if rpcResp.Result != nil {
--		var reply *GetBlockReplyPart
-+		var reply *GetBlockHeader
- 		err = json.Unmarshal(*rpcResp.Result, &reply)
--		return reply, err
-+		ret := &GetBlockReplyPart{"0x"+strconv.FormatUint((*reply).Number,16), (*reply).Difficulty}
-+		return ret, err
- 	}
- 	return nil, nil
+@@ -98,8 +140,28 @@ func (r *RPCClient) GetWork() ([]string, error) {
+ 	return reply, err
  }
+ 
++func (r *RPCClient) SetAddress(address string) (string, error) {
++	rpcResp, err := r.doPost(r.Url, "setminingaccount", []string{r.Account, r.Password, address})
++	if err != nil {
++		return "post fail", err
++	}
++	var reply string
++	err = json.Unmarshal(*rpcResp.Result, &reply)
++	return reply, err
++}
++
++func (r *RPCClient) GetHeight() (int64, error) {
++	rpcResp, err := r.doPost(r.Url, "fetch-height", []string{})
++	if err != nil {
++		return 0, err
++	}
++	var height int64
++	err = json.Unmarshal(*rpcResp.Result, &height)
++	return height, err
++}
++
+ func (r *RPCClient) GetPendingBlock() (*GetBlockReplyPart, error) {
+-	rpcResp, err := r.doPost(r.Url, "eth_getBlockByNumber", []interface{}{"pending", false})
++	rpcResp, err := r.doPost(r.Url, "fetchheaderext", []interface{}{r.Account, r.Password, "pending"})
+ 	if err != nil {
+ 		return nil, err
+ 	}
+@@ -112,13 +174,13 @@ func (r *RPCClient) GetPendingBlock() (*GetBlockReplyPart, error) {
+ }
+ 
+ func (r *RPCClient) GetBlockByHeight(height int64) (*GetBlockReply, error) {
+-	params := []interface{}{fmt.Sprintf("0x%x", height), true}
+-	return r.getBlockBy("eth_getBlockByNumber", params)
++	params := []interface{}{height}
++	return r.getBlockBy("getblock", params)
+ }
+ 
+ func (r *RPCClient) GetBlockByHash(hash string) (*GetBlockReply, error) {
+-	params := []interface{}{hash, true}
+-	return r.getBlockBy("eth_getBlockByHash", params)
++	params := []interface{}{hash}
++	return r.getBlockBy("getblock", params)
+ }
+ 
+ func (r *RPCClient) GetUncleByBlockNumberAndIndex(height int64, index int) (*GetBlockReply, error) {
+@@ -140,7 +202,7 @@ func (r *RPCClient) getBlockBy(method string, params []interface{}) (*GetBlockRe
+ }
+ 
+ func (r *RPCClient) GetTxReceipt(hash string) (*TxReceipt, error) {
+-	rpcResp, err := r.doPost(r.Url, "eth_getTransactionReceipt", []string{hash})
++	rpcResp, err := r.doPost(r.Url, "gettx", []string{hash})
+ 	if err != nil {
+ 		return nil, err
+ 	}
+@@ -153,26 +215,33 @@ func (r *RPCClient) GetTxReceipt(hash string) (*TxReceipt, error) {
+ }
+ 
+ func (r *RPCClient) SubmitBlock(params []string) (bool, error) {
+-	rpcResp, err := r.doPost(r.Url, "eth_submitWork", params)
++	//rpcResp, err := r.doPost(r.Url, "eth_submitWork", params)
++	rpcResp, err := r.doPost(r.Url, "submitwork", params)
+ 	if err != nil {
+ 		return false, err
+ 	}
+ 	var reply bool
+-	err = json.Unmarshal(*rpcResp.Result, &reply)
++	//err = json.Unmarshal(*rpcResp.Result, &reply_str)
++	fmt.Println(*rpcResp.Result)
++	if string(*rpcResp.Result) == "\"false\"" {
++		reply = false
++	} else {
++		reply = true
++	}
+ 	return reply, err
+ }
+ 
+ func (r *RPCClient) GetBalance(address string) (*big.Int, error) {
+-	rpcResp, err := r.doPost(r.Url, "eth_getBalance", []string{address, "latest"})
++	rpcResp, err := r.doPost(r.Url, "getaddressetp", []string{address})
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	var reply string
++	var reply GetBalanceReply
+ 	err = json.Unmarshal(*rpcResp.Result, &reply)
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	return util.String2Big(reply), err
++	return big.NewInt(reply.Unspent - reply.Frozen), err
+ }
+ 
+ func (r *RPCClient) Sign(from string, s string) (string, error) {
+@@ -193,47 +262,157 @@ func (r *RPCClient) Sign(from string, s string) (string, error) {
+ }
+ 
+ func (r *RPCClient) GetPeerCount() (int64, error) {
+-	rpcResp, err := r.doPost(r.Url, "net_peerCount", nil)
++	rpcResp, err := r.doPost(r.Url, "getpeerinfo", nil)
+ 	if err != nil {
+ 		return 0, err
+ 	}
+-	var reply string
++	var reply GetPeerCountReply
+ 	err = json.Unmarshal(*rpcResp.Result, &reply)
+ 	if err != nil {
+ 		return 0, err
+ 	}
+-	return strconv.ParseInt(strings.Replace(reply, "0x", "", -1), 16, 64)
++	return int64(len(reply.Peers)), nil
+ }
+ 
+-func (r *RPCClient) SendTransaction(from, to, gas, gasPrice, value string, autoGas bool) (string, error) {
+-	params := map[string]string{
+-		"from":  from,
+-		"to":    to,
+-		"value": value,
++func (r *RPCClient) SendTransaction(from, to, value string) (string, error) {
++	rpcResp, err := r.doPost(r.Url, "sendfrom", []string{r.Account, r.Password, from, to, value})
++	if err != nil {
++		return "", err
+ 	}
+-	if !autoGas {
+-		params["gas"] = gas
+-		params["gasPrice"] = gasPrice
++
++	var reply MVSTx
++	err = json.Unmarshal(*rpcResp.Result, &reply)
++	fmt.Println("json.Unmarshal", err)
++	if err != nil {
++		return "", err
+ 	}
+-	rpcResp, err := r.doPost(r.Url, "eth_sendTransaction", []interface{}{params})
+-	var reply string
++
++	return reply.Hash, err
++}
++
++/*
++   :param: type(uint16_t): "Transaction type. 0 -- transfer etp, 1 -- deposit etp, 3 -- transfer asset"
++   :param: senders(list of string): "Send from addresses"
++   :param: receivers(list of string): "Send to [address:amount]. amount is asset number if sybol option specified"
++   :param: symbol(std::string): "asset name, not specify this option for etp tx"
++   :param: deposit(uint16_t): "Deposits support [7, 30, 90, 182, 365] days. defaluts to 7 days"
++   :param: mychange(std::string): "Mychange to this address, includes etp and asset change"
++   :param: message(std::string): "Message/Information attached to this transaction"
++   :param: fee(uint64_t): "Transaction fee. defaults to 10000 ETP bits"
++*/
++func (r *RPCClient) createRawTX(type_ uint16, senders []string, receivers []string, symbol string, deposit uint16, mychange string, message string, fee uint64) (string, error) {
++	cmd := "createrawtx"
++	positional := []interface{}{}
++
++	optional := map[string]interface{}{
++		"type":      type_,
++		"senders":   senders,
++		"receivers": receivers,
++	}
++
++	if symbol != "" {
++		optional["symbol"] = symbol
++	}
++	if deposit != 0 {
++		optional["deposit"] = deposit
++	}
++	if mychange != "" {
++		optional["mychange"] = mychange
++	}
++	if message != "" {
++		optional["message"] = message
++	}
++	if fee != 0 {
++		optional["fee"] = fee
++	}
++	args := append(positional, optional)
++	rpcResp, err := r.doPost(r.Url, cmd, args)
+ 	if err != nil {
+-		return reply, err
++		return "", err
+ 	}
+-	err = json.Unmarshal(*rpcResp.Result, &reply)
++	var rawtx string
++	err = json.Unmarshal(*rpcResp.Result, &rawtx)
+ 	if err != nil {
+-		return reply, err
++		return "", err
+ 	}
+-	/* There is an inconsistence in a "standard". Geth returns error if it can't unlock signer account,
+-	 * but Parity returns zero hash 0x000... if it can't send tx, so we must handle this case.
+-	 * https://github.com/ethereum/wiki/wiki/JSON-RPC#returns-22
+-	 */
+-	if util.IsZeroHash(reply) {
+-		err = errors.New("transaction is not yet available")
++
++	return rawtx, err
++}
++/*
++   :param: ACCOUNTNAME(std::string): Account name required.
++   :param: ACCOUNTAUTH(std::string): Account password(authorization) required.
++   :param: TRANSACTION(string of hexcode): "The input Base16 transaction to sign."
++*/
++func (r *RPCClient) signRawTX(TRANSACTION string) (string, error) {
++	cmd := "signrawtx"
++	positional := []interface{}{r.Account, r.Password, TRANSACTION}
++
++	optional := map[string]interface{}{}
++
++	args := append(positional, optional)
++	rpcResp, err := r.doPost(r.Url, cmd, args)
++	if err != nil {
++		return "", err
+ 	}
+-	return reply, err
++
++	var rawtx MVSSignRawTxReply
++	err = json.Unmarshal(*rpcResp.Result, &rawtx)
++	if err != nil {
++		return "", err
++	}
++
++	return rawtx.RawTx, err
++}
++
++/*
++   :param: TRANSACTION(string of hexcode): "The input Base16 transaction to broadcast."
++   :param: fee(uint64_t): "The max tx fee. default_value 10 etp"
++*/
++func (r *RPCClient) sendRawTX(TRANSACTION string, fee uint64) (string, error) {
++	cmd := "sendrawtx"
++	positional := []interface{}{TRANSACTION}
++
++	optional := map[string]interface{}{}
++
++	if fee != 0 {
++		optional["fee"] = fee
++	}
++	args := append(positional, optional)
++	rpcResp, err := r.doPost(r.Url, cmd, args)
++	if err != nil {
++		return "", err
++	}
++
++	var txhash string
++	err = json.Unmarshal(*rpcResp.Result, &txhash)
++	if err != nil {
++		return "", err
++	}
++
++	return txhash, err
++}
++
++func (r *RPCClient) SendMore(from string, receivers map[string]int64 ) (string, error) {
++	var	receivers_ []string
++	var senders []string
++	for	login, amount := range receivers {
++		receivers_ = append(receivers_, login + ":" + strconv.FormatInt(amount, 10))
++	}
++	senders = append(senders, from)
++	rawtx1, err1 := r.createRawTX(0, senders, receivers_, "", 0, from, "", 10000)
++	if err1 != nil {
++		return "createRawTX Failed", err1
++	}
++
++	rawtx2, err2 := r.signRawTX(rawtx1)
++	if err2 != nil {
++		return "signRawTX Failed", err2
++	}
++
++	return r.sendRawTX(rawtx2, 10000)
+ }
+ 
++
+ func (r *RPCClient) doPost(url string, method string, params interface{}) (*JSONRpcResp, error) {
+ 	jsonReq := map[string]interface{}{"jsonrpc": "2.0", "method": method, "params": params, "id": 0}
+ 	data, _ := json.Marshal(jsonReq)
+diff --git a/storage/redis.go b/storage/redis.go
+index 449b58f..2262cce 100644
+--- a/storage/redis.go
++++ b/storage/redis.go
+@@ -46,7 +46,7 @@ type BlockData struct {
+ }
+ 
+ func (b *BlockData) RewardInShannon() int64 {
+-	reward := new(big.Int).Div(b.Reward, util.Shannon)
++	reward := new(big.Int).Div(b.Reward, util.Satoshi)
+ 	return reward.Int64()
+ }
+ 
+diff --git a/util/util.go b/util/util.go
+index b4219c5..ec2b5bd 100644
+--- a/util/util.go
++++ b/util/util.go
+@@ -5,23 +5,67 @@ import (
+ 	"regexp"
+ 	"strconv"
+ 	"time"
+-
++	"bytes"
++	"crypto/sha256"
++	"reflect"
+ 	"github.com/ethereum/go-ethereum/common"
+ 	"github.com/ethereum/go-ethereum/common/math"
+ )
+ 
+ var Ether = math.BigPow(10, 18)
+-var Shannon = math.BigPow(10, 9)
++var Satoshi = math.BigPow(10, 8)
+ 
+ var pow256 = math.BigPow(2, 256)
+-var addressPattern = regexp.MustCompile("^0x[0-9a-fA-F]{40}$")
++var bitcoinAlphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
++var b58Alphabet = []byte(bitcoinAlphabet)
++var addressPattern = regexp.MustCompile("^M[" + bitcoinAlphabet + "]{33}$")
+ var zeroHash = regexp.MustCompile("^0?x?0+$")
+ 
+-func IsValidHexAddress(s string) bool {
+-	if IsZeroHash(s) || !addressPattern.MatchString(s) {
++func Base58Decode(input []byte) []byte {
++    result := big.NewInt(0)
++    zeroBytes := 0
++
++    for _, b := range input {
++        if b != b58Alphabet[0] {
++            break
++        }
++
++        zeroBytes++
++    }
++
++    payload := input[zeroBytes:]
++    for _, b := range payload {
++        charIndex := bytes.IndexByte(b58Alphabet, b)
++        result.Mul(result, big.NewInt(int64(len(b58Alphabet))))
++        result.Add(result, big.NewInt(int64(charIndex)))
++    }
++
++    decoded := result.Bytes()
++    decoded = append(bytes.Repeat([]byte{byte(0x00)}, zeroBytes), decoded...)
++
++    return decoded
++}
++
++func IsValidBitcoinAddress(s string) bool {
++	if !addressPattern.MatchString(s) {
+ 		return false
+ 	}
+-	return true
++
++	decoded := Base58Decode([]byte(s))
++
++	bitcoin_hash := func (input []byte) []byte {
++		h1 := sha256.New()
++		h1.Write(input)
++
++		h2 := sha256.New()
++		h2.Write(h1.Sum(nil))
++		return h2.Sum(nil)
++	}
++
++	checksum := bitcoin_hash(decoded[:len(decoded)-4])
++
++
++	return reflect.DeepEqual(checksum[:4], decoded[len(decoded)-4:])
+ }
+ 
+ func IsZeroHash(s string) bool {
+diff --git a/www/app/helpers/format-balance.js b/www/app/helpers/format-balance.js
+index 0f5d024..2021cd8 100644
+--- a/www/app/helpers/format-balance.js
++++ b/www/app/helpers/format-balance.js
+@@ -1,7 +1,7 @@
+ import Ember from 'ember';
+ 
+ export function formatBalance(value) {
+-	value = value * 0.000000001;
++	value = value * 0.00000001;
+ 	return value.toFixed(8);
+ }
+ 
+diff --git a/www/app/models/block.js b/www/app/models/block.js
+index 7c7ee21..610f1a9 100644
+--- a/www/app/models/block.js
++++ b/www/app/models/block.js
+@@ -19,7 +19,7 @@ var Block = Ember.Object.extend({
+ 
+ 	formatReward: Ember.computed('reward', function() {
+ 		if (!this.get('orphan')) {
+-			var value = parseInt(this.get('reward')) * 0.000000000000000001;
++			var value = parseInt(this.get('reward')) * 0.00000001;
+ 			return value.toFixed(6);
+ 		} else {
+ 		  return 0;
+diff --git a/www/app/models/payment.js b/www/app/models/payment.js
+index f07c9a3..595b284 100644
+--- a/www/app/models/payment.js
++++ b/www/app/models/payment.js
+@@ -2,7 +2,7 @@ import Ember from 'ember';
+ 
+ var Payment = Ember.Object.extend({
+ 	formatAmount: Ember.computed('amount', function() {
+-		var value = parseInt(this.get('amount')) * 0.000000001;
++		var value = parseInt(this.get('amount')) * 0.00000001;
+ 		return value.toFixed(8);
+ 	})
+ });
+diff --git a/www/app/templates/account/payouts.hbs b/www/app/templates/account/payouts.hbs
+index 7ef5b7f..e96bba8 100644
+--- a/www/app/templates/account/payouts.hbs
++++ b/www/app/templates/account/payouts.hbs
+@@ -15,7 +15,7 @@
+           <tr>
+             <td>{{format-date-locale tx.timestamp}}</td>
+             <td>
+-              <a href="https://etherscan.io/tx/{{tx.tx}}" class="hash" rel="nofollow" target="_blank">{{tx.tx}}</a>
++              <a href="https://explorer.mvs.org/#!/tx/{{tx.tx}}" class="hash" rel="nofollow" target="_blank">{{tx.tx}}</a>
+             </td>
+             <td>{{format-balance tx.amount}}</td>
+           </tr>
+diff --git a/www/app/templates/blocks/block.hbs b/www/app/templates/blocks/block.hbs
+index 747b96c..a334ff2 100644
+--- a/www/app/templates/blocks/block.hbs
++++ b/www/app/templates/blocks/block.hbs
+@@ -3,7 +3,7 @@
+     {{#if block.uncle}}
+       <a href="https://etherscan.io/uncle/{{block.uncleHeight}}" rel="nofollow" target="_blank">{{format-number block.height}}</a>
+     {{else}}
+-      <a href="https://etherscan.io/block/{{block.height}}" rel="nofollow" target="_blank">{{format-number block.height}}</a>
++      <a href="https://explorer.mvs.org/#!/blk/{{block.height}}" rel="nofollow" target="_blank">{{format-number block.height}}</a>
+     {{/if}}
+   </td>
+   <td>
+@@ -12,7 +12,7 @@
+     {{else if block.orphan}}
+       <span class="label label-danger">Orphan</span>
+     {{else}}
+-      <a href="https://etherscan.io/block/{{block.hash}}" class="hash" rel="nofollow" target="_blank">{{block.hash}}</a>
++      <a href="https://explorer.mvs.org/#!/blk/{{block.height}}" class="hash" rel="nofollow" target="_blank">{{block.hash}}</a>
+     {{/if}}
+   </td>
+   <td>{{format-date-locale block.timestamp}}</td>
+diff --git a/www/app/templates/blocks/pending.hbs b/www/app/templates/blocks/pending.hbs
+index 486abc5..26446aa 100644
+--- a/www/app/templates/blocks/pending.hbs
++++ b/www/app/templates/blocks/pending.hbs
+@@ -12,7 +12,7 @@
+     <tbody>
+       {{#each model.candidates as |block|}}
+       <tr>
+-        <td><a href="https://etherscan.io/block/{{block.height}}" rel="nofollow" target="_blank">{{format-number block.height}}</a></td>
++        <td><a href="https://explorer.mvs.org/#!/blk/{{block.height}}" rel="nofollow" target="_blank">{{format-number block.height}}</a></td>
+         <td>{{format-date-locale block.timestamp}}</td>
+         <td>
+           {{#if block.isLucky}}
+diff --git a/www/app/templates/payments.hbs b/www/app/templates/payments.hbs
+index a34d558..b472f71 100644
+--- a/www/app/templates/payments.hbs
++++ b/www/app/templates/payments.hbs
+@@ -23,10 +23,10 @@
+             <td>{{format-date-locale tx.timestamp}}</td>
+             <td>{{format-number tx.formatAmount}}</td>
+             <td>
+-              <a href="https://etherscan.io/address/{{tx.address}}" class="hash" rel="nofollow" target="_blank">{{tx.address}}</a>
++              <a href="https://explorer.mvs.org/#!/adr/{{tx.address}}" class="hash" rel="nofollow" target="_blank">{{tx.address}}</a>
+             </td>
+             <td>
+-              <a href="https://etherscan.io/tx/{{tx.tx}}" class="hash" rel="nofollow" target="_blank">{{format-tx tx.tx}}</a>
++              <a href="https://explorer.mvs.org/#!/tx/{{tx.tx}}" class="hash" rel="nofollow" target="_blank">{{tx.tx}}</a>
+             </td>
+           </tr>
+         {{/each}}
