@@ -186,7 +186,7 @@ index 97009eb..ca62c91 100644
 +	mustPay := 0
 +	minersPaid := 0
 +	totalAmount := big.NewInt(0)
-+	
++
 +	toPay := make(map[string]int64)
 +	payees, err := u.backend.GetPayees()
 +	if err != nil {
@@ -517,11 +517,11 @@ index c073ef0..d31eefd 100644
 +		}
  	}
 -	return false
-+	
++
 +	nonce1, _ := strconv.ParseInt(block.Nonce, 10, 64)
 +	nonce2, _ := strconv.ParseInt(strings.Replace(candidate.Nonce, "0x", "", -1), 16, 64)
 +
-+	return nonce1 == nonce2 
++	return nonce1 == nonce2
  }
  
  func (u *BlockUnlocker) handleBlock(block *rpc.GetBlockReply, candidate *storage.BlockData) error {
@@ -533,7 +533,7 @@ index c073ef0..d31eefd 100644
  	candidate.Height = correctHeight
  	reward := getConstReward(candidate.Height)
 -
-+	
++
  	// Add TX fees
 -	extraTxReward, err := u.getExtraRewardForTx(block)
 +	extraTxReward, err := u.getRewardWithFee(block)
@@ -546,7 +546,7 @@ index c073ef0..d31eefd 100644
 +	}
 +
 +	extraTxReward.Sub(extraTxReward, reward)
-+	
++
 +
  	if u.config.KeepTxFees {
  		candidate.ExtraReward = extraTxReward
@@ -753,7 +753,7 @@ index cf06ce8..9b57e5c 100644
  		log.Printf("Error while refreshing pending block on %s: %s", rpc.Name, err)
  		return
  	}
-+	
++
  	reply, err := rpc.GetWork()
  	if err != nil {
  		log.Printf("Error while refreshing block template on %s: %s", rpc.Name, err)
@@ -798,7 +798,7 @@ index cf06ce8..9b57e5c 100644
  	}
 -	blockDiff, err := strconv.ParseInt(strings.Replace(reply.Difficulty, "0x", "", -1), 16, 64)
 +	blockDiff, err := strconv.ParseInt(reply.Difficulty, 10, 64)
-+	
++
  	if err != nil {
  		log.Println("Can't parse pending block difficulty")
  		return nil, 0, 0, err
@@ -941,7 +941,7 @@ index 8d312f9..b9863da 100644
  
 -	if hasher.Verify(block) {
 -		ok, err := s.rpc().SubmitBlock(params)
-+	if hasher.Verify(block) { 
++	if hasher.Verify(block) {
 +		n := nonce ^ 0x6675636b6d657461
 +		nn := strconv.FormatUint(n, 16)
 +		params_ := []string{nn, params[1], params[2]}
