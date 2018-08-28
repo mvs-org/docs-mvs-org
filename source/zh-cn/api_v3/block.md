@@ -34,7 +34,7 @@ comments: false
             "previous_block_hash": "e1925937802ddd4cf4863ae4a1a33338877dccee1d3a0bbccc6d75b8c240675f", 
             "number": 1, 
             "transaction_count": "0", 
-            "version": "1", 
+            "version": 1, 
             "mixhash": "47597797143417045886903555345346333109819709284889931755188005936950690907038", 
             "timestamp": "1509096803", 
             "merkle_tree_hash": "f91fcae5d3223441175735e7adb318004a6e7400eb01b6f3df13fa4b1e3feab9"
@@ -78,7 +78,7 @@ comments: false
             "previous_block_hash" : "0000000000000000000000000000000000000000000000000000000000000000",
             "timestamp" : 1486796400,
             "transaction_count" : 1,
-            "version" : "1"
+            "version" : 1
             "transactions" :
             [
                 {
