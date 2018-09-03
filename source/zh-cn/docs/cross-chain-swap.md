@@ -1,5 +1,5 @@
 title: 跨链置换操作指南
-comments: false
+comments: true
 ---
 
 # 功能简介
@@ -10,7 +10,7 @@ comments: false
 
 对于以太坊，只支持 ETH 和满足 ERC20 接口的 Token（以 XYZ 为例）与元界资产的置换。
 
-置换比例为 1:1，置换后在元界会生成对应的资产（加上前缀 ERC.）。
+置换比例为 1:1，置换后在元界会生成对应的资产（默认加上前缀 ERC.）。
 
 ETH 对应 ERC.ETH
 
@@ -74,10 +74,10 @@ truffle(development)> web3.eth.sendTransaction({'from':eth_account_address2, 'to
 # 从元界置换到以太坊
 
 ## 直接发起置换交易
-**接收方为指定的元界数字身份或者钱包地址(下例中为数字身份 crosschain)**，并将置换的目标以太坊账号地址写入交易备注之中。
+**接收方为指定的元界数字身份或者钱包地址(下例中为数字身份 droplet)**，并将置换的目标以太坊账号地址写入交易备注之中。
 发起置换的资产必须是从以太坊那边置换过来的资产。
 
 * 以下为元界全节点钱包使用示例  
 ```
-./mvs-cli didsendasset accountname password crosschain ERC.XYZ 8123456789 -i '0x0c1933b3fdaf77bc196e7853256959ab9b28e1ff'
+./mvs-cli didsendasset accountname password droplet ERC.XYZ 8123456789 -i '0x0c1933b3fdaf77bc196e7853256959ab9b28e1ff'
 ```
