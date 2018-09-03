@@ -147,10 +147,10 @@ comments: true
 以太坊地址需要先调用地址绑定智能合约`ETPMap`绑定到元界数字身份或地址，绑定关系建立后，发送以太坊`ERC20`资产到元界资产置换的以太坊地址：0xc1e5fd24fa2b4a3581335fc3f2850f717dd09c86，就可以在绑定的元界数字身份或地址收到一笔等量的`MST`资产。 
 
 以太坊`ERC20`资产置换为`MST`资产:
-![以太坊`ERC20`资产置换为`MST`资产](https://i.imgur.com/Mkox7Xr.jpg)
+![以太坊`ERC20`资产置换为`MST`资产](https://i.imgur.com/H08LV6X.png)
 
 ### `MST`资产置换为以太坊`ERC20`资产：
 `MST`资产置换为以太坊`ERC20`资产，需要发送特定格式的交易到元界资产置换的数字身份`droplet`下，交易输出会包括目标主链类型(例如：以太坊为`ETH`)和目标链上的钱包地址，并支付`1 ETP`的置换费用。
 
 `MST`资产置换为以太坊`ERC20`资产
-![`MST`资产置换为以太坊`ERC20`资产](https://i.imgur.com/x0NbTtn.jpg)
+![`MST`资产置换为以太坊`ERC20`资产](https://i.imgur.com/E2bWRKI.png)
