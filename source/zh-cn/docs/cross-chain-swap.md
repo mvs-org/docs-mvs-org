@@ -25,16 +25,17 @@ TODO
 
 ### 执行地址绑定合约
 打开支持附加交易数据的以太坊钱包，如 [`myetherwallet`](https://www.myetherwallet.com/) 或 [`imtoken`](https://token.im/)，发起转账交易。转账地址填写地址绑定智能合约的地址：`0xa52b0a032139e6303b86cfeb0bb9ae780a610354`，转账数量填写：`0`，点击`高级选项`，将前面拷贝的数据粘贴到`十六进制数据`一栏中。然后点击`下一步`完成转账交易。 该交易用于建立以太坊地址与元界的数字身份或者钱包地址之间的绑定映射。
-![绑定以太坊地址与元界的数字身份](https://i.imgur.com/GAFn530.jpg)
+![绑定以太坊地址与元界的数字身份](https://i.imgur.com/XPurSyh.jpg)
 
 
 ## 将以太坊资产置换为元界`MST`资产
 
 ### 向元界资产置换的以太坊地址转账`ERC20`资产
-![向元界资产置换的以太坊地址转账`ERC20`资产](https://i.imgur.com/XPurSyh.jpg)
+打开以太坊钱包，选择要置换的`ERC20`资产，向元界资产置换的以太坊地址：0xc1e5fd24fa2b4a3581335fc3f2850f717dd09c86，发起一笔转账交易。
+![向元界资产置换的以太坊地址转账`ERC20`资产](https://i.imgur.com/GAFn530.jpg)
 
 ### 查询
-在 [`myetpwallet`](https://www.myetpwallet.com/) 钱包或在[区块链浏览器](https://explorer.mvs.org/avatar)上查看置换完成的`MST`资产，该`MST`资产默认以`ERC20.`为前缀。
+请耐心等待置换操作完成，该操作涉及两个链，因此需要等待的时间较长。您可以在 [`myetpwallet`](https://www.myetpwallet.com/) 钱包或在[区块链浏览器](https://explorer.mvs.org/avatar)上查看置换完成的`MST`资产，该`MST`资产默认以`ERC20.`为前缀。
 
 
 ## 将元界`MST`资产置换为以太坊资产
