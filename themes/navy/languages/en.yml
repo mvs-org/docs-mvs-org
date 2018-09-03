@@ -157,6 +157,7 @@ sidebar:
     tech_p2p_network: P2P network
     tech_utxo_and_script: UTXO and script
     tech_utxo_limitation: UTXO limitation
+    tech_cross_chain: Cross chain swap
     plugin_cli: Plugin CLI
 
   faq:

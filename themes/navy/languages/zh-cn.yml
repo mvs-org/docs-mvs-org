@@ -134,6 +134,7 @@ sidebar:
     tech_p2p_network: p2p网络
     tech_utxo_and_script: utxo与script
     tech_utxo_limitation: UTXO的限制条件
+    tech_cross_chain: 跨链置换
     plugin_cli: Plugin CLI
 
   faq:
