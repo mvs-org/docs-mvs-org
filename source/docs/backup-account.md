@@ -89,10 +89,10 @@ $ tail -f ~/.metaverse/debug.log
 $ mv ~/.metaverse/mainnet ~/.metaverse/mainnet.bak
 
 # re-build new database
-# use mainnet-linux-height-1273528.tar.gz (md5sum is 723f3bc0125ba658266df5e332b843f0)
+# use mainnet-linux-height-1473277.tar.gz (md5sum is 54c996066d1249eca25e28babc3940b7)
 $ cd ~/.metaverse
-$ wget https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/mainnet-linux-height-1273528.tar.gz
-$ tar -xzvf mainnet-linux-height-1273528.tar.gz
+$ wget https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/mainnet-linux-height-1473277.tar.gz
+$ tar -xzvf mainnet-linux-height-1473277.tar.gz
 
 # import accounts database(overwirte)
 $ cp -f ~/.metaverse/mainnet.bak/account_* ~/.metaverse/mainnet/

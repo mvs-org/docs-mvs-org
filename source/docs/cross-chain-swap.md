@@ -1,52 +1,65 @@
-title: 跨链置换操作指南
+title: Cross-chain Token Swap Instruction
 comments: true
 ---
 
-## 功能简介
+## Function introduction
 
-跨链置换服务可以实现以太坊`ERC20`资产与元界`MST`资产的相互置换。
+Cross-chain service enables to swap assets between Ethereum `ERC20` tokens and equivalent Metaverse `MST`.
 
-## 绑定以太坊地址与元界数字身份或地址
+## Link Ethereum with Metaverse Avatar or address
 
-### 获取地址绑定交易数据
+### Get transaction data of address to be linked
 
-#### 全节点钱包
-1. 进入地址页面，选择要绑定的数字身份或地址，点击`链接到以太坊地址`
-![链接到以太坊地址](https://i.imgur.com/u4Y0olL.png)
+#### Full-node wallet
+1. Open the address page and choose the Avatar or address to be linked; Click `Link to Ethereum`
+![Link to Ethereum address][image-1]
 
-2. 点击`生成数据`
-![生成数据](https://i.imgur.com/dJysCc1.png)
+2. Click `Generate data`
+![Generate data][image-2]
 
-3. 点击`拷贝数据`
-![拷贝数据](https://i.imgur.com/k9obn5H.png)
+3. Click `Copy data`
+![Copy data][image-3]
 
 #### myetpwallet
 TODO
 
-### 执行地址绑定合约
-打开支持附加交易数据的以太坊钱包，如 [`myetherwallet`](https://www.myetherwallet.com/) 或 [`imtoken`](https://token.im/)，发起转账交易。转账地址填写地址绑定智能合约的地址：`0xa52b0a032139e6303b86cfeb0bb9ae780a610354`，转账数量填写：`0`，点击`高级选项`，将前面拷贝的数据粘贴到`十六进制数据`一栏中。然后点击`下一步`完成转账交易。 该交易用于建立以太坊地址与元界的数字身份或者钱包地址之间的绑定映射。
-![绑定以太坊地址与元界的数字身份](https://i.imgur.com/v3Saf2d.jpg)
+### Execute the smart contract to link Ethereum address with Metaverse avatar or address
+Open Ethereum wallet which supports sending raw transaction data, such as [`myetherwallet`][1] or [`imtoken`][2]，and start a ETP transferring transaction. The recipient address should be the address of binding ETP address contract：`0xa52b0a032139e6303b86cfeb0bb9ae780a610354`. The value to send is ：`0 ether`，click `Advance` options，paste the copied data to `hex raw data` field. Then click `Next` to finish the transaction. 
+![Link Ethereum address with Metaverse Avatar][image-4]
 
 
-## 将以太坊资产置换为元界`MST`资产
+## Swap from Ethereum ERC20 token to Metaverse `MST`
 
-### 向元界资产置换的以太坊地址转账`ERC20`资产
-打开以太坊钱包，选择要置换的`ERC20`资产，向元界资产置换的以太坊地址：0xc1e5fd24fa2b4a3581335fc3f2850f717dd09c86，发起一笔转账交易。
-![向元界资产置换的以太坊地址转账`ERC20`资产](https://i.imgur.com/FGxvQOq.jpg)
+### Send `ERC20` token to the Ethereum address of ETP-Swap center
+Open Ethereum wallet and choose the `ERC20` token to be swapped and send them to the Ethereum address of ETP-Swap center: `0xc1e5fd24fa2b4a3581335fc3f2850f717dd09c86`.
+![Send `ERC20` token to the Ethereum address of ETP-Swap center][image-5]
 
-### 查询
-请耐心等待置换操作完成，该操作涉及两个链，因此需要等待的时间较长。您可以在 [`myetpwallet`](https://www.myetpwallet.com/) 钱包或在[区块链浏览器](https://explorer.mvs.org/avatar)上查看置换完成的`MST`资产，该`MST`资产默认以`ERC20.`为前缀。
+### Query
+Please be patient and wait for the token swap. It takes a little bit longer time to process transactions on two chains. You could query the swapped MST assets in the [`myetpwallet`](https://www.myetpwallet.com/) or [blockchain explorer](https://explorer.mvs.org/avatar) and the name of this `MST` starts with `ERC20.` by default.
 
+## Swap from Metaverse `MST` to Ethereum `ERC20` token
 
-## 将元界`MST`资产置换为以太坊资产
+### Full-node wallet
 
-### 全节点钱包
-在主界面上选择要置换的元界`MST`资产，点击转账。
-![选择资产](https://i.imgur.com/VGWoeyb.png)
+Choose the `MST` to be swapped and click `Transfer`
+![Choose MST][image-6]
 
-在转账界面中选择选项`我愿意将MST资产置换为等值的ERC20代币`，填写要置换的资产数量，接收置换资产的以太坊地址。置换操作的手续费为`1 ETP`。
-![转账资产](https://i.imgur.com/nSr3Wrr.png)
+Choose `I want to swap this MST to its ERC20 equivalent` on the transfer page and fill the swap amount and the recipient Ethereum address. The fee of swaping token is `1 ETP`.
+
+![Swap asset][image-7]
+
 
 ### myetpwallet
 TODO
 
+
+[1]:	https://www.myetherwallet.com/
+[2]:	https://token.im/
+
+[image-1]:	https://i.imgur.com/VassbtZ.png
+[image-2]:	https://i.imgur.com/TRFpo1R.png
+[image-3]:	https://i.imgur.com/oY35rZq.png
+[image-4]:	https://i.imgur.com/e5AacIV.jpg
+[image-5]:	https://i.imgur.com/EEageNY.jpg
+[image-6]:	https://i.imgur.com/ocwQjsf.png
+[image-7]:	https://i.imgur.com/quGQeU7.png

@@ -87,10 +87,10 @@ $ tail -f ~/.metaverse/debug.log
 $ mv ~/.metaverse/mainnet ~/.metaverse/mainnet.bak
 
 # 重建新的数据库
-# 下载 mainnet-linux-height-1273528.tar.gz 区块数据包 (md5sum 为 723f3bc0125ba658266df5e332b843f0)
+# 下载 mainnet-linux-height-1473277.tar.gz 区块数据包 (md5sum 为 54c996066d1249eca25e28babc3940b7)
 $ cd ~/.metaverse
-$ wget http://newmetaverse.org/mvs-download/block-data/mainnet-linux-height-1273528.tar.gz
-$ tar -xzvf mainnet-linux-height-1273528.tar.gz
+$ wget http://newmetaverse.org/mvs-download/block-data/mainnet-linux-height-1473277.tar.gz
+$ tar -xzvf mainnet-mainnet-linux-height-1473277.tar.gz
 
 # 导入账户相关的表(覆盖)
 $ cp -f ~/.metaverse/mainnet.bak/account_* ~/.metaverse/mainnet/
