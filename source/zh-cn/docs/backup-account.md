@@ -106,7 +106,7 @@ $ tail -f ~/.metaverse/debug.log
 #### Windows
 1. 停止运行钱包程序，升级到[最新版本](https://mvs.org/wallet.html)
 2. 重命名 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet' 为 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet_bak'
-3. 下载区块数据包[mainnet-windows-height-1273490.zip](https://newmetaverse.org/mvs-download/block-data/mainnet-windows-height-1273490.zip)，保存为 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet-windows-height-1273490.zip'
-4. 解压 'mainnet-windows-height-1273490.zip'
+3. 下载区块数据包[mainnet-windows-height-1475846.zip](https://newmetaverse.org/mvs-download/block-data/mainnet-windows-height-1475846.zip)，保存为 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet-windows-height-1475846.zip'
+4. 解压 'mainnet-windows-height-1475846.zip'
 5. 从 'mainnet_bak' 目录下拷贝所有以 'account_' 开头的文件到目录 'mainnet'下。总共拷贝五个文件： 'account_address_rows', 'account_address_table', 'account_asset_row', 'account_asset_table' 和 'account_table'
 6. 启动钱包程序，等待同步到最新区块
