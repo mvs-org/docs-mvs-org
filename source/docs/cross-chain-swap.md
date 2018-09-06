@@ -10,6 +10,16 @@ Cross-chain service enables to swap assets between Ethereum `ERC20` tokens and e
 
 ### Get transaction data of address to be linked
 
+#### Light wallet myetpwallet
+1. Open menu, Click `Ethereum bridge`
+![Link to Ethereum address](https://i.imgur.com/O1nctxI.png)
+
+2. Click tab `Ethereum -> Metaverse`
+![Generate data](https://i.imgur.com/Z6AQugc.png)
+
+3. Choose the avatar or address to be linked, and copy the generated raw data
+![Choose avatar or address](https://i.imgur.com/P7P1zjq.png)
+
 #### Full-node wallet
 1. Open the address page and choose the Avatar or address to be linked; Click `Link to Ethereum`
 ![Link to Ethereum address][image-1]
@@ -20,12 +30,19 @@ Cross-chain service enables to swap assets between Ethereum `ERC20` tokens and e
 3. Click `Copy data`
 ![Copy data][image-3]
 
-#### myetpwallet
-TODO
 
 ### Execute the smart contract to link Ethereum address with Metaverse avatar or address
-Open Ethereum wallet which supports sending raw transaction data, such as [`myetherwallet`][1] or [`imtoken`][2]，and start a ETP transferring transaction. The recipient address should be the address of binding ETP address contract：`0xa52b0a032139e6303b86cfeb0bb9ae780a610354`. The value to send is ：`0 ether`，click `Advance` options，paste the copied data to `hex raw data` field. Then click `Next` to finish the transaction. 
+1. Open Ethereum wallet which supports sending raw transaction data, such as [`myetherwallet`][1] or [`imtoken`][2]，and start a ETP transferring transaction. 
+
+2. Click `Advance` options，paste the copied data to `hex raw data` field.
 ![Link Ethereum address with Metaverse Avatar][image-4]
+
+3. The recipient address should be the address of binding ETP address contract：`0xa52b0a032139e6303b86cfeb0bb9ae780a610354`. You can copy this address from Metaverse wallet.
+![Copy address of binding ETP address contract](https://i.imgur.com/SeYKrHt.png)
+
+4. The value to send is ：`0 ether`
+
+5. Then click `Next` to finish the transaction. 
 
 
 ## Swap from Ethereum ERC20 token to Metaverse `MST`
@@ -39,18 +56,20 @@ Please be patient and wait for the token swap. It takes a little bit longer time
 
 ## Swap from Metaverse `MST` to Ethereum `ERC20` token
 
+### Light wallet myetpwallet
+1. Choose the `MST` to be swapped and click `Swap`
+![Choose MST](https://i.imgur.com/Poe3tzx.png)
+
+2. Fill the swap amount and the recipient Ethereum address. The fee of swaping token is `1 ETP`.
+![Swap asset](https://i.imgur.com/Poe3tzx.png)
+
 ### Full-node wallet
 
-Choose the `MST` to be swapped and click `Transfer`
+1. Choose the `MST` to be swapped and click `Transfer`
 ![Choose MST][image-6]
 
-Choose `I want to swap this MST to its ERC20 equivalent` on the transfer page and fill the swap amount and the recipient Ethereum address. The fee of swaping token is `1 ETP`.
-
+2. Choose `I want to swap this MST to its ERC20 equivalent` on the transfer page and fill the swap amount and the recipient Ethereum address. The fee of swaping token is `1 ETP`.
 ![Swap asset][image-7]
-
-
-### myetpwallet
-TODO
 
 
 [1]:	https://www.myetherwallet.com/
