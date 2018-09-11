@@ -91,12 +91,13 @@ $ ./mvs-cli help $command
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [getbalance](etp.html#getbalance)     | √ | × | √ | 0.7.3 |
-| [listbalances](etp.html#listbalances) | √ | × | √ | 0.7.3 |
+| [getbalance](etp.html#getbalance)     | × | × | √ | 0.7.3 |
+| [listbalances](etp.html#listbalances) | × | × | √ | 0.7.3 |
 | [deposit](etp.html#deposit)           | √ | × | √ | 0.7.3 |
 | [send](etp.html#send)                 | √ | × | √ | 0.7.3 |
 | [sendfrom](etp.html#sendfrom)         | √ | × | √ | 0.7.3 |
 | [sendmore](etp.html#sendmore)         | √ | × | √ | 0.7.3 |
+| [getaddressetp](etp.html#getaddressetp)     | × | × | × | 0.8.0 |
 
 #### Transaction
 
