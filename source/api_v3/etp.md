@@ -57,6 +57,52 @@ comments: false
 
 ***
 
+* ### `getaddressetp`
+    Show balance details of this address.
+    * Parameters (positional)
+    1. `ADDRESS` Address.
+    ```js
+    params:[
+        "ADDRESS"
+    ]
+     ```
+    * Returns
+    `Object` - balance of the address
+    1. `confirmed` - confirmed(unspent) etp amount
+    2. `received` - received etp amount
+    3. `unspent` - unspent etp amount
+    4. `frozen` - frozen etp amount
+    5. `address` - address
+
+    * Example
+    ```js
+    // Request
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"getaddressetp",
+        "params":[
+            "MJNo92g6DavpaCZbYjrH45iQ8eAKnLqmms"
+        ]
+    }' http://127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "address" : "MJNo92g6DavpaCZbYjrH45iQ8eAKnLqmms",
+            "confirmed" : 4629959994,
+            "frozen" : 0,
+            "received" : 11969909981,
+            "unspent" : 4629959994
+        }
+    }
+    ```
+
+***
+
 * ### `listbalances`
     List all balance details of each address of this account.
     * Parameters (optional)
