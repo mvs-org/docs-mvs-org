@@ -74,6 +74,7 @@ Obviously, Use `help` to get all commands(methods) list.
 $ ./mvs-cli help
 $ ./mvs-cli help $command or ./mvs-cli $command -h
 ```
+You can also type the command in the textedit on 'http://127.0.0.1:8820/#!/advanced' to use the follow command.
 
 ***
 ## Account

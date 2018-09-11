@@ -29,6 +29,9 @@ mvsd -D D:\MVS\ChainData\Metaverse
 ```
 
 # mvs-cli的使用方式
+
+可以在全节点的高级页面 [http://127.0.0.1:8820/#!/advanced](http://127.0.0.1:8820/#!/advanced) 输入以下 `mvs-cli` 命令来使用，注意在该页面中无需输入 `mvs-cli` 前缀。比如：输入 `help` 来获取所有命令列表。
+
 ## 创建账户
 ```bash
 mvs-cli getnewaccount chenhao chenhao
