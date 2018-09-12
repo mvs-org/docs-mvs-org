@@ -17,22 +17,22 @@ For example：
 
 ## Commands related to Multi-signature
 The following commands allow you to use multi-signature in Metaverse:
-> getpublickey  
-> getnewmultisig  
-> listmultisig  
-> deletemultisig  
-> createmultisigtx  
-> signmultisigtx  
-> sendrawtx  
-> decoderawtx  
+> [getpublickey](multisig.html#getpublickey)  
+> [getnewmultisig](multisig.html#getnewmultisig)  
+> [listmultisig](multisig.html#listmultisig)  
+> [deletemultisig](multisig.html#deletemultisig)  
+> [createmultisigtx](multisig.html#createmultisigtx)  
+> [signmultisigtx](multisig.html#signmultisigtx)  
+> [sendrawtx](rawtx.html#sendrawtx)  
+> [decoderawtx](rawtx.html#decoderawtx)  
 
-> registerdid  
-> didchangeaddress    
-> transfercert  
-> transfermit  
+> [registerdid](identity.html#registerdid)  
+> [didchangeaddress](identity.html#didchangeaddress)    
+> [transfercert](asset.html#transfercert)  
+> [transfermit](mit.html#transfermit)  
 
 ## Example
-The following example involves three accounts：`Alice`，`Bob` and `Cindy`. For more detail of the commands, please refer to [API_v2_multisig](/zh-cn/api_v2/multisig.html).
+The following example involves three accounts：`Alice`，`Bob` and `Cindy`. For more detail of the commands, please refer to [API_v3_multisig](/api_v3/multisig.html).
 
 ### 1. Get and inform public-key
 Every participator gets the public-key of an address by command `getpublickey` and let others known the public-key.

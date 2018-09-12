@@ -22,22 +22,22 @@ title: MST Multi-signature
 ## 支持多重签名的命令
 以下命令与多重签名相关或支持多重签名：
 
-> getpublickey  
-> getnewmultisig  
-> listmultisig  
-> deletemultisig  
-> createmultisigtx  
-> signmultisigtx  
-> sendrawtx  
-> decoderawtx  
+> [getpublickey](/zh-cn/multisig.html#getpublickey)  
+> [getnewmultisig](/zh-cn/multisig.html#getnewmultisig)  
+> [listmultisig](/zh-cn/multisig.html#listmultisig)  
+> [deletemultisig](/zh-cn/multisig.html#deletemultisig)  
+> [createmultisigtx](/zh-cn/multisig.html#createmultisigtx)  
+> [signmultisigtx](/zh-cn/multisig.html#signmultisigtx)  
+> [sendrawtx](/zh-cn/rawtx.html#sendrawtx)  
+> [decoderawtx](/zh-cn/rawtx.html#decoderawtx)  
 
-> registerdid  
-> didchangeaddress    
-> transfercert  
-> transfermit  
+> [registerdid](/zh-cn/identity.html#registerdid)  
+> [didchangeaddress](/zh-cn/identity.html#didchangeaddress)    
+> [transfercert](/zh-cn/asset.html#transfercert)  
+> [transfermit](/zh-cn/mit.html#transfermit)  
 
 ## 示例
-该示例涉及到三个账户：`Alice`，`Bob` 以及 `Cindy`。多重签名命令使用手册请参考[API_v2_multisig](/zh-cn/api_v2/multisig.html)。
+该示例涉及到三个账户：`Alice`，`Bob` 以及 `Cindy`。多重签名命令使用手册请参考[API_v3_multisig](/zh-cn/api_v3/multisig.html)。
 
 ### 1. 获取和传播公钥
 每一个参与者通过 `getpublickey` 获得某个地址的公钥，该公钥对应的私钥用于签名随后创建的多重签名交易，并把该公钥告知其他所有参与者。
