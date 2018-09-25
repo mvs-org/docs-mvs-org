@@ -9,7 +9,7 @@ comments: false
 ***
 
 * ### `registermit`
-    createasset
+    registermit
     * Parameters (optional)
     1. `-h` or `[--help]` Get a description and instructions for this command.
     2. `-c` or `[--content]` The content of MIT, default is empty.
