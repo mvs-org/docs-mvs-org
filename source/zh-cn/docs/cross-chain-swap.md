@@ -49,7 +49,7 @@ comments: true
 ## 将以太坊资产置换为元界`MST`资产
 
 ### 向元界资产置换的以太坊地址转账`ERC20`资产
-打开以太坊钱包，选择要置换的`ERC20`资产，向元界资产置换的以太坊地址：0xc1e5fd24fa2b4a3581335fc3f2850f717dd09c86，发起一笔转账交易。
+打开以太坊钱包，选择要置换的`ERC20`资产，向元界资产置换的以太坊地址：`0xc1e5fd24fa2b4a3581335fc3f2850f717dd09c86`，发起一笔转账交易。
 ![向元界资产置换的以太坊地址转账`ERC20`资产](https://i.imgur.com/FGxvQOq.jpg)
 
 ### 查询
@@ -72,4 +72,35 @@ comments: true
 2. 在转账界面中选择选项 `我愿意将MST资产置换为等值的ERC20代币`，填写要置换的资产数量，接收置换资产的以太坊地址。置换操作的手续费为 `1 ETP`。
 ![转账资产](https://i.imgur.com/nSr3Wrr.png)
 
+## 将以太坊 `ETH` 置换为元界 `ETP`
+### 向元界资产置换的以太坊地址转账 `ETH`
+打开以太坊钱包，向元界资产置换的以太坊地址：`0xc1e5fd24fa2b4a3581335fc3f2850f717dd09c86`，发起一笔 `ETH` 转账交易。
 
+### 查询
+请耐心等待置换操作完成，该操作涉及两个链，因此需要等待的时间较长。您可以在 [`myetpwallet`](https://www.myetpwallet.com/) 钱包或在[区块链浏览器](https://explorer.mvs.org/avatar)上查看置换完成的 `ETP`。该笔 `ETP` 置换交易会附带如下格式的消息：`[兑换汇率，兑换数量，ETH，对应的以太坊置换交易]`。
+
+```
+	{
+		"address" : "MBkcJ6YsnG1G97tFJuBcytDxfk5F8hCp2g",
+		"attachment" : 
+		{
+			"content" : "[\"68.82119539759908\", \"0.0000099\", \"ETH\", \"0x2872875c7b08ec0786309864207f883d3e9f609a232a3cb7c53ec7d0a9e87099\"]",
+			"type" : "message"
+		},
+		"index" : 2,
+		"locked_height_range" : 0,
+		"script" : "dup hash160 [ 34f4acd8ee7551fd5558c6dc60c0a6160a1f2119 ] equalverify checksig",
+		"value" : 0
+	},
+```
+
+### 注意
+目前仅支持将 `ETH` 置换为元界 `ETP`，不支持将 `ETP` 置换为 `ETH` 。每一次兑换最多允许兑换 `20` 个 `ETH`。
+
+|  ETH兑换数量  |  手续费率    | 
+| ------------ | -----------  | 
+|    <= 1   |     2.0%        |
+|    <= 5   |     2.5%        |
+|    <= 10  |     3.0%        |
+|    <= 15  |     3.5%        |
+|    <= 20  |     4.0%        |

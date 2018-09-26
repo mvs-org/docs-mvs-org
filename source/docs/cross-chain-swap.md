@@ -72,6 +72,39 @@ Please be patient and wait for the token swap. It takes a little bit longer time
 ![Swap asset][image-7]
 
 
+## Swap from Ethereum `ETH` to Metaverse `ETP`
+### Send `ETH` to the Ethereum address of ETP-Swap center
+Open Ethereum wallet and send `ETH` to the Ethereum address of ETP-Swap center: `0xc1e5fd24fa2b4a3581335fc3f2850f717dd09c86`.
+
+### Query
+Please be patient and wait for the token swap. It takes a little bit longer time to process transactions on two chains. You could query the swapped `ETP` in the [`myetpwallet`](https://www.myetpwallet.com/) or [blockchain explorer](https://explorer.mvs.org/avatar). The swapped `ETP` transcation has message attachment with format '[exchange rate, amount, ETH, ETH transation hash]'
+
+```
+	{
+		"address" : "MBkcJ6YsnG1G97tFJuBcytDxfk5F8hCp2g",
+		"attachment" : 
+		{
+			"content" : "[\"68.82119539759908\", \"0.0000099\", \"ETH\", \"0x2872875c7b08ec0786309864207f883d3e9f609a232a3cb7c53ec7d0a9e87099\"]",
+			"type" : "message"
+		},
+		"index" : 2,
+		"locked_height_range" : 0,
+		"script" : "dup hash160 [ 34f4acd8ee7551fd5558c6dc60c0a6160a1f2119 ] equalverify checksig",
+		"value" : 0
+	},
+```
+
+### Notes
+For now we support swap from Ethereum `ETH` to Metaverse `ETP` only. The maximum amount of `ETH` to be swapped each time is 20.
+
+|  Amount of ETH  |  Swap Fee rate  | 
+| ------------ | -----------  | 
+|    <= 1   |     2.0%        |
+|    <= 5   |     2.5%        |
+|    <= 10  |     3.0%        |
+|    <= 15  |     3.5%        |
+|    <= 20  |     4.0%        |
+
 [1]:	https://www.myetherwallet.com/
 [2]:	https://token.im/
 
