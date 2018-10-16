@@ -154,7 +154,8 @@ $ ./mvs-cli help $command
 | [listassets](asset.html#listassets)            | √ | × | optional | 0.7.3 |
 | [sendasset](asset.html#sendasset)              | √ | × | √ | 0.7.3 |
 | [sendassetfrom](asset.html#sendassetfrom)      | √ | × | √ | 0.7.3 |
-| [burn](asset.html#burn)                      	 | √ | × | √ | 0.8.0 |
+| [burn](asset.html#burn)                        | √ | × | √ | 0.8.0 |
+| [validatesymbol](asset.html#validatesymbol)    | × | × | √ | 0.9.0 |
 
 #### Cert
 

@@ -1324,3 +1324,48 @@ comments: false
     }
     ```
 ***
+
+* ### `validatesymbol`
+    * Parameters (optional)
+    1. `-c` or `[--cert]` If specified name of cert type, then validate cert symbol. Default is not specified.
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    3. `SYMBOL` Symbol to be validated.
+    ```js
+    params:[
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
+        "SYMBOL"
+    ]
+     ```
+    * Returns
+    `status`: `available`, `exsited`, `no_permission` or `forbidden`.
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{
+        "id":7,
+        "jsonrpc":"2.0",
+        "method":"validatesymbol",
+        "params":[
+            "test",
+            "123456",
+            "ERC20.EE"
+        ]
+    }' http://127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 7,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "asset_symbol" : "no_permission",
+            "did_symbol" : "available",
+            "mit_symbol" : "available"
+        }
+    }
+    ```
+***
