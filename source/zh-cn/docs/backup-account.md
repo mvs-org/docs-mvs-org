@@ -105,8 +105,17 @@ $ tail -f ~/.metaverse/debug.log
 
 #### Windows
 1. 停止运行钱包程序，升级到[最新版本](https://mvs.org/wallet.html)
-2. 重命名 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet' 为 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet_bak'
-3. 下载区块数据包[mainnet-windows-height-1475846.zip](https://newmetaverse.org/mvs-download/block-data/mainnet-windows-height-1475846.zip)，保存为 'C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet-windows-height-1475846.zip'
-4. 解压 'mainnet-windows-height-1475846.zip'
-5. 从 'mainnet_bak' 目录下拷贝所有以 'account_' 开头的文件到目录 'mainnet'下。总共拷贝五个文件： 'account_address_rows', 'account_address_table', 'account_asset_row', 'account_asset_table' 和 'account_table'
-6. 启动钱包程序，等待同步到最新区块
+2. 重命名 `C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet` 为 `C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet_bak`
+3. 下载区块数据包[mainnet-windows-height-1475846.zip](https://newmetaverse.org/mvs-download/block-data/mainnet-windows-height-1475846.zip)，保存为 `C:\Users\%USER_NAME%\AppData\Roaming\Metaverse\mainnet-windows-height-1475846.zip`
+4. 解压 `mainnet-windows-height-1475846.zip`
+5. 从 `mainnet_bak` 目录下拷贝所有以 `account_` 开头的文件到目录 `mainnet`下。总共拷贝五个文件： `account_address_rows`, `account_address_table`, `account_asset_row`, `account_asset_table` 和 `account_table`
+6. 启动钱包程序，等待同步到最新区块。
+
+
+#### Mac OS
+1. 停止运行钱包程序，升级到[最新版本](https://mvs.org/wallet.html)
+2. 在 `~/Library/Application Support/Metaverse` 目录下新建 `account_bak` 目录；备份账户信息：拷贝 `mainnet` 中的账户相关文件到 `account_bak` 下。这些文件都是以 `account_` 为前缀，总共拷贝五个文件： `account_address_rows`, `account_address_table`, `ccount_asset_row`, `account_asset_table` 和 `account_table`；
+3. 重命名 `mainnet` 目录为 `mainnet_bak`；
+4. 下载区块数据包[mainnet-macOSX-height-1308526.tar.gz](https://newmetaverse.org/mvs-download/block-data/mainnet-macOSX-height-1308526.tar.gz)到 `~/Library/Application Support/Metaverse` 下，并解压到该目录下；
+5. 恢复账户信息：覆盖拷贝 `account_bak` 下的所有文件到 `mainnet` 下。
+6. 启动钱包程序，等待同步到最新区块。
