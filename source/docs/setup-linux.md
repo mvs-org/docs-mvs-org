@@ -34,7 +34,17 @@ mvs-cli help
 ```
 
 ## Download database package to reduces the time required for initial block syncing
-Please refer to [re-syncing from height 1270000+](https://docs.mvs.org/docs/backup-account.html#Solution-2-re-syncing-from-height-1270000)
+```bash
+# Download database package
+$ wget http://newmetaverse.org/mvs-download/block-data/mvs-block-data-for-linux.tar.gz
+
+$ tar -xzvf mvs-block-data-for-linux.tar.gz
+
+# The default path of database folder is ~/.metaverse/mainnet
+# Please specify PATH_TO_BLOCK_DATA to your customized database folder.
+# ./copy-block-data.sh PATH_TO_BLOCK_DATA
+$ ./copy-block-data.sh
+```
 
 ## Get started
 1. Run mvs-cli in terminal.

@@ -31,7 +31,18 @@ mvs-cli help
 ```
 
 ## 下载数据包加速同步
-请参考：[重新从块高1270000+同步(Linux)](https://docs.mvs.org/zh-cn/docs/backup-account.html#%E6%96%B9%E6%A1%88%E4%BA%8C-%E9%87%8D%E6%96%B0%E4%BB%8E%E5%9D%97%E9%AB%981270000-%E5%90%8C%E6%AD%A5-Linux)
+```bash
+# 下载最新数据包
+$ wget http://newmetaverse.org/mvs-download/block-data/mvs-block-data-for-linux.tar.gz
+
+# 解压数据包
+$ tar -xzvf mvs-block-data-for-linux.tar.gz
+
+# 执行数据拷贝脚本：默认数据目录路径为： ~/.metaverse/mainnet
+# 如果您的数据目录不是默认的路径，请将数据目录路径当作参数传入：
+# ./copy-block-data.sh PATH_TO_BLOCK_DATA
+$ ./copy-block-data.sh
+```
 
 ## 开始使用
 1. 命令行(mvs-cli)请在终端使用
