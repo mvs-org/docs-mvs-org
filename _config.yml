@@ -35,3 +35,6 @@ algolia:
     index_name: hexo_zh-cn
 twitter: mvs_org
 github: mvs-org/metaverse
+
+include:
+  - .htaccess
