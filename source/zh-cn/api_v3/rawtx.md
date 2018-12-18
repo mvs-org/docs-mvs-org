@@ -20,6 +20,7 @@ comments: false
     7. `-r` or `[--receivers]`     Send to [address:amount]. amount is asset number if sybol option specified
     8. `-s` or `[--senders]`       Send from addresses
     9. `-t` or `[--type]`          Transaction type. 0 -- transfer etp, 1 -- deposit etp, 3 -- transfer asset, 6 -- just only send message
+    10. `-u` or `[--utxos]`        Use the specific UTXO as input. Format: "tx-hash:output-index"
 
     * Returns
     `Object` -
@@ -43,8 +44,10 @@ comments: false
 * ### `signrawtx`
     signrawtx
     * Parameters (positional)
-    1. `ACCOUNTNAME`  Account name required.
-    2. `ACCOUNTAUTH`  Account password(authorization) required.
+    1. `-w` or `[--wif]`       The wif or private key to sign.
+    * Parameters (positional)
+    1. `ACCOUNTNAME`  Account name required, any word if wif is specified.
+    2. `ACCOUNTAUTH`  Account password(authorization) required, any word if wif is specified.
     3. `TRANSACTION`  The input Base16 transaction to sign.
     ```js
     params: [

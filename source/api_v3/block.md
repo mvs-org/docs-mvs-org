@@ -41,7 +41,9 @@ comments: false
         }
     }
     ```
+    
     ***
+    
 * ### `getblock`
     Get sepcified block header from wallet.
     * Parameters (optional)
@@ -115,4 +117,33 @@ comments: false
             ]
 	    }
 	}
+    ```
+
+    ***
+    
+* ### `popblock`
+    popblock from height.
+    * Parameters (positional)
+    1. `HEIGHT`    specify the starting point to pop out blocks. eg, if specified 1000000, then all blocks with height greater than or equal to 1000000 will be poped out.
+
+    ```js
+    params:[
+        "HEIGHT"
+    ]
+     ```
+    * Returns
+    `Object` - block header with transactions
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"jsonrpc":"2.0","method":"popblock",
+        "params":[1739530],"id":27}' http://127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 27,
+        "jsonrpc" : "2.0",
+        "result" : "pop block from 1739530 finished."
+    }
     ```

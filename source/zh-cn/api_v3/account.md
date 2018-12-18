@@ -9,12 +9,13 @@ comments: false
 ***
 
 * ### `getnewaccount`
-    Generate a new account from this wallet.
+    Generate a new account from this wallet if account is specified.
+    Generate a new address and private key if account is not specified.
     * Parameters (optional)
     1. `-l` or `[--language]` Options are 'en', 'es', 'ja', 'zh_Hans', 'zh_Hant' and 'any', defaults to 'en'.
     * Parameters (positional)
-    1. `ACCOUNTNAME` Account name.
-    2. `ACCOUNTAUTH` Account password/authorization.
+    1. `ACCOUNTNAME` Account name, default "".
+    2. `ACCOUNTAUTH` Account password/authorization, default "".
     ```js
     params:[
         "ACCOUNTNAME", 
@@ -26,7 +27,7 @@ comments: false
     1. `mnemonic` - the master private key of your account
     2. `default_address` - address of the account
 
-    * Example
+    * Example: generate a new account
     ```js
     // Request
     curl -X POST --data '{"jsonrpc":"2.0","method":"getnewaccount",
@@ -43,6 +44,27 @@ comments: false
             [
                 "MDtdyESeZB73RCYR1G4b7443ModzGwYWrF"
             ]
+        }
+    }
+    ```
+    
+    * Example: generate a new address and private key.
+    ```js
+    // Request
+    curl -X POST --data '{"jsonrpc":"2.0","method":"getnewaccount",
+    "params":[{"language": "en"}],"id":7}' http://127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 7,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "address" : "MLycTCqV9BiQrfnRPxi6AFBLC7m1cG6btQ",
+            "mnemonic" : "deal elite opinion exhaust shop usage habit hard muscle glimpse want matter brain shoot uncle insect corn glare depth asthma move input person pill",
+            "private_key" : "76fb26353250f00529c51362411a517b4d005d72fe33e5ccea28eaab3b33f8ac",
+            "public_key" : "03643ceeab22462641c5259bfcb7a7898b23b9fbbf5360eb35b3df86eba24522c9",
+            "wif" : "L1CzdkB3f2gRS2NtZUe2fGubzGMYZAWPqbyXNiKC7c9w9Z6F6gHC"
         }
     }
     ```

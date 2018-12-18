@@ -5,6 +5,14 @@ tags: Metaverse
 categories: ReleaseNotes
 ---
 
+### 0.7.3版本更新如下###
+- - -
+
+1.   Provides developers standard JSON-RPC 2.0 call with URI: `/rpc/v2`. Refers to [API v2](/api_v2/).
+2.   Compatible API calls on version older than v0.7.3 with URI: `/rpc/`.
+3.   Other optimizations.
+4.   Performance improvement.
+
 ### 0.7.2版本更新如下###
 - - -
 
