@@ -2,11 +2,6 @@ title: 交易所平台部署Metaverse钱包指南
 comments: false
 ---
 
-## 经常使用的文档
-* [API-Call-List](/zh-cn/api_v2/index.html)
-* [Command-line](/zh-cn/docs/command-line.html)
-* [Build Wallet](/zh-cn/docs/build-linux.html)
-
 ## 标准程序
 1. 在Linux服务器上部署Metaverse节点。下载Metaverse钱包<https://mvs.org/wallet.html>
 2. 使用mvs-cli命令执行以下步骤
@@ -47,7 +42,6 @@ mvsd 是核心钱包程序，可远程过程调用（RPC），端口默认为882
 ./mvsd 
 ```
 **类似于bitcoind**, `./mvsd -t`为测试网模式启动。
-RPC CALL LIST详细信息请查看: <http://docs.mvs.org/zh-cn/api_v2/index.html>
 
 这是一个由命令行控制的钱包。您可以使用命令来管理资产。其基本功能包括：创建账户，创建地址和转移资产。 
 
@@ -68,7 +62,7 @@ RPC CALL LIST详细信息请查看: <http://docs.mvs.org/zh-cn/api_v2/index.html
 
 *注意：交易所不必为每个用户创建一个帐户。在线钱包通常保存一个账户的所有充值地址。也可选择冷钱包（离线钱包）来储存地址，这样更安全。*
 
-创建新账户使用方法请参阅：<http://docs.mvs.org/zh-cn/api_v2/account.html#getnewaccount>
+创建新账户使用方法请参阅：<http://docs.mvs.org/zh-cn/api_v3/account.html#getnewaccount>
 
 ### >>> 生成充值地址
 
@@ -85,7 +79,7 @@ RPC CALL LIST详细信息请查看: <http://docs.mvs.org/zh-cn/api_v2/index.html
 ```
 ./mvs-cli getnewaddress accountname accountpassword -n 1000
 ```
-参看 <http://docs.mvs.org/zh-cn/api_v2/account.html#getnewaddress>
+参看 <http://docs.mvs.org/zh-cn/api_v3/account.html#getnewaddress>
 
 这些地址将显示为json响应格式。交易所需要将这些地址导入到其数据库中来分发给用户。
 
@@ -101,7 +95,7 @@ RPC CALL LIST详细信息请查看: <http://docs.mvs.org/zh-cn/api_v2/index.html
 * 在Metaverse区块链中记录的交易不能被篡改，这意味着用户确认即代表充值成功。我们建议确认密码超过30位。
 
 
-* 充值地址资产数量变化时不会发出通知。元界钱包有一个接口（listtxs）来查询地址的所有交易。详情请查看 <http://docs.mvs.org/zh-cn/api_v2/transaction.html#listtxs>。
+* 充值地址资产数量变化时不会发出通知。元界钱包有一个接口（listtxs）来查询地址的所有交易。详情请查看 <http://docs.mvs.org/zh-cn/api_v3/transaction.html#listtxs>。
 
 
 * Metaverse共享ETP和其他资产之间的地址。用户发行的其他资产（例如股票或代币）也可储存在元界上。交易所应确定用户充值时的资产类型。不将其他资产视为ETP股票或其他，也不会混淆充值和取款。资产类型需要具体情况来确定。资产相关的操作详情请参看 [资产相关操作](/zh-cn/docs/assets-operations.html)。
