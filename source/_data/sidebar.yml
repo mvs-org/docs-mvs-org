@@ -10,6 +10,7 @@ docs:
     transfer_token: features-transfer-token.html
     onchain_deposit: features-onchain-deposit.html
     supernova: supernova.html
+    pillars: pillars.html
 
   full_node_usage:
     introduction: introduction.html
