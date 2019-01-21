@@ -179,6 +179,40 @@ comments: false
 
 ***
 
+* ### `getstakeinfo`
+    getstakeinfo
+    * Parameters (positional)
+    1. `ADDRESS` did/address.
+
+    ```js
+    params:[
+        "ADDRESS" 
+    ]
+     ```
+    * Returns
+    `Object` - 
+    `address` - address
+    `stake_utxo_count` - number of utxos can be used as stake proof for PoS mining
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"id":114, "jsonrpc":"2.0", "method":"getstakeinfo", "params":["MNMybr6Ux3ddYNNXCtW2zMPN85LXTbiori"]}' 127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 114,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "address" : "MNMybr6Ux3ddYNNXCtW2zMPN85LXTbiori",
+            "stake_utxo_count" : 3
+        }
+    }
+    ```
+
+***
+
 * ### `startmining`
     start solo mining.
     * Parameters (optional)
