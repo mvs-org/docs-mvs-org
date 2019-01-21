@@ -665,3 +665,125 @@ comments: false
 
 ***
 
+* ### `lock`
+    lock etp or asset to a target did/address.
+    * Parameters (optional)
+    1. `-c` or `[--change]`        Change to this did/address
+    2. `-f` or `[--fee]`           Transaction fee. defaults to 0.0001 etp
+    3. `-m` or `[--memo]`          Attached memo for this transaction
+    4. `-s` or `[--symbol]`        Lock asset of this symbol
+
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    3. `TO_`         Lock to this did.
+    4. `AMOUNT`      ETP integer bits.
+    5. `SEQUENCE`    Lock sequence value, max value is 1048575 for block height unit
+    ```js
+    params:[
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
+        "TO_",
+        "AMOUNT",
+        "SEQUENCE"
+    ]
+     ```
+    * Returns
+    `Object` - return the transaction
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"id":114, "jsonrpc":"2.0", "method":"lock", "params":["test1", "passwd1", "MNMybr6Ux3ddYNNXCtW2zMPN85LXTbiori", "12345678", "1000"]}' 127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 114,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "hash" : "b30f53f157fb4859cb29b15800c88c742bdb3753be698a34527a3fa80e3775f0",
+            "inputs" : 
+            [
+                {
+                    "address" : "MNMybr6Ux3ddYNNXCtW2zMPN85LXTbiori",
+                    "previous_output" : 
+                    {
+                        "hash" : "14c412c9d03208c4c7b700c6d28c73c3b72e7d6cbbe4054726befd5a49ec42a7",
+                        "index" : 0
+                    },
+                    "script" : "[ 30440220356c8bbbfa77e9b8c63d4aca466cde70f80e1119c816f6c7c8b77a19f0ffa0bd022003ef227f103bf93cd644efaf8d6395b30bf879e8dd67db746134f87f2c923dad01 ] [ 03977ccd611e644e2446988aaf546c3d2e72425d5b513a863a8fd398f124c7e001 ]",
+                    "sequence" : 4294967295
+                }
+            ],
+            "lock_time" : "0",
+            "outputs" : 
+            [
+                {
+                    "address" : "MNMybr6Ux3ddYNNXCtW2zMPN85LXTbiori",
+                    "attachment" : 
+                    {
+                        "type" : "etp"
+                    },
+                    "index" : 0,
+                    "locked_height_range" : 0,
+                    "script" : "[ e803 ] checksequenceverify drop dup hash160 [ 9ea41e2b2eed4f0d2f16ab1aca6124ab49c89e4d ] equalverify checksig",
+                    "value" : 12345678
+                },
+                {
+                    "address" : "MNMybr6Ux3ddYNNXCtW2zMPN85LXTbiori",
+                    "attachment" : 
+                    {
+                        "type" : "etp"
+                    },
+                    "index" : 1,
+                    "locked_height_range" : 0,
+                    "script" : "dup hash160 [ 9ea41e2b2eed4f0d2f16ab1aca6124ab49c89e4d ] equalverify checksig",
+                    "value" : 287644322
+                }
+            ],
+            "version" : "4"
+        }
+    }
+    ```
+
+***
+
+* ### `getlocked`
+    get locked balance of target did/address.
+    * Parameters (optional)
+    1. `-e` or `[--expiration]` expiration height, should be still locked at this height.
+    2. `-k` or `[--stake]`      If specified, then sum effective locked values for DPoS stake.
+    3. `-r` or `[--range]`      Pick locked value between this range [begin:end).
+    4. `-s` or `[--symbol]`     asset symbol
+
+    * Parameters (positional)
+    1. `ADDRESS` did/address.
+
+    * Returns
+    `Array`
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"id":114, "jsonrpc":"2.0", "method":"getlocked", "params":["MNMybr6Ux3ddYNNXCtW2zMPN85LXTbiori"]}' 127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 114,
+        "jsonrpc" : "2.0",
+        "result" : 
+        [
+            {
+                "address" : "MNMybr6Ux3ddYNNXCtW2zMPN85LXTbiori",
+                "expiration_height" : 1101,
+                "lock_at_height" : 101,
+                "locked_balance" : 12345678,
+                "locked_height" : 1000
+            }
+        ]
+    }
+    ```
+
+***
+
