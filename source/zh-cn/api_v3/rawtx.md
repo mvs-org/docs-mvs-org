@@ -11,16 +11,15 @@ comments: false
 * ### `createrawtx`
     createrawtx
     * Parameters (positional)
-    1. `-d` or `[--deposit]`       Deposits support [7, 30, 90, 182, 365] days. defaluts to 7 days
-    2. `-f` or `[--fee]`           Transaction fee. defaults to 10000 ETP bits
-    3. `-h` or `[--help]`          Get a description and instructions for this command.
-    4. `-i` or `[--message]`       Message/Information attached to this transaction
-    5. `-m` or `[--mychange]`      Mychange to this address, includes etp and asset change
-    6. `-n` or `[--symbol]`        asset name, not specify this option for etp tx
-    7. `-r` or `[--receivers]`     Send to [address:amount]. amount is asset number if sybol option specified
-    8. `-s` or `[--senders]`       Send from addresses
-    9. `-t` or `[--type]`          Transaction type. 0 -- transfer etp, 1 -- deposit etp, 3 -- transfer asset, 6 -- just only send message
-    10. `-u` or `[--utxos]`        Use the specific UTXO as input. Format: "tx-hash:output-index"
+    1. `-f` or `[--fee]`           Transaction fee. defaults to 10000 ETP bits
+    2. `-i` or `[--message]`       Message/Information attached to this transaction
+    3. `-m` or `[--mychange]`      Mychange to this did/address, includes etp and asset change
+    4. `-n` or `[--symbol]`        asset name, do not specify this option for etp tx
+    5. `-r` or `[--receivers]`     Send to [did/address:amount]. amount is asset number if symbol option is specified
+    6. `-s` or `[--senders]`       Send from did/addresses
+    7. `-t` or `[--type]`          Transaction type. 0 -- transfer etp, 3 -- transfer asset
+    8. `-u` or `[--utxos]`         Use the specific UTXO as input. Format: "tx-hash:output-index"
+    9. `-x` or `[--locktime]`      Locktime. defaults to 0
 
     * Returns
     `Object` -
@@ -44,7 +43,7 @@ comments: false
 * ### `signrawtx`
     signrawtx
     * Parameters (positional)
-    1. `-w` or `[--wif]`       The wif or private key to sign.
+    1. `-w` or `[--wif]`       The wif(s) or private key(s) to sign.
     * Parameters (positional)
     1. `ACCOUNTNAME`  Account name required, any word if wif is specified.
     2. `ACCOUNTAUTH`  Account password(authorization) required, any word if wif is specified.
@@ -151,9 +150,6 @@ comments: false
 ***
 
 * ### `sendrawtx`
-    * Options (named):
-    1. `-h` or `[--help]`          Get a description and instructions for this command.
-    2. `-f` or `[--fee]`           The max tx fee. default_value 10 etp
     * Arguments (positional):
     1. `TRANSACTION` The input Base16 transaction to broadcast.
     ```js

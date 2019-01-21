@@ -66,11 +66,11 @@ comments: false
         "params":[0],"id":27}' http://127.0.0.1:8820/rpc/v3
 
     // Response
-	{
-	    "id" : 27,
-	    "jsonrpc" : "2.0",
-	    "result" :
-	    {
+    {
+        "id" : 27,
+        "jsonrpc" : "2.0",
+        "result" :
+        {
             "bits" : "1",
             "hash" : "b81848ef9ae86e84c3da26564bc6ab3a79efc628239d11471ab5cd25c0684c2d",
             "merkle_tree_hash" : "2a845dfa63a7c20d40dbc4b15c3e970ef36332b367500fd89307053cb4c1a2c1",
@@ -115,8 +115,8 @@ comments: false
                     "version" : "0"
                 }
             ]
-	    }
-	}
+        }
+    }
     ```
 
     ***
@@ -132,7 +132,7 @@ comments: false
     ]
      ```
     * Returns
-    `Object` - block header with transactions
+    `String` - 
 
     * Example
     ```js

@@ -142,8 +142,14 @@ comments: false
 * ### `getmininginfo`
     getmininginfo
     * Returns
-    `Object` -
-    `mining-info` - mining info
+    `Object` - 
+    `asset_symbol` - mining MST meanwhile
+    `block_version` - use which consensus, ie. PoW, PoS, etc.
+    `difficulty` - the latest block's difficulty
+    `height` - the latest block height
+    `is_mining` - mining flag
+    `payment_address` - mining address
+    `rate` - hash rate
     * Example
     ```js
     // Request
@@ -160,9 +166,12 @@ comments: false
         "jsonrpc" : "2.0",
         "result" : 
         {
-            "difficulty" : "2233275",
-            "height" : "108374",
+            "asset_symbol" : "",
+            "block_version" : "PoW",
+            "difficulty" : "12441873850415",
+            "height" : "1825684",
             "is_mining" : false,
+            "payment_address" : "",
             "rate" : "0"
         }
     }
@@ -172,6 +181,11 @@ comments: false
 
 * ### `startmining`
     start solo mining.
+    * Parameters (optional)
+    1. `-a` or `--address`   The mining target did/address. Defaults to empty, means a new address will be generated.
+    2. `-c` or `--consensus` Accept block with the specified consensus, eg. pow, pos, defaults to pow.
+    3. `-n` or `--number`    The number of mining blocks, useful for testing. Defaults to 0, means no limit.
+    4. `-s` or `--symbol`    Mine Asset with specified symbol. Defaults to empty.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
@@ -194,7 +208,7 @@ comments: false
     {
         "jsonrpc" : "2.0", 
         "id": 20, 
-        "result": "solo mining started at MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2."
+        "result": "solo mining started at MEhwjsxeqVwPzWFqxzAPcFqnh3HSdgUuS2, accept consensus pow"
     }
     ```
 
@@ -267,12 +281,12 @@ comments: false
 * ### `addnode`
     This command is used to add/remove p2p node.
     * Parameters (optional)
-    1. `-o` or `[--operation]` The operation `add`/`ban` to the target node address. default: `add`.
+    1. `-o` or `--operation` The operation `add`/`ban`/`peer`/`list`/`reseed` to the target node address. default: `add`.
     * Parameters (positional)
     1. `NODEADDRESS` The target node address, e.g: 10.10.10.1:5251.
     ```js
     params:[
-        "NODEADDRESS", 
+        "NODEADDRESS" 
     ]
      ```
     * Returns
@@ -296,6 +310,8 @@ comments: false
 
 * ### `setminingaccount`
     setmining account when pool mining.
+    * Parameters (optional)
+    `-s` or `--symbol`  Mine Asset with specified symbol. Defaults to empty.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.

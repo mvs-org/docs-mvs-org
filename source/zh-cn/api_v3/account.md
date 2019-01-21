@@ -404,6 +404,7 @@ comments: false
 
 * ### `getpublickey`
     Show public key of address
+    If wallet version >= 0.9.0, the ADDRESS paramenter can be Did/Address/Publickey/PrivateKey(WIF).
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
@@ -442,4 +443,5 @@ comments: false
             "public_key" : "031c7ac7f12a05ea4952289801fa52142aa421f11efe8ab7090fb823562156a321"
         }
     }
-    ```***
+    ```
+***

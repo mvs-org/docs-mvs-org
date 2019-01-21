@@ -27,6 +27,10 @@ comments: false
     4. `total_available` - total available etp amount
     5. `total_frozen` - total frozen etp amount
 
+    ```
+    total_unspent = total_available + total_frozen
+    ```
+
     * Example
     ```js
     // Request
@@ -59,6 +63,10 @@ comments: false
 
 * ### `getaddressetp`
     Show balance details of this address.
+    * Parameters (optional)
+    1. `-d` or `--deposited`  If specified, then only get deposited etp. Default is not specified.
+    2. `-r` or `--range`      Pick utxo whose value is between this range [begin:end).
+    3. `-u` or `--utxo`       If specified, list all utxos. Default is not specified.
     * Parameters (positional)
     1. `ADDRESS` Address.
     ```js
@@ -68,11 +76,16 @@ comments: false
      ```
     * Returns
     `Object` - balance of the address
-    1. `confirmed` - confirmed(unspent) etp amount
-    2. `received` - received etp amount
-    3. `unspent` - unspent etp amount
+    1. `address` - address
+    2. `available` - available etp amount
+    3. `confirmed` - confirmed(unspent) etp amount
     4. `frozen` - frozen etp amount
-    5. `address` - address
+    5. `received` - received etp amount
+    6. `unspent` - unspent etp amount
+
+    ```
+    unspent = available + frozen
+    ```
 
     * Example
     ```js
@@ -93,6 +106,7 @@ comments: false
         "result" : 
         {
             "address" : "MJNo92g6DavpaCZbYjrH45iQ8eAKnLqmms",
+            "available" : 4629959994,
             "confirmed" : 4629959994,
             "frozen" : 0,
             "received" : 11969909981,
@@ -199,7 +213,7 @@ comments: false
 ***
 
 * ### `deposit`
-    Deposit some etp, then get reward for frozen some etp.
+    Deposit some etp, then get reward for frozen some etp. **(Forbidden after 0.9.0)**
     * Parameters (optional)
     1. `-a` or `[--address]` The deposit target address.
     2. `-d` or `[--deposit]` Deposits support [7, 30, 90, 182, 365] days. defaluts to 7 days
@@ -295,6 +309,8 @@ comments: false
     1. `-f` or `[--fee]`    The fee of tx. default_value 0.0001 etp
     2. `-c` or `[--change]` Change to this did/address
     3. `-m` or `[--memo]`   Attached memo for this transaction
+    4. `-e` or `[--exclude]` Exclude utxo whose value is between this range [begin:end).
+    5. `-x` or `[--locktime]` Locktime. defaults to 0
     * Parameters (positional)
     1. `ACCOUNTNAME`    Account name.
     2. `ACCOUNTAUTH`    Account password/authorization.
@@ -385,6 +401,8 @@ comments: false
     1. `-f` or `[--fee]`    The fee of tx. default_value 0.0001 etp
     2. `-c` or `[--change]` Change to this did/address
     3. `-m` or `[--memo]`   Attached memo for this transaction
+    4. `-e` or `[--exclude]` Exclude utxo whose value is between this range [begin:end).
+    5. `-x` or `[--locktime]` Locktime. defaults to 0
     * Parameters (positional)
     1. `ACCOUNTNAME`    Account name.
     2. `ACCOUNTAUTH`    Account password/authorization.
@@ -477,6 +495,7 @@ comments: false
     * Parameters (optional)
     1. `-f` or `[--fee]`        The fee of tx. default_value 0.0001 etp
     2. `-m` or `[--mychange]`   Change to this did/address
+    3. `-i` or `[--memo]`       The memo to descript transaction
     4. `-r` or `[--receivers]`  Send to [did/address:amount]
 
     * Parameters (positional)

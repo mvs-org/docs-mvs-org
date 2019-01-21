@@ -10,12 +10,12 @@ comments: false
 * ### `registerdid`
     registerdid
     * Parameters (optional)
-    1. `-f` or `[--fee]` The fee of tx. default_value 10 etp
+    1. `-f` or `[--fee]` The fee of tx. Defaults to 1 etp
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
     3. `ADDRESS` target address.
-    4. `SYMBOL` register did symbol
+    4. `SYMBOL` did symbol, supports alphabets/numbers/(“@”, “.”, “_”, “-“), case-sensitive, maximum length is 64.
     ```js
     params:[
         "ACCOUNTNAME", 
@@ -96,7 +96,7 @@ comments: false
     ```
 ***
 
-* ### `listdids`
+* ### `listdids` of blockchain
     list dids details of blockchain.
     * Parameters (optional)
     1. `-i` or `[--index]` Page index. Default is 1. 
@@ -148,7 +148,7 @@ comments: false
 
 ***
 
-* ### `listdids`
+* ### `listdids` of account
     list dids details of account.
     * Parameters (optional)
     1. `-i` or `[--index]` Page index. Default is 1. 
@@ -216,7 +216,7 @@ comments: false
     * Example
     ```js
     // Request
-    curl -X POST --data '{"jsonrpc":"2.0","method":"didmodifyaddress",
+    curl -X POST --data '{"jsonrpc":"2.0","method":"didchangeaddress",
     "params":["test", "123456",  "MFzPrUeNstFDTmnLdFYrD6PVtANS2281oP", "GUANG"],"id":7}' http://127.0.0.1:8820/rpc/v3
 
     // Response
@@ -284,7 +284,7 @@ comments: false
 ***
 
 
-* ### `getdid`
+* ### `getdid` with no param
     list dids.
     * Parameters (positional)
 
@@ -315,7 +315,7 @@ comments: false
     ```
 ***
 
-* ### `getdid`
+* ### `getdid` with param
     list history addresses of did.
     * Parameters (positional)
     1. `SYMDID/ADDRESS` Did symbol or address  .

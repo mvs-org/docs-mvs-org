@@ -14,7 +14,7 @@ comments: false
     1. `-d` or `[--description]` The asset description.
     2. `-i` or `[--issuer]` The did symbol specified its issuer.
     3. `-n` or `[--decimalnumber]` The asset amount decimal number.
-    4. `-r` or `[--rate]` The asset symbol/name.
+    4. `-r` or `[--rate]` The percent threshold value when you secondary issue.
     5. `-s` or `[--symbol]` The asset symbol/name. Global unique.
     6. `-v` or `[--volume]` The asset maximum supply volume.
     * Parameters (positional)
@@ -114,7 +114,9 @@ comments: false
     issue
     * Parameters (optional)
     1. `-f` or `[--fee]` The fee of tx. default_value 10 etp
-    2. `-m` or `[--model]` The asset attenuation model parameter
+    2. `-m` or `[--model]` The token offering model by block height.
+    3. `-p` or `[--percentage]` Percentage of fee send to miner. minimum is 20.
+    4. `-s` or `[--subsidy]` The block subsidy parameters for mining.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
@@ -268,7 +270,7 @@ comments: false
     * Parameters (optional)
     1. `-c` or `[--cert]` If specified, then only get related cert. Default is not specified.
     2. `-d` or `[--deposited]` If specified, then only get deposited assets.
-    3. `-s` or `[--symbol]` Asset symbol.
+    3. `-t` or `[--type]`      If specified, then only get related type of cert.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
@@ -402,6 +404,7 @@ comments: false
     getasset by symbol
     * Parameters (optional)
     1. `-c` or `[--cert]` If specified, then only get related cert. Default is not specified.
+    2. `-i` or `[--issuer]`  If specified, then only get asset/cert issued by this issuer.
     * Parameters (positional)
     1. `SYMBOL` Asset symbol.
     ```js
@@ -447,6 +450,7 @@ comments: false
     list assets details.
     * Parameters (optional)
     1. `-c` or `[--cert]` If specified, then only get related cert. Default is not specified.
+    2. `-t` or `[--type]` If specified, then only get related type of cert.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
@@ -738,6 +742,7 @@ comments: false
     * Parameters (optional)
     1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
     2. `-m` or `[--model]` The asset attenuation model parameter
+    3. `-i` or `[--memo]`  Attached memo for this transaction.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
@@ -967,6 +972,8 @@ comments: false
 * ### `issuecert`
     * Parameters (optional)
     1. `-f` or `[--fee]` The fee of tx. default_value 0.0001 etp
+    2. `-d` or `[--description]`   Cert description, default is empty.
+    3. `-m` or `[--memo]`          Attached memo for this transaction.
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
     2. `ACCOUNTAUTH` Account password/authorization.
