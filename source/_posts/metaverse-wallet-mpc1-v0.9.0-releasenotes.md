@@ -17,9 +17,10 @@ After wallet program upgraded, please waiting for synchronizing to the latest he
 ### New Features
 1. Supports PoW & PoS
 2. Supports MST mining
-3. Supports absolute timelocks: nLocktime and CLTV.
-4. Supports relative timelocks: nSequence and CSV.
-5. Add new cli commands: lock, getlocked, getstakeinfo.
+3. Supports [BIP65](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki).
+4. Supports [BIP68](https://github.com/bitcoin/bips/blob/master/bip-0068.mediawiki).
+5. Supports [BIP112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki).
+6. Add new cli commands: lock, getlocked, getstakeinfo.
 
 ### Tech & Bugfix
 1. [Custom config file](https://github.com/mvs-org/metaverse/issues/336)
