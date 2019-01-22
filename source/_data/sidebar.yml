@@ -9,8 +9,8 @@ docs:
     issue_token: features-issue-token.html
     transfer_token: features-transfer-token.html
     onchain_deposit: features-onchain-deposit.html
-    supernova: supernova.html
     pillars: pillars.html
+    supernova: supernova.html
 
   full_node_usage:
     introduction: introduction.html
@@ -29,6 +29,7 @@ docs:
     deploy_wallet: deploy-wallet-for-exchange-platform.html
     fronzen_etp: recognize-fronzen-ETP-transaction-outputs.html
     asset_operation: assets-operations.html
+    mpc1_upgrade: mpc1-upgrade-manual.html
     supernova_upgrade: supernova-upgrade-manual.html
     cross_chain_swap: cross-chain-swap.html
 
