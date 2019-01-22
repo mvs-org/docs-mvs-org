@@ -497,6 +497,7 @@ comments: false
     2. `-m` or `[--mychange]`   Change to this did/address
     3. `-i` or `[--memo]`       The memo to descript transaction
     4. `-r` or `[--receivers]`  Send to [did/address:amount]
+    5. '-s' or `[--from]`       Send from this did/address
 
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.

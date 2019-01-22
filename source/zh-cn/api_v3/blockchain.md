@@ -143,8 +143,8 @@ comments: false
     getmininginfo
     * Returns
     `Object` - 
-    `asset_symbol` - mining MST meanwhile
-    `block_version` - use which consensus, ie. PoW, PoS, etc.
+    `mining_mst` - mining MST meanwhile
+    `block_type` - use which consensus, ie. PoW, PoS, etc.
     `difficulty` - the latest block's difficulty
     `height` - the latest block height
     `is_mining` - mining flag
@@ -166,8 +166,8 @@ comments: false
         "jsonrpc" : "2.0",
         "result" : 
         {
-            "asset_symbol" : "",
-            "block_version" : "PoW",
+            "mining_mst" : "",
+            "block_type" : "PoW",
             "difficulty" : "12441873850415",
             "height" : "1825684",
             "is_mining" : false,

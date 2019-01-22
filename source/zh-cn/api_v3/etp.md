@@ -403,6 +403,7 @@ comments: false
     3. `-m` or `[--memo]`   Attached memo for this transaction
     4. `-e` or `[--exclude]` Exclude utxo whose value is between this range [begin:end).
     5. `-x` or `[--locktime]` Locktime. defaults to 0
+
     * Parameters (positional)
     1. `ACCOUNTNAME`    Account name.
     2. `ACCOUNTAUTH`    Account password/authorization.
@@ -497,6 +498,7 @@ comments: false
     2. `-m` or `[--mychange]`   Change to this did/address
     3. `-i` or `[--memo]`       The memo to descript transaction
     4. `-r` or `[--receivers]`  Send to [did/address:amount]
+    5. '-s' or `[--from]`       Send from this did/address
 
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
