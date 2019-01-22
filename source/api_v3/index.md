@@ -72,6 +72,7 @@ $ ./mvs-cli help $command
 | [getheight](blockchain.html#getheight)        | × | √ | × | 0.7.3 |
 | [getpeerinfo](blockchain.html#getpeerinfo)    | × | √ | × | 0.7.3 |
 | [getmininginfo](blockchain.html#getmininginfo)| √ | √ | × | 0.7.3 |
+| [getstakeinfo](blockchain.html#getstakeinfo)  | √ | √ | × | 0.9.0 |
 | [startmining](blockchain.html#startmining)    | √ | × | √ | 0.7.3 |
 | [stopmining](blockchain.html#stopmining)      | √ | × | √ | 0.7.3 |
 | [getwork](blockchain.html#getwork)            | √ | × | √ | 0.7.3 |
@@ -93,11 +94,12 @@ $ ./mvs-cli help $command
 |  ------- | -------| --------| --------------| -------| 
 | [getbalance](etp.html#getbalance)     | × | × | √ | 0.7.3 |
 | [listbalances](etp.html#listbalances) | × | × | √ | 0.7.3 |
-| [deposit](etp.html#deposit)           | √ | × | √ | 0.7.3 |
 | [send](etp.html#send)                 | √ | × | √ | 0.7.3 |
 | [sendfrom](etp.html#sendfrom)         | √ | × | √ | 0.7.3 |
 | [sendmore](etp.html#sendmore)         | √ | × | √ | 0.7.3 |
-| [getaddressetp](etp.html#getaddressetp)     | × | × | × | 0.8.0 |
+| [getaddressetp](etp.html#getaddressetp)   | × | × | × | 0.8.0 |
+| [lock](etp.html#lock)                 | √ | × | √ | 0.9.0 |
+| [getlocked](etp.html#getlocked)       | √ | × | √ | 0.9.0 |
 
 #### Transaction
 

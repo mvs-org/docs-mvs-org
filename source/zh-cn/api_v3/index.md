@@ -72,6 +72,7 @@ $ ./mvs-cli help $command
 | [getheight](blockchain.html#getheight)        | × | √ | × | 0.7.3 |
 | [getpeerinfo](blockchain.html#getpeerinfo)    | × | √ | × | 0.7.3 |
 | [getmininginfo](blockchain.html#getmininginfo)| √ | √ | × | 0.7.3 |
+| [getstakeinfo](blockchain.html#getstakeinfo)  | √ | √ | × | 0.9.0 |
 | [startmining](blockchain.html#startmining)    | √ | × | √ | 0.7.3 |
 | [stopmining](blockchain.html#stopmining)      | √ | × | √ | 0.7.3 |
 | [getwork](blockchain.html#getwork)            | √ | × | √ | 0.7.3 |
@@ -93,11 +94,12 @@ $ ./mvs-cli help $command
 |  ------- | -------| --------| --------------| -------| 
 | [getbalance](etp.html#getbalance)     | × | × | √ | 0.7.3 |
 | [listbalances](etp.html#listbalances) | × | × | √ | 0.7.3 |
-| [deposit](etp.html#deposit)           | √ | × | √ | 0.7.3 |
 | [send](etp.html#send)                 | √ | × | √ | 0.7.3 |
 | [sendfrom](etp.html#sendfrom)         | √ | × | √ | 0.7.3 |
 | [sendmore](etp.html#sendmore)         | √ | × | √ | 0.7.3 |
-| [getaddressetp](etp.html#getaddressetp)     | × | × | × | 0.8.0 |
+| [getaddressetp](etp.html#getaddressetp)   | × | × | × | 0.8.0 |
+| [lock](etp.html#lock)                 | √ | × | √ | 0.9.0 |
+| [getlocked](etp.html#getlocked)       | √ | × | √ | 0.9.0 |
 
 #### Transaction
 
@@ -130,14 +132,14 @@ $ ./mvs-cli help $command
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [registerdid](identity.html#registerdid)     	| √ | × | √ | 0.8.0 |
-| [didchangeaddress](identity.html#didchangeaddress)	| √ | × | √ | 0.8.0 |
-| [listdids](identity.html#listdids)     		| × | × | × | 0.8.0 |
-| [getdid](identity.html#getdid)     			| × | × | × | 0.8.0 |
-| [didsend](etp.html#send)         		| √ | × | √ | 0.8.0 |
-| [didsendfrom](etp.html#sendfrom)     	| √ | × | √ | 0.8.0 |
+| [registerdid](identity.html#registerdid)      | √ | × | √ | 0.8.0 |
+| [didchangeaddress](identity.html#didchangeaddress)    | √ | × | √ | 0.8.0 |
+| [listdids](identity.html#listdids)            | × | × | × | 0.8.0 |
+| [getdid](identity.html#getdid)                | × | × | × | 0.8.0 |
+| [didsend](etp.html#send)              | √ | × | √ | 0.8.0 |
+| [didsendfrom](etp.html#sendfrom)      | √ | × | √ | 0.8.0 |
 | [didsendmore](etp.html#sendmore)         | √ | × | √ | 0.8.0 |
-| [didsendasset](asset.html#sendasset)   	| √ | × | √ | 0.8.0 |
+| [didsendasset](asset.html#sendasset)      | √ | × | √ | 0.8.0 |
 | [didsendassetfrom](asset.html#sendassetfrom)   | √ | × | √ | 0.8.0 |
 
 #### MST
@@ -154,24 +156,24 @@ $ ./mvs-cli help $command
 | [listassets](asset.html#listassets)            | √ | × | optional | 0.7.3 |
 | [sendasset](asset.html#sendasset)              | √ | × | √ | 0.7.3 |
 | [sendassetfrom](asset.html#sendassetfrom)      | √ | × | √ | 0.7.3 |
-| [burn](asset.html#burn)                      	 | √ | × | √ | 0.8.0 |
+| [burn](asset.html#burn)                        | √ | × | √ | 0.8.0 |
 | [validatesymbol](asset.html#validatesymbol)    | × | × | √ | 0.9.0 |
 
 #### Cert
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [issuecert](asset.html#issuecert)     	| √ | × | √ | 0.8.0 |
+| [issuecert](asset.html#issuecert)         | √ | × | √ | 0.8.0 |
 | [transfercert](asset.html#transfercert)   | √ | × | √ | 0.8.0 |
 
 #### MIT
 
 |  Method | Online-required | Admin-required | Account-required | Version | 
 |  ------- | -------| --------| --------------| -------| 
-| [registermit](mit.html#registermit)     	| √ | × | √ | 0.8.0 |
-| [transfermit](mit.html#transfermit)     	| √ | × | √ | 0.8.0 |
-| [listmits](mit.html#listmits)     		| × | × | optional | 0.8.0 |
-| [getmit](mit.html#getmit)         		| × | × | × | 0.8.0 |
+| [registermit](mit.html#registermit)       | √ | × | √ | 0.8.0 |
+| [transfermit](mit.html#transfermit)       | √ | × | √ | 0.8.0 |
+| [listmits](mit.html#listmits)             | × | × | optional | 0.8.0 |
+| [getmit](mit.html#getmit)                 | × | × | × | 0.8.0 |
 
 
 * Method : JSON-RPC Method
@@ -188,4 +190,3 @@ administrator_required = 1
 
 ### mvs-cli
 mvs-cli uses `/rpc/v3` to call mvsd after v0.8.2.
-
