@@ -192,7 +192,9 @@ comments: false
     * Returns
     `Object` - 
     `address` - address
-    `stake_utxo_count` - number of utxos can be used as stake proof for PoS mining
+    `height` - block height
+    `stake_utxo_available` - number of utxos can be used as stake for PoS mining
+    `stake_utxo_waiting` - number of utxos can be used as stake but not mature
 
     * Example
     ```js
@@ -206,7 +208,9 @@ comments: false
         "result" : 
         {
             "address" : "MNMybr6Ux3ddYNNXCtW2zMPN85LXTbiori",
-            "stake_utxo_count" : 3
+            "height" : 1015855,
+            "stake_utxo_available" : 47,
+            "stake_utxo_waiting" : 11
         }
     }
     ```
