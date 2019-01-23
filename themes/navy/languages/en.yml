@@ -160,6 +160,7 @@ sidebar:
     tech_utxo_and_script: UTXO and script
     tech_utxo_limitation: UTXO limitation
     tech_cross_chain: Cross chain swap
+    tech_mpc1-new-tx: MPC1 new transaction manual
     plugin_cli: Plugin CLI
 
   faq:

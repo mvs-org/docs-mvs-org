@@ -21,6 +21,7 @@ After wallet program upgraded, please waiting for synchronizing to the latest he
 4. Supports [BIP68](https://github.com/bitcoin/bips/blob/master/bip-0068.mediawiki).
 5. Supports [BIP112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki).
 6. Add new cli commands: lock, getlocked, getstakeinfo.
+7. Improve listassets to query cert by type.
 
 ### Tech & Bugfix
 1. [Custom config file](https://github.com/mvs-org/metaverse/issues/336)

@@ -49,4 +49,3 @@ References: <https://docs.mvs.org/docs/setup-linux.html>
 ### Sync
 Run MPC1 wallet, sync blocks from Metaverse mainnet, **Please do not exit before syncing compeleted!**
 User command `getinfo` to check and see <https://explorer.mvs.org>.
-
