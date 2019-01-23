@@ -139,6 +139,79 @@ comments: false
 
 ***
 
+* ### `getrandom`
+    get a random integer between specified range.
+
+    For the argument POINT1 and POINT2,  
+    If both are not specified, the range is [0, max_uint64].  
+    If only POINT1 is specified, the range is [0, POINT1].  
+    If both are specified, the range is [POINT1, POINT2] (or [POINT2, POINT1] if POINT2 < POINT1).
+
+    * Parameters (positional)
+    1. `POINT1`               One point of the range.
+    2. `POINT2`               Another point of the range.
+
+    * Returns
+    `Object` - 
+    `begin` - begin of range
+    `end` - end of range
+    `random_hash` - hash of random number (hex encoded)
+    `random_num` - random number
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"id":114, "jsonrpc":"2.0", "method":"getrandom", "params":["1000", "9999"]}' 127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 114,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "begin" : 1000,
+            "end" : 9999,
+            "random_hash" : "404c4e2b3749ef14a54168d3d54a7ae6dcae16c0f695ad4c5a034b64fefb136f",
+            "random_num" : 4089
+        }
+    }
+    ```
+
+***
+
+* ### `verifyrandom`
+    verify if given random hash and number are matched.
+
+    * Parameters (positional)
+    1. `RANDOM_HASH`          random number's hash (use SHA3 algorithmn)
+    2. `RANDOM_NUM`           random number
+
+    * Returns
+    `Object` - 
+    `is_valid` - true for successful, false for failure
+    `random_hash` - hash of random number (hex encoded)
+    `random_num` - random number
+
+    * Example
+    ```js
+    // Request
+    curl -X POST --data '{"id":114, "jsonrpc":"2.0", "method":"verifyrandom", "params":["404c4e2b3749ef14a54168d3d54a7ae6dcae16c0f695ad4c5a034b64fefb136f", "4089"]}' 127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 114,
+        "jsonrpc" : "2.0",
+        "result" : 
+        {
+            "is_valid" : true,
+            "random_hash" : "404c4e2b3749ef14a54168d3d54a7ae6dcae16c0f695ad4c5a034b64fefb136f",
+            "random_num" : 4089
+        }
+    }
+    ```
+
+***
+
 * ### `getmininginfo`
     getmininginfo
     * Returns
