@@ -117,7 +117,7 @@ This `PoS` block has two transations:
 * The first is `coinbase`. Its hash is `0ca5c0e285c180256b44eae94d570fc67366c52ed4fa62a4dd9e9c07e3eddc99`;   
 * The second is `coinstake`. Its hash is `c246e71b06e75c7d56b7120fda9c8344c45b0aaf4922e8bea8c7ff50b7e79d8e`.  
 
-## PoS genesis 
+## PoS Genesis Block 
 `PoS` genesis block is a `PoS` block. It has `coinbase` and `coinstake` too. Beside it has the third transation `PoS` genesis transation. `PoS` genesis transation includes the reward for `PoS` genesis block and 23 `witness` certificates which are sent to foundation of Metaverse.
 
 Example:
