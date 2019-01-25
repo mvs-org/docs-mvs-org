@@ -668,12 +668,12 @@ comments: false
 ***
 
 * ### `lock`
-    lock etp or asset to a target did/address.
+    lock etp to a target did.
     * Parameters (optional)
     1. `-c` or `[--change]`        Change to this did/address
     2. `-f` or `[--fee]`           Transaction fee. defaults to 0.0001 etp
     3. `-m` or `[--memo]`          Attached memo for this transaction
-    4. `-s` or `[--symbol]`        Lock asset of this symbol
+    4. `-s` or `[--from]`          Send from this did/address
 
     * Parameters (positional)
     1. `ACCOUNTNAME` Account name.
@@ -757,7 +757,6 @@ comments: false
     1. `-e` or `[--expiration]` expiration height, should be still locked at this height.
     2. `-k` or `[--stake]`      If specified, then sum effective locked values for DPoS stake.
     3. `-r` or `[--range]`      Pick locked value between this range [begin:end).
-    4. `-s` or `[--symbol]`     asset symbol
 
     * Parameters (positional)
     1. `ADDRESS` did/address.
