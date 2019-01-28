@@ -35,9 +35,9 @@ And `MST` mining reword is calculated by：`initial * pow(base, (block_height/in
 
 #### Example
 issue:
-`./mvs-cli issue testacc testacc MST.MINING -s "initial:300000000,interval:500000,base:0.95"`
+`./mvs-cli issue testacc testacc MST.MST.TEST -s "initial:300000000,interval:500000,base:0.95"`
 
-`MST` mining reword = 300000000 * pow(0.95, (Current block height - Height shen MST issued) / 500000).
+`MST` mining reword = 300000000 * pow(0.95, (Current block height - Height when MST issued) / 500000).
 
 #### Operations on fullnode wallet
 ![Operations on fullnode wallet ](/images/mining/en/mst_mining_create_asset.png)

@@ -37,7 +37,7 @@ comments: true
 
 #### 示例：
 参数：
-`./mvs-cli issue testacc testacc MST.MINING -s "initial:300000000,interval:500000,base:0.95"`
+`./mvs-cli issue testacc testacc MST.MST.TEST -s "initial:300000000,interval:500000,base:0.95"`
 
 MST 挖矿奖励 = 300000000 * pow(0.95, (当前块高 - 资产首次发行时的块高) / 500000)。
 
