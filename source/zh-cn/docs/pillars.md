@@ -1,5 +1,5 @@
-title: Pillars new features
-comments: false
+title: PoS 与 MST 挖矿指南
+comments: true
 ---
 
 # PoS 挖矿
@@ -17,6 +17,9 @@ comments: false
 ## 提高 POS 挖矿成功率
 用于挖矿的数字身份下持有超过 1000 `ETP` 的 `UTXO` 越多，`PoS` 挖矿的成功率就越大。
 
+## 全节点操作流程
+![PoS挖矿全节点操作流程](/images/mining/zh/pos_mst_mining_overview.png)
+
 # MST 挖矿
 
 ## 简介
@@ -33,5 +36,9 @@ comments: false
 
 MST 挖矿奖励 = 300000000 * pow(0.95, (当前块高 - 资产首次发行时的块高) / 500000)。
 
+#### 全节点操作示例
+![MST挖矿全节点操作流程](/images/mining/zh/mst_mining_create_asset.png)
+
 ### 矿工
 矿工在调用 `startmining` 附加 `--symbol` 参数指定想要挖矿的 `MST` 的名称即可。
+

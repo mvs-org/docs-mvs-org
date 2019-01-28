@@ -1,5 +1,5 @@
-title: Pillars new features
-comments: false
+title: Guide to PoS and MST mining 
+comments: true
 ---
 
 # PoS Mining
@@ -13,6 +13,9 @@ Please follow the steps to start PoS mining:
 
 ## Tips
 It is easy to mine PoS block for avatar that has many `UTXO`s which has at least 1000 `ETP`.
+
+## Operations on fullnode wallet 
+![Operations on fullnode wallet](/images/mining/en/pos_mst_mining_overview.png)
 
 # MST Mining
 
@@ -30,6 +33,9 @@ issue:
 `./mvs-cli issue testacc testacc MST.MINING -s "initial:300000000,interval:500000,base:0.95"`
 
 `MST` mining reword = 300000000 * pow(0.95, (Current block height - Height shen MST issued) / 500000).
+
+#### Operations on fullnode wallet
+![Operations on fullnode wallet ](/images/mining/en/mst_mining_create_asset.png)
 
 ### 矿工
 Miner `startmining` with option `--symbol` and the symbol of `MST` to be mined.
