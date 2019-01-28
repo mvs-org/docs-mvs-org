@@ -2,6 +2,11 @@ title: Guide to PoS and MST mining
 comments: true
 ---
 
+# Download v0.9.0 for MPC1 test
+* [For Linux](https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/testnet/mvs-linux-x86_64-v0.9.0.tar.gz)  
+* [For MacOS](https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/testnet/mvs-macOSX-x86_64-v0.9.0.pkg)  
+* [For Windows](https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/testnet/mvs-win64-v0.9.0.exe)
+
 # PoS Mining
 
 ## How to start PoS mining
