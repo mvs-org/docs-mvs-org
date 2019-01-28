@@ -42,5 +42,5 @@ issue:
 #### Operations on fullnode wallet
 ![Operations on fullnode wallet ](/images/mining/en/mst_mining_create_asset.png)
 
-### 矿工
+### Miner
 Miner `startmining` with option `--symbol` and the symbol of `MST` to be mined.
