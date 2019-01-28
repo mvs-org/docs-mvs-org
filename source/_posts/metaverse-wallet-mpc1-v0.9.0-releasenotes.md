@@ -5,7 +5,7 @@ comments: false
 ## CAUTION
 MPC1 is a hard-fork version which upgrades MVS mainnet protocol, new features will be actived at height **1,924,000**.
 After height 1,924,000, if you do not upgrade (only full-node, Desktop/Linux), MVS wallet no blocks synchronizing.
-Refers to [Manual of upgrading to MPC1](https://docs.mvs.org/docs/mpc1-upgrade-manual.html)
+Please refer to [Manual of upgrading to MPC1](https://docs.mvs.org/docs/mpc1-upgrade-manual.html)
 
 <font color="#FF0000"> <b>
 After wallet program upgraded, please waiting for synchronizing to the latest height, DO NOT EXIT. 
@@ -27,6 +27,9 @@ After wallet program upgraded, please waiting for synchronizing to the latest he
 1. [Custom config file](https://github.com/mvs-org/metaverse/issues/336)
 2. [Mining difficulty adjustment](https://github.com/mvs-org/metaverse/issues/325)
 3. Remove deposit.
+
+### PoS & MST Mining
+Please refer to [PoS & MST Mining](https://docs.mvs.org/docs/pillars.html)
 
 ### Support
 If you have any issue, please contact us.
