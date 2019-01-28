@@ -2,11 +2,9 @@ title: PoS 与 MST 挖矿指南
 comments: true
 ---
 
-# 下载 v0.9.0 MPC1 测试版
-* [For Linux](http://newmetaverse.org/mvs-download/testnet/mvs-linux-x86_64-v0.9.0.tar.gz)  
-* [For MacOS](http://newmetaverse.org/mvs-download/testnet/mvs-macOSX-x86_64-v0.9.0.pkg)  
-* [For Windows](http://newmetaverse.org/mvs-download/testnet/mvs-win64-v0.9.0.exe)
-* 
+# 下载安装 v0.9.0 MPC1
+前往[钱包下载](https://mvs.org/wallet.html)下载并安装最新版钱包安装程序。
+
 # PoS 挖矿
 
 ## 简介
