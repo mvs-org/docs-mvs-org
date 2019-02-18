@@ -50,4 +50,4 @@ $ ./mvs-install.sh
 **安装后首次运行，请不要直接退出程序，请等待同步区块到最新!**
 
 ### MPC1 新增交易说明
-MPC1 新增了一些交易构造，如果您在项目中需要自己解析交易，请阅读[MPC1 新增交易说明](https://docs.mvs.org/zh-cn/developers/mpc1-new-transactions.html)助。
+MPC1 新增了一些交易构造，如果您在项目中需要自己解析交易，请阅读[MPC1 新增交易说明](https://docs.mvs.org/zh-cn/developers/mpc1-new-transactions.html)。
