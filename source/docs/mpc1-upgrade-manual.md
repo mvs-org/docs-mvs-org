@@ -48,3 +48,6 @@ References: <https://docs.mvs.org/docs/setup-linux.html>
 
 ### Sync
 Run latest wallet binary, sync blocks from Metaverse mainnet, Use command `getinfo` to check height and compare from <https://explorer.mvs.org>.
+
+### MPC1 New transactions
+MPC1 uses some new transactions. If you parse transations in your project, please refer to [MPC1 New transactions](https://docs.mvs.org/zh-cn/developers/mpc1-new-transactions.html) to known what you need.
