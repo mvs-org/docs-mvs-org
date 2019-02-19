@@ -137,7 +137,7 @@ sidebar:
     tech_utxo_and_script: utxo与script
     tech_utxo_limitation: UTXO的限制条件
     tech_cross_chain: 跨链置换
-    tech_mpc1-new-tx: MPC1 新交易说明
+    tech_mpc1-new-tx: MPC1 交易更新说明
     plugin_cli: Plugin CLI
 
   faq:
