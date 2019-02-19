@@ -1,7 +1,7 @@
-title: MPC1 New transactions
+title: Transaction updation in MPC1
 ---
 
-# MPC1 新交易说明
+# MPC1 交易更新说明
 以下示例数据均来自[测试网](https://explorer-testnet.mvs.org)。
 
 ## PoS 块

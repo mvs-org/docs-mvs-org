@@ -1,7 +1,7 @@
-title: MPC1 New transactions
+title: Transaction updation in MPC1
 ---
 
-# New transations in MPC1
+# Transaction updation in MPC1
 The follow examples can be found on [testnet explorer](https://explorer-testnet.mvs.org).
 
 ## PoS Block

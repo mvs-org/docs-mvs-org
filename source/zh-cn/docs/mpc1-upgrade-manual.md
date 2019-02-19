@@ -49,5 +49,5 @@ $ ./mvs-install.sh
 运行全节点钱包，同步区块数据，然后使用命令 `getinfo` 查看钱包状态。
 **安装后首次运行，请不要直接退出程序，请等待同步区块到最新!**
 
-### MPC1 新增交易说明
-MPC1 新增了一些交易构造，如果您在项目中需要自己解析交易，请阅读[MPC1 新增交易说明](https://docs.mvs.org/zh-cn/developers/mpc1-new-transactions.html)。
+### MPC1 交易更新说明
+MPC1 新增了一些交易构造，如果您在项目中需要自己解析交易，请阅读[MPC1 新增交易说明](https://docs.mvs.org/zh-cn/developers/mpc1-transaction-updation.html)。

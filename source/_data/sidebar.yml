@@ -155,6 +155,6 @@ developers:
     tech_utxo_and_script: utxo-and-script.html
     tech_utxo_limitation: utxo-limitation.html
     tech_cross_chain: cross-chain.html
-    tech_mpc1-new-tx: mpc1-new-transactions.html
+    tech_mpc1-new-tx: mpc1-transaction-updation.html
     plugin_cli: plugin-cli.html
     
