@@ -294,7 +294,7 @@ title: Transaction updation in MPC1
 * 第三个交易为 `PoS` 创世交易，其哈希为[`9a71d084b472468421012b1c4a25ef3e2e42d2712069d2a447a7befaab92bcad`](https://explorer-testnet.mvs.org/tx/9a71d084b472468421012b1c4a25ef3e2e42d2712069d2a447a7befaab92bcad)；
 
 ## Relative lock-time (RLT) 相对时间锁交易
-Metaverse 实现了 [BIP112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki) 中定义的相对时间锁机制。带有相对时间锁交易的脚本中包含操作码 `CHECKSEQUENCEVERIFY`。
+Metaverse 实现了 [BIP112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki) 中定义的相对时间锁机制。带有相对时间锁交易的脚本中包含操作码 `CHECKSEQUENCEVERIFY` **(使用操作码值为NOP4 (=179) 而非NOP3 (=178)，由于 NOP3 已经被元界另一个扩展功能(CHECKATTENUATIONVERIFY)占用了。请注意此处与比特币的不同。)**。
 
 示例交易如下：
 交易[2912621cb70244d878ed0594d1bf841191d5323347cad76b3126085220692702](https://explorer-testnet.mvs.org/tx/2912621cb70244d878ed0594d1bf841191d5323347cad76b3126085220692702) 通过相对时间锁锁仓 `1000 ETP`，锁仓块高为 `10000000`，其值对应脚本中第一个操作数的十六进制 `969800` 部分。

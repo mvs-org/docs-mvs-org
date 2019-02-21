@@ -288,13 +288,13 @@ Example:
 }
 ```
 
-`PoS` genesis block has threr transations:
+`PoS` genesis block has three transations:
 * The first is `coinbase` and its hash is [`e7a25724eccc05fb5f36d14c6e851037dd9e3c9f5002853c2e623e7a64b790f8`](https://explorer-testnet.mvs.org/tx/e7a25724eccc05fb5f36d14c6e851037dd9e3c9f5002853c2e623e7a64b790f8)；  
 * The second is `coinstake` and its hash is [`21ab6dca066b6a7cdbaa71f4564f6979b9484b86c387885d91126a03f54949fc`](https://explorer-testnet.mvs.org/tx/21ab6dca066b6a7cdbaa71f4564f6979b9484b86c387885d91126a03f54949fc)；
 * The third is `PoS` genesis transation and its hash is [`9a71d084b472468421012b1c4a25ef3e2e42d2712069d2a447a7befaab92bcad`](https://explorer-testnet.mvs.org/tx/9a71d084b472468421012b1c4a25ef3e2e42d2712069d2a447a7befaab92bcad)；
 
 ## Relative lock-time (RLT) transation
-Metaverse implements Relative lock-time (RLT) defined in [BIP112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki). The script of RLT transation contains op code `CHECKSEQUENCEVERIFY`.
+Metaverse implements Relative lock-time (RLT) defined in [BIP112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki). The script of RLT transation contains op code `CHECKSEQUENCEVERIFY` **(which uses NOP4 (=179) instead of NOP3 (=178) because NOP3 is used for another extented operation `CHECKATTENUATIONVERIFY` in metaverse, please notice this difference from Bitcoin.)**.
 
 Example:
 RLT transation [2912621cb70244d878ed0594d1bf841191d5323347cad76b3126085220692702](https://explorer-testnet.mvs.org/tx/2912621cb70244d878ed0594d1bf841191d5323347cad76b3126085220692702) locks `1000 ETP` for `10000000` height. You can found op code 'checksequenceverify' on its script field.
