@@ -134,6 +134,7 @@ sidebar:
     tech_database: 高性能数据库
     tech_httpserver: Httpserver
     tech_p2p_network: p2p网络
+    tech_transaction_format_and_signing : 交易格式和签名
     tech_utxo_and_script: utxo与script
     tech_utxo_limitation: UTXO的限制条件
     tech_cross_chain: 跨链置换

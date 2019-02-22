@@ -152,6 +152,7 @@ developers:
     tech_database: database.html
     tech_httpserver: httpserver.html
     tech_p2p_network: p2p-network.html
+    tech_transaction_format_and_signing : mvs-transaction-format-and-signing.html
     tech_utxo_and_script: utxo-and-script.html
     tech_utxo_limitation: utxo-limitation.html
     tech_cross_chain: cross-chain.html

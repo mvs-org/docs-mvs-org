@@ -157,6 +157,7 @@ sidebar:
     tech_database: Database
     tech_httpserver: HttpServer
     tech_p2p_network: P2P network
+    tech_transaction_format_and_signing : Tx format and signing
     tech_utxo_and_script: UTXO and script
     tech_utxo_limitation: UTXO limitation
     tech_cross_chain: Cross chain swap
