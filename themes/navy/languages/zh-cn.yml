@@ -37,7 +37,6 @@ sidebar:
     features: 特性
     issue_token: 创建与发行资产
     transfer_token: 转移资产
-    onchain_deposit: 链上存款(锁仓)
 
     full_node_usage: 全节点钱包
     introduction: 介绍

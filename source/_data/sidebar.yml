@@ -8,7 +8,6 @@ docs:
   features:
     issue_token: features-issue-token.html
     transfer_token: features-transfer-token.html
-    onchain_deposit: features-onchain-deposit.html
     pillars: pillars.html
     supernova: supernova.html
 

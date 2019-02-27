@@ -37,7 +37,6 @@ sidebar:
     features: Features
     issue_token: Issue Tokens
     transfer_token: Transfer Tokens
-    onchain_deposit: Deposit ETP
 
     full_node_usage: Full Node Wallet
     introduction: Introduction
