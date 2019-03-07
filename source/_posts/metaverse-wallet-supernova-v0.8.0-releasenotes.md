@@ -5,7 +5,6 @@ comments: false
 ## CAUTION
 SuperNova is a hard-fork version which upgrades MVS mainnet protocol, new features will be actived at height **1,270,000**.
 After height 1,270,000, if you do not upgrade (only full-node, Desktop/Linux), MVS wallet no blocks synchronizing.
-Refers to [Manual of upgrading to SuperNova](https://docs.mvs.org/docs/supernova-upgrade-manual.html)
 
 <font color="#FF0000"> <b>
 After wallet program upgraded, please waiting for synchronizing to the latest height, DO NOT EXIT. 

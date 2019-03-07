@@ -29,7 +29,6 @@ sidebar:
     config_file: 配置文件
     command_line: 命令行使用
     supernova: Supernova新特性
-    supernova_upgrade: Supernova升级手册
     cross_chain_swap: 跨链置换
     pillars: Pillars新特性
     mpc1_upgrade: MPC1升级手册
