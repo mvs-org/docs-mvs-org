@@ -12,13 +12,13 @@ Cross-chain service enables to swap assets between Ethereum `ERC20` tokens and e
 
 #### Light wallet myetpwallet
 1. Open menu, Click `Ethereum bridge`
-![Link to Ethereum address](https://i.imgur.com/O1nctxI.png)
+![Link to Ethereum address](/images/i/O1nctxI.png)
 
 2. Click tab `Ethereum -> Metaverse`
-![Generate data](https://i.imgur.com/Z6AQugc.png)
+![Generate data](/images/i/Z6AQugc.png)
 
 3. Choose the avatar or address to be linked, and copy the generated raw data
-![Choose avatar or address](https://i.imgur.com/P7P1zjq.png)
+![Choose avatar or address](/images/i/P7P1zjq.png)
 
 #### Full-node wallet
 1. Open the address page and choose the Avatar or address to be linked; Click `Link to Ethereum`
@@ -38,7 +38,7 @@ Cross-chain service enables to swap assets between Ethereum `ERC20` tokens and e
 ![Link Ethereum address with Metaverse Avatar][image-4]
 
 3. The recipient address should be the address of binding ETP address contract：`0xa52b0a032139e6303b86cfeb0bb9ae780a610354`. You can copy this address from Metaverse wallet.
-![Copy address of binding ETP address contract](https://i.imgur.com/SeYKrHt.png)
+![Copy address of binding ETP address contract](/images/i/SeYKrHt.png)
 
 4. The value to send is ：`0 ether`
 
@@ -58,10 +58,10 @@ Please be patient and wait for the token swap. It takes a little bit longer time
 
 ### Light wallet myetpwallet
 1. Choose the `MST` to be swapped and click `Swap`
-![Choose MST](https://i.imgur.com/Poe3tzx.png)
+![Choose MST](/images/i/Poe3tzx.png)
 
 2. Fill the swap amount and the recipient Ethereum address. The fee of swaping token is `1 ETP`.
-![Swap asset](https://i.imgur.com/Poe3tzx.png)
+![Swap asset](/images/i/Poe3tzx.png)
 
 ### Full-node wallet
 
@@ -108,10 +108,10 @@ For now we support swap from Ethereum `ETH` to Metaverse `ETP` only. The maximum
 [1]:	https://www.myetherwallet.com/
 [2]:	https://token.im/
 
-[image-1]:	https://i.imgur.com/VassbtZ.png
-[image-2]:	https://i.imgur.com/TRFpo1R.png
-[image-3]:	https://i.imgur.com/oY35rZq.png
-[image-4]:	https://i.imgur.com/e5AacIV.jpg
-[image-5]:	https://i.imgur.com/EEageNY.jpg
-[image-6]:	https://i.imgur.com/ocwQjsf.png
-[image-7]:	https://i.imgur.com/quGQeU7.png
+[image-1]:	/images/i/VassbtZ.png
+[image-2]:	/images/i/TRFpo1R.png
+[image-3]:	/images/i/oY35rZq.png
+[image-4]:	/images/i/e5AacIV.jpg
+[image-5]:	/images/i/EEageNY.jpg
+[image-6]:	/images/i/ocwQjsf.png
+[image-7]:	/images/i/quGQeU7.png

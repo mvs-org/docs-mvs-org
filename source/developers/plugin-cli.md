@@ -32,7 +32,7 @@ hello-world
 
 Now go to your project folder using `cd hello-world` .
 
-![plugininstall](https://i.imgur.com/ZR6yTsX.gif)
+![plugininstall](/images/i/ZR6yTsX.gif)
 
 ## Run
 
@@ -46,7 +46,7 @@ You should see a message that your server has been started and you can access th
 
 If you access it just from your browser it will indicate you that it has not been opened within the Metaverse Lightwallet.
 
-![frombrowser](https://i.imgur.com/zXvhZIL.png)
+![frombrowser](/images/i/zXvhZIL.png)
 
 You can also make use of this detection and make the same URL accessible for regular users using their browser. For example you could have a read-only version of your plugin.
 
@@ -59,7 +59,7 @@ Next you should see the information page for your plugin and the permissions it 
 If you open the plugin you should see the same website as you visited previously directly in your browser but now it should indicate that it is connected to a wallet.
 
 
-![fromlightwallet](https://i.imgur.com/RI13Pxi.png)
+![fromlightwallet](/images/i/RI13Pxi.png)
 
 ## Your Code
 

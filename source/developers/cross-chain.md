@@ -167,6 +167,6 @@ Swap `MST`  for Ethereum`ERC20` tokens
 1. [Preprocessing module](https://github.com/mvshub/mvs_ScanService)
 2. [Swap module](https://github.com/mvshub/mvs_SwapService)
 
-[image-1]:	https://i.imgur.com/O5RlHy0.png
-[image-2]:	https://i.imgur.com/H08LV6X.png
-[image-3]:	https://i.imgur.com/E2bWRKI.png
+[image-1]:	/images/i/O5RlHy0.png
+[image-2]:	/images/i/H08LV6X.png
+[image-3]:	/images/i/E2bWRKI.png
