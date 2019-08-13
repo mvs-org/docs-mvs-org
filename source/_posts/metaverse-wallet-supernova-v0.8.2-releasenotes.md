@@ -1,4 +1,5 @@
 title: Wallet SuperNova(v0.8.2) Release Notes
+date: 2018-07-17
 comments: false
 ---
 

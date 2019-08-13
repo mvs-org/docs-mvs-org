@@ -1,4 +1,5 @@
 title: Wallet v0.7.4 Release Notes
+date: 2018-02-13
 comments: false
 ---
 
