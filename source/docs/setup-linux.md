@@ -4,19 +4,19 @@ comments: false
 
 Please download the latest wallet installation package from Metaverse’s official website <https://mvs.org/wallet.html>. The wallet is now support Linux 64 bit system. At least 10 GB of free disk space is required for the installation.
 
-**Take version v0.8.4 as an example.**
+**Take version v0.9.0 as an example.**
 
 ## Download and unzip
 Download standard versions
 ```bash
 # for tarballs
-wget https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/mvs-linux-x86_64-v0.8.4.tar.gz
-tar -zxf mvs-linux-x86_64-v0.8.4.tar.gz
+wget https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/mvs-linux-x86_64-v0.9.0.tar.gz
+tar -zxf mvs-linux-x86_64-v0.9.0.tar.gz
 ```
 
 ## Install standard versions
 ```bash
-cd mvs-linux-x86_64-v0.8.4
+cd mvs-linux-x86_64-v0.9.0
 ./mvs-install.sh
 ```
 

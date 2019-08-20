@@ -2,18 +2,18 @@ title: 安装Linux版本钱包
 comments: false
 ---
 
-到官网<https://mvs.org/wallet.html>下载Linux钱包客户端, 目前支持Linux 64bit，安装全节点钱包至少需要 10 GB 磁盘空间。本文以v0.8.4为示例。
+到官网<https://mvs.org/wallet.html>下载Linux钱包客户端, 目前支持Linux 64bit，安装全节点钱包至少需要 10 GB 磁盘空间。本文以v0.9.0为示例。
 
 ## 下载并解压标准版
 ```bash
 # for tarballs
-wget https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/mvs-linux-x86_64-v0.8.4.tar.gz
-tar -zxf mvs-linux-x86_64-v0.8.4.tar.gz
+wget https://s3-us-west-1.amazonaws.com/wallet.mvs.org/download/mvs-linux-x86_64-v0.9.0.tar.gz
+tar -zxf mvs-linux-x86_64-v0.9.0.tar.gz
 ```
 
 ## 安装标准版
 ```bash
-cd mvs-linux-x86_64-v0.8.4
+cd mvs-linux-x86_64-v0.9.0
 ./mvs-install.sh
 ```
 
