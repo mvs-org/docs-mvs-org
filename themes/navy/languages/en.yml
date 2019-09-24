@@ -28,14 +28,14 @@ sidebar:
     linux_setup: Setup on Linux
     config_file: Config File
     command_line: Command-Line
-    supernova: Supernova Features
     cross_chain_swap: Cross Chain Swap
-    pillars: Pillars Features
     mpc1_upgrade: MPC1 Upgrade Manual
 
     features: Features
     issue_token: Issue Tokens
     transfer_token: Transfer Tokens
+    supernova: Supernova Features
+    pillars: Pillars Features
 
     full_node_usage: Full Node Wallet
     introduction: Introduction
@@ -50,7 +50,13 @@ sidebar:
     reset_mvs: Reset MVS Wallet
     upgrade_mvs: Upgrade MVS Wallet
     backup_account: Backup Account
+    
+    mining: Mining
     setup_mining_pool: Setup Mining Pool
+    join_mining_pool: Join Mining Pool
+    start_solo_pow_mining: Start solo PoW mining
+    start_pos_mining: Start PoS mining
+    mst_mining: MST mining
 
   baas:
     introduction: Introduction
@@ -71,17 +77,6 @@ sidebar:
     asset: Asset
 
   api_v2:
-    xxx1: ----
-    xxx2: ----
-    xxx3: ----
-    xxx4: ----
-    xxx5: ----
-    xxx6: ----
-    xxx7: ----
-    xxx8: ----
-    xxx9: ----
-    xxx10: ----
-    xxx11: ----
     introduction: Introduction
     websocket: Websocket
     blockchain:  Blockchain
@@ -96,17 +91,6 @@ sidebar:
     mit: MIT
 
   api_v3:
-    xxxx1: ----
-    xxxx2: ----
-    xxxx3: ----
-    xxxx4: ----
-    xxxx5: ----
-    xxxx6: ----
-    xxxx7: ----
-    xxxx8: ----
-    xxxx9: ----
-    xxxx10: ----
-    xxxx11: ----
     introduction: Introduction
     websocket: Websocket
     blockchain:  Blockchain
