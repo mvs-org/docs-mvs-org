@@ -616,6 +616,123 @@ comments: false
     ```
 ***
 
+* ### `sendmoreasset`
+    `sendmoreasset`, alias `sendassetmore`
+    * Parameters (optional)
+    1. `-c` or `[--change]` Change to this did/address.
+    2. `-f` or `[--fee]`    The fee of tx. default_value 0.0001 etp.
+    3. `-i` or `[--memo]`   Attached memo for this transaction.
+    4. `-m` or `[--model]`  The token offering model by block height.
+    5. `-r` or `[--receivers]` Send to [did/address:amount]
+    * Parameters (positional)
+    1. `ACCOUNTNAME` Account name.
+    2. `ACCOUNTAUTH` Account password/authorization.
+    3. `ASSET` Asset MST symbol/name.	
+    ```js
+    params:[
+        "ACCOUNTNAME",
+        "ACCOUNTAUTH",
+        "ASSET"
+    ]
+     ```
+    * Returns
+    `Object` -
+
+    * Example
+    ```js
+    // Request	
+	curl -X POST --data '{
+        "id":7,
+        "jsonrpc":"2.0",
+        "method":"sendmoreasset",
+        "params":[
+            "test",
+            "123456",
+            "MVS.TST", 
+			{
+				"receivers":"tBQZQevpppGQEeha126cTPjdmKeWqQCjsW:1",
+				"change": "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y"
+			}			
+		]
+    }' http://127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+		"id" : 7,
+		"jsonrpc" : "2.0",
+		"result" : 
+		{
+			"hash" : "f882e1185712949b09c6c5db3db74cda529ab4858e3c5cb2e73588c4deeb83f0",
+			"inputs" : 
+			[
+				{
+					"address" : "tCQGGTk2dRZqo5cQZmu5RDmnjKwrFW3u5v",
+					"previous_output" : 
+					{
+						"hash" : "690d4c3a08ddb1fc246897dac26567fe7c5d0089cd5f3c70f441dd8735e0bb86",
+						"index" : 2
+					},
+					"script" : "[ 3045022100a5a05b0a67d2d2144857db36feccb31e1e87f678d7aa0e4a2d0f12e84a2bc6a80220575f0b4c8320d7ea501ef5c44ceb8367ab7544bd391bfdce81070380a8d5363c01 ] [ 02abf9cbebc65dce3471c61c4a3c4f8aaedca1b036233fe479fab66e7e99832c80 ]",
+					"sequence" : 4294967295
+				},
+				{
+					"address" : "tCQGGTk2dRZqo5cQZmu5RDmnjKwrFW3u5v",
+					"previous_output" : 
+					{
+						"hash" : "690d4c3a08ddb1fc246897dac26567fe7c5d0089cd5f3c70f441dd8735e0bb86",
+						"index" : 1
+					},
+					"script" : "[ 304402207fbd3b49ab79233f8cb5ba87be277c56a07535bd3c7785948c0c02e890115c2e02204122ff1fa8d23180432a55dcb394a2255052b5cb5bcbac9644943132e051103b01 ] [ 02abf9cbebc65dce3471c61c4a3c4f8aaedca1b036233fe479fab66e7e99832c80 ]",
+					"sequence" : 4294967295
+				}
+			],
+			"lock_time" : "0",
+			"outputs" : 
+			[
+				{
+					"address" : "tBQZQevpppGQEeha126cTPjdmKeWqQCjsW",
+					"attachment" : 
+					{
+						"quantity" : 1,
+						"symbol" : "MVS.TST",
+						"type" : "asset-transfer"
+					},
+					"index" : 0,
+					"locked_height_range" : 0,
+					"script" : "dup hash160 [ 3129f231441ed9865cce2ed4337095ec1c245f95 ] equalverify checksig",
+					"value" : 0
+				},
+				{
+					"address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+					"attachment" : 
+					{
+						"type" : "etp"
+					},
+					"index" : 1,
+					"locked_height_range" : 0,
+					"script" : "dup hash160 [ c9e5a7523f9f51858ad923995de69be769a2ed7d ] equalverify checksig",
+					"value" : 199799860000
+				},
+				{
+					"address" : "tRL8yxhSd3AAxpRcbxmEasv89VZ7ZJgh3y",
+					"attachment" : 
+					{
+						"quantity" : 99998997,
+						"symbol" : "MVS.TST",
+						"type" : "asset-transfer"
+					},
+					"index" : 2,
+					"locked_height_range" : 0,
+					"script" : "dup hash160 [ c9e5a7523f9f51858ad923995de69be769a2ed7d ] equalverify checksig",
+					"value" : 0
+				}
+			],
+			"version" : "4"
+		}
+	}
+    ```
+***
+
 * ### `sendassetfrom`
     `sendassetfrom`, alias `didsendassetfrom`
     * Parameters (optional)
