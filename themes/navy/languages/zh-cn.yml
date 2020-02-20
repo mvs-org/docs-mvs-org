@@ -91,16 +91,27 @@ sidebar:
 
   api_v3:
     introduction: 介绍
-    blockchain:  区块链操作
+    blockchain:  区块链
     rawtx:  离线交易
     multisig: 多重签名
     etp:  ETP
     block: 区块
     account: 账户
     transaction: 交易
-    asset: 资产
+    asset: 资产(MST)
     identity: 身份
-    mit: MIT
+    mit: 资产(MIT)
+    xxxx1: 介绍
+    xxxx2: 接口Block
+    xxxx3: 接口Account
+    xxxx4: 接口Blockchain
+    xxxx5: 接口ETP
+    xxxx6: 接口Tx
+    xxxx7: 接口Asset(MST)
+    xxxx8: 接口Multi-sig
+    xxxx9: 接口RawTx
+    xxxx10: 接口Avatar(DID)
+    xxxx11: 接口Asset(MIT)
 
   developers:
     overview: 开发者文档概览

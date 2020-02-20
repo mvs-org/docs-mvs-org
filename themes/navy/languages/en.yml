@@ -103,6 +103,17 @@ sidebar:
     asset: Asset
     identity: Identity
     mit: MIT
+    xxxx1: Introductions
+    xxxx2: Commands for Block
+    xxxx3: Commands for Account
+    xxxx4: Commands for Blockchain
+    xxxx5: Commands for ETP
+    xxxx6: Commands for Tx
+    xxxx7: Commands for Asset(MST)
+    xxxx8: Commands for Multi-sig
+    xxxx9: Commands for RawTx
+    xxxx10: Commands for Avatar(DID)
+    xxxx11: Commands for Asset(MIT)
 
   developers:
     overview: Developers Overview

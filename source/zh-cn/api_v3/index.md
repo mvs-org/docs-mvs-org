@@ -155,6 +155,7 @@ $ ./mvs-cli help $command
 | [issuefrom](asset.html#issuefrom)              | √ | × | √ | 0.7.3 |
 | [listassets](asset.html#listassets)            | √ | × | optional | 0.7.3 |
 | [sendasset](asset.html#sendasset)              | √ | × | √ | 0.7.3 |
+| [sendmoreasset](asset.html#sendmoreasset)      | √ | × | √ | 0.7.3 |
 | [sendassetfrom](asset.html#sendassetfrom)      | √ | × | √ | 0.7.3 |
 | [burn](asset.html#burn)                        | √ | × | √ | 0.8.0 |
 | [validatesymbol](asset.html#validatesymbol)    | × | × | √ | 0.9.0 |
