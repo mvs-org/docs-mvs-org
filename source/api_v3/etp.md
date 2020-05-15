@@ -115,6 +115,46 @@ comments: false
     }
     ```
 
+    ```js
+    // Request
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"getaddressetp",
+        "params":[
+            "MGb4a2vtRHY6kkEH486hHrGsziGhTcSiyn",
+            "-r",
+            "0:11",
+            "--utxo"
+        ]
+    }' http://127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" : 
+        [
+            {
+                "available" : 10,
+                "balance" : 10,
+                "frozen" : 0,
+                "utxo_block" : 175052,
+                "utxo_hash" : "6d324a1cadd7beb5cbeefaa494ca2bf9e084a8f5e99bbc894aff1492a373d3f3",
+                "utxo_index" : 0
+            },
+            {
+                "available" : 10,
+                "balance" : 10,
+                "frozen" : 0,
+                "utxo_block" : 175052,
+                "utxo_hash" : "cc34f673fdeda95a31e343060742afcd2189a9c719f1d4a2bc19b9d48922df28",
+                "utxo_index" : 0
+            }
+        ]
+    }
+    ```
+
 ***
 
 * ### `listbalances`
