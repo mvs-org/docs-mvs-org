@@ -357,6 +357,9 @@ comments: false
     1. `-c` or `[--cert]` If specified, then only get related cert. Default is not specified.
     2. `-d` or `[--deposited]` If specified, then only get deposited assets. Default is not specified.
     3. `-s` or `[--symbol]` Asset symbol.
+    4. `-r` or `[--range]`      Pick utxo whose value is between this range [begin:end).
+    5. `-u` or `[--utxo]`       If specified, list all utxos. Default is not specified.
+    6. `-x` or `[--utxominimumconfirmations]`       If specified, list utxos which minimum confirmations. defaults to 3.
     * Parameters (positional)
     1. `ADDRESS` address
     ```js
@@ -398,6 +401,49 @@ comments: false
     }
     ```
 
+    ```js
+    // Request
+    curl -X POST -d '{
+        "id":25,
+        "jsonrpc":"2.0",
+        "method":"getaddressasset",
+        "params":[
+        "MGb4a2vtRHY6kkEH486hHrGsziGhTcSiyn",
+        "-r",
+        "0:999999999999",
+        "-s", "DNA",
+        "--utxo",
+        "--utxominimumconfirmations", 100  
+        ]
+    }' http://127.0.0.1:8820/rpc/v3
+
+    // Response
+    {
+        "id" : 25,
+        "jsonrpc" : "2.0",
+        "result" : 
+        [
+            {
+                "available" : 11,
+                "balance" : 11,
+                "frozen" : 0,
+                "symbol" : "DNA",
+                "utxo_block" : 175161,
+                "utxo_hash" : "85fa132f9d44a4a91576ef78c731ee78f7cf6656606344458085eef24ba29e2e",
+                "utxo_index" : 0
+            },
+            {
+                "available" : 11,
+                "balance" : 11,
+                "frozen" : 0,
+                "symbol" : "DNA",
+                "utxo_block" : 174943,
+                "utxo_hash" : "83d7e9bc1b01df0ed55349ee0127ecc6b8fb8e42fa6ea44afc3066da73a2f2b5",
+                "utxo_index" : 0
+            }
+        ]
+    }
+    ```
 ***
 
 * ### `getasset`

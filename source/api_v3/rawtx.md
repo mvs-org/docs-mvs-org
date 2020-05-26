@@ -20,6 +20,7 @@ comments: false
     7. `-t` or `[--type]`          Transaction type. 0 -- transfer etp, 3 -- transfer asset
     8. `-u` or `[--utxos]`         Use the specific UTXO as input. Format: "tx-hash:output-index"
     9. `-x` or `[--locktime]`      Locktime. defaults to 0
+    10. `-c` or `[--utxominimumconfirmations]`       If specified, Create transaction with the utxo minimum confirmations. defaults to 3.
 
     * Returns
     `Object` -
@@ -38,6 +39,30 @@ comments: false
     }
     ```
 
+    ```js
+    // Request
+    curl http://127.0.0.1:8820/rpc/v3 -X POST --data '{
+        "jsonrpc":"2.0",
+        "method":"createrawtx",
+        "params":[
+            {
+                "type":"3", 
+                "senders":"MGb4a2vtRHY6kkEH486hHrGsziGhTcSiyn", 
+                "receivers":"MF89nPU6ang8SxRvnra2VFaphooiGnqjjZ:11", 
+                "symbol":"DNA", 
+                "utxominimumconfirmations": 10 
+            }
+        ],
+        "id":7
+    }'
+
+    // Response
+    {
+        "id" : 7,
+        "jsonrpc" : "2.0",
+        "result" : "0400000002b5f2a273da6630fc4aa46efa428efbb8c6ec2701ee4953d50edf011bbce9d7830000000000ffffffff71682da7f8b299b84847eab97e1c440557893bb9485670cfeca7e7e34b3c30fc0000000000ffffffff0200000000000000001976a9144f3de9c6614b46b8c8bdfd18b40bd5069998dd2488ac01000000020000000200000003444e410b00000000000000905f0100000000001976a9145f4ceb185ec0c40d0f20b4615cbe4c28b52771a788ac010000000000000000000000"
+    }
+    ```
 ***
 
 * ### `signrawtx`
